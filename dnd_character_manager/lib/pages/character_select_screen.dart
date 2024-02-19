@@ -1,7 +1,9 @@
+import 'package:dnd_character_manager/models/my_user/my_user_repo.dart';
 import 'package:flutter/material.dart';
 
 class CharacterSelectScreen extends StatelessWidget {
-  const CharacterSelectScreen({super.key});
+  final MyUserRepository myUserRepository;
+  const CharacterSelectScreen(this.myUserRepository, {super.key});
 
   @override
   Widget build(BuildContext context) {
