@@ -1,0 +1,3 @@
+To Do
+1. Figure out Auth in a simple way for signing in, and retrieving data specific to the
+    unique ID from the user who is signed in
