@@ -3,3 +3,4 @@ To Do
     unique ID from the user who is signed in
 2. Is there a way to create unique sessions? Like a DM who can see every person's 
     active character in the unique sessions, make edits to and view stats and spells? Potentially.
+3. Compare Video's BLoC + Auth with Jeff's review of the structure, and find what I like best/what works best
