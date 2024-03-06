@@ -4,3 +4,5 @@ To Do
 2. Is there a way to create unique sessions? Like a DM who can see every person's 
     active character in the unique sessions, make edits to and view stats and spells? Potentially.
 3. Compare Video's BLoC + Auth with Jeff's review of the structure, and find what I like best/what works best
+    - need to follow up on this! Just simple client, BLoC, service method? Figure out users and logging in more on my own
+    before watching a youtube tutorial
