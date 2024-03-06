@@ -1,23 +1,28 @@
 import 'package:dnd_character_manager/constants/text_fields.dart';
 import 'package:dnd_character_manager/constants/theme_data.dart';
+import 'package:dnd_character_manager/cubits/character_cubit/character_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-  final bool userSignedIn = false;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'D&D Character Manager',
-          style: dndFont.copyWith(color: white),
-        ),
-        centerTitle: true,
-        backgroundColor: blueGrey,
-      ),
-      body: userSignedIn ? _SignIn() : _SignUp(),
+    return BlocBuilder<CharacterCubit, CharacterState>(
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(
+              'D&D Character Manager',
+              style: dndFont.copyWith(color: white),
+            ),
+            centerTitle: true,
+            backgroundColor: blueGrey,
+          ),
+          body: state.signedIn! ? const _SignIn() : const _SignUp(),
+        );
+      },
     );
   }
 }
@@ -48,7 +53,9 @@ class _SignIn extends StatelessWidget {
               subtitle: 'Enter Password',
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                context.read<CharacterCubit>().signIn(false);
+              },
               child: Text(
                 'Sign In',
                 style: dndFont.copyWith(fontSize: 16),
@@ -93,18 +100,14 @@ class _SignUp extends StatelessWidget {
               subtitle: 'Enter New Password',
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                context.read<CharacterCubit>().signIn(true);
+              },
               child: Text(
                 'Sign In',
                 style: dndFont.copyWith(fontSize: 16),
               ),
             ),
-            TextButton(
-                onPressed: () {},
-                child: Text(
-                  'No Account yet? Sign Up',
-                  style: dndFont.copyWith(fontSize: 16),
-                ))
           ],
         ),
       ),
