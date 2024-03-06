@@ -62,7 +62,9 @@ class _SignIn extends StatelessWidget {
               ),
             ),
             TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.read<CharacterCubit>().signIn(false);
+                },
                 child: Text(
                   'No Account yet? Sign Up',
                   style: dndFont.copyWith(fontSize: 16),
