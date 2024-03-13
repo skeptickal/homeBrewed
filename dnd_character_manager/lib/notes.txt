@@ -6,3 +6,4 @@ To Do
 3. Compare Video's BLoC + Auth with Jeff's review of the structure, and find what I like best/what works best
     - need to follow up on this! Just simple client, BLoC, service method? Figure out users and logging in more on my own
     before watching a youtube tutorial
+3. Streams?
