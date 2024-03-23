@@ -3,12 +3,12 @@ import 'package:equatable/equatable.dart';
 class MyUser extends Equatable {
   final String userID;
   final String email;
-  final String name;
+  final String? name;
 
   const MyUser({
     required this.userID,
     required this.email,
-    required this.name,
+    this.name,
   });
 
   Map<String, dynamic> toJson() {
