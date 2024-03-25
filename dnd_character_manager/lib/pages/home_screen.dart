@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
             centerTitle: true,
             backgroundColor: blueGrey,
           ),
-          body: state.signedIn! ? const _SignIn() : const _SignUp(),
+          body: state.signedIn! ? const _SignIn() : const _SignUp(), //instead of SignUp() return a home screen that uses user data, this is temporary  
         );
       },
     );
