@@ -18,7 +18,7 @@ class FirebaseAuthClient {
     });
   }
 
-  Future signIn(String email, String password) async {
+  Future<void> signIn(String email, String password) async {
     try {
       await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
     } catch (e) {
@@ -27,17 +27,23 @@ class FirebaseAuthClient {
     }
   }
 
-  Future signUp({required MyUser myUser, required String password}) async {
+  Future<void> signUp({required MyUser myUser, required String password}) async {
     try {
-      UserCredential user = await _firebaseAuth.createUserWithEmailAndPassword(
+      await _firebaseAuth.createUserWithEmailAndPassword(
         email: myUser.email,
         password: password,
       );
-      myUser = myUser.copyWith(userID: user.user!.uid);
-      return myUser;
     } catch (e) {
       print(e.toString());
       rethrow;
+    }
+  }
+
+  Future<void> signOut() async {
+    try {
+      await _firebaseAuth.signOut();
+    } catch (e) {
+      print(e.toString());
     }
   }
 

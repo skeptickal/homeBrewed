@@ -1,12 +1,12 @@
 import 'package:equatable/equatable.dart';
 
 class MyUser extends Equatable {
-  final String userID;
+  final String? userID;
   final String email;
   final String? name;
 
   const MyUser({
-    required this.userID,
+    this.userID,
     required this.email,
     this.name,
   });
@@ -33,6 +33,11 @@ class MyUser extends Equatable {
       email: email ?? this.email,
       name: name ?? this.name,
     );
+  }
+
+  @override
+  String toString() {
+    return 'email: $email \n userID: $userID, \n name: $name';
   }
 
   @override
