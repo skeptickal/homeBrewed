@@ -1,3 +1,4 @@
+import 'package:dnd_character_manager/constants/screen_wrapper.dart';
 import 'package:dnd_character_manager/constants/text_fields.dart';
 import 'package:dnd_character_manager/constants/theme_data.dart';
 import 'package:dnd_character_manager/cubits/character_cubit/character_cubit.dart';
@@ -13,16 +14,8 @@ class LoginScreen extends StatelessWidget {
     return BlocConsumer<CharacterCubit, CharacterState>(
       listener: (context, state) => _listener(state, context),
       builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Text(
-              'D&D Character Manager',
-              style: dndFont.copyWith(color: white),
-            ),
-            centerTitle: true,
-            backgroundColor: blueGrey,
-          ),
-          body: state.signedIn! ? const _SignIn() : const _SignUp(),
+        return const ScreenWrapper(
+          child: _SignIn(), //body: state.signedIn! ? const _SignIn() : const _SignUp(),
         );
       },
     );
@@ -48,13 +41,15 @@ class _SignIn extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CustomTextBox(
+            LoginBox(
+              obscureText: false,
               padding: const EdgeInsets.all(6),
               controller: email,
               hintText: 'email',
               subtitle: 'Sign In with Email',
             ),
-            CustomTextBox(
+            LoginBox(
+              obscureText: true,
               padding: const EdgeInsets.all(6),
               controller: password,
               hintText: 'password',
@@ -84,6 +79,7 @@ class _SignIn extends StatelessWidget {
   _onPressSignUp(BuildContext context) => context.read<CharacterCubit>().signOut();
 }
 
+// ignore: unused_element
 class _SignUp extends StatelessWidget {
   const _SignUp();
 
@@ -97,13 +93,15 @@ class _SignUp extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CustomTextBox(
+            LoginBox(
+              obscureText: false,
               padding: const EdgeInsets.all(6),
               controller: email,
               hintText: 'email',
               subtitle: 'Sign Up with Email',
             ),
-            CustomTextBox(
+            LoginBox(
+              obscureText: true,
               padding: const EdgeInsets.all(6),
               controller: password,
               hintText: 'password',

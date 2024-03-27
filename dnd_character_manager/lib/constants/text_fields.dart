@@ -1,19 +1,21 @@
 import 'package:dnd_character_manager/constants/theme_data.dart';
 import 'package:flutter/material.dart';
 
-class CustomTextBox extends StatelessWidget {
+class LoginBox extends StatelessWidget {
   final EdgeInsets padding;
   final TextEditingController controller;
   final String hintText;
   final String subtitle;
   final int? minLines;
+  final bool obscureText;
 
-  const CustomTextBox({
+  const LoginBox({
     required this.padding,
     required this.controller,
     required this.hintText,
     required this.subtitle,
     this.minLines,
+    required this.obscureText,
     super.key,
   });
 
@@ -29,7 +31,8 @@ class CustomTextBox extends StatelessWidget {
           TextFormField(
             controller: controller,
             minLines: minLines,
-            maxLines: null,
+            obscureText: obscureText,
+            maxLines: 1,
             keyboardType: TextInputType.multiline,
             decoration: textInputDecoration.copyWith(hintText: hintText),
           ),
