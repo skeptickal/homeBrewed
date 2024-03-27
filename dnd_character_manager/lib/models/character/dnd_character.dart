@@ -18,7 +18,7 @@ class DndCharacter extends Equatable {
       'userID': userID,
       'race': race,
       'name': name,
-      'class': dndClass,
+      'dndClass': dndClass,
     };
     return data;
   }
@@ -28,13 +28,13 @@ class DndCharacter extends Equatable {
       userID: json['userID'].toString(),
       race: json['race'].toString(),
       name: json['name'].toString(),
-      dndClass: json['class'].toString(),
+      dndClass: json['dndClass'].toString(),
     );
   }
 
   @override
   String toString() {
-    return 'name: $name \n userID: $userID, \n race: $race \n class: $dndClass';
+    return 'name: $name \n userID: $userID, \n race: $race \n dndClass: $dndClass';
   }
 
   @override

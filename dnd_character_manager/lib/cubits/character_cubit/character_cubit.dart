@@ -15,8 +15,19 @@ class CharacterCubit extends Cubit<CharacterState> {
   CharacterCubit({DndService? dndService, FirebaseAuthClient? firebaseAuthClient})
       : dndService = dndService ?? DndService(),
         firebaseAuthClient = firebaseAuthClient ?? FirebaseAuthClient(),
-        super(const CharacterInitial());
+        super(CharacterInitial());
 
+// Firebase Firestore related cubit functions
+  Future<void> readCharactersByUserID(String? userID) async {
+    try {
+      final List<DndCharacter> dndCharacters = await dndService.readDndCharactersByUserID(userID: userID);
+      emit(state.copyWith(dndCharacters: dndCharacters));
+    } catch (e) {
+      print('error reading characters from state');
+    }
+  }
+
+// Firebase Auth related cubit functions
   Future<void> initialize() async {
     firebaseAuthClient.user.listen((MyUser? myUser) => _onUserChange(myUser));
   }

@@ -12,10 +12,29 @@ class HomeScreen extends StatelessWidget {
     return BlocConsumer<CharacterCubit, CharacterState>(
         listener: (context, state) => _listener(state, context),
         builder: (context, state) {
+          context.read<CharacterCubit>().readCharactersByUserID(state.myUser!.userID);
+          List<ListTile> dndCharacters = state.dndCharacters!.map(
+            (dndCharacter) {
+              return ListTile(
+                key: const Key('dnd_character_tiles'),
+                leading: Text(dndCharacter.dndClass),
+                title: Text(dndCharacter.name),
+                trailing: Text(dndCharacter.race),
+               );
+            },
+          ).toList();
           return ScreenWrapper(
             child: SingleChildScrollView(
               child: Column(
-                children: [Center(child: TextButton(onPressed: () => context.read<CharacterCubit>().signOut(), child: const Text('sign out')))],
+                children: [
+                  ...dndCharacters,
+                  Center(
+                    child: TextButton(
+                      onPressed: () => context.read<CharacterCubit>().signOut(),
+                      child: const Text('sign out'),
+                    ),
+                  ),
+                ],
               ),
             ),
           );
