@@ -21,5 +21,13 @@ class CharacterState extends Equatable {
 }
 
 final class CharacterInitial extends CharacterState {
-  const CharacterInitial() : super(signedIn: false, myUser: null);
+  CharacterInitial()
+      : super(signedIn: false, myUser: null, dndCharacters: [
+          const DndCharacter(
+            userID: 'example',
+            race: 'human',
+            name: 'Jackson',
+            dndClass: 'Dev',
+          )
+        ]);
 }
