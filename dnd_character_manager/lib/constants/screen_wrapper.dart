@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 
 class ScreenWrapper extends StatelessWidget {
   final Widget child;
-  const ScreenWrapper({super.key, required this.child});
+  final String title;
+  const ScreenWrapper({super.key, required this.child, required this.title});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(color: white),
         title: Text(
-          'D&D Character Manager',
+          title,
           style: dndFont.copyWith(color: white),
         ),
         centerTitle: true,
