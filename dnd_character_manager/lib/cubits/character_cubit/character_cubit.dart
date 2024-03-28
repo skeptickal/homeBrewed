@@ -57,4 +57,5 @@ class CharacterCubit extends Cubit<CharacterState> {
   Future<void> signOut() => firebaseAuthClient.signOut();
 
   Future<void> setUserData(MyUser myUser) async => firebaseAuthClient.setUserData(myUser);
+
 }
