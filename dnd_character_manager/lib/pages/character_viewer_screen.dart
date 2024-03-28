@@ -3,7 +3,6 @@ import 'package:dnd_character_manager/constants/text_fields.dart';
 import 'package:dnd_character_manager/cubits/character_cubit/character_cubit.dart';
 import 'package:dnd_character_manager/models/character/dnd_character.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -11,14 +10,15 @@ import '../constants/theme_data.dart';
 
 class CharacterViewerScreen extends StatelessWidget {
   final DndCharacter dndCharacter;
-  CharacterViewerScreen({super.key, required this.dndCharacter});
+  const CharacterViewerScreen({super.key, required this.dndCharacter});
 
   @override
   Widget build(BuildContext context) {
     TextEditingController bio = TextEditingController();
-    bio.text = '1asdasdasdasd234qweqwe';
+
     return BlocBuilder<CharacterCubit, CharacterState>(
       builder: (context, state) {
+        bio.text = 'initialValue state.dndCharacter!.bio!';
         return ScreenWrapper(
             title: dndCharacter.name,
             child: DefaultTabController(
