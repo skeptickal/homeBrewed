@@ -18,10 +18,19 @@ class CharacterCubit extends Cubit<CharacterState> {
         super(CharacterInitial());
 
 // Firebase Firestore related cubit functions
+  Future<void> addDndCharacter(DndCharacter dndCharacter) async {
+    await dndService.addDndCharacter(dndCharacter: dndCharacter);
+    emit(state.copyWith(
+      dndCharacters: [...state.dndCharacters, dndCharacter],
+    ));
+  }
+
   Future<void> readCharactersByUserID(String? userID) async {
+    print('before \n ${state.dndCharacters}');
     try {
       final List<DndCharacter> dndCharacters = await dndService.readDndCharactersByUserID(userID: userID);
       emit(state.copyWith(dndCharacters: dndCharacters));
+      print('after \n ${state.dndCharacters}');
     } catch (e) {
       print('error reading characters from state');
     }

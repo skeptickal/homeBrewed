@@ -4,9 +4,9 @@ part of 'character_cubit.dart';
 class CharacterState extends Equatable {
   final bool? signedIn;
   final MyUser? myUser;
-  final List<DndCharacter>? dndCharacters;
+  final List<DndCharacter> dndCharacters;
 
-  const CharacterState({this.signedIn, this.myUser, this.dndCharacters});
+  const CharacterState({this.signedIn, this.myUser, required this.dndCharacters});
 
   CharacterState copyWith({signedIn, myUser, dndCharacters}) {
     return CharacterState(
@@ -24,7 +24,7 @@ final class CharacterInitial extends CharacterState {
   CharacterInitial()
       : super(signedIn: false, myUser: null, dndCharacters: [
           const DndCharacter(
-            userID: 'example',
+            userID: '1234',
             race: 'human',
             name: 'Jackson',
             dndClass: 'Dev',

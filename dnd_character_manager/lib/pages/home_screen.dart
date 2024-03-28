@@ -1,5 +1,7 @@
 import 'package:dnd_character_manager/constants/screen_wrapper.dart';
+import 'package:dnd_character_manager/constants/theme_data.dart';
 import 'package:dnd_character_manager/cubits/character_cubit/character_cubit.dart';
+import 'package:dnd_character_manager/pages/add_dnd_character.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -13,20 +15,23 @@ class HomeScreen extends StatelessWidget {
         listener: (context, state) => _listener(state, context),
         builder: (context, state) {
           context.read<CharacterCubit>().readCharactersByUserID(state.myUser!.userID);
-          List<ListTile> dndCharacters = state.dndCharacters!.map(
+          List<ListTile> dndCharacters = state.dndCharacters.map(
             (dndCharacter) {
               return ListTile(
-                key: const Key('dnd_character_tiles'),
                 leading: Text(dndCharacter.dndClass),
                 title: Text(dndCharacter.name),
                 trailing: Text(dndCharacter.race),
-               );
+              );
             },
           ).toList();
           return ScreenWrapper(
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  TextButton(
+                    onPressed: () => _showEditPanel(context),
+                    child: const Text('Add Character'),
+                  ),
                   ...dndCharacters,
                   Center(
                     child: TextButton(
@@ -46,4 +51,17 @@ class HomeScreen extends StatelessWidget {
       context.go('/');
     }
   }
+}
+
+void _showEditPanel(BuildContext context) {
+  showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Container(
+          key: const Key('edit_container'),
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 60),
+          color: white,
+          child: const AddDndCharacter(),
+        );
+      });
 }
