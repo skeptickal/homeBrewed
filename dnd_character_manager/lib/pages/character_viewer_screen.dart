@@ -1,7 +1,9 @@
 import 'package:dnd_character_manager/constants/screen_wrapper.dart';
+import 'package:dnd_character_manager/constants/text_fields.dart';
 import 'package:dnd_character_manager/cubits/character_cubit/character_cubit.dart';
 import 'package:dnd_character_manager/models/character/dnd_character.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -13,6 +15,8 @@ class CharacterViewerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController bio = TextEditingController();
+    bio.text = '1asdasdasdasd234qweqwe';
     return BlocBuilder<CharacterCubit, CharacterState>(
       builder: (context, state) {
         return ScreenWrapper(
@@ -37,8 +41,16 @@ class CharacterViewerScreen extends StatelessWidget {
                     ),
                     Expanded(
                       child: TabBarView(children: [
-                        Center(child: Text('Stats')),
-                        Center(child: Text('Bio\n\n${dndCharacter.name}\n${dndCharacter.dndClass}\n${dndCharacter.race}')),
+                        Center(child: Text('Stats\n\n${dndCharacter.name}\n${dndCharacter.dndClass}\n${dndCharacter.race}')),
+                        SingleChildScrollView(
+                            child: BigTextBox(
+                          enabled: false,
+                          controller: bio,
+                          padding: EdgeInsets.all(6),
+                          hintText: 'bio',
+                          subtitle: 'bio',
+                          minLines: 50,
+                        )),
                         Center(child: Text('Items')),
                         Center(child: Text('Weapons')),
                         Center(child: Text('Spells')),

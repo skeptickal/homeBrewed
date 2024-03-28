@@ -42,6 +42,47 @@ class CustomTextBox extends StatelessWidget {
   }
 }
 
+class BigTextBox extends StatelessWidget {
+  final bool enabled;
+  final EdgeInsets padding;
+  final TextEditingController controller;
+  final String hintText;
+  final String subtitle;
+  final int? minLines;
+
+  const BigTextBox({
+    required this.enabled,
+    required this.padding,
+    required this.controller,
+    required this.hintText,
+    required this.subtitle,
+    this.minLines,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: padding,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(subtitle, style: dndFont.copyWith(fontSize: 14, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 4),
+          TextFormField(
+            enabled: enabled,
+            controller: controller,
+            minLines: minLines,
+            maxLines: null,
+            keyboardType: TextInputType.multiline,
+            decoration: textInputDecoration.copyWith(hintText: hintText),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 final textInputDecoration = InputDecoration(
   fillColor: white,
   filled: true,
