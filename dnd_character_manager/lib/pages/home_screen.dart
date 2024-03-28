@@ -1,3 +1,4 @@
+import 'package:dnd_character_manager/client/spacing.dart';
 import 'package:dnd_character_manager/constants/screen_wrapper.dart';
 import 'package:dnd_character_manager/constants/theme_data.dart';
 import 'package:dnd_character_manager/cubits/character_cubit/character_cubit.dart';
@@ -36,7 +37,9 @@ class HomeScreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  seperation,
                   Text(state.myUser!.email),
+                  horizontalLine,
                   ...dndCharacters,
                   IconButton(
                     onPressed: () => _showEditPanel(context),
