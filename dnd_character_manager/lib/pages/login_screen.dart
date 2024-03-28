@@ -66,7 +66,7 @@ class _SignIn extends StatelessWidget {
               ),
             ),
             TextButton(
-                onPressed: () => context.go('/sign_up'),
+                onPressed: () => context.push('/sign_up'),
                 child: Text(
                   'No Account yet? Sign Up',
                   style: dndFont.copyWith(fontSize: 16),
