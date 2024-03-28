@@ -57,7 +57,7 @@ class _SignIn extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                context.read<CharacterCubit>().signUp(email.text, password.text);
+                context.read<CharacterCubit>().signIn(email.text, password.text);
               },
               child: Text(
                 'Sign In',
