@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class LoginScreen extends StatelessWidget {
       listener: (context, state) => _listener(state, context),
       builder: (context, state) {
         return const ScreenWrapper(
-          child: _SignIn(), //body: state.signedIn! ? const _SignIn() : const _SignUp(),
+          child: _SignUp(), //body: state.signedIn! ? const _SignIn() : const _SignUp(),
         );
       },
     );
@@ -28,8 +28,8 @@ class LoginScreen extends StatelessWidget {
   }
 }
 
-class _SignIn extends StatelessWidget {
-  const _SignIn();
+class _SignUp extends StatelessWidget {
+  const _SignUp();
 
   @override
   Widget build(BuildContext context) {
@@ -46,30 +46,24 @@ class _SignIn extends StatelessWidget {
               padding: const EdgeInsets.all(6),
               controller: email,
               hintText: 'email',
-              subtitle: 'Sign In with Email',
+              subtitle: 'Sign Up with Email',
             ),
             CustomTextBox(
               obscureText: true,
               padding: const EdgeInsets.all(6),
               controller: password,
               hintText: 'password',
-              subtitle: 'Enter Password',
+              subtitle: 'Enter New Password',
             ),
             TextButton(
               onPressed: () {
                 context.read<CharacterCubit>().signUp(email.text, password.text);
               },
               child: Text(
-                'Sign In',
+                'Sign Up',
                 style: dndFont.copyWith(fontSize: 16),
               ),
             ),
-            TextButton(
-                onPressed: () => context.go('/sign_up'),
-                child: Text(
-                  'No Account yet? Sign Up',
-                  style: dndFont.copyWith(fontSize: 16),
-                ))
           ],
         ),
       ),

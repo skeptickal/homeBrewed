@@ -42,7 +42,6 @@ class CharacterCubit extends Cubit<CharacterState> {
   }
 
   Future<void> _onUserChange(MyUser? myUser) async {
-    print(myUser);
     emit(state.copyWith(signedIn: myUser != null, myUser: myUser));
   }
 
