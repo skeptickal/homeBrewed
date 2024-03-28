@@ -15,6 +15,7 @@ class SignUpScreen extends StatelessWidget {
       listener: (context, state) => _listener(state, context),
       builder: (context, state) {
         return const ScreenWrapper(
+          title: 'Register A New Account',
           child: _SignUp(), //body: state.signedIn! ? const _SignIn() : const _SignUp(),
         );
       },

@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-class AddDndCharacter extends StatelessWidget {
-  const AddDndCharacter({
+class AddDndCharacterScreen extends StatelessWidget {
+  const AddDndCharacterScreen({
     super.key,
   });
 
@@ -18,7 +18,8 @@ class AddDndCharacter extends StatelessWidget {
     return BlocBuilder<CharacterCubit, CharacterState>(
       builder: (context, state) {
         return Form(
-          child: Container(
+          child: SingleChildScrollView(
+            padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
             child: Column(
               children: [
                 CustomTextBox(
