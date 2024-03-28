@@ -1,7 +1,7 @@
 import 'package:dnd_character_manager/constants/theme_data.dart';
 import 'package:flutter/material.dart';
 
-class LoginBox extends StatelessWidget {
+class CustomTextBox extends StatelessWidget {
   final EdgeInsets padding;
   final TextEditingController controller;
   final String hintText;
@@ -9,7 +9,7 @@ class LoginBox extends StatelessWidget {
   final int? minLines;
   final bool obscureText;
 
-  const LoginBox({
+  const CustomTextBox({
     required this.padding,
     required this.controller,
     required this.hintText,

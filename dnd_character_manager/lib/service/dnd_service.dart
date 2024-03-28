@@ -15,10 +15,12 @@ class DndService {
   //read current dnd characters by userID
   Future<List<DndCharacter>> readDndCharactersByUserID({required String? userID}) async {
     QuerySnapshot<Map<String, dynamic>> data = await client.getData(collectionName: 'dndCharacters');
+
     List<DndCharacter> dndCharacters = data.docs
         .map((doc) => DndCharacter.fromJson(doc.data()))
         .where((character) => character.userID == userID) // Filter based on userID
         .toList();
+    print('service $dndCharacters');
     return dndCharacters;
   }
 }

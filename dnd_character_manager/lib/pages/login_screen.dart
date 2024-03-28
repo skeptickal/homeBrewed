@@ -41,14 +41,14 @@ class _SignIn extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            LoginBox(
+            CustomTextBox(
               obscureText: false,
               padding: const EdgeInsets.all(6),
               controller: email,
               hintText: 'email',
               subtitle: 'Sign In with Email',
             ),
-            LoginBox(
+            CustomTextBox(
               obscureText: true,
               padding: const EdgeInsets.all(6),
               controller: password,
@@ -93,14 +93,14 @@ class _SignUp extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            LoginBox(
+            CustomTextBox(
               obscureText: false,
               padding: const EdgeInsets.all(6),
               controller: email,
               hintText: 'email',
               subtitle: 'Sign Up with Email',
             ),
-            LoginBox(
+            CustomTextBox(
               obscureText: true,
               padding: const EdgeInsets.all(6),
               controller: password,
