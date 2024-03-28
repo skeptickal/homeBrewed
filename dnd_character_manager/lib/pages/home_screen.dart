@@ -18,9 +18,15 @@ class HomeScreen extends StatelessWidget {
           List<ListTile> dndCharacters = state.dndCharacters.map(
             (dndCharacter) {
               return ListTile(
-                leading: Text(dndCharacter.dndClass),
-                title: Text(dndCharacter.name),
-                trailing: Text(dndCharacter.race),
+                leading: Icon(Icons.edit),
+                title: Text(
+                  '${dndCharacter.name} - ${dndCharacter.dndClass}',
+                  style: dndFont,
+                ),
+                trailing: Text(
+                  dndCharacter.race,
+                  style: dndFont,
+                ),
               );
             },
           ).toList();
@@ -28,11 +34,12 @@ class HomeScreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  TextButton(
-                    onPressed: () => _showEditPanel(context),
-                    child: const Text('Add Character'),
-                  ),
+                  Text(state.myUser!.email),
                   ...dndCharacters,
+                  IconButton(
+                    onPressed: () => _showEditPanel(context),
+                    icon: Icon(Icons.add),
+                  ),
                   Center(
                     child: TextButton(
                       onPressed: () => context.read<CharacterCubit>().signOut(),
