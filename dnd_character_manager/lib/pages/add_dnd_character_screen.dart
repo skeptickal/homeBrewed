@@ -15,6 +15,7 @@ class AddDndCharacterScreen extends StatelessWidget {
     TextEditingController name = TextEditingController();
     TextEditingController race = TextEditingController();
     TextEditingController dndClass = TextEditingController();
+
     return BlocBuilder<CharacterCubit, CharacterState>(
       builder: (context, state) {
         return Form(
@@ -55,7 +56,7 @@ class AddDndCharacterScreen extends StatelessWidget {
                     context.pop();
                   },
                   child: const Text('Add Character'),
-                )
+                ),
               ],
             ),
           ),

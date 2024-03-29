@@ -26,14 +26,19 @@ class CharacterCubit extends Cubit<CharacterState> {
   }
 
   Future<void> readCharactersByUserID(String? userID) async {
-    print('before \n ${state.dndCharacters}');
     try {
       final List<DndCharacter> dndCharacters = await dndService.readDndCharactersByUserID(userID: userID);
       emit(state.copyWith(dndCharacters: dndCharacters));
-      print('after \n ${state.dndCharacters}');
     } catch (e) {
       print('error reading characters from state');
     }
+  }
+
+  //edit booleans
+  Future<void> bioEdit(bool bioEdit) async {
+    print(state.bioEdit);
+    emit(state.copyWith(bioEdit: bioEdit));
+    print(state.bioEdit);
   }
 
 // Firebase Auth related cubit functions
@@ -57,5 +62,4 @@ class CharacterCubit extends Cubit<CharacterState> {
   Future<void> signOut() => firebaseAuthClient.signOut();
 
   Future<void> setUserData(MyUser myUser) async => firebaseAuthClient.setUserData(myUser);
-
 }
