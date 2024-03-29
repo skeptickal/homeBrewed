@@ -116,7 +116,7 @@ class BioTab extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(6),
               child: DropdownButtonFormField<String>(
-                key: const Key('Alignment_dropdown'),
+                key: const Key('alignment_dropdown'),
                 value: 'Select an Alignment',
                 items: dndAlignments.map((alignment) {
                   return DropdownMenuItem<String>(
