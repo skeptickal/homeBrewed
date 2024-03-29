@@ -38,6 +38,9 @@ class CharacterCubit extends Cubit<CharacterState> {
   Future<void> bioEdit(bool bioEdit) async {
     emit(state.copyWith(bioEdit: bioEdit));
   }
+  Future<void> statEdit(bool statEdit) async {
+    emit(state.copyWith(statEdit: statEdit));
+  }
 
 // Firebase Auth related cubit functions
   Future<void> initialize() async {

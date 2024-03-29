@@ -27,6 +27,7 @@ dependencies:
   meta: ^1.11.0
   carousel_slider: ^4.2.1
   font_awesome_flutter: ^10.7.0
+  numberpicker: ^2.1.2
 
 dev_dependencies:
   flutter_test:
