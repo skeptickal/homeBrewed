@@ -22,6 +22,8 @@ class CharacterViewerScreen extends StatelessWidget {
         TextEditingController name = TextEditingController();
         TextEditingController race = TextEditingController();
         TextEditingController dndClass = TextEditingController();
+        TextEditingController dndSubClass1 = TextEditingController();
+        TextEditingController dndSubClass2 = TextEditingController();
         TextEditingController bonds = TextEditingController();
         TextEditingController flaws = TextEditingController();
         bio.text = 'initialValue state.dndCharacter!.bio!';
@@ -51,6 +53,20 @@ class CharacterViewerScreen extends StatelessWidget {
           controller: dndClass,
           hintText: 'class',
           subtitle: 'Class',
+        );
+        BigTextBox dndSubClass1Box = BigTextBox(
+          enabled: state.bioEdit!,
+          padding: const EdgeInsets.all(6),
+          controller: dndSubClass1,
+          hintText: 'Optional',
+          subtitle: 'Subclass (1)',
+        );
+        BigTextBox dndSubClass2Box = BigTextBox(
+          enabled: state.bioEdit!,
+          padding: const EdgeInsets.all(6),
+          controller: dndSubClass2,
+          hintText: 'Optional',
+          subtitle: 'Subclass (2)',
         );
         BigTextBox bioBox = BigTextBox(
           enabled: state.bioEdit!,
@@ -173,6 +189,8 @@ class CharacterViewerScreen extends StatelessWidget {
                             nameBox,
                             raceBox,
                             dndClassBox,
+                            dndSubClass1Box,
+                            dndSubClass2Box,
                             Center(
                               child: Text(
                                 'Select Your Character\'s Alignment',
