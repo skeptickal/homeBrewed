@@ -56,7 +56,7 @@ class StatTab extends StatelessWidget {
                   Flexible(
                     child: StatTextBox(
                       enabled: state.statEdit!,
-                      padding: EdgeInsets.symmetric(horizontal: 50),
+                      padding: const EdgeInsets.symmetric(horizontal: 50),
                       controller: str,
                       hintText: 'Player Level',
                       subtitle: 'Player Level',
@@ -65,7 +65,7 @@ class StatTab extends StatelessWidget {
                   Flexible(
                     child: StatTextBox(
                       enabled: state.statEdit!,
-                      padding: EdgeInsets.symmetric(horizontal: 50),
+                      padding: const EdgeInsets.symmetric(horizontal: 50),
                       controller: dex,
                       hintText: 'Class Level',
                       subtitle: 'Class Level',
@@ -79,7 +79,7 @@ class StatTab extends StatelessWidget {
                   Flexible(
                     child: StatTextBox(
                       enabled: state.statEdit!,
-                      padding: EdgeInsets.symmetric(horizontal: 50),
+                      padding: const EdgeInsets.symmetric(horizontal: 50),
                       controller: con,
                       hintText: 'Subclass (1) Level',
                       subtitle: 'Subclass (1) Level',
@@ -88,7 +88,7 @@ class StatTab extends StatelessWidget {
                   Flexible(
                     child: StatTextBox(
                       enabled: state.statEdit!,
-                      padding: EdgeInsets.symmetric(horizontal: 50),
+                      padding: const EdgeInsets.symmetric(horizontal: 50),
                       controller: con,
                       hintText: 'Subclass (2) Level',
                       subtitle: 'Subclass (2) Level',
@@ -110,7 +110,7 @@ class StatTab extends StatelessWidget {
                   Flexible(
                     child: StatTextBox(
                       enabled: state.statEdit!,
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       controller: currentHP,
                       hintText: 'Current HP',
                       subtitle: 'Current HP',
@@ -119,7 +119,7 @@ class StatTab extends StatelessWidget {
                   Flexible(
                     child: StatTextBox(
                       enabled: state.statEdit!,
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       controller: maxHP,
                       hintText: 'MAX HP',
                       subtitle: 'MAX HP',
@@ -135,7 +135,7 @@ class StatTab extends StatelessWidget {
                   Flexible(
                     child: StatTextBox(
                       enabled: state.statEdit!,
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       controller: str,
                       hintText: 'STR',
                       subtitle: 'STR',
@@ -144,7 +144,7 @@ class StatTab extends StatelessWidget {
                   Flexible(
                     child: StatTextBox(
                       enabled: state.statEdit!,
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       controller: dex,
                       hintText: 'DEX',
                       subtitle: 'DEX',
@@ -153,7 +153,7 @@ class StatTab extends StatelessWidget {
                   Flexible(
                     child: StatTextBox(
                       enabled: state.statEdit!,
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       controller: con,
                       hintText: 'CON',
                       subtitle: 'CON',
@@ -167,7 +167,7 @@ class StatTab extends StatelessWidget {
                   Flexible(
                     child: StatTextBox(
                       enabled: state.statEdit!,
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       controller: int,
                       hintText: 'INT',
                       subtitle: 'INT',
@@ -176,7 +176,7 @@ class StatTab extends StatelessWidget {
                   Flexible(
                     child: StatTextBox(
                       enabled: state.statEdit!,
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       controller: wis,
                       hintText: 'WIS',
                       subtitle: 'WIS',
@@ -185,7 +185,7 @@ class StatTab extends StatelessWidget {
                   Flexible(
                     child: StatTextBox(
                       enabled: state.statEdit!,
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       controller: cha,
                       hintText: 'CHA',
                       subtitle: 'CHA',
