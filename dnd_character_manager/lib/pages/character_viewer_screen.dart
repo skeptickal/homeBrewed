@@ -42,7 +42,7 @@ class CharacterViewerScreen extends StatelessWidget {
               child: TabBarView(
                 children: [
                   StatTab(dndCharacter: dndCharacter),
-                  const Center(child: Text('Abilities')),
+                  Center(child: Text('Abilities ${dndCharacter.charID}')),
                   const Center(child: Text('Spells')),
                   const Center(child: Text('Weapons')),
                   const Center(child: Text('Resources')),

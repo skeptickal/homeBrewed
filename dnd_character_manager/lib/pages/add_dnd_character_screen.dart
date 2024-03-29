@@ -4,6 +4,7 @@ import 'package:dnd_character_manager/models/character/dnd_character.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:uuid/uuid.dart';
 
 class AddDndCharacterScreen extends StatelessWidget {
   const AddDndCharacterScreen({
@@ -46,7 +47,9 @@ class AddDndCharacterScreen extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
+                    const uuid = Uuid();
                     DndCharacter newDndCharacter = DndCharacter(
+                      charID: uuid.v4(),
                       userID: state.myUser!.userID!,
                       race: race.text,
                       name: name.text,
