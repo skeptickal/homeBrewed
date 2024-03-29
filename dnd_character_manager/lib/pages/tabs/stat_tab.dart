@@ -34,11 +34,20 @@ class StatTab extends StatelessWidget {
         return SingleChildScrollView(
           child: Column(
             children: [
-              IconButton(
-                onPressed: () => context.read<CharacterCubit>().statEdit(!state.statEdit!),
-                icon: const Icon(
-                  Icons.edit,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    onPressed: () => context.read<CharacterCubit>().statEdit(!state.statEdit!),
+                    icon: const Icon(
+                      Icons.edit,
+                    ),
+                  ),
+                  Text(
+                    'Edit/Save',
+                    style: dndFont,
+                  ),
+                ],
               ),
               seperation,
               seperation,
