@@ -6,6 +6,8 @@ class DndCharacter extends Equatable {
   final String race;
   final String name;
   final String dndClass;
+  final String charID;
+  //String CharacterID
   //String? subRace;
   //String? subClass1;
   //String? subClass2;
@@ -62,6 +64,7 @@ class DndCharacter extends Equatable {
   //String? notes
 
   const DndCharacter({
+    required this.charID,
     required this.userID,
     required this.race,
     required this.name,
@@ -70,6 +73,7 @@ class DndCharacter extends Equatable {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {
+      'charID': charID,
       'userID': userID,
       'race': race,
       'name': name,
@@ -80,6 +84,7 @@ class DndCharacter extends Equatable {
 
   factory DndCharacter.fromJson(Map<String, dynamic> json) {
     return DndCharacter(
+      charID: json['charID'].toString(),
       userID: json['userID'].toString(),
       race: json['race'].toString(),
       name: json['name'].toString(),
@@ -89,9 +94,15 @@ class DndCharacter extends Equatable {
 
   @override
   String toString() {
-    return 'name: $name \n userID: $userID, \n race: $race \n dndClass: $dndClass';
+    return 'name: $name \n userID: $userID, \n race: $race \n dndClass: $dndClass \n charID: $charID';
   }
 
   @override
-  List<Object?> get props => [userID, name, dndClass, race];
+  List<Object?> get props => [
+        userID,
+        name,
+        dndClass,
+        race,
+        charID,
+      ];
 }

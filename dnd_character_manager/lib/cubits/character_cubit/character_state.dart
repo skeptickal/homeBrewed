@@ -36,6 +36,7 @@ final class CharacterInitial extends CharacterState {
           myUser: null,
           dndCharacters: [
             const DndCharacter(
+              charID: '4567',
               userID: '1234',
               race: 'human',
               name: 'Jackson',
