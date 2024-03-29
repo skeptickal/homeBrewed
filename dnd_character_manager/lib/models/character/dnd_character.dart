@@ -1,12 +1,14 @@
 import 'package:equatable/equatable.dart';
 
 class DndCharacter extends Equatable {
-  //BIO TAB pt1
+  //DNA
   final String userID;
+  final String charID;
+
+  //BIO TAB
   final String race;
   final String name;
   final String dndClass;
-  final String charID;
   //String CharacterID
   //String? subRace;
   //String? subClass1;
