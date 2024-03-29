@@ -26,7 +26,7 @@ class CustomTextBox extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(subtitle, style: dndFont.copyWith(fontSize: 14, fontWeight: FontWeight.bold)),
+          Center(child: Text(subtitle, style: dndFont.copyWith(fontSize: 14, fontWeight: FontWeight.bold))),
           const SizedBox(height: 4),
           TextFormField(
             controller: controller,
@@ -67,7 +67,7 @@ class BigTextBox extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(subtitle, style: dndFont.copyWith(fontSize: 14, fontWeight: FontWeight.bold)),
+          Center(child: Text(subtitle, style: dndFont.copyWith(fontSize: 14, fontWeight: FontWeight.bold))),
           const SizedBox(height: 4),
           TextFormField(
             enabled: enabled,

@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class DndCharacter extends Equatable {
+  //BIO TAB pt1
   final String userID;
   final String race;
   final String name;
@@ -8,6 +9,13 @@ class DndCharacter extends Equatable {
   //String? subRace;
   //String? subClass1;
   //String? subClass2;
+  //String? bio
+  //String? alignment (use dropdown menu of alignments)
+  //String? bonds
+  //String? flaws
+  //String? personalityTraits
+
+  //STATS TAB
   //PlayerLevel? playerLevel | PlayerLevel({int classLevel, int? subclass1Lvl, int? subclass2Lvl, int totalPlayerLevel})
   //Hp? hp | Hp({int currentHp, int maxHp, int tempHp})
   //int? initiative - calc with DEX? or keep separate for special things
@@ -15,6 +23,8 @@ class DndCharacter extends Equatable {
   //int? speed
   //bool? inspiration
   //int? proficiencyBonus
+  //List<Proficiency>? | Proficiency({String type, String prof}) e.g. Proficiency(type: 'ARMOR', prof: 'Heavy Armor')
+  //String? toolProficiencies
   //int? strength    -- do I calculate all 24 skills and saving throws using these values + prof? or allow for manual edit
   //int? dexterity
   //int? constitution
@@ -24,25 +34,32 @@ class DndCharacter extends Equatable {
   //HitDice? hitDice | HitDice({int currentHitDice, int maxHitDice, String hitDiceType})
   //DeathSaves? deathSaves | DeathSave({int successes, int failures})
   //int? passivePerception
+
+  //RESOURCES TAB
+  //List<Resource> resources | Resource({String resourceName, int currentResourceValue, int maxResourceValue})
+  //                               e.g. Resource(resourceName: 'Divine Sense', currentResourceValue: 2, maxResourceValue 3)
+
+  //WEAPONS TAB
   //List<Weapon>? weapons | Weapon({String weaponName, String attackRoll, String description})
+
+  //ITEMS TAB
   //List<Item>? items | Item({String itemName, String itemDesc})
-  //List<Proficiency>? | Proficiency({String type, String prof}) e.g. Proficiency(type: 'ARMOR', prof: 'Heavy Armor')
-  //String? toolProficiencies
+
+  //SPELLS TAB
   //List<Spell>? spells | Spell({String spellName, int spellLevel, String spellDesc})
   //SpellSplots? spellSlots | SpellSlots({int maxSpellSlots, int currentSpellSlots})
   //String? spellCastingAbility,
   //int? spellSaveDC.
   //int? spellAttackBonus,
-  //List<Resource> resources | Resource({String resourceName, int currentResourceValue, int maxResourceValue})
-  //                               e.g. Resource(resourceName: 'Divine Sense', currentResourceValue: 2, maxResourceValue 3)
+
+  //ABILITIES TAB
   //List<Abilities>? abilities | Abilities({String abilityName, String abilityDesc})
+
+  //INCOME TAB
   //CurrentIncome? currentIncome | CurrentIncome({int copperPieces, int silverPieces, int goldPieces, int ethereumPieces, int platinumPieces})
-  //String? bio
-  //String? alignment (use dropdown menu of alignments)
+
+  //NOTES TAB
   //String? notes
-  //String? bonds
-  //String? flaws
-  //String? personalityTraits
 
   const DndCharacter({
     required this.userID,
