@@ -34,11 +34,9 @@ class CharacterCubit extends Cubit<CharacterState> {
     }
   }
 
-  //edit booleans
+  //edit booleans -> add setData functionality eventually to all these
   Future<void> bioEdit(bool bioEdit) async {
-    print(state.bioEdit);
     emit(state.copyWith(bioEdit: bioEdit));
-    print(state.bioEdit);
   }
 
 // Firebase Auth related cubit functions

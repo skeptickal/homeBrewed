@@ -20,7 +20,6 @@ class DndService {
         .map((doc) => DndCharacter.fromJson(doc.data()))
         .where((character) => character.userID == userID) // Filter based on userID
         .toList();
-    print('service $dndCharacters');
     return dndCharacters;
   }
 }
