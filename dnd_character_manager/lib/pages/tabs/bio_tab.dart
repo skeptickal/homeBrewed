@@ -101,11 +101,9 @@ class BioTab extends StatelessWidget {
         List<String> dndAlignments = [
           'Select an Alignment',
           'Lawful Good',
-          'Lawful Neutral',
           'Lawful Evil',
           'Lawful Neutral',
           'Neutral',
-          'Chaotic Neutral',
           'Chaotic Good',
           'Chaotic Neutral',
           'Chaotic Evil',
