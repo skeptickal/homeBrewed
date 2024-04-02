@@ -25,6 +25,11 @@ class CharacterCubit extends Cubit<CharacterState> {
     ));
   }
 
+  // Future<void> editDndCharacter(DndCharacter dndCharacter) async { //need to edit name, class, race, by userID maybe? ask Jeff
+  //   await dndService.editDndCharacter(dndCharacter: dndCharacter);
+  //   emit(state.copyWith())
+  // }
+
   Future<void> readCharactersByUserID(String? userID) async {
     try {
       final List<DndCharacter> dndCharacters = await dndService.readDndCharactersByUserID(userID: userID);
@@ -35,9 +40,7 @@ class CharacterCubit extends Cubit<CharacterState> {
   }
 
   //edit booleans -> add setData functionality eventually to all these
-  Future<void> bioEdit(bool bioEdit) async {
-    emit(state.copyWith(bioEdit: bioEdit));
-  }
+
   Future<void> statEdit(bool statEdit) async {
     emit(state.copyWith(statEdit: statEdit));
   }

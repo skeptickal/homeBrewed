@@ -1,4 +1,5 @@
-import 'package:dnd_character_manager/cubits/character_cubit/character_cubit.dart';
+import 'package:dnd_character_manager/cubits/bio_cubit/cubit/bio_cubit.dart';
+import 'package:dnd_character_manager/models/bio.dart';
 import 'package:dnd_character_manager/models/character/dnd_character.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,9 +13,10 @@ class BioTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CharacterCubit, CharacterState>(
+    context.read<BioCubit>().readBioData(dndCharacter.charID);
+    return BlocBuilder<BioCubit, BioState>(
       builder: (context, state) {
-        TextEditingController bio = TextEditingController();
+        TextEditingController background = TextEditingController();
         TextEditingController personality = TextEditingController();
         TextEditingController dndAlignment = TextEditingController();
         TextEditingController name = TextEditingController();
@@ -24,13 +26,16 @@ class BioTab extends StatelessWidget {
         TextEditingController dndSubClass2 = TextEditingController();
         TextEditingController bonds = TextEditingController();
         TextEditingController flaws = TextEditingController();
-        bio.text = 'initialValue state.dndCharacter!.bio!';
-        personality.text = 'initialValue state.dndCharacter!.personality';
+        background.text = state.bio!.background ?? 'bio';
+        personality.text = state.bio!.personality!;
         name.text = dndCharacter.name;
         race.text = dndCharacter.race;
         dndClass.text = dndCharacter.dndClass;
-        bonds.text = 'initialValue state.dndCharacter!.bonds';
-        flaws.text = 'initialValue state.dndCharacter!.flaws';
+        bonds.text = state.bio!.bonds ?? '';
+        flaws.text = state.bio!.flaws ?? '';
+        dndAlignment.text = state.bio!.alignment ?? 'Select an Alignment';
+        dndSubClass1.text = state.bio!.subclass1 ?? '';
+        dndSubClass2.text = state.bio!.subclass2 ?? '';
         BigTextBox nameBox = BigTextBox(
           enabled: state.bioEdit!,
           padding: const EdgeInsets.all(6),
@@ -66,9 +71,9 @@ class BioTab extends StatelessWidget {
           hintText: 'Optional',
           subtitle: 'Subclass (2)',
         );
-        BigTextBox bioBox = BigTextBox(
+        BigTextBox backgroundBox = BigTextBox(
           enabled: state.bioEdit!,
-          controller: bio,
+          controller: background,
           padding: const EdgeInsets.all(6),
           hintText: 'bio',
           subtitle: 'Bio/Background',
@@ -84,7 +89,7 @@ class BioTab extends StatelessWidget {
         );
         BigTextBox bondsBox = BigTextBox(
           enabled: state.bioEdit!,
-          controller: personality,
+          controller: bonds,
           padding: const EdgeInsets.all(6),
           hintText: 'e.g. Bound to ____ Group by Honor',
           subtitle: 'Bonds',
@@ -115,7 +120,7 @@ class BioTab extends StatelessWidget {
               padding: const EdgeInsets.all(6),
               child: DropdownButtonFormField<String>(
                 key: const Key('alignment_dropdown'),
-                value: 'Select an Alignment',
+                value: state.bio!.alignment ?? 'Select an Alignment',
                 items: dndAlignments.map((alignment) {
                   return DropdownMenuItem<String>(
                     value: alignment,
@@ -124,7 +129,7 @@ class BioTab extends StatelessWidget {
                 }).toList(),
                 onChanged: state.bioEdit!
                     ? (String? value) {
-                        dndAlignment.text = value ?? '';
+                        dndAlignment.text = value ?? 'Select an Alignment';
                       }
                     : null,
                 decoration: textInputDecoration.copyWith(hintText: 'Select an Alignment'),
@@ -139,7 +144,21 @@ class BioTab extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IconButton(
-                    onPressed: () => context.read<CharacterCubit>().bioEdit(!state.bioEdit!),
+                    onPressed: () {
+                      context.read<BioCubit>().bioEdit(!state.bioEdit!);
+                      Bio bio = Bio(
+                        charID: dndCharacter.charID,
+                        alignment: dndAlignment.text,
+                        subclass1: dndSubClass1.text,
+                        subclass2: dndSubClass2.text,
+                        background: background.text,
+                        flaws: flaws.text,
+                        bonds: bonds.text,
+                        personality: personality.text,
+                      );
+                      context.read<BioCubit>().setBioData(bio);
+                      context.read<BioCubit>().readBioData(dndCharacter.charID);
+                    },
                     icon: const Icon(
                       Icons.edit,
                     ),
@@ -165,7 +184,7 @@ class BioTab extends StatelessWidget {
               personalityBox,
               bondsBox,
               flawsBox,
-              bioBox,
+              backgroundBox,
             ],
           ),
         );

@@ -7,26 +7,24 @@ class CharacterState extends Equatable {
   final List<DndCharacter> dndCharacters;
   final bool? statEdit;
   // final bool? abilitiesEdit;
-  final bool? bioEdit;
   // final bool? itemsEdit;
   // final bool? weaponsEdit;
   // final bool? spellsEdit;
   // final bool? incomeEdit;
 
-  const CharacterState({this.signedIn, this.myUser, required this.dndCharacters, this.bioEdit, this.statEdit});
+  const CharacterState({this.signedIn, this.myUser, required this.dndCharacters, this.statEdit});
 
-  CharacterState copyWith({signedIn, myUser, dndCharacters, bioEdit, statEdit}) {
+  CharacterState copyWith({signedIn, myUser, dndCharacters, statEdit}) {
     return CharacterState(
       signedIn: signedIn ?? this.signedIn,
       myUser: myUser ?? this.myUser,
       dndCharacters: dndCharacters ?? this.dndCharacters,
-      bioEdit: bioEdit ?? this.bioEdit,
       statEdit: statEdit ?? this.statEdit,
     );
   }
 
   @override
-  List<Object?> get props => [signedIn, myUser, dndCharacters, bioEdit, statEdit];
+  List<Object?> get props => [signedIn, myUser, dndCharacters, statEdit];
 }
 
 final class CharacterInitial extends CharacterState {
@@ -43,7 +41,6 @@ final class CharacterInitial extends CharacterState {
               dndClass: 'Dev',
             ),
           ],
-          bioEdit: false,
           statEdit: false,
         );
 }
