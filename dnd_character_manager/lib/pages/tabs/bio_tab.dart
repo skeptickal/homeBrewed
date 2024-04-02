@@ -6,8 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../constants/text_fields.dart';
 import '../../constants/theme_data.dart';
 
-//ADD LANGUAGES
-
 class BioTab extends StatelessWidget {
   final Bio bio;
   const BioTab({super.key, required this.bio});
