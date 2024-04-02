@@ -27,6 +27,7 @@ class BioTab extends StatelessWidget {
         TextEditingController dndSubClass2 = TextEditingController();
         TextEditingController bonds = TextEditingController();
         TextEditingController flaws = TextEditingController();
+        TextEditingController languages = TextEditingController();
         background.text = state.bio!.background ?? 'bio';
         personality.text = state.bio!.personality ?? '';
         name.text = state.bio!.name ?? '';
@@ -37,37 +38,46 @@ class BioTab extends StatelessWidget {
         dndAlignment.text = state.bio!.alignment ?? 'Select an Alignment';
         dndSubClass1.text = state.bio!.subclass1 ?? '';
         dndSubClass2.text = state.bio!.subclass2 ?? '';
+        languages.text = state.bio!.languages ?? 'Common';
         BigTextBox nameBox = BigTextBox(
           enabled: state.bioEdit!,
-          padding: const EdgeInsets.all(6),
+          padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
           controller: name,
           hintText: 'name',
           subtitle: 'Name',
         );
+        BigTextBox languagesBox = BigTextBox(
+          enabled: state.bioEdit!,
+          padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+          controller: languages,
+          hintText: 'languages',
+          subtitle: 'languages',
+          minLines: 2,
+        );
         BigTextBox raceBox = BigTextBox(
           enabled: state.bioEdit!,
-          padding: const EdgeInsets.all(6),
+          padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
           controller: race,
           hintText: 'race',
           subtitle: 'Race',
         );
         BigTextBox dndClassBox = BigTextBox(
           enabled: state.bioEdit!,
-          padding: const EdgeInsets.all(6),
+          padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
           controller: dndClass,
           hintText: 'class',
           subtitle: 'Class',
         );
         BigTextBox dndSubClass1Box = BigTextBox(
           enabled: state.bioEdit!,
-          padding: const EdgeInsets.all(6),
+          padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
           controller: dndSubClass1,
           hintText: 'Optional',
           subtitle: 'Subclass (1)',
         );
         BigTextBox dndSubClass2Box = BigTextBox(
           enabled: state.bioEdit!,
-          padding: const EdgeInsets.all(6),
+          padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
           controller: dndSubClass2,
           hintText: 'Optional',
           subtitle: 'Subclass (2)',
@@ -83,7 +93,7 @@ class BioTab extends StatelessWidget {
         BigTextBox personalityBox = BigTextBox(
           enabled: state.bioEdit!,
           controller: personality,
-          padding: const EdgeInsets.all(6),
+          padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
           hintText: 'Personality',
           subtitle: 'Personality + Traits',
           minLines: 5,
@@ -91,7 +101,7 @@ class BioTab extends StatelessWidget {
         BigTextBox bondsBox = BigTextBox(
           enabled: state.bioEdit!,
           controller: bonds,
-          padding: const EdgeInsets.all(6),
+          padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
           hintText: 'e.g. Bound to ____ Group by Honor',
           subtitle: 'Bonds',
           minLines: 5,
@@ -99,7 +109,7 @@ class BioTab extends StatelessWidget {
         BigTextBox flawsBox = BigTextBox(
           enabled: state.bioEdit!,
           controller: flaws,
-          padding: const EdgeInsets.all(6),
+          padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
           hintText: 'e.g. Kleptomaniac',
           subtitle: 'Flaws',
           minLines: 5,
@@ -118,7 +128,7 @@ class BioTab extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.all(6),
+              padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
               child: DropdownButtonFormField<String>(
                 key: const Key('alignment_dropdown'),
                 value: state.bio!.alignment ?? 'Select an Alignment',
@@ -160,6 +170,7 @@ class BioTab extends StatelessWidget {
                         flaws: flaws.text,
                         bonds: bonds.text,
                         personality: personality.text,
+                        languages: languages.text,
                       );
                       context.read<BioCubit>().setBioData(bio1);
                       context.read<BioCubit>().readBioData(bio.charID!);
@@ -179,6 +190,7 @@ class BioTab extends StatelessWidget {
               dndClassBox,
               dndSubClass1Box,
               dndSubClass2Box,
+              languagesBox,
               Center(
                 child: Text(
                   'Select Your Character\'s Alignment',
