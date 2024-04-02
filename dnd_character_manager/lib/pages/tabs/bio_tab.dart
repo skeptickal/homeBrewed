@@ -49,7 +49,7 @@ class BioTab extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
           controller: languages,
           hintText: 'languages',
-          subtitle: 'languages',
+          subtitle: 'Languages',
           minLines: 2,
         );
         BigTextBox raceBox = BigTextBox(
