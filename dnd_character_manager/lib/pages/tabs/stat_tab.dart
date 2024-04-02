@@ -1,10 +1,11 @@
-import 'package:dnd_character_manager/cubits/character_cubit/user_cubit.dart';
+import 'package:dnd_character_manager/cubits/stat_cubit/cubit/stat_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../client/spacing.dart';
 import '../../constants/text_fields.dart';
 import '../../constants/theme_data.dart';
+import '../../models/stats.dart';
 
 class StatTab extends StatelessWidget {
   final String charID;
@@ -12,10 +13,11 @@ class StatTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UserCubit, UserState>(
+    context.read<StatCubit>().readStatsData(charID);
+    return BlocBuilder<StatCubit, StatState>(
       builder: (context, state) {
         TextEditingController str = TextEditingController();
-        str.text = '';
+        str.text = state.stats!.strength ?? '20';
         TextEditingController dex = TextEditingController();
         dex.text = '';
         TextEditingController con = TextEditingController();
@@ -37,7 +39,15 @@ class StatTab extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IconButton(
-                    onPressed: () => context.read<UserCubit>().statEdit(!state.statEdit!),
+                    onPressed: () {
+                      context.read<StatCubit>().statEdit(!state.statEdit!);
+                      Stats stats1 = Stats(
+                        strength: str.text,
+                        charID: charID,
+                      );
+                      context.read<StatCubit>().setStatsData(stats1);
+                      context.read<StatCubit>().readStatsData(charID);
+                    },
                     icon: const Icon(
                       Icons.edit,
                     ),

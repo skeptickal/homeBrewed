@@ -3,6 +3,8 @@ import 'package:dnd_character_manager/cubits/character_cubit/user_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'cubits/stat_cubit/cubit/stat_cubit.dart';
+
 class DndBlocProvider extends StatelessWidget {
   final Widget child;
   const DndBlocProvider({super.key, required this.child});
@@ -12,6 +14,7 @@ class DndBlocProvider extends StatelessWidget {
     return MultiBlocProvider(providers: [
       BlocProvider(create: (context) => UserCubit()),
       BlocProvider(create: (context) => BioCubit()),
+      BlocProvider(create: (context) => StatCubit()),
     ], child: child);
   }
 }

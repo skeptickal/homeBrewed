@@ -19,21 +19,22 @@ class BioState extends Equatable {
 final class BioInitial extends BioState {
   BioInitial()
       : super(
-            bios: [
-              const Bio(
-                alignment: 'Neutral',
-                background: 'test',
-                personality: 'test personality',
-                flaws: 'test flaws',
-                bonds: 'test bonds',
-              ),
-            ],
-            bio: const Bio(
+          bios: [
+            const Bio(
               alignment: 'Neutral',
               background: 'test',
               personality: 'test personality',
               flaws: 'test flaws',
               bonds: 'test bonds',
             ),
-            bioEdit: false);
+          ],
+          bio: const Bio(
+            alignment: 'Neutral',
+            background: 'test',
+            personality: 'test personality',
+            flaws: 'test flaws',
+            bonds: 'test bonds',
+          ),
+          bioEdit: false,
+        );
 }

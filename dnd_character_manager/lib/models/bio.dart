@@ -73,6 +73,7 @@ class Bio extends Equatable {
 
   @override
   List<Object?> get props => [
+        userID,
         charID,
         subclass1,
         subclass2,
