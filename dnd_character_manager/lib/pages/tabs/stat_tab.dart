@@ -1,5 +1,4 @@
 import 'package:dnd_character_manager/cubits/character_cubit/user_cubit.dart';
-import 'package:dnd_character_manager/models/bio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -8,8 +7,8 @@ import '../../constants/text_fields.dart';
 import '../../constants/theme_data.dart';
 
 class StatTab extends StatelessWidget {
-  final Bio bio;
-  const StatTab({super.key, required this.bio});
+  final String charID;
+  const StatTab({super.key, required this.charID});
 
   @override
   Widget build(BuildContext context) {
