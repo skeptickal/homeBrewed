@@ -11,7 +11,7 @@ class BioCubit extends Cubit<BioState> {
 
   BioCubit({DndService? dndService})
       : dndService = dndService ?? DndService(),
-        super(const BioInitial());
+        super(BioInitial());
 
   Future<void> bioEdit(bool bioEdit) async {
     emit(state.copyWith(bioEdit: bioEdit));
@@ -23,7 +23,17 @@ class BioCubit extends Cubit<BioState> {
   }
 
   Future<void> setBioData(Bio bio) async {
-    emit(state.copyWith(bio: bio));
+    emit(state.copyWith(bio: bio, bios: [...state.bios, bio]));
     await dndService.setBioData(bio: bio);
+  }
+
+  Future<void> readBiosByUserID(String? userID) async {
+    try {
+      final List<Bio> bios = await dndService.readBiosUserID(userID: userID);
+      emit(state.copyWith(bios: bios));
+      print('bios state on cubit: $bios');
+    } catch (e) {
+      print('error reading characters from state');
+    }
   }
 }

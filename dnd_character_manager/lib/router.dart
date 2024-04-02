@@ -1,12 +1,10 @@
-import 'package:dnd_character_manager/models/character/dnd_character.dart';
+import 'package:dnd_character_manager/models/bio.dart';
 import 'package:dnd_character_manager/pages/character_viewer_screen.dart';
 import 'package:dnd_character_manager/pages/home_screen.dart';
 import 'package:dnd_character_manager/pages/login_screen.dart';
 import 'package:dnd_character_manager/pages/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
-late DndCharacter dndCharacter;
 
 final GoRouter router = GoRouter(
   initialLocation: '/',
@@ -32,8 +30,8 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/character_viewer',
       builder: (BuildContext context, GoRouterState state) {
-        DndCharacter dndCharacter = state.extra as DndCharacter;
-        return CharacterViewerScreen(dndCharacter: dndCharacter);
+        Bio dndCharacter = state.extra as Bio;
+        return CharacterViewerScreen(bio: dndCharacter);
       },
     ),
   ],

@@ -1,10 +1,12 @@
 import 'package:dnd_character_manager/constants/text_fields.dart';
-import 'package:dnd_character_manager/cubits/character_cubit/character_cubit.dart';
-import 'package:dnd_character_manager/models/character/dnd_character.dart';
+import 'package:dnd_character_manager/cubits/character_cubit/user_cubit.dart';
+import 'package:dnd_character_manager/models/bio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:uuid/uuid.dart';
+
+import '../cubits/bio_cubit/cubit/bio_cubit.dart';
 
 class AddDndCharacterScreen extends StatelessWidget {
   const AddDndCharacterScreen({
@@ -17,52 +19,57 @@ class AddDndCharacterScreen extends StatelessWidget {
     TextEditingController race = TextEditingController();
     TextEditingController dndClass = TextEditingController();
 
-    return BlocBuilder<CharacterCubit, CharacterState>(
-      builder: (context, state) {
-        return Form(
-          child: SingleChildScrollView(
-            padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-            child: Column(
-              children: [
-                CustomTextBox(
-                  padding: const EdgeInsets.all(6),
-                  controller: name,
-                  hintText: 'Enter Your Character\'s name',
-                  subtitle: 'Enter Your Character\'s name',
-                  obscureText: false,
+    return BlocBuilder<UserCubit, UserState>(
+      builder: (context, userState) {
+        return BlocBuilder<BioCubit, BioState>(
+          builder: (context, state) {
+            return Form(
+              child: SingleChildScrollView(
+                padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+                child: Column(
+                  children: [
+                    CustomTextBox(
+                      padding: const EdgeInsets.all(6),
+                      controller: name,
+                      hintText: 'Enter Your Character\'s name',
+                      subtitle: 'Enter Your Character\'s name',
+                      obscureText: false,
+                    ),
+                    CustomTextBox(
+                      padding: const EdgeInsets.all(6),
+                      controller: race,
+                      hintText: 'Enter Your Character\'s race',
+                      subtitle: 'Enter Your Character\'s race',
+                      obscureText: false,
+                    ),
+                    CustomTextBox(
+                      padding: const EdgeInsets.all(6),
+                      controller: dndClass,
+                      hintText: 'Enter Your Character\'s class',
+                      subtitle: 'Enter Your Character\'s class',
+                      obscureText: false,
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        const uuid = Uuid();
+                        Bio newDndCharacter = Bio(
+                          charID: uuid.v4(),
+                          userID: userState.myUser!.userID!,
+                          race: race.text,
+                          name: name.text,
+                          dndClass: dndClass.text,
+                          alignment: 'Select an Alignment',
+                        );
+                        context.read<BioCubit>().setBioData(newDndCharacter);
+                        context.pop();
+                      },
+                      child: const Text('Add Character'),
+                    ),
+                  ],
                 ),
-                CustomTextBox(
-                  padding: const EdgeInsets.all(6),
-                  controller: race,
-                  hintText: 'Enter Your Character\'s race',
-                  subtitle: 'Enter Your Character\'s race',
-                  obscureText: false,
-                ),
-                CustomTextBox(
-                  padding: const EdgeInsets.all(6),
-                  controller: dndClass,
-                  hintText: 'Enter Your Character\'s class',
-                  subtitle: 'Enter Your Character\'s class',
-                  obscureText: false,
-                ),
-                TextButton(
-                  onPressed: () {
-                    const uuid = Uuid();
-                    DndCharacter newDndCharacter = DndCharacter(
-                      charID: uuid.v4(),
-                      userID: state.myUser!.userID!,
-                      race: race.text,
-                      name: name.text,
-                      dndClass: dndClass.text,
-                    );
-                    context.read<CharacterCubit>().addDndCharacter(newDndCharacter);
-                    context.pop();
-                  },
-                  child: const Text('Add Character'),
-                ),
-              ],
-            ),
-          ),
+              ),
+            );
+          },
         );
       },
     );

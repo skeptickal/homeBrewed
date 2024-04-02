@@ -1,5 +1,5 @@
 import 'package:dnd_character_manager/client/firebase_client.dart';
-import 'package:dnd_character_manager/cubits/character_cubit/character_cubit.dart';
+import 'package:dnd_character_manager/cubits/character_cubit/user_cubit.dart';
 import 'package:dnd_character_manager/dnd_bloc_provider.dart';
 import 'package:dnd_character_manager/firebase_options.dart';
 import 'package:dnd_character_manager/router.dart';
@@ -14,7 +14,7 @@ Future<void> main() async {
   runApp(
     DndBlocProvider(
       child: Builder(builder: (context) {
-        context.read<CharacterCubit>().initialize();
+        context.read<UserCubit>().initialize();
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,
           routerConfig: router,
