@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dnd_character_manager/client/firebase_client.dart';
 import 'package:dnd_character_manager/models/bio.dart';
+import 'package:dnd_character_manager/models/stats.dart';
 
 class DndService {
   final FirebaseClient client;
@@ -30,7 +31,6 @@ class DndService {
         .map((doc) => Bio.fromJson(doc.data()))
         .where((bio) => bio.userID == userID) // Filter based on userID
         .toList();
-    print('dndService: $bios');
     return bios;
   }
 
@@ -44,5 +44,17 @@ class DndService {
   //edit bio data for specific character
   Future<void> setBioData({required Bio bio}) async {
     client.setData(collectionName: 'bio', documentName: bio.charID, body: bio.toJson());
+  }
+
+  //read stats data from specific character
+  Future<Stats> readStatsData({required String charID}) async {
+    DocumentSnapshot documentSnapshot = await client.getDocumentData(collectionName: 'stats', documentName: charID);
+    Map<String, dynamic> data = documentSnapshot.data() as Map<String, dynamic>;
+    return Stats.fromJson(data);
+  }
+
+  //edit stats data for specific character
+  Future<void> setStatsData({required Stats stats}) async {
+    client.setData(collectionName: 'stats', documentName: stats.charID, body: stats.toJson());
   }
 }

@@ -1,12 +1,14 @@
 import 'package:dnd_character_manager/constants/text_fields.dart';
 import 'package:dnd_character_manager/cubits/character_cubit/user_cubit.dart';
 import 'package:dnd_character_manager/models/bio.dart';
+import 'package:dnd_character_manager/models/stats.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:uuid/uuid.dart';
 
 import '../cubits/bio_cubit/cubit/bio_cubit.dart';
+import '../cubits/stat_cubit/cubit/stat_cubit.dart';
 
 class AddDndCharacterScreen extends StatelessWidget {
   const AddDndCharacterScreen({
@@ -50,19 +52,7 @@ class AddDndCharacterScreen extends StatelessWidget {
                       obscureText: false,
                     ),
                     TextButton(
-                      onPressed: () {
-                        const uuid = Uuid();
-                        Bio newDndCharacter = Bio(
-                          charID: uuid.v4(),
-                          userID: userState.myUser!.userID!,
-                          race: race.text,
-                          name: name.text,
-                          dndClass: dndClass.text,
-                          alignment: 'Select an Alignment',
-                        );
-                        context.read<BioCubit>().setBioData(newDndCharacter);
-                        context.pop();
-                      },
+                      onPressed: () => _addCharacter(context, userState, name.text, race.text, dndClass.text),
                       child: const Text('Add Character'),
                     ),
                   ],
@@ -73,5 +63,21 @@ class AddDndCharacterScreen extends StatelessWidget {
         );
       },
     );
+  }
+
+  void _addCharacter(BuildContext context, UserState userState, String name, String race, String dndClass) {
+    const uuid = Uuid();
+    Bio newDndCharacter = Bio(
+      charID: uuid.v4(),
+      userID: userState.myUser!.userID!,
+      race: race,
+      name: name,
+      dndClass: dndClass,
+      alignment: 'Select an Alignment',
+    );
+    Stats newStats = Stats(charID: newDndCharacter.charID);
+    context.read<BioCubit>().setBioData(newDndCharacter);
+    context.read<StatCubit>().setStatsData(newStats);
+    context.pop();
   }
 }

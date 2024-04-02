@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dnd_character_manager/models/my_user/my_user.dart';
+import 'package:dnd_character_manager/models/my_user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FirebaseAuthClient {

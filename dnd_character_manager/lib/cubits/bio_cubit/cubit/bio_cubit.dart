@@ -31,7 +31,6 @@ class BioCubit extends Cubit<BioState> {
     try {
       final List<Bio> bios = await dndService.readBiosUserID(userID: userID);
       emit(state.copyWith(bios: bios));
-      print('bios state on cubit: $bios');
     } catch (e) {
       print('error reading characters from state');
     }

@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dnd_character_manager/client/firebase_auth_client.dart';
-import 'package:dnd_character_manager/models/my_user/my_user.dart';
+import 'package:dnd_character_manager/models/my_user.dart';
 import 'package:dnd_character_manager/service/dnd_service.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
@@ -18,9 +18,6 @@ class UserCubit extends Cubit<UserState> {
 
   //edit booleans -> add setData functionality eventually to all these
 
-  Future<void> statEdit(bool statEdit) async {
-    emit(state.copyWith(statEdit: statEdit));
-  }
 
 // Firebase Auth related cubit functions
   Future<void> initialize() async {
