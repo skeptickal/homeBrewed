@@ -1,6 +1,5 @@
 import 'package:dnd_character_manager/cubits/bio_cubit/cubit/bio_cubit.dart';
 import 'package:dnd_character_manager/models/bio.dart';
-import 'package:dnd_character_manager/models/character/dnd_character.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -8,12 +7,12 @@ import '../../constants/text_fields.dart';
 import '../../constants/theme_data.dart';
 
 class BioTab extends StatelessWidget {
-  final DndCharacter dndCharacter;
-  const BioTab({super.key, required this.dndCharacter});
+  final Bio bio;
+  const BioTab({super.key, required this.bio});
 
   @override
   Widget build(BuildContext context) {
-    context.read<BioCubit>().readBioData(dndCharacter.charID);
+    context.read<BioCubit>().readBioData(bio.charID!);
     return BlocBuilder<BioCubit, BioState>(
       builder: (context, state) {
         TextEditingController background = TextEditingController();
@@ -27,10 +26,10 @@ class BioTab extends StatelessWidget {
         TextEditingController bonds = TextEditingController();
         TextEditingController flaws = TextEditingController();
         background.text = state.bio!.background ?? 'bio';
-        personality.text = state.bio!.personality!;
-        name.text = dndCharacter.name;
-        race.text = dndCharacter.race;
-        dndClass.text = dndCharacter.dndClass;
+        personality.text = state.bio!.personality ?? '';
+        name.text = state.bio!.name ?? '';
+        race.text = state.bio!.race ?? '';
+        dndClass.text = state.bio!.dndClass ?? '';
         bonds.text = state.bio!.bonds ?? '';
         flaws.text = state.bio!.flaws ?? '';
         dndAlignment.text = state.bio!.alignment ?? 'Select an Alignment';
@@ -146,8 +145,12 @@ class BioTab extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       context.read<BioCubit>().bioEdit(!state.bioEdit!);
-                      Bio bio = Bio(
-                        charID: dndCharacter.charID,
+                      Bio bio1 = Bio(
+                        userID: bio.userID,
+                        name: name.text,
+                        race: race.text,
+                        dndClass: dndClass.text,
+                        charID: bio.charID,
                         alignment: dndAlignment.text,
                         subclass1: dndSubClass1.text,
                         subclass2: dndSubClass2.text,
@@ -156,8 +159,8 @@ class BioTab extends StatelessWidget {
                         bonds: bonds.text,
                         personality: personality.text,
                       );
-                      context.read<BioCubit>().setBioData(bio);
-                      context.read<BioCubit>().readBioData(dndCharacter.charID);
+                      context.read<BioCubit>().setBioData(bio1);
+                      context.read<BioCubit>().readBioData(bio.charID!);
                     },
                     icon: const Icon(
                       Icons.edit,

@@ -1,7 +1,7 @@
 import 'package:dnd_character_manager/constants/screen_wrapper.dart';
 import 'package:dnd_character_manager/constants/text_fields.dart';
 import 'package:dnd_character_manager/constants/theme_data.dart';
-import 'package:dnd_character_manager/cubits/character_cubit/character_cubit.dart';
+import 'package:dnd_character_manager/cubits/character_cubit/user_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -11,7 +11,7 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<CharacterCubit, CharacterState>(
+    return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) => _listener(state, context),
       builder: (context, state) {
         return const ScreenWrapper(
@@ -22,7 +22,7 @@ class SignUpScreen extends StatelessWidget {
     );
   }
 
-  void _listener(CharacterState state, BuildContext context) {
+  void _listener(UserState state, BuildContext context) {
     if (state.signedIn ?? false) {
       context.go('/character_select');
     }
@@ -58,7 +58,7 @@ class _SignUp extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                context.read<CharacterCubit>().signUp(email.text, password.text);
+                context.read<UserCubit>().signUp(email.text, password.text);
               },
               child: Text(
                 'Sign Up',

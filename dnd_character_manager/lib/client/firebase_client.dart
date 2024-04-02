@@ -18,19 +18,6 @@ class FirebaseClient {
     }
   }
 
-  Future<void> createDocument({required String collectionName, required String documentName, required dynamic body}) async {
-    try {
-      // Get a reference to the document
-      DocumentReference documentRef = FirebaseFirestore.instance.collection(collectionName).doc(documentName);
-
-      // Set an empty object as the document data
-      await documentRef.set(body);
-
-      print('Blank document created successfully');
-    } catch (e) {
-      print('Error creating blank document: $e');
-    }
-  }
 
   Future<dynamic> getData({required String collectionName}) async {
     CollectionReference collection = firestore.collection(collectionName);

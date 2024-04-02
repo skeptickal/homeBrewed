@@ -1,6 +1,10 @@
 import 'package:equatable/equatable.dart';
 
 class Bio extends Equatable {
+  final String? userID;
+  final String? race;
+  final String? name;
+  final String? dndClass;
   final String? charID;
   final String? subclass1;
   final String? subclass2;
@@ -11,6 +15,10 @@ class Bio extends Equatable {
   final String? background;
 
   const Bio({
+    this.userID,
+    this.race,
+    this.name,
+    this.dndClass,
     this.charID,
     this.subclass1,
     this.subclass2,
@@ -23,6 +31,10 @@ class Bio extends Equatable {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {
+      'userID': userID,
+      'name': name,
+      'race': race,
+      'dndClass': dndClass,
       'charID': charID,
       'subclass1': subclass1,
       'subclass2': subclass2,
@@ -37,6 +49,10 @@ class Bio extends Equatable {
 
   factory Bio.fromJson(Map<String, dynamic> json) {
     return Bio(
+      name: json['name'].toString(),
+      dndClass: json['dndClass'].toString(),
+      race: json['race'].toString(),
+      userID: json['userID'].toString(),
       charID: json['charID'].toString(),
       subclass1: json['subclass1'].toString(),
       subclass2: json['subclass2'].toString(),

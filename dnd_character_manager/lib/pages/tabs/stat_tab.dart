@@ -1,5 +1,5 @@
-import 'package:dnd_character_manager/cubits/character_cubit/character_cubit.dart';
-import 'package:dnd_character_manager/models/character/dnd_character.dart';
+import 'package:dnd_character_manager/cubits/character_cubit/user_cubit.dart';
+import 'package:dnd_character_manager/models/bio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -8,12 +8,12 @@ import '../../constants/text_fields.dart';
 import '../../constants/theme_data.dart';
 
 class StatTab extends StatelessWidget {
-  final DndCharacter dndCharacter;
-  const StatTab({super.key, required this.dndCharacter});
+  final Bio bio;
+  const StatTab({super.key, required this.bio});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CharacterCubit, CharacterState>(
+    return BlocBuilder<UserCubit, UserState>(
       builder: (context, state) {
         TextEditingController str = TextEditingController();
         str.text = '';
@@ -38,7 +38,7 @@ class StatTab extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IconButton(
-                    onPressed: () => context.read<CharacterCubit>().statEdit(!state.statEdit!),
+                    onPressed: () => context.read<UserCubit>().statEdit(!state.statEdit!),
                     icon: const Icon(
                       Icons.edit,
                     ),

@@ -1,43 +1,20 @@
 import 'package:bloc/bloc.dart';
 import 'package:dnd_character_manager/client/firebase_auth_client.dart';
-import 'package:dnd_character_manager/models/character/dnd_character.dart';
 import 'package:dnd_character_manager/models/my_user/my_user.dart';
 import 'package:dnd_character_manager/service/dnd_service.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-part 'character_state.dart';
+part 'user_state.dart';
 
-class CharacterCubit extends Cubit<CharacterState> {
+class UserCubit extends Cubit<UserState> {
   final DndService dndService;
   final FirebaseAuthClient firebaseAuthClient;
 
-  CharacterCubit({DndService? dndService, FirebaseAuthClient? firebaseAuthClient})
+  UserCubit({DndService? dndService, FirebaseAuthClient? firebaseAuthClient})
       : dndService = dndService ?? DndService(),
         firebaseAuthClient = firebaseAuthClient ?? FirebaseAuthClient(),
-        super(CharacterInitial());
-
-// Firebase Firestore related cubit functions
-  Future<void> addDndCharacter(DndCharacter dndCharacter) async {
-    await dndService.addDndCharacter(dndCharacter: dndCharacter);
-    emit(state.copyWith(
-      dndCharacters: [...state.dndCharacters, dndCharacter],
-    ));
-  }
-
-  // Future<void> editDndCharacter(DndCharacter dndCharacter) async { //need to edit name, class, race, by userID maybe? ask Jeff
-  //   await dndService.editDndCharacter(dndCharacter: dndCharacter);
-  //   emit(state.copyWith())
-  // }
-
-  Future<void> readCharactersByUserID(String? userID) async {
-    try {
-      final List<DndCharacter> dndCharacters = await dndService.readDndCharactersByUserID(userID: userID);
-      emit(state.copyWith(dndCharacters: dndCharacters));
-    } catch (e) {
-      print('error reading characters from state');
-    }
-  }
+        super(UserInitial());
 
   //edit booleans -> add setData functionality eventually to all these
 
