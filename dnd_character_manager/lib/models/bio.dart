@@ -13,6 +13,7 @@ class Bio extends Equatable {
   final String? bonds;
   final String? flaws;
   final String? background;
+  final String? languages;
 
   const Bio({
     this.userID,
@@ -27,6 +28,7 @@ class Bio extends Equatable {
     this.bonds,
     this.flaws,
     this.background,
+    this.languages,
   });
 
   Map<String, dynamic> toJson() {
@@ -43,6 +45,7 @@ class Bio extends Equatable {
       'bonds': bonds,
       'flaws': flaws,
       'background': background,
+      'languages': languages,
     };
     return data;
   }
@@ -61,6 +64,7 @@ class Bio extends Equatable {
       bonds: json['bonds'].toString(),
       flaws: json['flaws'].toString(),
       background: json['background'].toString(),
+      languages: json['languages'].toString(),
     );
   }
 
@@ -68,7 +72,7 @@ class Bio extends Equatable {
   String toString() {
     return 'subclass1: $subclass1 \n charID: $charID, '
         '\n subclass2: $subclass2, \n alignment: $alignment, \n personality: $personality,'
-        '\n bonds: $bonds, \n flaws: $flaws, \n background: $background';
+        '\n bonds: $bonds, \n flaws: $flaws, \n background: $background, \n languages: $languages';
   }
 
   @override
@@ -82,5 +86,6 @@ class Bio extends Equatable {
         bonds,
         flaws,
         background,
+        languages,
       ];
 }
