@@ -26,7 +26,7 @@ class UserState extends Equatable {
 }
 
 final class UserInitial extends UserState {
-  UserInitial()
+  const UserInitial()
       : super(
           signedIn: false,
           myUser: null,
