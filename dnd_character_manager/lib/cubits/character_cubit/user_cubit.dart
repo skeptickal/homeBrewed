@@ -14,7 +14,7 @@ class UserCubit extends Cubit<UserState> {
   UserCubit({DndService? dndService, FirebaseAuthClient? firebaseAuthClient})
       : dndService = dndService ?? DndService(),
         firebaseAuthClient = firebaseAuthClient ?? FirebaseAuthClient(),
-        super(UserInitial());
+        super(const UserInitial());
 
   //edit booleans -> add setData functionality eventually to all these
 

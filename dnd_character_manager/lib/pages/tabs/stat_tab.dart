@@ -16,22 +16,34 @@ class StatTab extends StatelessWidget {
     context.read<StatCubit>().readStatsData(charID);
     return BlocBuilder<StatCubit, StatState>(
       builder: (context, state) {
+        const EdgeInsets threex3GridPadding = EdgeInsets.symmetric(horizontal: 30);
+        const EdgeInsets twox1RowPadding = EdgeInsets.symmetric(horizontal: 40);
+        TextEditingController playerLevel = TextEditingController();
+        playerLevel.text = state.stats!.totalPlayerLevel ?? '1';
+        TextEditingController classLevel = TextEditingController();
+        classLevel.text = state.stats!.classLevel ?? '1';
+        TextEditingController subClass1Level = TextEditingController();
+        subClass1Level.text = state.stats!.subClass1Lvl ?? '1';
+        TextEditingController subClass2Level = TextEditingController();
+        subClass2Level.text = state.stats!.subClass2Lvl ?? '1';
         TextEditingController str = TextEditingController();
         str.text = state.stats!.strength ?? '20';
         TextEditingController dex = TextEditingController();
-        dex.text = '';
+        dex.text = state.stats!.dexterity ?? '';
         TextEditingController con = TextEditingController();
-        con.text = '';
-        TextEditingController int = TextEditingController();
-        int.text = '';
+        con.text = state.stats!.constitution ?? '';
+        TextEditingController int1 = TextEditingController();
+        int1.text = state.stats!.intelligence ?? '';
         TextEditingController wis = TextEditingController();
-        wis.text = '';
+        wis.text = state.stats!.wisdom ?? '';
         TextEditingController cha = TextEditingController();
-        cha.text = '';
+        cha.text = state.stats!.charisma ?? '';
         TextEditingController currentHP = TextEditingController();
-        currentHP.text = '';
+        currentHP.text = state.stats!.currentHp ?? '0';
         TextEditingController maxHP = TextEditingController();
-        maxHP.text = '';
+        maxHP.text = state.stats!.maxHp ?? '0';
+        TextEditingController tempHP = TextEditingController();
+        tempHP.text = state.stats!.tempHp ?? '0';
         return SingleChildScrollView(
           child: Column(
             children: [
@@ -44,6 +56,18 @@ class StatTab extends StatelessWidget {
                       Stats stats1 = Stats(
                         strength: str.text,
                         charID: charID,
+                        charisma: cha.text,
+                        dexterity: dex.text,
+                        constitution: con.text,
+                        intelligence: int1.text,
+                        wisdom: wis.text,
+                        currentHp: currentHP.text,
+                        maxHp: maxHP.text,
+                        tempHp: tempHP.text,
+                        totalPlayerLevel: playerLevel.text,
+                        classLevel: classLevel.text,
+                        subClass1Lvl: subClass1Level.text,
+                        subClass2Lvl: subClass2Level.text,
                       );
                       context.read<StatCubit>().setStatsData(stats1);
                       context.read<StatCubit>().readStatsData(charID);
@@ -66,7 +90,7 @@ class StatTab extends StatelessWidget {
                     child: StatTextBox(
                       enabled: state.statEdit!,
                       padding: const EdgeInsets.symmetric(horizontal: 50),
-                      controller: str,
+                      controller: playerLevel,
                       hintText: 'Player Level',
                       subtitle: 'Player Level',
                     ),
@@ -75,7 +99,7 @@ class StatTab extends StatelessWidget {
                     child: StatTextBox(
                       enabled: state.statEdit!,
                       padding: const EdgeInsets.symmetric(horizontal: 50),
-                      controller: dex,
+                      controller: classLevel,
                       hintText: 'Class Level',
                       subtitle: 'Class Level',
                     ),
@@ -89,7 +113,7 @@ class StatTab extends StatelessWidget {
                     child: StatTextBox(
                       enabled: state.statEdit!,
                       padding: const EdgeInsets.symmetric(horizontal: 50),
-                      controller: con,
+                      controller: subClass1Level,
                       hintText: 'Subclass (1) Level',
                       subtitle: 'Subclass (1) Level',
                     ),
@@ -98,7 +122,7 @@ class StatTab extends StatelessWidget {
                     child: StatTextBox(
                       enabled: state.statEdit!,
                       padding: const EdgeInsets.symmetric(horizontal: 50),
-                      controller: con,
+                      controller: subClass2Level,
                       hintText: 'Subclass (2) Level',
                       subtitle: 'Subclass (2) Level',
                     ),
@@ -119,7 +143,7 @@ class StatTab extends StatelessWidget {
                   Flexible(
                     child: StatTextBox(
                       enabled: state.statEdit!,
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: twox1RowPadding,
                       controller: currentHP,
                       hintText: 'Current HP',
                       subtitle: 'Current HP',
@@ -128,10 +152,23 @@ class StatTab extends StatelessWidget {
                   Flexible(
                     child: StatTextBox(
                       enabled: state.statEdit!,
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: twox1RowPadding,
                       controller: maxHP,
                       hintText: 'MAX HP',
                       subtitle: 'MAX HP',
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Flexible(
+                    child: StatTextBox(
+                      enabled: state.statEdit!,
+                      padding: const EdgeInsets.symmetric(horizontal: 140),
+                      controller: tempHP,
+                      hintText: 'Temp HP',
+                      subtitle: 'Temp HP',
                     ),
                   ),
                 ],
@@ -144,28 +181,28 @@ class StatTab extends StatelessWidget {
                   Flexible(
                     child: StatTextBox(
                       enabled: state.statEdit!,
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: threex3GridPadding,
                       controller: str,
                       hintText: 'STR',
-                      subtitle: 'STR',
+                      subtitle: 'STR (${((int.tryParse(state.stats!.strength ?? '10') ?? 10) - 10) ~/ 2})',
                     ),
                   ),
                   Flexible(
                     child: StatTextBox(
                       enabled: state.statEdit!,
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: threex3GridPadding,
                       controller: dex,
                       hintText: 'DEX',
-                      subtitle: 'DEX',
+                      subtitle: 'DEX (${((int.tryParse(state.stats!.dexterity ?? '10') ?? 10) - 10) ~/ 2})',
                     ),
                   ),
                   Flexible(
                     child: StatTextBox(
                       enabled: state.statEdit!,
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: threex3GridPadding,
                       controller: con,
                       hintText: 'CON',
-                      subtitle: 'CON',
+                      subtitle: 'CON (${((int.tryParse(state.stats!.constitution ?? '10') ?? 10) - 10) ~/ 2})',
                     ),
                   ),
                 ],
@@ -176,28 +213,28 @@ class StatTab extends StatelessWidget {
                   Flexible(
                     child: StatTextBox(
                       enabled: state.statEdit!,
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      controller: int,
+                      padding: threex3GridPadding,
+                      controller: int1,
                       hintText: 'INT',
-                      subtitle: 'INT',
+                      subtitle: 'INT (${((int.tryParse(state.stats!.intelligence ?? '10') ?? 10) - 10) ~/ 2})',
                     ),
                   ),
                   Flexible(
                     child: StatTextBox(
                       enabled: state.statEdit!,
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: threex3GridPadding,
                       controller: wis,
                       hintText: 'WIS',
-                      subtitle: 'WIS',
+                      subtitle: 'WIS (${((int.tryParse(state.stats!.wisdom ?? '10') ?? 10) - 10) ~/ 2})',
                     ),
                   ),
                   Flexible(
                     child: StatTextBox(
                       enabled: state.statEdit!,
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: threex3GridPadding,
                       controller: cha,
                       hintText: 'CHA',
-                      subtitle: 'CHA',
+                      subtitle: 'CHA (${((int.tryParse(state.stats!.charisma ?? '10') ?? 10) - 10) ~/ 2})',
                     ),
                   ),
                 ],
