@@ -43,7 +43,7 @@ class StatTab extends StatelessWidget {
         const EdgeInsets threex3GridPadding = EdgeInsets.symmetric(horizontal: 30);
         const EdgeInsets twox1RowPadding = EdgeInsets.symmetric(horizontal: 40);
         TextEditingController playerLevel = TextEditingController();
-        playerLevel.text = state.stats!.totalPlayerLevel ?? '1';
+        playerLevel.text = state.stats!.totalPlayerLevel ?? '0';
         TextEditingController classLevel = TextEditingController();
         classLevel.text = state.stats!.classLevel ?? '1';
         TextEditingController subClass1Level = TextEditingController();
