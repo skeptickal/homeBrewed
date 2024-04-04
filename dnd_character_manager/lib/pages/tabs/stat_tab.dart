@@ -15,6 +15,29 @@ class StatTab extends StatelessWidget {
     context.read<StatCubit>().readStatsData(charID);
     return BlocBuilder<StatCubit, StatState>(
       builder: (context, state) {
+        return const SingleChildScrollView(
+          child: Column(
+            children: [
+              _EditBlock(),
+              _Levels(),
+              _Hps(),
+              _CoreStats(),
+              _SkillChecks(),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _SkillChecks extends StatelessWidget {
+  const _SkillChecks();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<StatCubit, StatState>(
+      builder: (context, state) {
         CheckboxListTile acrobaticsProfCheck = CheckboxListTile(
           title: Text(
             'Acrobatics (DEX): ${((int.tryParse(state.stats!.dexterity ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.acrobaticsProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
@@ -321,17 +344,77 @@ class StatTab extends StatelessWidget {
                 }
               : null,
         );
+        return Column(
+          children: [
+            acrobaticsProfCheck,
+            animalHandlingProfCheck,
+            arcanaProfCheck,
+            athleticsProfCheck,
+            deceptionProfCheck,
+            historyProfCheck,
+            insightProfCheck,
+            intimidationProfCheck,
+            investigationProfCheck,
+            medicineProfCheck,
+            natureProfCheck,
+            perceptionProfCheck,
+            performanceProfCheck,
+            persuasionProfCheck,
+            religionProfCheck,
+            sleightOfHandProfCheck,
+            stealthProfCheck,
+            survivalProfCheck,
+          ],
+        );
+      },
+    );
+  }
+}
 
-        const EdgeInsets threex3GridPadding = EdgeInsets.symmetric(horizontal: 30);
-        const EdgeInsets twox1RowPadding = EdgeInsets.symmetric(horizontal: 40);
-        TextEditingController playerLevel = TextEditingController();
-        playerLevel.text = state.stats!.totalPlayerLevel ?? '0';
-        TextEditingController classLevel = TextEditingController();
-        classLevel.text = state.stats!.classLevel ?? '1';
-        TextEditingController subClass1Lvl = TextEditingController();
-        subClass1Lvl.text = state.stats!.subClass1Lvl ?? '1';
-        TextEditingController subClass2Lvl = TextEditingController();
-        subClass2Lvl.text = state.stats!.subClass2Lvl ?? '1';
+class _EditBlock extends StatelessWidget {
+  const _EditBlock();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<StatCubit, StatState>(
+      builder: (context, state) {
+        return Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    context.read<StatCubit>().statEdit(!state.statEdit!);
+                  },
+                  icon: const Icon(
+                    Icons.edit,
+                  ),
+                ),
+                Text(
+                  'Edit',
+                  style: dndFont,
+                ),
+              ],
+            ),
+            seperation,
+            seperation,
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _CoreStats extends StatelessWidget {
+  const _CoreStats();
+
+  @override
+  Widget build(BuildContext context) {
+    const EdgeInsets threex3GridPadding = EdgeInsets.symmetric(horizontal: 30);
+
+    return BlocBuilder<StatCubit, StatState>(
+      builder: (context, state) {
         TextEditingController str = TextEditingController();
         str.text = state.stats!.strength ?? '20';
         TextEditingController dex = TextEditingController();
@@ -344,262 +427,243 @@ class StatTab extends StatelessWidget {
         wis.text = state.stats!.wisdom ?? '';
         TextEditingController cha = TextEditingController();
         cha.text = state.stats!.charisma ?? '';
+        return Column(
+          children: [
+            Row(
+              children: [
+                Flexible(
+                  child: StatTextBox(
+                    onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(strength: str.text)),
+                    onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(strength: str.text)),
+                    enabled: state.statEdit!,
+                    padding: threex3GridPadding,
+                    controller: str,
+                    hintText: 'STR',
+                    subtitle: 'STR (${((int.tryParse(state.stats!.strength ?? '10') ?? 10) - 10) ~/ 2})',
+                  ),
+                ),
+                Flexible(
+                  child: StatTextBox(
+                    onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(dexterity: dex.text)),
+                    onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(dexterity: dex.text)),
+                    enabled: state.statEdit!,
+                    padding: threex3GridPadding,
+                    controller: dex,
+                    hintText: 'DEX',
+                    subtitle: 'DEX (${((int.tryParse(state.stats!.dexterity ?? '10') ?? 10) - 10) ~/ 2})',
+                  ),
+                ),
+                Flexible(
+                  child: StatTextBox(
+                    onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(constitution: con.text)),
+                    onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(constitution: con.text)),
+                    enabled: state.statEdit!,
+                    padding: threex3GridPadding,
+                    controller: con,
+                    hintText: 'CON',
+                    subtitle: 'CON (${((int.tryParse(state.stats!.constitution ?? '10') ?? 10) - 10) ~/ 2})',
+                  ),
+                ),
+              ],
+            ),
+            seperation,
+            Row(
+              children: [
+                Flexible(
+                  child: StatTextBox(
+                    onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(intelligence: int1.text)),
+                    onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(intelligence: int1.text)),
+                    enabled: state.statEdit!,
+                    padding: threex3GridPadding,
+                    controller: int1,
+                    hintText: 'INT',
+                    subtitle: 'INT (${((int.tryParse(state.stats!.intelligence ?? '10') ?? 10) - 10) ~/ 2})',
+                  ),
+                ),
+                Flexible(
+                  child: StatTextBox(
+                    onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(wisdom: wis.text)),
+                    onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(wisdom: wis.text)),
+                    enabled: state.statEdit!,
+                    padding: threex3GridPadding,
+                    controller: wis,
+                    hintText: 'WIS',
+                    subtitle: 'WIS (${((int.tryParse(state.stats!.wisdom ?? '10') ?? 10) - 10) ~/ 2})',
+                  ),
+                ),
+                Flexible(
+                  child: StatTextBox(
+                    onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(charisma: cha.text)),
+                    onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(charisma: cha.text)),
+                    enabled: state.statEdit!,
+                    padding: threex3GridPadding,
+                    controller: cha,
+                    hintText: 'CHA',
+                    subtitle: 'CHA (${((int.tryParse(state.stats!.charisma ?? '10') ?? 10) - 10) ~/ 2})',
+                  ),
+                ),
+              ],
+            ),
+            seperation,
+            horizontalLine,
+            seperation,
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _Hps extends StatelessWidget {
+  const _Hps();
+
+  @override
+  Widget build(BuildContext context) {
+    const EdgeInsets twox1RowPadding = EdgeInsets.symmetric(horizontal: 40);
+    return BlocBuilder<StatCubit, StatState>(
+      builder: (context, state) {
         TextEditingController currentHp = TextEditingController();
         currentHp.text = state.stats!.currentHp ?? '0';
         TextEditingController maxHp = TextEditingController();
         maxHp.text = state.stats!.maxHp ?? '0';
         TextEditingController tempHp = TextEditingController();
         tempHp.text = state.stats!.tempHp ?? '0';
-        return SingleChildScrollView(
-          child: Column(
+        return Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Flexible(
+                  child: StatTextBox(
+                    onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(currentHp: currentHp.text)),
+                    onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(currentHp: currentHp.text)),
+                    enabled: state.statEdit!,
+                    padding: twox1RowPadding,
+                    controller: currentHp,
+                    hintText: 'Current HP',
+                    subtitle: 'Current HP',
+                  ),
+                ),
+                Flexible(
+                  child: StatTextBox(
+                    onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(maxHp: maxHp.text)),
+                    onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(maxHp: maxHp.text)),
+                    enabled: state.statEdit!,
+                    padding: twox1RowPadding,
+                    controller: maxHp,
+                    hintText: 'MAX HP',
+                    subtitle: 'MAX HP',
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Flexible(
+                  child: StatTextBox(
+                    onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(tempHp: tempHp.text)),
+                    onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(tempHp: tempHp.text)),
+                    enabled: state.statEdit!,
+                    padding: const EdgeInsets.symmetric(horizontal: 140),
+                    controller: tempHp,
+                    hintText: 'Temp HP',
+                    subtitle: 'Temp HP',
+                  ),
+                ),
+              ],
+            ),
+            seperation,
+            horizontalLine,
+            seperation,
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _Levels extends StatelessWidget {
+  const _Levels();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<StatCubit, StatState>(
+      builder: (context, state) {
+        TextEditingController playerLevel = TextEditingController();
+        playerLevel.text = state.stats!.totalPlayerLevel ?? '0';
+        TextEditingController classLevel = TextEditingController();
+        classLevel.text = state.stats!.classLevel ?? '1';
+        TextEditingController subClass1Lvl = TextEditingController();
+        subClass1Lvl.text = state.stats!.subClass1Lvl ?? '1';
+        TextEditingController subClass2Lvl = TextEditingController();
+        subClass2Lvl.text = state.stats!.subClass2Lvl ?? '1';
+        return Column(children: [
+          Row(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      context.read<StatCubit>().statEdit(!state.statEdit!);
-                      // Stats stats1 = Stats(
-                      //   strength: str.text,
-                      //   charID: charID,
-                      //   charisma: cha.text,
-                      //   dexterity: dex.text,
-                      //   constitution: con.text,
-                      //   intelligence: int1.text,
-                      //   wisdom: wis.text,
-                      //   currentHp: currentHP.text,
-                      //   maxHp: maxHP.text,
-                      //   tempHp: tempHP.text,
-                      //   totalPlayerLevel: playerLevel.text,
-                      //   classLevel: classLevel.text,
-                      //   subClass1Lvl: subClass1Level.text,
-                      //   subClass2Lvl: subClass2Level.text,
-                      //   acrobaticsProf: state.stats!.acrobaticsProf!,
-                      // );
-                      // context.read<StatCubit>().setStatsData(stats1);
-                      // context.read<StatCubit>().readStatsData(charID);
-                    },
-                    icon: const Icon(
-                      Icons.edit,
-                    ),
-                  ),
-                  Text(
-                    'Edit',
-                    style: dndFont,
-                  ),
-                ],
+              Flexible(
+                child: StatTextBox(
+                  onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(
+                        state.stats!.copyWith(totalPlayerLevel: playerLevel.text),
+                      ),
+                  onEditingComplete: () => context.read<StatCubit>().setStatsData(
+                        state.stats!.copyWith(totalPlayerLevel: playerLevel.text),
+                      ),
+                  enabled: state.statEdit!,
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                  controller: playerLevel,
+                  hintText: 'Player Level',
+                  subtitle: 'Player Level',
+                ),
               ),
-              seperation,
-              seperation,
-              Row(
-                children: [
-                  Flexible(
-                    child: StatTextBox(
-                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(
-                            state.stats!.copyWith(totalPlayerLevel: playerLevel.text),
-                          ),
-                      onEditingComplete: () => context.read<StatCubit>().setStatsData(
-                            state.stats!.copyWith(totalPlayerLevel: playerLevel.text),
-                          ),
-                      enabled: state.statEdit!,
-                      padding: const EdgeInsets.symmetric(horizontal: 50),
-                      controller: playerLevel,
-                      hintText: 'Player Level',
-                      subtitle: 'Player Level',
-                    ),
-                  ),
-                  Flexible(
-                    child: StatTextBox(
-                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(classLevel: classLevel.text)),
-                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(classLevel: classLevel.text)),
-                      enabled: state.statEdit!,
-                      padding: const EdgeInsets.symmetric(horizontal: 50),
-                      controller: classLevel,
-                      hintText: 'Class Level',
-                      subtitle: 'Class Level',
-                    ),
-                  ),
-                ],
+              Flexible(
+                child: StatTextBox(
+                  onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(classLevel: classLevel.text)),
+                  onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(classLevel: classLevel.text)),
+                  enabled: state.statEdit!,
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                  controller: classLevel,
+                  hintText: 'Class Level',
+                  subtitle: 'Class Level',
+                ),
               ),
-              seperation,
-              Row(
-                children: [
-                  Flexible(
-                    child: StatTextBox(
-                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(subClass1Lvl: subClass1Lvl.text)),
-                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(subClass1Lvl: subClass1Lvl.text)),
-                      enabled: state.statEdit!,
-                      padding: const EdgeInsets.symmetric(horizontal: 50),
-                      controller: subClass1Lvl,
-                      hintText: 'Subclass (1) Level',
-                      subtitle: 'Subclass (1) Level',
-                    ),
-                  ),
-                  Flexible(
-                    child: StatTextBox(
-                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(subClass2Lvl: subClass2Lvl.text)),
-                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(subClass2Lvl: subClass2Lvl.text)),
-                      enabled: state.statEdit!,
-                      padding: const EdgeInsets.symmetric(horizontal: 50),
-                      controller: subClass2Lvl,
-                      hintText: 'Subclass (2) Level',
-                      subtitle: 'Subclass (2) Level',
-                    ),
-                  ),
-                ],
-              ),
-              seperation,
-              Text(
-                'hint: Class + Subclass Level should = Player Level',
-                style: dndFont,
-              ),
-              seperation,
-              horizontalLine,
-              seperation,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Flexible(
-                    child: StatTextBox(
-                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(currentHp: currentHp.text)),
-                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(currentHp: currentHp.text)),
-                      enabled: state.statEdit!,
-                      padding: twox1RowPadding,
-                      controller: currentHp,
-                      hintText: 'Current HP',
-                      subtitle: 'Current HP',
-                    ),
-                  ),
-                  Flexible(
-                    child: StatTextBox(
-                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(maxHp: maxHp.text)),
-                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(maxHp: maxHp.text)),
-                      enabled: state.statEdit!,
-                      padding: twox1RowPadding,
-                      controller: maxHp,
-                      hintText: 'MAX HP',
-                      subtitle: 'MAX HP',
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Flexible(
-                    child: StatTextBox(
-                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(tempHp: tempHp.text)),
-                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(tempHp: tempHp.text)),
-                      enabled: state.statEdit!,
-                      padding: const EdgeInsets.symmetric(horizontal: 140),
-                      controller: tempHp,
-                      hintText: 'Temp HP',
-                      subtitle: 'Temp HP',
-                    ),
-                  ),
-                ],
-              ),
-              seperation,
-              horizontalLine,
-              seperation,
-              Row(
-                children: [
-                  Flexible(
-                    child: StatTextBox(
-                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(strength: str.text)),
-                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(strength: str.text)),
-                      enabled: state.statEdit!,
-                      padding: threex3GridPadding,
-                      controller: str,
-                      hintText: 'STR',
-                      subtitle: 'STR (${((int.tryParse(state.stats!.strength ?? '10') ?? 10) - 10) ~/ 2})',
-                    ),
-                  ),
-                  Flexible(
-                    child: StatTextBox(
-                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(dexterity: dex.text)),
-                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(dexterity: dex.text)),
-                      enabled: state.statEdit!,
-                      padding: threex3GridPadding,
-                      controller: dex,
-                      hintText: 'DEX',
-                      subtitle: 'DEX (${((int.tryParse(state.stats!.dexterity ?? '10') ?? 10) - 10) ~/ 2})',
-                    ),
-                  ),
-                  Flexible(
-                    child: StatTextBox(
-                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(constitution: con.text)),
-                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(constitution: con.text)),
-                      enabled: state.statEdit!,
-                      padding: threex3GridPadding,
-                      controller: con,
-                      hintText: 'CON',
-                      subtitle: 'CON (${((int.tryParse(state.stats!.constitution ?? '10') ?? 10) - 10) ~/ 2})',
-                    ),
-                  ),
-                ],
-              ),
-              seperation,
-              Row(
-                children: [
-                  Flexible(
-                    child: StatTextBox(
-                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(intelligence: int1.text)),
-                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(intelligence: int1.text)),
-                      enabled: state.statEdit!,
-                      padding: threex3GridPadding,
-                      controller: int1,
-                      hintText: 'INT',
-                      subtitle: 'INT (${((int.tryParse(state.stats!.intelligence ?? '10') ?? 10) - 10) ~/ 2})',
-                    ),
-                  ),
-                  Flexible(
-                    child: StatTextBox(
-                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(wisdom: wis.text)),
-                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(wisdom: wis.text)),
-                      enabled: state.statEdit!,
-                      padding: threex3GridPadding,
-                      controller: wis,
-                      hintText: 'WIS',
-                      subtitle: 'WIS (${((int.tryParse(state.stats!.wisdom ?? '10') ?? 10) - 10) ~/ 2})',
-                    ),
-                  ),
-                  Flexible(
-                    child: StatTextBox(
-                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(charisma: cha.text)),
-                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(charisma: cha.text)),
-                      enabled: state.statEdit!,
-                      padding: threex3GridPadding,
-                      controller: cha,
-                      hintText: 'CHA',
-                      subtitle: 'CHA (${((int.tryParse(state.stats!.charisma ?? '10') ?? 10) - 10) ~/ 2})',
-                    ),
-                  ),
-                ],
-              ),
-              seperation,
-              horizontalLine,
-              seperation,
-              acrobaticsProfCheck,
-              animalHandlingProfCheck,
-              arcanaProfCheck,
-              athleticsProfCheck,
-              deceptionProfCheck,
-              historyProfCheck,
-              insightProfCheck,
-              intimidationProfCheck,
-              investigationProfCheck,
-              medicineProfCheck,
-              natureProfCheck,
-              perceptionProfCheck,
-              performanceProfCheck,
-              persuasionProfCheck,
-              religionProfCheck,
-              sleightOfHandProfCheck,
-              stealthProfCheck,
-              survivalProfCheck,
             ],
           ),
-        );
+          seperation,
+          Row(
+            children: [
+              Flexible(
+                child: StatTextBox(
+                  onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(subClass1Lvl: subClass1Lvl.text)),
+                  onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(subClass1Lvl: subClass1Lvl.text)),
+                  enabled: state.statEdit!,
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                  controller: subClass1Lvl,
+                  hintText: 'Subclass (1) Level',
+                  subtitle: 'Subclass (1) Level',
+                ),
+              ),
+              Flexible(
+                child: StatTextBox(
+                  onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(subClass2Lvl: subClass2Lvl.text)),
+                  onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(subClass2Lvl: subClass2Lvl.text)),
+                  enabled: state.statEdit!,
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                  controller: subClass2Lvl,
+                  hintText: 'Subclass (2) Level',
+                  subtitle: 'Subclass (2) Level',
+                ),
+              ),
+            ],
+          ),
+          seperation,
+          Text(
+            'hint: Class + Subclass Level should = Player Level',
+            style: dndFont,
+          ),
+          seperation,
+          horizontalLine,
+          seperation,
+        ]);
       },
     );
   }
