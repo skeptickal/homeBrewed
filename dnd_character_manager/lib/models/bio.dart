@@ -57,14 +57,14 @@ class Bio extends Equatable {
       race: json['race'].toString(),
       userID: json['userID'].toString(),
       charID: json['charID'].toString(),
-      subclass1: json['subclass1'].toString(),
-      subclass2: json['subclass2'].toString(),
-      alignment: json['alignment'].toString(),
-      personality: json['personality'].toString(),
-      bonds: json['bonds'].toString(),
-      flaws: json['flaws'].toString(),
-      background: json['background'].toString(),
-      languages: json['languages'].toString(),
+      subclass1: json['subclass1']?.toString() ?? '',
+      subclass2: json['subclass2']?.toString() ?? '',
+      alignment: json['alignment']?.toString() ?? '',
+      personality: json['personality']?.toString() ?? '',
+      bonds: json['bonds']?.toString() ?? '',
+      flaws: json['flaws']?.toString() ?? '',
+      background: json['background']?.toString() ?? '',
+      languages: json['languages']?.toString() ?? '',
     );
   }
 
