@@ -13,21 +13,18 @@ class StatTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context.read<StatCubit>().readStatsData(charID);
-    return BlocBuilder<StatCubit, StatState>(
-      builder: (context, state) {
-        return const SingleChildScrollView(
-          child: Column(
-            children: [
-              _EditBlock(),
-              _Levels(),
-              _Hps(),
-              _CoreStats(),
-              _SkillChecks(),
-              _StatNotes(),
-            ],
-          ),
-        );
-      },
+    return const SingleChildScrollView(
+      child: Column(
+        children: [
+          _EditBlock(),
+          _Levels(),
+          _Hps(),
+          _CoreStats(),
+          _SkillChecks(),
+          _StatNotes(),
+          _EditBlock(),
+        ],
+      ),
     );
   }
 }
@@ -40,6 +37,7 @@ class _StatNotes extends StatelessWidget {
     return BlocBuilder<StatCubit, StatState>(
       builder: (context, state) {
         TextEditingController statNotes = TextEditingController();
+        statNotes.text = state.stats!.statNotes ?? '';
         return BigTextBox(
           onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(statNotes: statNotes.text)),
           onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(statNotes: statNotes.text)),
