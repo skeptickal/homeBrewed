@@ -16,28 +16,312 @@ class StatTab extends StatelessWidget {
     context.read<StatCubit>().readStatsData(charID);
     return BlocBuilder<StatCubit, StatState>(
       builder: (context, state) {
-        Widget acrobaticsProfCheck = Row(
-          children: [
-            Checkbox(
-              checkColor: blueGrey,
-              tristate: true,
-              value: state.stats!.acrobaticsProf,
-              onChanged: state.statEdit!
-                  ? (newBool) {
-                      context.read<StatCubit>().readStatsData(charID);
-                      context.read<StatCubit>().setStatsData(
-                            state.stats!.copyWith(
-                              acrobaticsProf: !state.stats!.acrobaticsProf!,
-                            ),
-                          );
-                      context.read<StatCubit>().readStatsData(charID);
-                    }
-                  : null,
-            ),
-            Text(
-              '${((int.tryParse(state.stats!.dexterity ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.acrobaticsProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
-            ),
-          ],
+        CheckboxListTile acrobaticsProfCheck = CheckboxListTile(
+          title: Text(
+            'Acrobatics (DEX): ${((int.tryParse(state.stats!.dexterity ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.acrobaticsProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+          ),
+          checkColor: blueGrey,
+          tristate: true,
+          value: state.stats!.acrobaticsProf,
+          onChanged: state.statEdit!
+              ? (newBool) {
+                  context.read<StatCubit>().setStatsData(
+                        state.stats!.copyWith(
+                          acrobaticsProf: !state.stats!.acrobaticsProf!,
+                        ),
+                      );
+                }
+              : null,
+        );
+        CheckboxListTile animalHandlingProfCheck = CheckboxListTile(
+          title: Text(
+            'animalHandling (DEX): ${((int.tryParse(state.stats!.wisdom ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.animalHandlingProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+          ),
+          checkColor: blueGrey,
+          tristate: true,
+          value: state.stats!.animalHandlingProf,
+          onChanged: state.statEdit!
+              ? (newBool) {
+                  context.read<StatCubit>().setStatsData(
+                        state.stats!.copyWith(
+                          animalHandlingProf: !state.stats!.animalHandlingProf!,
+                        ),
+                      );
+                }
+              : null,
+        );
+        CheckboxListTile arcanaProfCheck = CheckboxListTile(
+          title: Text(
+            'arcana (DEX): ${((int.tryParse(state.stats!.intelligence ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.arcanaProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+          ),
+          checkColor: blueGrey,
+          tristate: true,
+          value: state.stats!.arcanaProf,
+          onChanged: state.statEdit!
+              ? (newBool) {
+                  context.read<StatCubit>().setStatsData(
+                        state.stats!.copyWith(
+                          arcanaProf: !state.stats!.arcanaProf!,
+                        ),
+                      );
+                }
+              : null,
+        );
+        CheckboxListTile athleticsProfCheck = CheckboxListTile(
+          title: Text(
+            'athletics (DEX): ${((int.tryParse(state.stats!.strength ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.athleticsProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+          ),
+          checkColor: blueGrey,
+          tristate: true,
+          value: state.stats!.athleticsProf,
+          onChanged: state.statEdit!
+              ? (newBool) {
+                  context.read<StatCubit>().setStatsData(
+                        state.stats!.copyWith(
+                          athleticsProf: !state.stats!.athleticsProf!,
+                        ),
+                      );
+                }
+              : null,
+        );
+        CheckboxListTile deceptionProfCheck = CheckboxListTile(
+          title: Text(
+            'deception (DEX): ${((int.tryParse(state.stats!.charisma ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.deceptionProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+          ),
+          checkColor: blueGrey,
+          tristate: true,
+          value: state.stats!.deceptionProf,
+          onChanged: state.statEdit!
+              ? (newBool) {
+                  context.read<StatCubit>().setStatsData(
+                        state.stats!.copyWith(
+                          deceptionProf: !state.stats!.deceptionProf!,
+                        ),
+                      );
+                }
+              : null,
+        );
+        CheckboxListTile historyProfCheck = CheckboxListTile(
+          title: Text(
+            'history (DEX): ${((int.tryParse(state.stats!.intelligence ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.historyProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+          ),
+          checkColor: blueGrey,
+          tristate: true,
+          value: state.stats!.historyProf,
+          onChanged: state.statEdit!
+              ? (newBool) {
+                  context.read<StatCubit>().setStatsData(
+                        state.stats!.copyWith(
+                          historyProf: !state.stats!.historyProf!,
+                        ),
+                      );
+                }
+              : null,
+        );
+        CheckboxListTile insightProfCheck = CheckboxListTile(
+          title: Text(
+            'insight (DEX): ${((int.tryParse(state.stats!.wisdom ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.insightProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+          ),
+          checkColor: blueGrey,
+          tristate: true,
+          value: state.stats!.insightProf,
+          onChanged: state.statEdit!
+              ? (newBool) {
+                  context.read<StatCubit>().setStatsData(
+                        state.stats!.copyWith(
+                          insightProf: !state.stats!.insightProf!,
+                        ),
+                      );
+                  ;
+                }
+              : null,
+        );
+        CheckboxListTile intimidationProfCheck = CheckboxListTile(
+          title: Text(
+            'intimidation (DEX): ${((int.tryParse(state.stats!.charisma ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.intimidationProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+          ),
+          checkColor: blueGrey,
+          tristate: true,
+          value: state.stats!.intimidationProf,
+          onChanged: state.statEdit!
+              ? (newBool) {
+                  context.read<StatCubit>().setStatsData(
+                        state.stats!.copyWith(
+                          intimidationProf: !state.stats!.intimidationProf!,
+                        ),
+                      );
+                }
+              : null,
+        );
+        CheckboxListTile investigationProfCheck = CheckboxListTile(
+          title: Text(
+            'investigation (DEX): ${((int.tryParse(state.stats!.intelligence ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.investigationProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+          ),
+          checkColor: blueGrey,
+          tristate: true,
+          value: state.stats!.investigationProf,
+          onChanged: state.statEdit!
+              ? (newBool) {
+                  context.read<StatCubit>().setStatsData(
+                        state.stats!.copyWith(
+                          investigationProf: !state.stats!.investigationProf!,
+                        ),
+                      );
+                }
+              : null,
+        );
+        CheckboxListTile medicineProfCheck = CheckboxListTile(
+          title: Text(
+            'medicine (DEX): ${((int.tryParse(state.stats!.wisdom ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.medicineProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+          ),
+          checkColor: blueGrey,
+          tristate: true,
+          value: state.stats!.medicineProf,
+          onChanged: state.statEdit!
+              ? (newBool) {
+                  context.read<StatCubit>().setStatsData(
+                        state.stats!.copyWith(
+                          medicineProf: !state.stats!.medicineProf!,
+                        ),
+                      );
+                }
+              : null,
+        );
+        CheckboxListTile natureProfCheck = CheckboxListTile(
+          title: Text(
+            'nature (DEX): ${((int.tryParse(state.stats!.intelligence ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.natureProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+          ),
+          checkColor: blueGrey,
+          tristate: true,
+          value: state.stats!.natureProf,
+          onChanged: state.statEdit!
+              ? (newBool) {
+                  context.read<StatCubit>().setStatsData(
+                        state.stats!.copyWith(
+                          natureProf: !state.stats!.natureProf!,
+                        ),
+                      );
+                }
+              : null,
+        );
+        CheckboxListTile perceptionProfCheck = CheckboxListTile(
+          title: Text(
+            'perception (DEX): ${((int.tryParse(state.stats!.wisdom ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.perceptionProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+          ),
+          checkColor: blueGrey,
+          tristate: true,
+          value: state.stats!.perceptionProf,
+          onChanged: state.statEdit!
+              ? (newBool) {
+                  context.read<StatCubit>().setStatsData(
+                        state.stats!.copyWith(
+                          perceptionProf: !state.stats!.perceptionProf!,
+                        ),
+                      );
+                }
+              : null,
+        );
+        CheckboxListTile performanceProfCheck = CheckboxListTile(
+          title: Text(
+            'performance (DEX): ${((int.tryParse(state.stats!.charisma ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.performanceProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+          ),
+          checkColor: blueGrey,
+          tristate: true,
+          value: state.stats!.performanceProf,
+          onChanged: state.statEdit!
+              ? (newBool) {
+                  context.read<StatCubit>().setStatsData(
+                        state.stats!.copyWith(
+                          performanceProf: !state.stats!.performanceProf!,
+                        ),
+                      );
+                }
+              : null,
+        );
+        CheckboxListTile persuasionProfCheck = CheckboxListTile(
+          title: Text(
+            'persuasion (DEX): ${((int.tryParse(state.stats!.charisma ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.persuasionProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+          ),
+          checkColor: blueGrey,
+          tristate: true,
+          value: state.stats!.persuasionProf,
+          onChanged: state.statEdit!
+              ? (newBool) {
+                  context.read<StatCubit>().setStatsData(
+                        state.stats!.copyWith(
+                          persuasionProf: !state.stats!.persuasionProf!,
+                        ),
+                      );
+                }
+              : null,
+        );
+        CheckboxListTile religionProfCheck = CheckboxListTile(
+          title: Text(
+            'religion (DEX): ${((int.tryParse(state.stats!.intelligence ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.religionProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+          ),
+          checkColor: blueGrey,
+          tristate: true,
+          value: state.stats!.religionProf,
+          onChanged: state.statEdit!
+              ? (newBool) {
+                  context.read<StatCubit>().setStatsData(
+                        state.stats!.copyWith(
+                          religionProf: !state.stats!.religionProf!,
+                        ),
+                      );
+                }
+              : null,
+        );
+        CheckboxListTile sleightOfHandProfCheck = CheckboxListTile(
+          title: Text(
+            'sleightOfHand (DEX): ${((int.tryParse(state.stats!.dexterity ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.sleightOfHandProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+          ),
+          checkColor: blueGrey,
+          tristate: true,
+          value: state.stats!.sleightOfHandProf,
+          onChanged: state.statEdit!
+              ? (newBool) {
+                  context.read<StatCubit>().setStatsData(
+                        state.stats!.copyWith(
+                          sleightOfHandProf: !state.stats!.sleightOfHandProf!,
+                        ),
+                      );
+                }
+              : null,
+        );
+        CheckboxListTile stealthProfCheck = CheckboxListTile(
+          title: Text(
+            'stealth (DEX): ${((int.tryParse(state.stats!.dexterity ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.stealthProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+          ),
+          checkColor: blueGrey,
+          tristate: true,
+          value: state.stats!.stealthProf,
+          onChanged: state.statEdit!
+              ? (newBool) {
+                  context.read<StatCubit>().setStatsData(
+                        state.stats!.copyWith(
+                          stealthProf: !state.stats!.stealthProf!,
+                        ),
+                      );
+                }
+              : null,
+        );
+        CheckboxListTile survivalProfCheck = CheckboxListTile(
+          title: Text(
+            'survival (WIS): ${((int.tryParse(state.stats!.wisdom ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.survivalProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+          ),
+          checkColor: blueGrey,
+          tristate: true,
+          value: state.stats!.survivalProf,
+          onChanged: state.statEdit!
+              ? (newBool) {
+                  context.read<StatCubit>().setStatsData(
+                        state.stats!.copyWith(
+                          survivalProf: !state.stats!.survivalProf!,
+                        ),
+                      );
+                }
+              : null,
         );
 
         const EdgeInsets threex3GridPadding = EdgeInsets.symmetric(horizontal: 30);
@@ -46,10 +330,10 @@ class StatTab extends StatelessWidget {
         playerLevel.text = state.stats!.totalPlayerLevel ?? '0';
         TextEditingController classLevel = TextEditingController();
         classLevel.text = state.stats!.classLevel ?? '1';
-        TextEditingController subClass1Level = TextEditingController();
-        subClass1Level.text = state.stats!.subClass1Lvl ?? '1';
-        TextEditingController subClass2Level = TextEditingController();
-        subClass2Level.text = state.stats!.subClass2Lvl ?? '1';
+        TextEditingController subClass1Lvl = TextEditingController();
+        subClass1Lvl.text = state.stats!.subClass1Lvl ?? '1';
+        TextEditingController subClass2Lvl = TextEditingController();
+        subClass2Lvl.text = state.stats!.subClass2Lvl ?? '1';
         TextEditingController str = TextEditingController();
         str.text = state.stats!.strength ?? '20';
         TextEditingController dex = TextEditingController();
@@ -62,12 +346,12 @@ class StatTab extends StatelessWidget {
         wis.text = state.stats!.wisdom ?? '';
         TextEditingController cha = TextEditingController();
         cha.text = state.stats!.charisma ?? '';
-        TextEditingController currentHP = TextEditingController();
-        currentHP.text = state.stats!.currentHp ?? '0';
-        TextEditingController maxHP = TextEditingController();
-        maxHP.text = state.stats!.maxHp ?? '0';
-        TextEditingController tempHP = TextEditingController();
-        tempHP.text = state.stats!.tempHp ?? '0';
+        TextEditingController currentHp = TextEditingController();
+        currentHp.text = state.stats!.currentHp ?? '0';
+        TextEditingController maxHp = TextEditingController();
+        maxHp.text = state.stats!.maxHp ?? '0';
+        TextEditingController tempHp = TextEditingController();
+        tempHp.text = state.stats!.tempHp ?? '0';
         return SingleChildScrollView(
           child: Column(
             children: [
@@ -77,32 +361,32 @@ class StatTab extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       context.read<StatCubit>().statEdit(!state.statEdit!);
-                      Stats stats1 = Stats(
-                        strength: str.text,
-                        charID: charID,
-                        charisma: cha.text,
-                        dexterity: dex.text,
-                        constitution: con.text,
-                        intelligence: int1.text,
-                        wisdom: wis.text,
-                        currentHp: currentHP.text,
-                        maxHp: maxHP.text,
-                        tempHp: tempHP.text,
-                        totalPlayerLevel: playerLevel.text,
-                        classLevel: classLevel.text,
-                        subClass1Lvl: subClass1Level.text,
-                        subClass2Lvl: subClass2Level.text,
-                        acrobaticsProf: state.stats!.acrobaticsProf!,
-                      );
-                      context.read<StatCubit>().setStatsData(stats1);
-                      context.read<StatCubit>().readStatsData(charID);
+                      // Stats stats1 = Stats(
+                      //   strength: str.text,
+                      //   charID: charID,
+                      //   charisma: cha.text,
+                      //   dexterity: dex.text,
+                      //   constitution: con.text,
+                      //   intelligence: int1.text,
+                      //   wisdom: wis.text,
+                      //   currentHp: currentHP.text,
+                      //   maxHp: maxHP.text,
+                      //   tempHp: tempHP.text,
+                      //   totalPlayerLevel: playerLevel.text,
+                      //   classLevel: classLevel.text,
+                      //   subClass1Lvl: subClass1Level.text,
+                      //   subClass2Lvl: subClass2Level.text,
+                      //   acrobaticsProf: state.stats!.acrobaticsProf!,
+                      // );
+                      // context.read<StatCubit>().setStatsData(stats1);
+                      // context.read<StatCubit>().readStatsData(charID);
                     },
                     icon: const Icon(
                       Icons.edit,
                     ),
                   ),
                   Text(
-                    'Edit/Save',
+                    'Edit',
                     style: dndFont,
                   ),
                 ],
@@ -129,6 +413,7 @@ class StatTab extends StatelessWidget {
                   Flexible(
                     child: StatTextBox(
                       onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(classLevel: classLevel.text)),
+                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(classLevel: classLevel.text)),
                       enabled: state.statEdit!,
                       padding: const EdgeInsets.symmetric(horizontal: 50),
                       controller: classLevel,
@@ -143,18 +428,22 @@ class StatTab extends StatelessWidget {
                 children: [
                   Flexible(
                     child: StatTextBox(
+                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(subClass1Lvl: subClass1Lvl.text)),
+                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(subClass1Lvl: subClass1Lvl.text)),
                       enabled: state.statEdit!,
                       padding: const EdgeInsets.symmetric(horizontal: 50),
-                      controller: subClass1Level,
+                      controller: subClass1Lvl,
                       hintText: 'Subclass (1) Level',
                       subtitle: 'Subclass (1) Level',
                     ),
                   ),
                   Flexible(
                     child: StatTextBox(
+                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(subClass2Lvl: subClass2Lvl.text)),
+                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(subClass2Lvl: subClass2Lvl.text)),
                       enabled: state.statEdit!,
                       padding: const EdgeInsets.symmetric(horizontal: 50),
-                      controller: subClass2Level,
+                      controller: subClass2Lvl,
                       hintText: 'Subclass (2) Level',
                       subtitle: 'Subclass (2) Level',
                     ),
@@ -174,18 +463,22 @@ class StatTab extends StatelessWidget {
                 children: [
                   Flexible(
                     child: StatTextBox(
+                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(currentHp: currentHp.text)),
+                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(currentHp: currentHp.text)),
                       enabled: state.statEdit!,
                       padding: twox1RowPadding,
-                      controller: currentHP,
+                      controller: currentHp,
                       hintText: 'Current HP',
                       subtitle: 'Current HP',
                     ),
                   ),
                   Flexible(
                     child: StatTextBox(
+                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(maxHp: maxHp.text)),
+                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(maxHp: maxHp.text)),
                       enabled: state.statEdit!,
                       padding: twox1RowPadding,
-                      controller: maxHP,
+                      controller: maxHp,
                       hintText: 'MAX HP',
                       subtitle: 'MAX HP',
                     ),
@@ -196,9 +489,11 @@ class StatTab extends StatelessWidget {
                 children: [
                   Flexible(
                     child: StatTextBox(
+                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(tempHp: tempHp.text)),
+                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(tempHp: tempHp.text)),
                       enabled: state.statEdit!,
                       padding: const EdgeInsets.symmetric(horizontal: 140),
-                      controller: tempHP,
+                      controller: tempHp,
                       hintText: 'Temp HP',
                       subtitle: 'Temp HP',
                     ),
@@ -212,6 +507,8 @@ class StatTab extends StatelessWidget {
                 children: [
                   Flexible(
                     child: StatTextBox(
+                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(strength: str.text)),
+                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(strength: str.text)),
                       enabled: state.statEdit!,
                       padding: threex3GridPadding,
                       controller: str,
@@ -221,6 +518,8 @@ class StatTab extends StatelessWidget {
                   ),
                   Flexible(
                     child: StatTextBox(
+                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(dexterity: dex.text)),
+                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(dexterity: dex.text)),
                       enabled: state.statEdit!,
                       padding: threex3GridPadding,
                       controller: dex,
@@ -230,6 +529,8 @@ class StatTab extends StatelessWidget {
                   ),
                   Flexible(
                     child: StatTextBox(
+                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(constitution: con.text)),
+                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(constitution: con.text)),
                       enabled: state.statEdit!,
                       padding: threex3GridPadding,
                       controller: con,
@@ -244,6 +545,8 @@ class StatTab extends StatelessWidget {
                 children: [
                   Flexible(
                     child: StatTextBox(
+                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(intelligence: int1.text)),
+                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(intelligence: int1.text)),
                       enabled: state.statEdit!,
                       padding: threex3GridPadding,
                       controller: int1,
@@ -253,6 +556,8 @@ class StatTab extends StatelessWidget {
                   ),
                   Flexible(
                     child: StatTextBox(
+                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(wisdom: wis.text)),
+                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(wisdom: wis.text)),
                       enabled: state.statEdit!,
                       padding: threex3GridPadding,
                       controller: wis,
@@ -262,6 +567,8 @@ class StatTab extends StatelessWidget {
                   ),
                   Flexible(
                     child: StatTextBox(
+                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(charisma: cha.text)),
+                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(charisma: cha.text)),
                       enabled: state.statEdit!,
                       padding: threex3GridPadding,
                       controller: cha,
