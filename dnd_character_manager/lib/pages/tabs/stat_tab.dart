@@ -113,6 +113,12 @@ class StatTab extends StatelessWidget {
                 children: [
                   Flexible(
                     child: StatTextBox(
+                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(
+                            state.stats!.copyWith(totalPlayerLevel: playerLevel.text),
+                          ),
+                      onEditingComplete: () => context.read<StatCubit>().setStatsData(
+                            state.stats!.copyWith(totalPlayerLevel: playerLevel.text),
+                          ),
                       enabled: state.statEdit!,
                       padding: const EdgeInsets.symmetric(horizontal: 50),
                       controller: playerLevel,
@@ -122,6 +128,7 @@ class StatTab extends StatelessWidget {
                   ),
                   Flexible(
                     child: StatTextBox(
+                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(classLevel: classLevel.text)),
                       enabled: state.statEdit!,
                       padding: const EdgeInsets.symmetric(horizontal: 50),
                       controller: classLevel,
