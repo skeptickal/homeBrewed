@@ -26,7 +26,7 @@ class BioTab extends StatelessWidget {
         TextEditingController bonds = TextEditingController();
         TextEditingController flaws = TextEditingController();
         TextEditingController languages = TextEditingController();
-        background.text = state.bio!.background ?? 'bio';
+        background.text = state.bio!.background ?? '';
         personality.text = state.bio!.personality ?? '';
         name.text = state.bio!.name ?? '';
         race.text = state.bio!.race ?? '';
