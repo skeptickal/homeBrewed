@@ -23,24 +23,24 @@ class Stats extends Equatable {
   final String? deathSaveSuccesses;
   final String? deathSaveFailures;
   final String? passivePerception;
-  final String? acrobaticsRoll;
-  final String? animalHandlingRoll;
-  final String? arcanaRoll;
-  final String? athleticsRoll;
-  final String? deceptionRoll;
-  final String? historyRoll;
-  final String? insightRoll;
-  final String? intimidationRoll;
-  final String? investigationRoll;
-  final String? medicineRoll;
-  final String? natureRoll;
-  final String? perceptionRoll;
-  final String? performanceRoll;
-  final String? persuasionRoll;
-  final String? religionRoll;
-  final String? sleightOfHandRoll;
-  final String? stealthRoll;
-  final String? survivalRoll;
+  final String? acrobaticsProf;
+  final String? animalHandlingProf;
+  final String? arcanaProf;
+  final String? athleticsProf;
+  final String? deceptionProf;
+  final String? historyProf;
+  final String? insightProf;
+  final String? intimidationProf;
+  final String? investigationProf;
+  final String? medicineProf;
+  final String? natureProf;
+  final String? perceptionProf;
+  final String? performanceProf;
+  final String? persuasionProf;
+  final String? religionProf;
+  final String? sleightOfHandProf;
+  final String? stealthProf;
+  final bool? survivalProf;
 
   const Stats({
     this.totalPlayerLevel,
@@ -65,24 +65,24 @@ class Stats extends Equatable {
     this.deathSaveSuccesses,
     this.deathSaveFailures,
     this.passivePerception,
-    this.acrobaticsRoll,
-    this.animalHandlingRoll,
-    this.arcanaRoll,
-    this.athleticsRoll,
-    this.deceptionRoll,
-    this.historyRoll,
-    this.insightRoll,
-    this.intimidationRoll,
-    this.investigationRoll,
-    this.medicineRoll,
-    this.natureRoll,
-    this.perceptionRoll,
-    this.performanceRoll,
-    this.persuasionRoll,
-    this.religionRoll,
-    this.sleightOfHandRoll,
-    this.stealthRoll,
-    this.survivalRoll,
+    this.acrobaticsProf,
+    this.animalHandlingProf,
+    this.arcanaProf,
+    this.athleticsProf,
+    this.deceptionProf,
+    this.historyProf,
+    this.insightProf,
+    this.intimidationProf,
+    this.investigationProf,
+    this.medicineProf,
+    this.natureProf,
+    this.perceptionProf,
+    this.performanceProf,
+    this.persuasionProf,
+    this.religionProf,
+    this.sleightOfHandProf,
+    this.stealthProf,
+    this.survivalProf,
   });
 
   Map<String, dynamic> toJson() {
@@ -109,24 +109,24 @@ class Stats extends Equatable {
       'deathSaveSuccesses': deathSaveSuccesses,
       'deathSaveFailures': deathSaveFailures,
       'passivePerception': passivePerception,
-      'acrobaticsRoll': acrobaticsRoll,
-      'animalHandlingRoll': animalHandlingRoll,
-      'arcanaRoll': arcanaRoll,
-      'athleticsRoll': athleticsRoll,
-      'deceptionRoll': deceptionRoll,
-      'historyRoll': historyRoll,
-      'insightRoll': insightRoll,
-      'intimidationRoll': intimidationRoll,
-      'investigationRoll': investigationRoll,
-      'medicineRoll': medicineRoll,
-      'natureRoll': natureRoll,
-      'perceptionRoll': perceptionRoll,
-      'performanceRoll': performanceRoll,
-      'persuasionRoll': persuasionRoll,
-      'religionRoll': religionRoll,
-      'sleightOfHandRoll': sleightOfHandRoll,
-      'stealthRoll': stealthRoll,
-      'survivalRoll': survivalRoll,
+      'acrobaticsProf': acrobaticsProf,
+      'animalHandlingProf': animalHandlingProf,
+      'arcanaProf': arcanaProf,
+      'athleticsProf': athleticsProf,
+      'deceptionProf': deceptionProf,
+      'historyProf': historyProf,
+      'insightProf': insightProf,
+      'intimidationProf': intimidationProf,
+      'investigationProf': investigationProf,
+      'medicineProf': medicineProf,
+      'natureProf': natureProf,
+      'perceptionProf': perceptionProf,
+      'performanceProf': performanceProf,
+      'persuasionProf': persuasionProf,
+      'religionProf': religionProf,
+      'sleightOfHandProf': sleightOfHandProf,
+      'stealthProf': stealthProf,
+      'survivalProf': survivalProf,
     };
     return data;
   }
@@ -155,24 +155,24 @@ class Stats extends Equatable {
       deathSaveSuccesses: json['deathSaveSuccesses'].toString(),
       deathSaveFailures: json['deathSaveFailures'].toString(),
       passivePerception: json['passivePerception'].toString(),
-      acrobaticsRoll: json['acrobaticsRoll'].toString(),
-      animalHandlingRoll: json['animalHandlingRoll'].toString(),
-      arcanaRoll: json['arcanaRoll'].toString(),
-      athleticsRoll: json['athleticsRoll'].toString(),
-      deceptionRoll: json['deceptionRoll'].toString(),
-      historyRoll: json['historyRoll'].toString(),
-      insightRoll: json['insightRoll'].toString(),
-      intimidationRoll: json['intimidationRoll'].toString(),
-      investigationRoll: json['investigationRoll'].toString(),
-      medicineRoll: json['medicineRoll'].toString(),
-      natureRoll: json['natureRoll'].toString(),
-      perceptionRoll: json['perceptionRoll'].toString(),
-      performanceRoll: json['performanceRoll'].toString(),
-      persuasionRoll: json['persuasionRoll'].toString(),
-      religionRoll: json['religionRoll'].toString(),
-      sleightOfHandRoll: json['sleightOfHandRoll'].toString(),
-      stealthRoll: json['stealthRoll'].toString(),
-      survivalRoll: json['survivalRoll'].toString(),
+      acrobaticsProf: json['acrobaticsProf'].toString(),
+      animalHandlingProf: json['animalHandlingProf'].toString(),
+      arcanaProf: json['arcanaProf'].toString(),
+      athleticsProf: json['athleticsProf'].toString(),
+      deceptionProf: json['deceptionProf'].toString(),
+      historyProf: json['historyProf'].toString(),
+      insightProf: json['insightProf'].toString(),
+      intimidationProf: json['intimidationProf'].toString(),
+      investigationProf: json['investigationProf'].toString(),
+      medicineProf: json['medicineProf'].toString(),
+      natureProf: json['natureProf'].toString(),
+      perceptionProf: json['perceptionProf'].toString(),
+      performanceProf: json['performanceProf'].toString(),
+      persuasionProf: json['persuasionProf'].toString(),
+      religionProf: json['religionProf'].toString(),
+      sleightOfHandProf: json['sleightOfHandProf'].toString(),
+      stealthProf: json['stealthProf'].toString(),
+      survivalProf: json['survivalProf'] ?? false,
     );
   }
 
@@ -200,23 +200,23 @@ class Stats extends Equatable {
         deathSaveSuccesses,
         deathSaveFailures,
         passivePerception,
-        acrobaticsRoll,
-        animalHandlingRoll,
-        arcanaRoll,
-        athleticsRoll,
-        deceptionRoll,
-        historyRoll,
-        insightRoll,
-        intimidationRoll,
-        investigationRoll,
-        medicineRoll,
-        natureRoll,
-        perceptionRoll,
-        performanceRoll,
-        persuasionRoll,
-        religionRoll,
-        sleightOfHandRoll,
-        stealthRoll,
-        survivalRoll,
+        acrobaticsProf,
+        animalHandlingProf,
+        arcanaProf,
+        athleticsProf,
+        deceptionProf,
+        historyProf,
+        insightProf,
+        intimidationProf,
+        investigationProf,
+        medicineProf,
+        natureProf,
+        perceptionProf,
+        performanceProf,
+        persuasionProf,
+        religionProf,
+        sleightOfHandProf,
+        stealthProf,
+        survivalProf,
       ];
 }
