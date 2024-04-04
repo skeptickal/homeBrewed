@@ -23,8 +23,32 @@ class StatTab extends StatelessWidget {
               _Hps(),
               _CoreStats(),
               _SkillChecks(),
+              _StatNotes(),
             ],
           ),
+        );
+      },
+    );
+  }
+}
+
+class _StatNotes extends StatelessWidget {
+  const _StatNotes();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<StatCubit, StatState>(
+      builder: (context, state) {
+        TextEditingController statNotes = TextEditingController();
+        return BigTextBox(
+          onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(statNotes: statNotes.text)),
+          onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(statNotes: statNotes.text)),
+          minLines: 10,
+          enabled: state.statEdit!,
+          padding: const EdgeInsets.all(6),
+          controller: statNotes,
+          hintText: 'e.g. Add +3 to Strength for Giant\'s Belt',
+          subtitle: 'Notes for Stats',
         );
       },
     );
