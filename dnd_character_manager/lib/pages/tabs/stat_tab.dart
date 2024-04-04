@@ -16,6 +16,30 @@ class StatTab extends StatelessWidget {
     context.read<StatCubit>().readStatsData(charID);
     return BlocBuilder<StatCubit, StatState>(
       builder: (context, state) {
+        Widget acrobaticsProfCheck = Row(
+          children: [
+            Checkbox(
+              checkColor: blueGrey,
+              tristate: true,
+              value: state.stats!.acrobaticsProf,
+              onChanged: state.statEdit!
+                  ? (newBool) {
+                      context.read<StatCubit>().readStatsData(charID);
+                      context.read<StatCubit>().setStatsData(
+                            state.stats!.copyWith(
+                              acrobaticsProf: !state.stats!.acrobaticsProf!,
+                            ),
+                          );
+                      context.read<StatCubit>().readStatsData(charID);
+                    }
+                  : null,
+            ),
+            Text(
+              '${((int.tryParse(state.stats!.dexterity ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.acrobaticsProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+            ),
+          ],
+        );
+
         const EdgeInsets threex3GridPadding = EdgeInsets.symmetric(horizontal: 30);
         const EdgeInsets twox1RowPadding = EdgeInsets.symmetric(horizontal: 40);
         TextEditingController playerLevel = TextEditingController();
@@ -68,6 +92,7 @@ class StatTab extends StatelessWidget {
                         classLevel: classLevel.text,
                         subClass1Lvl: subClass1Level.text,
                         subClass2Lvl: subClass2Level.text,
+                        acrobaticsProf: state.stats!.acrobaticsProf!,
                       );
                       context.read<StatCubit>().setStatsData(stats1);
                       context.read<StatCubit>().readStatsData(charID);
@@ -239,6 +264,10 @@ class StatTab extends StatelessWidget {
                   ),
                 ],
               ),
+              seperation,
+              horizontalLine,
+              seperation,
+              acrobaticsProfCheck,
             ],
           ),
         );
