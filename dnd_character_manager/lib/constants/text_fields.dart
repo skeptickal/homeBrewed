@@ -1,5 +1,6 @@
 import 'package:dnd_character_manager/constants/theme_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CustomTextBox extends StatelessWidget {
   final EdgeInsets padding;
@@ -84,6 +85,9 @@ class BigTextBox extends StatelessWidget {
 }
 
 class StatTextBox extends StatelessWidget {
+  final void Function(PointerDownEvent)? onTapOutside;
+  final void Function()? onEditingComplete;
+  final void Function(String)? onFieldSubmitted;
   final bool enabled;
   final EdgeInsets padding;
   final TextEditingController controller;
@@ -92,6 +96,9 @@ class StatTextBox extends StatelessWidget {
   final int? minLines;
 
   const StatTextBox({
+    this.onTapOutside,
+    this.onFieldSubmitted,
+    this.onEditingComplete,
     required this.enabled,
     required this.padding,
     required this.controller,
@@ -111,6 +118,9 @@ class StatTextBox extends StatelessWidget {
           Center(child: Text(subtitle, style: dndFont.copyWith(fontSize: 14, fontWeight: FontWeight.bold))),
           const SizedBox(height: 4),
           TextFormField(
+            onTapOutside: onTapOutside,
+            onFieldSubmitted: onFieldSubmitted,
+            onEditingComplete: onEditingComplete,
             textAlign: TextAlign.center,
             enabled: enabled,
             controller: controller,
