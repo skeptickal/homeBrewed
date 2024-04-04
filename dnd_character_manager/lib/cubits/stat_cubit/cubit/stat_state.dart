@@ -65,6 +65,7 @@ final class StatInitial extends StatState {
               sleightOfHandProf: false,
               stealthProf: false,
               survivalProf: false,
+              statNotes: '',
             ),
           ],
           stats: const Stats(
@@ -108,6 +109,7 @@ final class StatInitial extends StatState {
             sleightOfHandProf: false,
             stealthProf: false,
             survivalProf: false,
+            statNotes: '',
           ),
           statEdit: false,
         );

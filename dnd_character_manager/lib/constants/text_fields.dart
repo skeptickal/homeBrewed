@@ -43,6 +43,8 @@ class CustomTextBox extends StatelessWidget {
 }
 
 class BigTextBox extends StatelessWidget {
+  final void Function(PointerDownEvent)? onTapOutside;
+  final void Function()? onEditingComplete;
   final bool enabled;
   final EdgeInsets padding;
   final TextEditingController controller;
@@ -51,52 +53,7 @@ class BigTextBox extends StatelessWidget {
   final int? minLines;
 
   const BigTextBox({
-    required this.enabled,
-    required this.padding,
-    required this.controller,
-    required this.hintText,
-    required this.subtitle,
-    this.minLines,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: padding,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Center(child: Text(subtitle, style: dndFont.copyWith(fontSize: 14, fontWeight: FontWeight.bold))),
-          const SizedBox(height: 4),
-          TextFormField(
-            enabled: enabled,
-            controller: controller,
-            minLines: minLines,
-            maxLines: null,
-            keyboardType: TextInputType.multiline,
-            decoration: textInputDecoration.copyWith(hintText: hintText),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class StatTextBox extends StatelessWidget {
-  final void Function(PointerDownEvent)? onTapOutside;
-  final void Function()? onEditingComplete;
-  final void Function(String)? onFieldSubmitted;
-  final bool enabled;
-  final EdgeInsets padding;
-  final TextEditingController controller;
-  final String hintText;
-  final String subtitle;
-  final int? minLines;
-
-  const StatTextBox({
     this.onTapOutside,
-    this.onFieldSubmitted,
     this.onEditingComplete,
     required this.enabled,
     required this.padding,
@@ -118,7 +75,53 @@ class StatTextBox extends StatelessWidget {
           const SizedBox(height: 4),
           TextFormField(
             onTapOutside: onTapOutside,
-            onFieldSubmitted: onFieldSubmitted,
+            onEditingComplete: onEditingComplete,
+            enabled: enabled,
+            controller: controller,
+            minLines: minLines,
+            maxLines: null,
+            keyboardType: TextInputType.multiline,
+            decoration: textInputDecoration.copyWith(hintText: hintText),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class StatTextBox extends StatelessWidget {
+  final void Function(PointerDownEvent)? onTapOutside;
+  final void Function()? onEditingComplete;
+  final bool enabled;
+  final EdgeInsets padding;
+  final TextEditingController controller;
+  final String hintText;
+  final String subtitle;
+  final int? minLines;
+
+  const StatTextBox({
+    this.onTapOutside,
+    this.onEditingComplete,
+    required this.enabled,
+    required this.padding,
+    required this.controller,
+    required this.hintText,
+    required this.subtitle,
+    this.minLines,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: padding,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Center(child: Text(subtitle, style: dndFont.copyWith(fontSize: 14, fontWeight: FontWeight.bold))),
+          const SizedBox(height: 4),
+          TextFormField(
+            onTapOutside: onTapOutside,
             onEditingComplete: onEditingComplete,
             textAlign: TextAlign.center,
             enabled: enabled,
