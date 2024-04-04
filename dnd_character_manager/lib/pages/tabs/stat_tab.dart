@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../client/spacing.dart';
 import '../../constants/text_fields.dart';
 import '../../constants/theme_data.dart';
-import '../../models/stats.dart';
 
 class StatTab extends StatelessWidget {
   final String charID;
@@ -35,7 +34,7 @@ class StatTab extends StatelessWidget {
         );
         CheckboxListTile animalHandlingProfCheck = CheckboxListTile(
           title: Text(
-            'animalHandling (DEX): ${((int.tryParse(state.stats!.wisdom ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.animalHandlingProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+            'AnimalHandling (WIS): ${((int.tryParse(state.stats!.wisdom ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.animalHandlingProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
           tristate: true,
@@ -52,7 +51,7 @@ class StatTab extends StatelessWidget {
         );
         CheckboxListTile arcanaProfCheck = CheckboxListTile(
           title: Text(
-            'arcana (DEX): ${((int.tryParse(state.stats!.intelligence ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.arcanaProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+            'Arcana (INT): ${((int.tryParse(state.stats!.intelligence ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.arcanaProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
           tristate: true,
@@ -69,7 +68,7 @@ class StatTab extends StatelessWidget {
         );
         CheckboxListTile athleticsProfCheck = CheckboxListTile(
           title: Text(
-            'athletics (DEX): ${((int.tryParse(state.stats!.strength ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.athleticsProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+            'Athletics (STR): ${((int.tryParse(state.stats!.strength ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.athleticsProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
           tristate: true,
@@ -86,7 +85,7 @@ class StatTab extends StatelessWidget {
         );
         CheckboxListTile deceptionProfCheck = CheckboxListTile(
           title: Text(
-            'deception (DEX): ${((int.tryParse(state.stats!.charisma ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.deceptionProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+            'Deception (CHA): ${((int.tryParse(state.stats!.charisma ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.deceptionProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
           tristate: true,
@@ -103,7 +102,7 @@ class StatTab extends StatelessWidget {
         );
         CheckboxListTile historyProfCheck = CheckboxListTile(
           title: Text(
-            'history (DEX): ${((int.tryParse(state.stats!.intelligence ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.historyProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+            'History (INT): ${((int.tryParse(state.stats!.intelligence ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.historyProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
           tristate: true,
@@ -120,7 +119,7 @@ class StatTab extends StatelessWidget {
         );
         CheckboxListTile insightProfCheck = CheckboxListTile(
           title: Text(
-            'insight (DEX): ${((int.tryParse(state.stats!.wisdom ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.insightProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+            'Insight (WIS): ${((int.tryParse(state.stats!.wisdom ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.insightProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
           tristate: true,
@@ -132,13 +131,12 @@ class StatTab extends StatelessWidget {
                           insightProf: !state.stats!.insightProf!,
                         ),
                       );
-                  ;
                 }
               : null,
         );
         CheckboxListTile intimidationProfCheck = CheckboxListTile(
           title: Text(
-            'intimidation (DEX): ${((int.tryParse(state.stats!.charisma ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.intimidationProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+            'Intimidation (CHA): ${((int.tryParse(state.stats!.charisma ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.intimidationProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
           tristate: true,
@@ -155,7 +153,7 @@ class StatTab extends StatelessWidget {
         );
         CheckboxListTile investigationProfCheck = CheckboxListTile(
           title: Text(
-            'investigation (DEX): ${((int.tryParse(state.stats!.intelligence ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.investigationProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+            'Investigation (INT): ${((int.tryParse(state.stats!.intelligence ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.investigationProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
           tristate: true,
@@ -172,7 +170,7 @@ class StatTab extends StatelessWidget {
         );
         CheckboxListTile medicineProfCheck = CheckboxListTile(
           title: Text(
-            'medicine (DEX): ${((int.tryParse(state.stats!.wisdom ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.medicineProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+            'Medicine (WIS): ${((int.tryParse(state.stats!.wisdom ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.medicineProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
           tristate: true,
@@ -189,7 +187,7 @@ class StatTab extends StatelessWidget {
         );
         CheckboxListTile natureProfCheck = CheckboxListTile(
           title: Text(
-            'nature (DEX): ${((int.tryParse(state.stats!.intelligence ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.natureProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+            'Nature (INT): ${((int.tryParse(state.stats!.intelligence ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.natureProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
           tristate: true,
@@ -206,7 +204,7 @@ class StatTab extends StatelessWidget {
         );
         CheckboxListTile perceptionProfCheck = CheckboxListTile(
           title: Text(
-            'perception (DEX): ${((int.tryParse(state.stats!.wisdom ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.perceptionProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+            'Perception (WIS): ${((int.tryParse(state.stats!.wisdom ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.perceptionProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
           tristate: true,
@@ -223,7 +221,7 @@ class StatTab extends StatelessWidget {
         );
         CheckboxListTile performanceProfCheck = CheckboxListTile(
           title: Text(
-            'performance (DEX): ${((int.tryParse(state.stats!.charisma ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.performanceProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+            'Performance (CHA): ${((int.tryParse(state.stats!.charisma ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.performanceProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
           tristate: true,
@@ -240,7 +238,7 @@ class StatTab extends StatelessWidget {
         );
         CheckboxListTile persuasionProfCheck = CheckboxListTile(
           title: Text(
-            'persuasion (DEX): ${((int.tryParse(state.stats!.charisma ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.persuasionProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+            'Persuasion (CHA): ${((int.tryParse(state.stats!.charisma ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.persuasionProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
           tristate: true,
@@ -257,7 +255,7 @@ class StatTab extends StatelessWidget {
         );
         CheckboxListTile religionProfCheck = CheckboxListTile(
           title: Text(
-            'religion (DEX): ${((int.tryParse(state.stats!.intelligence ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.religionProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+            'Religion (INT): ${((int.tryParse(state.stats!.intelligence ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.religionProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
           tristate: true,
@@ -274,7 +272,7 @@ class StatTab extends StatelessWidget {
         );
         CheckboxListTile sleightOfHandProfCheck = CheckboxListTile(
           title: Text(
-            'sleightOfHand (DEX): ${((int.tryParse(state.stats!.dexterity ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.sleightOfHandProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+            'Sleight of Hand (DEX): ${((int.tryParse(state.stats!.dexterity ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.sleightOfHandProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
           tristate: true,
@@ -291,7 +289,7 @@ class StatTab extends StatelessWidget {
         );
         CheckboxListTile stealthProfCheck = CheckboxListTile(
           title: Text(
-            'stealth (DEX): ${((int.tryParse(state.stats!.dexterity ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.stealthProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+            'Stealth (DEX): ${((int.tryParse(state.stats!.dexterity ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.stealthProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
           tristate: true,
@@ -308,7 +306,7 @@ class StatTab extends StatelessWidget {
         );
         CheckboxListTile survivalProfCheck = CheckboxListTile(
           title: Text(
-            'survival (WIS): ${((int.tryParse(state.stats!.wisdom ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.survivalProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
+            'Survival (WIS): ${((int.tryParse(state.stats!.wisdom ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.survivalProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
           tristate: true,
@@ -582,6 +580,23 @@ class StatTab extends StatelessWidget {
               horizontalLine,
               seperation,
               acrobaticsProfCheck,
+              animalHandlingProfCheck,
+              arcanaProfCheck,
+              athleticsProfCheck,
+              deceptionProfCheck,
+              historyProfCheck,
+              insightProfCheck,
+              intimidationProfCheck,
+              investigationProfCheck,
+              medicineProfCheck,
+              natureProfCheck,
+              perceptionProfCheck,
+              performanceProfCheck,
+              persuasionProfCheck,
+              religionProfCheck,
+              sleightOfHandProfCheck,
+              stealthProfCheck,
+              survivalProfCheck,
             ],
           ),
         );
