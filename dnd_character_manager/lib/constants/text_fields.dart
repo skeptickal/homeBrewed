@@ -109,7 +109,6 @@ class StatTextBox extends StatelessWidget {
   final int? minLines;
 
   const StatTextBox({
-
     this.action,
     this.inputType,
     this.onTapOutside,
@@ -130,11 +129,10 @@ class StatTextBox extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Center(child: Text(subtitle, style: dndFont.copyWith(fontSize: 14, fontWeight: FontWeight.bold))),
+          Center(child: Text(subtitle, textAlign: TextAlign.center, style: dndFont.copyWith(fontSize: 14, fontWeight: FontWeight.bold))),
           Focus(
             onFocusChange: (hasFocus) => hasFocus ? null : onEditingComplete!(),
             child: TextFormField(
-
               style: TextStyle(color: !enabled ? const Color.fromARGB(255, 124, 124, 124) : black),
               onTapOutside: onTapOutside,
               onEditingComplete: onEditingComplete,
