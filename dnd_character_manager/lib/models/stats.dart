@@ -205,7 +205,6 @@ class Stats extends Equatable {
   }
 
   Stats copyWith({
-    //SAVING THROWS AGHGHHGHH todo
     bool? strSaveProf,
     bool? dexSaveProf,
     bool? conSaveProf,
@@ -222,18 +221,18 @@ class Stats extends Equatable {
     String? tempHp,
     String? speed,
     String? inspiration,
-    String? proficiencyBonus, //todo
+    String? proficiencyBonus,
     String? strength,
     String? dexterity,
     String? constitution,
     String? intelligence,
     String? wisdom,
     String? charisma,
-    String? hitDice, //todo
-    String? hitDiceType, //todo
-    String? deathSaveSuccesses, //todo
-    String? deathSaveFailures, //todo
-    String? passivePerception, //todo <- can convert if needed
+    String? hitDice,
+    String? hitDiceType,
+    String? deathSaveSuccesses,
+    String? deathSaveFailures,
+    String? passivePerception, //potentially conver to something, not needed as of now
     bool? acrobaticsProf,
     bool? animalHandlingProf,
     bool? arcanaProf,
