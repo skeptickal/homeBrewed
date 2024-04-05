@@ -181,6 +181,7 @@ class Stats extends Equatable {
   }
 
   Stats copyWith({
+    //SAVING THROWS AGHGHHGHH todo
     String? totalPlayerLevel,
     String? classLevel,
     String? subClass1Lvl,

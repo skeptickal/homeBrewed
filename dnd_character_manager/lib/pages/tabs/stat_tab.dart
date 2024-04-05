@@ -61,9 +61,12 @@ class _SkillChecks extends StatelessWidget {
     return BlocBuilder<StatCubit, StatState>(
       builder: (context, state) {
         CheckboxListTile acrobaticsProfCheck = CheckboxListTile(
-          title: Text(
-            'Acrobatics (DEX): ${((int.tryParse(state.stats!.dexterity ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.acrobaticsProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
-          ),
+          title: Text(_calcModifierWithProf(
+            'Acrobatics (DEX)',
+            state.stats!.dexterity,
+            state.stats!.acrobaticsProf,
+            state.stats!.proficiencyBonus,
+          )),
           checkColor: blueGrey,
           activeColor: white,
           tristate: true,
@@ -79,9 +82,12 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile animalHandlingProfCheck = CheckboxListTile(
-          title: Text(
-            'AnimalHandling (WIS): ${((int.tryParse(state.stats!.wisdom ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.animalHandlingProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
-          ),
+          title: Text(_calcModifierWithProf(
+            'Animal Handling (WIS)',
+            state.stats!.wisdom,
+            state.stats!.animalHandlingProf,
+            state.stats!.proficiencyBonus,
+          )),
           checkColor: blueGrey,
           activeColor: white,
           tristate: true,
@@ -97,9 +103,12 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile arcanaProfCheck = CheckboxListTile(
-          title: Text(
-            'Arcana (INT): ${((int.tryParse(state.stats!.intelligence ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.arcanaProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
-          ),
+          title: Text(_calcModifierWithProf(
+            'Arcana (INT)',
+            state.stats!.intelligence,
+            state.stats!.arcanaProf,
+            state.stats!.proficiencyBonus,
+          )),
           checkColor: blueGrey,
           activeColor: white,
           tristate: true,
@@ -115,9 +124,12 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile athleticsProfCheck = CheckboxListTile(
-          title: Text(
-            'Athletics (STR): ${((int.tryParse(state.stats!.strength ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.athleticsProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
-          ),
+          title: Text(_calcModifierWithProf(
+            'Athletics (STR)',
+            state.stats!.strength,
+            state.stats!.athleticsProf,
+            state.stats!.proficiencyBonus,
+          )),
           checkColor: blueGrey,
           activeColor: white,
           tristate: true,
@@ -133,9 +145,12 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile deceptionProfCheck = CheckboxListTile(
-          title: Text(
-            'Deception (CHA): ${((int.tryParse(state.stats!.charisma ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.deceptionProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
-          ),
+          title: Text(_calcModifierWithProf(
+            'Deception (CHA)',
+            state.stats!.charisma,
+            state.stats!.deceptionProf,
+            state.stats!.proficiencyBonus,
+          )),
           checkColor: blueGrey,
           activeColor: white,
           tristate: true,
@@ -151,9 +166,12 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile historyProfCheck = CheckboxListTile(
-          title: Text(
-            'History (INT): ${((int.tryParse(state.stats!.intelligence ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.historyProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
-          ),
+          title: Text(_calcModifierWithProf(
+            'History (INT)',
+            state.stats!.intelligence,
+            state.stats!.historyProf,
+            state.stats!.proficiencyBonus,
+          )),
           checkColor: blueGrey,
           activeColor: white,
           tristate: true,
@@ -169,9 +187,12 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile insightProfCheck = CheckboxListTile(
-          title: Text(
-            'Insight (WIS): ${((int.tryParse(state.stats!.wisdom ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.insightProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
-          ),
+          title: Text(_calcModifierWithProf(
+            'Insight (WIS)',
+            state.stats!.wisdom,
+            state.stats!.insightProf,
+            state.stats!.proficiencyBonus,
+          )),
           checkColor: blueGrey,
           activeColor: white,
           tristate: true,
@@ -187,9 +208,12 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile intimidationProfCheck = CheckboxListTile(
-          title: Text(
-            'Intimidation (CHA): ${((int.tryParse(state.stats!.charisma ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.intimidationProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
-          ),
+          title: Text(_calcModifierWithProf(
+            'Intimidation (CHA)',
+            state.stats!.charisma,
+            state.stats!.intimidationProf,
+            state.stats!.proficiencyBonus,
+          )),
           checkColor: blueGrey,
           activeColor: white,
           tristate: true,
@@ -205,9 +229,12 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile investigationProfCheck = CheckboxListTile(
-          title: Text(
-            'Investigation (INT): ${((int.tryParse(state.stats!.intelligence ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.investigationProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
-          ),
+          title: Text(_calcModifierWithProf(
+            'Investigation (INT)',
+            state.stats!.intelligence,
+            state.stats!.investigationProf,
+            state.stats!.proficiencyBonus,
+          )),
           checkColor: blueGrey,
           activeColor: white,
           tristate: true,
@@ -223,9 +250,12 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile medicineProfCheck = CheckboxListTile(
-          title: Text(
-            'Medicine (WIS): ${((int.tryParse(state.stats!.wisdom ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.medicineProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
-          ),
+          title: Text(_calcModifierWithProf(
+            'Medicine (WIS)',
+            state.stats!.wisdom,
+            state.stats!.medicineProf,
+            state.stats!.proficiencyBonus,
+          )),
           checkColor: blueGrey,
           activeColor: white,
           tristate: true,
@@ -241,9 +271,12 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile natureProfCheck = CheckboxListTile(
-          title: Text(
-            'Nature (INT): ${((int.tryParse(state.stats!.intelligence ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.natureProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
-          ),
+          title: Text(_calcModifierWithProf(
+            'Nature (INT)',
+            state.stats!.intelligence,
+            state.stats!.natureProf,
+            state.stats!.proficiencyBonus,
+          )),
           checkColor: blueGrey,
           activeColor: white,
           tristate: true,
@@ -259,9 +292,12 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile perceptionProfCheck = CheckboxListTile(
-          title: Text(
-            'Perception (WIS): ${((int.tryParse(state.stats!.wisdom ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.perceptionProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
-          ),
+          title: Text(_calcModifierWithProf(
+            'Perception (WIS)',
+            state.stats!.wisdom,
+            state.stats!.perceptionProf,
+            state.stats!.proficiencyBonus,
+          )),
           checkColor: blueGrey,
           activeColor: white,
           tristate: true,
@@ -277,9 +313,12 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile performanceProfCheck = CheckboxListTile(
-          title: Text(
-            'Performance (CHA): ${((int.tryParse(state.stats!.charisma ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.performanceProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
-          ),
+          title: Text(_calcModifierWithProf(
+            'Performance (CHA)',
+            state.stats!.charisma,
+            state.stats!.performanceProf,
+            state.stats!.proficiencyBonus,
+          )),
           checkColor: blueGrey,
           activeColor: white,
           tristate: true,
@@ -295,9 +334,12 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile persuasionProfCheck = CheckboxListTile(
-          title: Text(
-            'Persuasion (CHA): ${((int.tryParse(state.stats!.charisma ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.persuasionProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
-          ),
+          title: Text(_calcModifierWithProf(
+            'Persuasion (CHA)',
+            state.stats!.charisma,
+            state.stats!.persuasionProf,
+            state.stats!.proficiencyBonus,
+          )),
           checkColor: blueGrey,
           activeColor: white,
           tristate: true,
@@ -313,9 +355,12 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile religionProfCheck = CheckboxListTile(
-          title: Text(
-            'Religion (INT): ${((int.tryParse(state.stats!.intelligence ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.religionProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
-          ),
+          title: Text(_calcModifierWithProf(
+            'Religion (INT)',
+            state.stats!.intelligence,
+            state.stats!.religionProf,
+            state.stats!.proficiencyBonus,
+          )),
           checkColor: blueGrey,
           activeColor: white,
           tristate: true,
@@ -331,9 +376,12 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile sleightOfHandProfCheck = CheckboxListTile(
-          title: Text(
-            'Sleight of Hand (DEX): ${((int.tryParse(state.stats!.dexterity ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.sleightOfHandProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
-          ),
+          title: Text(_calcModifierWithProf(
+            'Sleight of Hand (DEX)',
+            state.stats!.dexterity,
+            state.stats!.sleightOfHandProf,
+            state.stats!.proficiencyBonus,
+          )),
           checkColor: blueGrey,
           activeColor: white,
           tristate: true,
@@ -349,9 +397,12 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile stealthProfCheck = CheckboxListTile(
-          title: Text(
-            'Stealth (DEX): ${((int.tryParse(state.stats!.dexterity ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.stealthProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
-          ),
+          title: Text(_calcModifierWithProf(
+            'Stealth (DEX)',
+            state.stats!.dexterity,
+            state.stats!.stealthProf,
+            state.stats!.proficiencyBonus,
+          )),
           checkColor: blueGrey,
           activeColor: white,
           tristate: true,
@@ -367,9 +418,12 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile survivalProfCheck = CheckboxListTile(
-          title: Text(
-            'Survival (WIS): ${((int.tryParse(state.stats!.wisdom ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.survivalProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
-          ),
+          title: Text(_calcModifierWithProf(
+            'Survival (WIS)',
+            state.stats!.wisdom,
+            state.stats!.survivalProf,
+            state.stats!.proficiencyBonus,
+          )),
           checkColor: blueGrey,
           activeColor: white,
           tristate: true,
@@ -409,6 +463,12 @@ class _SkillChecks extends StatelessWidget {
       },
     );
   }
+}
+
+String _calcModifierWithProf(String statAbbrev, String? statToMod, bool? prof, String? profBonus) {
+  int statToModNullSafe = int.tryParse(statToMod ?? '10') ?? 10;
+  int profBonusAsInt = int.tryParse(profBonus ?? '0') ?? 1;
+  return '$statAbbrev : ${(((statToModNullSafe) - 10)) < 0 ? (((statToModNullSafe) - 11) ~/ 2) : (((statToModNullSafe) - 10) ~/ 2) + (prof ?? false ? (profBonusAsInt) : 0)}';
 }
 
 class _EditBlock extends StatelessWidget {
@@ -473,36 +533,33 @@ class _CoreStats extends StatelessWidget {
               children: [
                 Flexible(
                   child: StatTextBox(
-                    onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(strength: str.text)),
-                    onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(strength: str.text)),
-                    enabled: state.statEdit!,
-                    padding: threex3GridPadding,
-                    controller: str,
-                    hintText: 'STR',
-                    subtitle: 'STR (${((int.tryParse(state.stats!.strength ?? '10') ?? 10) - 10) ~/ 2})',
-                  ),
+                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(strength: str.text)),
+                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(strength: str.text)),
+                      enabled: state.statEdit!,
+                      padding: threex3GridPadding,
+                      controller: str,
+                      hintText: 'STR',
+                      subtitle: _calcModifier('STR', state.stats!.strength)),
                 ),
                 Flexible(
                   child: StatTextBox(
-                    onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(dexterity: dex.text)),
-                    onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(dexterity: dex.text)),
-                    enabled: state.statEdit!,
-                    padding: threex3GridPadding,
-                    controller: dex,
-                    hintText: 'DEX',
-                    subtitle: 'DEX (${((int.tryParse(state.stats!.dexterity ?? '10') ?? 10) - 10) ~/ 2})',
-                  ),
+                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(dexterity: dex.text)),
+                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(dexterity: dex.text)),
+                      enabled: state.statEdit!,
+                      padding: threex3GridPadding,
+                      controller: dex,
+                      hintText: 'DEX',
+                      subtitle: _calcModifier('DEX', state.stats!.dexterity)),
                 ),
                 Flexible(
                   child: StatTextBox(
-                    onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(constitution: con.text)),
-                    onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(constitution: con.text)),
-                    enabled: state.statEdit!,
-                    padding: threex3GridPadding,
-                    controller: con,
-                    hintText: 'CON',
-                    subtitle: 'CON (${((int.tryParse(state.stats!.constitution ?? '10') ?? 10) - 10) ~/ 2})',
-                  ),
+                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(constitution: con.text)),
+                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(constitution: con.text)),
+                      enabled: state.statEdit!,
+                      padding: threex3GridPadding,
+                      controller: con,
+                      hintText: 'CON',
+                      subtitle: _calcModifier('CON', state.stats!.constitution)),
                 ),
               ],
             ),
@@ -511,36 +568,33 @@ class _CoreStats extends StatelessWidget {
               children: [
                 Flexible(
                   child: StatTextBox(
-                    onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(intelligence: int1.text)),
-                    onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(intelligence: int1.text)),
-                    enabled: state.statEdit!,
-                    padding: threex3GridPadding,
-                    controller: int1,
-                    hintText: 'INT',
-                    subtitle: 'INT (${((int.tryParse(state.stats!.intelligence ?? '10') ?? 10) - 10) ~/ 2})',
-                  ),
+                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(intelligence: int1.text)),
+                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(intelligence: int1.text)),
+                      enabled: state.statEdit!,
+                      padding: threex3GridPadding,
+                      controller: int1,
+                      hintText: 'INT',
+                      subtitle: _calcModifier('INT', state.stats!.intelligence)),
                 ),
                 Flexible(
                   child: StatTextBox(
-                    onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(wisdom: wis.text)),
-                    onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(wisdom: wis.text)),
-                    enabled: state.statEdit!,
-                    padding: threex3GridPadding,
-                    controller: wis,
-                    hintText: 'WIS',
-                    subtitle: 'WIS (${((int.tryParse(state.stats!.wisdom ?? '10') ?? 10) - 10) ~/ 2})',
-                  ),
+                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(wisdom: wis.text)),
+                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(wisdom: wis.text)),
+                      enabled: state.statEdit!,
+                      padding: threex3GridPadding,
+                      controller: wis,
+                      hintText: 'WIS',
+                      subtitle: _calcModifier('WIS', state.stats!.wisdom)),
                 ),
                 Flexible(
                   child: StatTextBox(
-                    onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(charisma: cha.text)),
-                    onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(charisma: cha.text)),
-                    enabled: state.statEdit!,
-                    padding: threex3GridPadding,
-                    controller: cha,
-                    hintText: 'CHA',
-                    subtitle: 'CHA (${((int.tryParse(state.stats!.charisma ?? '10') ?? 10) - 10) ~/ 2})',
-                  ),
+                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(charisma: cha.text)),
+                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(charisma: cha.text)),
+                      enabled: state.statEdit!,
+                      padding: threex3GridPadding,
+                      controller: cha,
+                      hintText: 'CHA',
+                      subtitle: _calcModifier('CHA', state.stats!.charisma)),
                 ),
               ],
             ),
@@ -552,6 +606,11 @@ class _CoreStats extends StatelessWidget {
       },
     );
   }
+}
+
+String _calcModifier(String statAbbrev, String? statToMod) {
+  int statToModNullSafe = int.tryParse(statToMod ?? '10') ?? 10;
+  return '$statAbbrev (${((statToModNullSafe - 10)) < 0 ? ((statToModNullSafe - 11) ~/ 2) : ((statToModNullSafe - 10) ~/ 2)})';
 }
 
 class _Hps extends StatelessWidget {
