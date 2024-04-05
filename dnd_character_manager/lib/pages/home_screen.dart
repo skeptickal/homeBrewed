@@ -88,7 +88,7 @@ void _onPressedDeleteIcon(BuildContext context, String userID, String charID, St
             style: TextStyle(color: white),
           ),
           onPressed: () {
-            context.read<BioCubit>().deleteBiosByCharID(charID).then((result) {
+            context.read<BioCubit>().deleteCharacterByCharID(charID).then((result) {
               context.read<BioCubit>().readBiosByUserID(userID);
               context.pop();
             });

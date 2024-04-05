@@ -1,4 +1,5 @@
 import 'package:dnd_character_manager/constants/text_fields.dart';
+import 'package:dnd_character_manager/constants/theme_data.dart';
 import 'package:dnd_character_manager/cubits/user_cubit/user_cubit.dart';
 import 'package:dnd_character_manager/cubits/notes_cubit/cubit/notes_cubit.dart';
 import 'package:dnd_character_manager/models/bio.dart';
@@ -55,7 +56,10 @@ class AddDndCharacterScreen extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () => _addCharacter(context, userState, name.text, race.text, dndClass.text),
-                      child: const Text('Add Character'),
+                      child: Text(
+                        'Add Character',
+                        style: dndFont,
+                      ),
                     ),
                   ],
                 ),
