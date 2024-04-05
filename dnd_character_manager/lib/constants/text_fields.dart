@@ -97,6 +97,8 @@ class BigTextBox extends StatelessWidget {
 }
 
 class StatTextBox extends StatelessWidget {
+  final TextInputAction? action;
+  final TextInputType? inputType;
   final void Function(PointerDownEvent)? onTapOutside;
   final void Function()? onEditingComplete;
   final bool enabled;
@@ -107,6 +109,9 @@ class StatTextBox extends StatelessWidget {
   final int? minLines;
 
   const StatTextBox({
+
+    this.action,
+    this.inputType,
     this.onTapOutside,
     this.onEditingComplete,
     required this.enabled,
@@ -129,6 +134,7 @@ class StatTextBox extends StatelessWidget {
           Focus(
             onFocusChange: (hasFocus) => hasFocus ? null : onEditingComplete!(),
             child: TextFormField(
+
               style: TextStyle(color: !enabled ? const Color.fromARGB(255, 124, 124, 124) : black),
               onTapOutside: onTapOutside,
               onEditingComplete: onEditingComplete,
@@ -137,7 +143,8 @@ class StatTextBox extends StatelessWidget {
               controller: controller,
               minLines: minLines,
               maxLines: null,
-              keyboardType: TextInputType.number,
+              textInputAction: action,
+              keyboardType: inputType ?? TextInputType.number,
               decoration: dndFieldInputDecoration(enabled: enabled, hintText: hintText),
             ),
           ),

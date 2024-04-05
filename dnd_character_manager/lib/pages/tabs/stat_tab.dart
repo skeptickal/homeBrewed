@@ -722,6 +722,8 @@ class _CoreStats extends StatelessWidget {
         wis.text = state.stats!.wisdom ?? '';
         TextEditingController cha = TextEditingController();
         cha.text = state.stats!.charisma ?? '';
+        int? wisdomStat = int.tryParse(state.stats!.wisdom ?? '10') ?? 10;
+        int? passivePerceptionWithBonus = state.stats!.perceptionProf ?? false ? int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 0 : 0;
         return Column(
           children: [
             seperation,
@@ -729,38 +731,45 @@ class _CoreStats extends StatelessWidget {
               'Core Stats',
               style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
             ),
+            Text(
+              'Passive Perception: ${wisdomStat + passivePerceptionWithBonus}',
+              style: dndFont,
+            ),
             seperation,
             Row(
               children: [
                 Flexible(
                   child: StatTextBox(
-                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(strength: str.text)),
-                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(strength: str.text)),
-                      enabled: state.statEdit!,
-                      padding: threex3GridPadding,
-                      controller: str,
-                      hintText: 'STR',
-                      subtitle: _calcModifier('STR', state.stats!.strength)),
+                    onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(strength: str.text)),
+                    onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(strength: str.text)),
+                    enabled: state.statEdit!,
+                    padding: threex3GridPadding,
+                    controller: str,
+                    hintText: 'STR',
+                    subtitle: _calcModifier('STR', state.stats!.strength),
+                  ),
                 ),
                 Flexible(
                   child: StatTextBox(
-                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(dexterity: dex.text)),
-                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(dexterity: dex.text)),
-                      enabled: state.statEdit!,
-                      padding: threex3GridPadding,
-                      controller: dex,
-                      hintText: 'DEX',
-                      subtitle: _calcModifier('DEX', state.stats!.dexterity)),
+                    onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(dexterity: dex.text)),
+                    onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(dexterity: dex.text)),
+                    enabled: state.statEdit!,
+                    padding: threex3GridPadding,
+                    controller: dex,
+                    hintText: 'DEX',
+                    subtitle: _calcModifier('DEX', state.stats!.dexterity),
+                  ),
                 ),
                 Flexible(
                   child: StatTextBox(
-                      onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(constitution: con.text)),
-                      onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(constitution: con.text)),
-                      enabled: state.statEdit!,
-                      padding: threex3GridPadding,
-                      controller: con,
-                      hintText: 'CON',
-                      subtitle: _calcModifier('CON', state.stats!.constitution)),
+                    onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(constitution: con.text)),
+                    onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(constitution: con.text)),
+                    enabled: state.statEdit!,
+                    padding: threex3GridPadding,
+                    controller: con,
+                    hintText: 'CON',
+                    subtitle: _calcModifier('CON', state.stats!.constitution),
+                  ),
                 ),
               ],
             ),
@@ -828,6 +837,14 @@ class _Hps extends StatelessWidget {
         maxHp.text = state.stats!.maxHp ?? '0';
         TextEditingController tempHp = TextEditingController();
         tempHp.text = state.stats!.tempHp ?? '0';
+        TextEditingController hitDice = TextEditingController();
+        hitDice.text = state.stats!.hitDice ?? '3';
+        TextEditingController hitDiceType = TextEditingController();
+        hitDiceType.text = state.stats!.hitDiceType ?? 'D6';
+        TextEditingController deathSaveSuccesses = TextEditingController();
+        deathSaveSuccesses.text = state.stats!.deathSaveSuccesses ?? '3';
+        TextEditingController deathSaveFailures = TextEditingController();
+        deathSaveFailures.text = state.stats!.deathSaveFailures ?? 'D6';
         return Column(
           children: [
             Text(
@@ -872,6 +889,74 @@ class _Hps extends StatelessWidget {
                     controller: tempHp,
                     hintText: 'Temp HP',
                     subtitle: 'Temp HP',
+                  ),
+                ),
+              ],
+            ),
+            seperation,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Flexible(
+                  child: StatTextBox(
+                    onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(hitDice: hitDice.text)),
+                    onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(hitDice: hitDice.text)),
+                    enabled: state.statEdit!,
+                    padding: twox1RowPadding,
+                    controller: hitDice,
+                    hintText: 'Hit Dice',
+                    subtitle: 'Hit Dice (${state.stats!.hitDiceType ?? 'D8'})',
+                  ),
+                ),
+                Flexible(
+                  child: StatTextBox(
+                    inputType: TextInputType.text,
+                    onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(hitDiceType: hitDiceType.text)),
+                    onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(hitDiceType: hitDiceType.text)),
+                    enabled: state.statEdit!,
+                    padding: twox1RowPadding,
+                    controller: hitDiceType,
+                    hintText: 'D10',
+                    subtitle: 'Hit Dice Type (D6, D8, D10)',
+                  ),
+                ),
+              ],
+            ),
+            seperation,
+            horizontalLine,
+            seperation,
+            Text(
+              'Death Saves',
+              style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+            ),
+            Text(
+              'Min 0, Max 3',
+              style: dndFont,
+            ),
+            seperation,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Flexible(
+                  child: StatTextBox(
+                    onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(deathSaveSuccesses: deathSaveSuccesses.text)),
+                    onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(deathSaveSuccesses: deathSaveSuccesses.text)),
+                    enabled: state.statEdit!,
+                    padding: twox1RowPadding,
+                    controller: deathSaveSuccesses,
+                    hintText: 'Successes, 1-3',
+                    subtitle: 'Successes',
+                  ),
+                ),
+                Flexible(
+                  child: StatTextBox(
+                    onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(hitDiceType: hitDiceType.text)),
+                    onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(hitDiceType: hitDiceType.text)),
+                    enabled: state.statEdit!,
+                    padding: twox1RowPadding,
+                    controller: deathSaveFailures,
+                    hintText: 'Failures, 1-3',
+                    subtitle: 'Failures',
                   ),
                 ),
               ],
