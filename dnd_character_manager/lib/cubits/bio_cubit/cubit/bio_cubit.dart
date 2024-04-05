@@ -29,14 +29,14 @@ class BioCubit extends Cubit<BioState> {
 
   Future<void> readBiosByUserID(String? userID) async {
     try {
-      final List<Bio> bios = await dndService.readBiosUserID(userID: userID);
+      final List<Bio> bios = await dndService.readBiosByUserID(userID: userID);
       emit(state.copyWith(bios: bios));
     } catch (e) {
       print('error reading characters from state');
     }
   }
 
-  Future<void> deleteBiosByCharID(String charID) async {
+  Future<void> deleteCharacterByCharID(String charID) async {
     await dndService.deleteDocumentByName(charID: charID);
   }
 }
