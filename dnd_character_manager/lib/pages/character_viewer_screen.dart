@@ -32,7 +32,7 @@ class CharacterViewerScreen extends StatelessWidget {
                   tabAlignment: TabAlignment.start,
                   tabs: const [
                     Tab(text: 'Stats', icon: FaIcon(FontAwesomeIcons.shieldHalved)),
-                    Tab(text: 'Abilities', icon: FaIcon(FontAwesomeIcons.exclamation)),
+                    Tab(text: 'Actions', icon: FaIcon(FontAwesomeIcons.exclamation)),
                     Tab(text: 'Spells', icon: FaIcon(FontAwesomeIcons.wandMagicSparkles)),
                     Tab(text: 'Weapons', icon: ImageIcon(AssetImage('assets/sword.png'))),
                     Tab(text: 'Resources', icon: Icon(Icons.handyman)),
@@ -46,7 +46,7 @@ class CharacterViewerScreen extends StatelessWidget {
                   child: TabBarView(
                     children: [
                       StatTab(charID: bio.charID!),
-                      Center(child: Text('Abilities ${bio.charID}')),
+                      Center(child: Text('Actions ${bio.charID}')),
                       const Center(child: Text('Spells')),
                       const Center(child: Text('Weapons')),
                       const Center(child: Text('Resources')),
