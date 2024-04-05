@@ -37,8 +37,47 @@ class _SavingThrows extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<StatCubit, StatState>(
       builder: (context, state) {
+        TextEditingController proficiencyBonus = TextEditingController();
+        proficiencyBonus.text = state.stats!.proficiencyBonus ?? '1';
         return Column(
           children: [
+            Text(
+              'Proficiency',
+              style: dndFont.copyWith(fontWeight: FontWeight.bold),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 70.0),
+                  child: Icon(Icons.check_box_outline_blank),
+                ),
+                Flexible(
+                  child: StatTextBox(
+                    onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(
+                          state.stats!.copyWith(proficiencyBonus: proficiencyBonus.text),
+                        ),
+                    onEditingComplete: () => context.read<StatCubit>().setStatsData(
+                          state.stats!.copyWith(proficiencyBonus: proficiencyBonus.text),
+                        ),
+                    enabled: state.statEdit!,
+                    padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                    controller: proficiencyBonus,
+                    hintText: '1',
+                    subtitle: 'Bonus',
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 70.0),
+                  child: Icon(
+                    Icons.check,
+                    color: blueGrey,
+                  ),
+                ),
+              ],
+            ),
+            horizontalLine,
+            seperation,
             Text(
               'Saving Throws',
               style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
