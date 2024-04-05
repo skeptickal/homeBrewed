@@ -191,18 +191,18 @@ class Stats extends Equatable {
     String? tempHp,
     String? speed,
     String? inspiration,
-    String? proficiencyBonus,
+    String? proficiencyBonus, //todo
     String? strength,
     String? dexterity,
     String? constitution,
     String? intelligence,
     String? wisdom,
     String? charisma,
-    String? hitDice,
-    String? hitDiceType,
-    String? deathSaveSuccesses,
-    String? deathSaveFailures,
-    String? passivePerception,
+    String? hitDice, //todo
+    String? hitDiceType, //todo
+    String? deathSaveSuccesses, //todo
+    String? deathSaveFailures, //todo
+    String? passivePerception, //todo <- can convert if needed
     bool? acrobaticsProf,
     bool? animalHandlingProf,
     bool? arcanaProf,
