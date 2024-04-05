@@ -87,7 +87,7 @@ class BigTextBox extends StatelessWidget {
               minLines: minLines,
               maxLines: null,
               keyboardType: TextInputType.multiline,
-              decoration: _dndFieldInputDecoration(enabled: enabled, hintText: hintText),
+              decoration: dndFieldInputDecoration(enabled: enabled, hintText: hintText),
             ),
           ),
         ],
@@ -139,7 +139,7 @@ class StatTextBox extends StatelessWidget {
               minLines: minLines,
               maxLines: null,
               keyboardType: TextInputType.number,
-              decoration: _dndFieldInputDecoration(enabled: enabled, hintText: hintText),
+              decoration: dndFieldInputDecoration(enabled: enabled, hintText: hintText),
             ),
           ),
         ],
@@ -160,7 +160,7 @@ final textInputDecoration = InputDecoration(
   ),
 );
 
-InputDecoration _dndFieldInputDecoration({required bool enabled, required String hintText}) {
+InputDecoration dndFieldInputDecoration({required bool enabled, required String hintText}) {
   return InputDecoration(
     hintText: hintText,
     fillColor: white,
