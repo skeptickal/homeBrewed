@@ -2,6 +2,12 @@ import 'package:equatable/equatable.dart';
 
 class Stats extends Equatable {
   final String? charID;
+  final bool? strSaveProf;
+  final bool? dexSaveProf;
+  final bool? conSaveProf;
+  final bool? intSaveProf;
+  final bool? wisSaveProf;
+  final bool? chaSaveProf;
   final String? totalPlayerLevel;
   final String? classLevel;
   final String? subClass1Lvl;
@@ -45,6 +51,12 @@ class Stats extends Equatable {
 
   const Stats({
     this.totalPlayerLevel,
+    this.strSaveProf,
+    this.dexSaveProf,
+    this.conSaveProf,
+    this.intSaveProf,
+    this.wisSaveProf,
+    this.chaSaveProf,
     this.classLevel,
     this.subClass1Lvl,
     this.subClass2Lvl,
@@ -89,6 +101,12 @@ class Stats extends Equatable {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {
+      'strSaveProf': strSaveProf,
+      'dexSaveProf': dexSaveProf,
+      'conSaveProf': conSaveProf,
+      'intSaveProf': intSaveProf,
+      'wisSaveProf': wisSaveProf,
+      'chaSaveProf': chaSaveProf,
       'totalPlayerLevel': totalPlayerLevel,
       'classLevel': classLevel,
       'subClass1Lvl': subClass1Lvl,
@@ -136,6 +154,12 @@ class Stats extends Equatable {
 
   factory Stats.fromJson(Map<String, dynamic> json) {
     return Stats(
+      strSaveProf: json['strSaveProf'] ?? false,
+      dexSaveProf: json['dexSaveProf'] ?? false,
+      conSaveProf: json['conSaveProf'] ?? false,
+      intSaveProf: json['intSaveProf'] ?? false,
+      wisSaveProf: json['wisSaveProf'] ?? false,
+      chaSaveProf: json['chaSaveProf'] ?? false,
       totalPlayerLevel: json['totalPlayerLevel']?.toString() ?? '0',
       classLevel: json['classLevel']?.toString() ?? '0',
       subClass1Lvl: json['subClass1Lvl']?.toString() ?? '0',
@@ -182,6 +206,12 @@ class Stats extends Equatable {
 
   Stats copyWith({
     //SAVING THROWS AGHGHHGHH todo
+    bool? strSaveProf,
+    bool? dexSaveProf,
+    bool? conSaveProf,
+    bool? intSaveProf,
+    bool? wisSaveProf,
+    bool? chaSaveProf,
     String? totalPlayerLevel,
     String? classLevel,
     String? subClass1Lvl,
@@ -225,6 +255,12 @@ class Stats extends Equatable {
     String? statNotes,
   }) {
     return Stats(
+      strSaveProf: strSaveProf ?? this.strSaveProf,
+      dexSaveProf: dexSaveProf ?? this.dexSaveProf,
+      conSaveProf: conSaveProf ?? this.conSaveProf,
+      intSaveProf: intSaveProf ?? this.intSaveProf,
+      wisSaveProf: wisSaveProf ?? this.wisSaveProf,
+      chaSaveProf: chaSaveProf ?? this.chaSaveProf,
       totalPlayerLevel: totalPlayerLevel ?? this.totalPlayerLevel,
       classLevel: classLevel ?? this.classLevel,
       subClass1Lvl: subClass1Lvl ?? this.subClass1Lvl,
@@ -271,6 +307,12 @@ class Stats extends Equatable {
 
   @override
   List<Object?> get props => [
+        strSaveProf,
+        dexSaveProf,
+        conSaveProf,
+        intSaveProf,
+        wisSaveProf,
+        chaSaveProf,
         totalPlayerLevel,
         classLevel,
         subClass1Lvl,
