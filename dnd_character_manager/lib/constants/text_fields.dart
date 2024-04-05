@@ -78,15 +78,16 @@ class BigTextBox extends StatelessWidget {
           Focus(
             onFocusChange: (hasFocus) => hasFocus ? null : onEditingComplete!(),
             child: TextField(
+              style: TextStyle(color: !enabled ? disableGrey : black),
               textInputAction: TextInputAction.none,
               onTapOutside: onTapOutside,
               onEditingComplete: onEditingComplete,
-              enabled: enabled,
+              readOnly: !enabled,
               controller: controller,
               minLines: minLines,
               maxLines: null,
               keyboardType: TextInputType.multiline,
-              decoration: textInputDecoration.copyWith(hintText: hintText),
+              decoration: _dndFieldInputDecoration(enabled: enabled, hintText: hintText),
             ),
           ),
         ],
@@ -129,15 +130,16 @@ class StatTextBox extends StatelessWidget {
           Focus(
             onFocusChange: (hasFocus) => hasFocus ? null : onEditingComplete!(),
             child: TextFormField(
+              style: TextStyle(color: !enabled ? const Color.fromARGB(255, 124, 124, 124) : black),
               onTapOutside: onTapOutside,
               onEditingComplete: onEditingComplete,
               textAlign: TextAlign.center,
-              enabled: enabled,
+              readOnly: !enabled,
               controller: controller,
               minLines: minLines,
               maxLines: null,
               keyboardType: TextInputType.number,
-              decoration: textInputDecoration.copyWith(hintText: hintText),
+              decoration: _dndFieldInputDecoration(enabled: enabled, hintText: hintText),
             ),
           ),
         ],
@@ -147,14 +149,6 @@ class StatTextBox extends StatelessWidget {
 }
 
 final textInputDecoration = InputDecoration(
-  // suffixIcon: Align(
-  //   widthFactor: 1.0,
-  //   heightFactor: 1.0,
-  //   child: IconButton(
-  //     icon: Icon(Icons.save),
-  //     onPressed: () {},
-  //   ),
-  // ),
   fillColor: white,
   filled: true,
   hintStyle: dndFont.copyWith(fontSize: 14),
@@ -165,3 +159,18 @@ final textInputDecoration = InputDecoration(
     borderSide: BorderSide(color: black, width: 2.0),
   ),
 );
+
+InputDecoration _dndFieldInputDecoration({required bool enabled, required String hintText}) {
+  return InputDecoration(
+    hintText: hintText,
+    fillColor: white,
+    filled: true,
+    hintStyle: dndFont.copyWith(fontSize: 14),
+    enabledBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: blueGrey, width: enabled ? 2.0 : 0),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: black, width: enabled ? 2.0 : 1),
+    ),
+  );
+}

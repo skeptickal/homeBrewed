@@ -178,7 +178,7 @@ class BioTab extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Edit/Save',
+                    'Edit',
                     style: dndFont,
                   )
                 ],

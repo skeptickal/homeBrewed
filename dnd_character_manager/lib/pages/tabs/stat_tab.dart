@@ -432,8 +432,8 @@ class _EditBlock extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'Edit',
-                  style: dndFont,
+                  !state.statEdit! ? 'Enable Edit' : 'Disable Edit',
+                  style: dndFont.copyWith(color: state.statEdit! ? black : disableGrey),
                 ),
               ],
             ),
