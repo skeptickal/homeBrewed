@@ -19,18 +19,33 @@ class HomeScreen extends StatelessWidget {
         return BlocBuilder<BioCubit, BioState>(builder: (context, bioState) {
           context.read<BioCubit>().readBiosByUserID(userState.myUser!.userID);
           print('bios state ${bioState.bios}');
-          List<ListTile> bios = bioState.bios.map(
+          List<Padding> bios = bioState.bios.map(
             (bio) {
-              return ListTile(
-                onTap: () => context.push('/character_viewer', extra: bio),
-                leading: const Icon(Icons.person),
-                title: Text(
-                  '${bio.name ?? ''} - ${bio.dndClass ?? ''}',
-                  style: dndFont,
-                ),
-                trailing: Text(
-                  bio.race ?? '',
-                  style: dndFont,
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: blueGrey), // Border properties
+                  ),
+                  child: ListTile(
+                    onTap: () => context.push('/character_viewer', extra: bio),
+                    leading: Icon(
+                      Icons.person,
+                      color: blueGrey,
+                    ),
+                    title: Text(
+                      bio.name ?? '',
+                      style: dndFont.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Text(
+                      bio.dndClass ?? '',
+                      style: dndFont.copyWith(fontSize: 16, fontStyle: FontStyle.italic),
+                    ),
+                    trailing: Text(
+                      bio.race ?? '',
+                      style: dndFont,
+                    ),
+                  ),
                 ),
               );
             },
@@ -41,17 +56,35 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   seperation,
-                  Text(userState.myUser!.email),
-                  horizontalLine,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Text(userState.myUser!.email),
+                      ),
+                      TextButton(
+                        onPressed: () => context.read<UserCubit>().signOut(),
+                        child: Text(
+                          'sign out',
+                          style: dndFont.copyWith(
+                            color: blueGrey,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  seperation,
+                  Text(
+                    'Your Characters',
+                    style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
                   ...bios,
                   IconButton(
                     onPressed: () => _showEditPanel(context),
-                    icon: const Icon(Icons.add),
-                  ),
-                  Center(
-                    child: TextButton(
-                      onPressed: () => context.read<UserCubit>().signOut(),
-                      child: const Text('sign out'),
+                    icon: const Icon(
+                      Icons.add,
+                      size: 30,
                     ),
                   ),
                 ],
