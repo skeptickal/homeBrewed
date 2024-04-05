@@ -1,5 +1,5 @@
 import 'package:dnd_character_manager/client/firebase_client.dart';
-import 'package:dnd_character_manager/cubits/character_cubit/user_cubit.dart';
+import 'package:dnd_character_manager/cubits/user_cubit/user_cubit.dart';
 import 'package:dnd_character_manager/dnd_bloc_provider.dart';
 import 'package:dnd_character_manager/firebase_options.dart';
 import 'package:dnd_character_manager/router.dart';
