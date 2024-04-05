@@ -43,7 +43,7 @@ class CustomTextBox extends StatelessWidget {
 }
 
 class BigTextBox extends StatelessWidget {
-  final void Function(String)? onFieldSubmitted;
+  final bool? readOnly;
   final void Function(PointerDownEvent)? onTapOutside;
   final void Function()? onEditingComplete;
   final bool enabled;
@@ -54,7 +54,7 @@ class BigTextBox extends StatelessWidget {
   final int? minLines;
 
   const BigTextBox({
-    this.onFieldSubmitted,
+    this.readOnly,
     this.onTapOutside,
     this.onEditingComplete,
     required this.enabled,
@@ -75,15 +75,15 @@ class BigTextBox extends StatelessWidget {
         children: [
           Center(child: Text(subtitle, style: dndFont.copyWith(fontSize: 14, fontWeight: FontWeight.bold))),
           const SizedBox(height: 4),
-          TextFormField(
-            onFieldSubmitted: onFieldSubmitted,
+          TextField(
+            textInputAction: TextInputAction.none,
             onTapOutside: onTapOutside,
             onEditingComplete: onEditingComplete,
             enabled: enabled,
             controller: controller,
             minLines: minLines,
             maxLines: null,
-            keyboardType: TextInputType.text,
+            keyboardType: TextInputType.multiline,
             decoration: textInputDecoration.copyWith(hintText: hintText),
           ),
         ],
@@ -141,6 +141,14 @@ class StatTextBox extends StatelessWidget {
 }
 
 final textInputDecoration = InputDecoration(
+  // suffixIcon: Align(
+  //   widthFactor: 1.0,
+  //   heightFactor: 1.0,
+  //   child: IconButton(
+  //     icon: Icon(Icons.save),
+  //     onPressed: () {},
+  //   ),
+  // ),
   fillColor: white,
   filled: true,
   hintStyle: dndFont.copyWith(fontSize: 14),

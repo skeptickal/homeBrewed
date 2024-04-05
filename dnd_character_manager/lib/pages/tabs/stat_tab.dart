@@ -65,6 +65,7 @@ class _SkillChecks extends StatelessWidget {
             'Acrobatics (DEX): ${((int.tryParse(state.stats!.dexterity ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.acrobaticsProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
+          activeColor: white,
           tristate: true,
           value: state.stats!.acrobaticsProf,
           onChanged: state.statEdit!
@@ -82,6 +83,7 @@ class _SkillChecks extends StatelessWidget {
             'AnimalHandling (WIS): ${((int.tryParse(state.stats!.wisdom ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.animalHandlingProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
+          activeColor: white,
           tristate: true,
           value: state.stats!.animalHandlingProf,
           onChanged: state.statEdit!
@@ -99,6 +101,7 @@ class _SkillChecks extends StatelessWidget {
             'Arcana (INT): ${((int.tryParse(state.stats!.intelligence ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.arcanaProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
+          activeColor: white,
           tristate: true,
           value: state.stats!.arcanaProf,
           onChanged: state.statEdit!
@@ -116,6 +119,7 @@ class _SkillChecks extends StatelessWidget {
             'Athletics (STR): ${((int.tryParse(state.stats!.strength ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.athleticsProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
+          activeColor: white,
           tristate: true,
           value: state.stats!.athleticsProf,
           onChanged: state.statEdit!
@@ -133,6 +137,7 @@ class _SkillChecks extends StatelessWidget {
             'Deception (CHA): ${((int.tryParse(state.stats!.charisma ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.deceptionProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
+          activeColor: white,
           tristate: true,
           value: state.stats!.deceptionProf,
           onChanged: state.statEdit!
@@ -150,6 +155,7 @@ class _SkillChecks extends StatelessWidget {
             'History (INT): ${((int.tryParse(state.stats!.intelligence ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.historyProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
+          activeColor: white,
           tristate: true,
           value: state.stats!.historyProf,
           onChanged: state.statEdit!
@@ -167,6 +173,7 @@ class _SkillChecks extends StatelessWidget {
             'Insight (WIS): ${((int.tryParse(state.stats!.wisdom ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.insightProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
+          activeColor: white,
           tristate: true,
           value: state.stats!.insightProf,
           onChanged: state.statEdit!
@@ -184,6 +191,7 @@ class _SkillChecks extends StatelessWidget {
             'Intimidation (CHA): ${((int.tryParse(state.stats!.charisma ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.intimidationProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
+          activeColor: white,
           tristate: true,
           value: state.stats!.intimidationProf,
           onChanged: state.statEdit!
@@ -201,6 +209,7 @@ class _SkillChecks extends StatelessWidget {
             'Investigation (INT): ${((int.tryParse(state.stats!.intelligence ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.investigationProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
+          activeColor: white,
           tristate: true,
           value: state.stats!.investigationProf,
           onChanged: state.statEdit!
@@ -218,6 +227,7 @@ class _SkillChecks extends StatelessWidget {
             'Medicine (WIS): ${((int.tryParse(state.stats!.wisdom ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.medicineProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
+          activeColor: white,
           tristate: true,
           value: state.stats!.medicineProf,
           onChanged: state.statEdit!
@@ -235,6 +245,7 @@ class _SkillChecks extends StatelessWidget {
             'Nature (INT): ${((int.tryParse(state.stats!.intelligence ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.natureProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
+          activeColor: white,
           tristate: true,
           value: state.stats!.natureProf,
           onChanged: state.statEdit!
@@ -252,6 +263,7 @@ class _SkillChecks extends StatelessWidget {
             'Perception (WIS): ${((int.tryParse(state.stats!.wisdom ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.perceptionProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
+          activeColor: white,
           tristate: true,
           value: state.stats!.perceptionProf,
           onChanged: state.statEdit!
@@ -269,6 +281,7 @@ class _SkillChecks extends StatelessWidget {
             'Performance (CHA): ${((int.tryParse(state.stats!.charisma ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.performanceProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
+          activeColor: white,
           tristate: true,
           value: state.stats!.performanceProf,
           onChanged: state.statEdit!
@@ -286,6 +299,7 @@ class _SkillChecks extends StatelessWidget {
             'Persuasion (CHA): ${((int.tryParse(state.stats!.charisma ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.persuasionProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
+          activeColor: white,
           tristate: true,
           value: state.stats!.persuasionProf,
           onChanged: state.statEdit!
@@ -303,6 +317,7 @@ class _SkillChecks extends StatelessWidget {
             'Religion (INT): ${((int.tryParse(state.stats!.intelligence ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.religionProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
+          activeColor: white,
           tristate: true,
           value: state.stats!.religionProf,
           onChanged: state.statEdit!
@@ -320,6 +335,7 @@ class _SkillChecks extends StatelessWidget {
             'Sleight of Hand (DEX): ${((int.tryParse(state.stats!.dexterity ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.sleightOfHandProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
+          activeColor: white,
           tristate: true,
           value: state.stats!.sleightOfHandProf,
           onChanged: state.statEdit!
@@ -337,6 +353,7 @@ class _SkillChecks extends StatelessWidget {
             'Stealth (DEX): ${((int.tryParse(state.stats!.dexterity ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.stealthProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
+          activeColor: white,
           tristate: true,
           value: state.stats!.stealthProf,
           onChanged: state.statEdit!
@@ -354,6 +371,7 @@ class _SkillChecks extends StatelessWidget {
             'Survival (WIS): ${((int.tryParse(state.stats!.wisdom ?? '10') ?? 10) - 10) ~/ 2 + (state.stats!.survivalProf ?? false ? (int.tryParse(state.stats!.proficiencyBonus ?? '0') ?? 1) : 0)}',
           ),
           checkColor: blueGrey,
+          activeColor: white,
           tristate: true,
           value: state.stats!.survivalProf,
           onChanged: state.statEdit!
