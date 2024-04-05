@@ -28,24 +28,23 @@ class HomeScreen extends StatelessWidget {
                     border: Border.all(color: blueGrey), // Border properties
                   ),
                   child: ListTile(
-                    onTap: () => context.push('/character_viewer', extra: bio),
-                    leading: Icon(
-                      Icons.person,
-                      color: blueGrey,
-                    ),
-                    title: Text(
-                      bio.name ?? '',
-                      style: dndFont.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                    subtitle: Text(
-                      bio.dndClass ?? '',
-                      style: dndFont.copyWith(fontSize: 16, fontStyle: FontStyle.italic),
-                    ),
-                    trailing: Text(
-                      bio.race ?? '',
-                      style: dndFont,
-                    ),
-                  ),
+                      onTap: () => context.push('/character_viewer', extra: bio),
+                      leading: Icon(
+                        Icons.person,
+                        color: blueGrey,
+                      ),
+                      title: Text(
+                        bio.name ?? '',
+                        style: dndFont.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text(
+                        '${bio.race ?? ''} | ${bio.dndClass ?? ''}',
+                        style: dndFont.copyWith(fontSize: 16, fontStyle: FontStyle.italic),
+                      ),
+                      trailing: IconButton(
+                        icon: Icon(Icons.delete),
+                        onPressed: () => _onPressedDeleteIcon(context, userState.myUser!.userID!, bio.charID!, bio.name!),
+                      )),
                 ),
               );
             },
@@ -114,4 +113,32 @@ void _showEditPanel(BuildContext context) {
           child: const AddDndCharacterScreen(),
         );
       });
+}
+
+void _onPressedDeleteIcon(BuildContext context, String userID, String charID, String name) {
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Text(
+        'Are you sure you want to delete $name?',
+        style: TextStyle(color: Colors.white, fontSize: 18),
+      ),
+      backgroundColor: blueGrey,
+      surfaceTintColor: blueGrey,
+      actions: [
+        TextButton(
+          child: Text(
+            'Delete Permanently',
+            style: TextStyle(color: white),
+          ),
+          onPressed: () {
+            context.read<BioCubit>().deleteBiosByCharID(charID).then((result) {
+              context.read<BioCubit>().readBiosByUserID(userID);
+              context.pop();
+            });
+          },
+        ),
+      ],
+    ),
+  );
 }

@@ -2,6 +2,7 @@ import 'package:dnd_character_manager/constants/screen_wrapper.dart';
 import 'package:dnd_character_manager/cubits/character_cubit/user_cubit.dart';
 import 'package:dnd_character_manager/models/bio.dart';
 import 'package:dnd_character_manager/pages/tabs/bio_tab.dart';
+import 'package:dnd_character_manager/pages/tabs/notes_tab.dart';
 import 'package:dnd_character_manager/pages/tabs/stat_tab.dart';
 
 import 'package:flutter/material.dart';
@@ -53,7 +54,7 @@ class CharacterViewerScreen extends StatelessWidget {
                       const Center(child: Text('Items')),
                       const Center(child: Text('Income')),
                       BioTab(bio: bio),
-                      const Center(child: Text('Campaign Notes')),
+                      NotesTab(charID: bio.charID!),
                     ],
                   ),
                 ),

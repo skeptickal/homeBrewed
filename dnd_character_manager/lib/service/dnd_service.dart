@@ -1,27 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dnd_character_manager/client/firebase_client.dart';
 import 'package:dnd_character_manager/models/bio.dart';
+import 'package:dnd_character_manager/models/notes.dart';
 import 'package:dnd_character_manager/models/stats.dart';
 
 class DndService {
   final FirebaseClient client;
 
   DndService({FirebaseClient? client}) : client = client ?? FirebaseClient();
-
-  //add a dnd character, initiate all their attribute tabs
-  // Future<void> addDndCharacter({required DndCharacter dndCharacter}) async {
-  //   client.setData(collectionName: 'dndCharacters', documentName: dndCharacter.charID, body: dndCharacter.toJson());
-  //   client.setData(
-  //     collectionName: 'bio',
-  //     documentName: dndCharacter.charID,
-  //     body: {'alignment': 'Select an Alignment'},
-  //   );
-  // }
-
-  //edit core attributes: name, class, or race
-  // Future<void> setDndCharacterData({required DndCharacter dndCharacter}) async {
-  //   client.setData(collectionName: 'bio', documentName: dndCharacter.charID, body: dndCharacter.toJson());
-  // }
 
   //read current dnd characters by userID
   Future<List<Bio>> readBiosUserID({required String? userID}) async {
@@ -56,5 +42,23 @@ class DndService {
   //edit stats data for specific character
   Future<void> setStatsData({required Stats stats}) async {
     client.setData(collectionName: 'stats', documentName: stats.charID, body: stats.toJson());
+  }
+
+  //read stats data from specific character
+  Future<Notes> readNotesData({required String charID}) async {
+    DocumentSnapshot documentSnapshot = await client.getDocumentData(collectionName: 'notes', documentName: charID);
+    Map<String, dynamic> data = documentSnapshot.data() as Map<String, dynamic>;
+    return Notes.fromJson(data);
+  }
+
+  //edit stats data for specific character
+  Future<void> setNotesData({required Notes notes}) async {
+    client.setData(collectionName: 'notes', documentName: notes.charID, body: notes.toJson());
+  }
+
+  Future<void> deleteDocumentByName({required String charID}) async {
+    client.deleteDocumentByName(documentName: charID, collectionName: 'bio');
+    client.deleteDocumentByName(documentName: charID, collectionName: 'stats');
+    client.deleteDocumentByName(documentName: charID, collectionName: 'notes');
   }
 }
