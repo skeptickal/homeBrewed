@@ -22,10 +22,41 @@ class StatTab extends StatelessWidget {
           _CoreStats(),
           _SavingThrows(),
           _SkillChecks(),
+          _ProficienciesNotes(),
           _StatNotes(),
           _EditBlock(),
         ],
       ),
+    );
+  }
+}
+
+class _ProficienciesNotes extends StatelessWidget {
+  const _ProficienciesNotes();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<StatCubit, StatState>(
+      builder: (context, state) {
+        TextEditingController proficiencies = TextEditingController();
+        proficiencies.text = state.stats!.proficiencies ?? '';
+        return Column(
+          children: [
+            BigTextBox(
+              onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(proficiencies: proficiencies.text)),
+              onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(proficiencies: proficiencies.text)),
+              minLines: 10,
+              enabled: state.statEdit!,
+              padding: const EdgeInsets.all(6),
+              controller: proficiencies,
+              hintText: 'e.g. TYPE ARMOR - Light Armor, Tool proficiences, etc.',
+              subtitle: 'Notes for Proficiencies',
+            ),
+            seperation,
+            seperation
+          ],
+        );
+      },
     );
   }
 }
@@ -629,6 +660,28 @@ class _SkillChecks extends StatelessWidget {
         );
         return Column(
           children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Inspiration',
+                  style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 16),
+                ),
+                Checkbox(
+                  checkColor: blueGrey,
+                  activeColor: white,
+                  tristate: true,
+                  value: state.stats!.inspiration,
+                  onChanged: state.statEdit!
+                      ? (inspirationYoN) => context.read<StatCubit>().setStatsData(
+                            state.stats!.copyWith(inspiration: !state.stats!.inspiration!),
+                          )
+                      : null,
+                ),
+              ],
+            ),
+            horizontalLine,
+            seperation,
             Text(
               'Skills',
               style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),

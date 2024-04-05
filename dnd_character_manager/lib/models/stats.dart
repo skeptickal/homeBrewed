@@ -16,7 +16,7 @@ class Stats extends Equatable {
   final String? maxHp;
   final String? tempHp;
   final String? speed;
-  final String? inspiration;
+  final bool? inspiration;
   final String? proficiencyBonus;
   final String? strength;
   final String? dexterity;
@@ -28,7 +28,7 @@ class Stats extends Equatable {
   final String? hitDiceType;
   final String? deathSaveSuccesses;
   final String? deathSaveFailures;
-  final String? passivePerception;
+  final String? proficiencies;
   final bool? acrobaticsProf;
   final bool? animalHandlingProf;
   final bool? arcanaProf;
@@ -77,7 +77,7 @@ class Stats extends Equatable {
     this.hitDiceType,
     this.deathSaveSuccesses,
     this.deathSaveFailures,
-    this.passivePerception,
+    this.proficiencies,
     this.acrobaticsProf,
     this.animalHandlingProf,
     this.arcanaProf,
@@ -128,7 +128,7 @@ class Stats extends Equatable {
       'hitDiceType': hitDiceType,
       'deathSaveSuccesses': deathSaveSuccesses,
       'deathSaveFailures': deathSaveFailures,
-      'passivePerception': passivePerception,
+      'proficiencies': proficiencies,
       'acrobaticsProf': acrobaticsProf,
       'animalHandlingProf': animalHandlingProf,
       'arcanaProf': arcanaProf,
@@ -165,11 +165,11 @@ class Stats extends Equatable {
       subClass1Lvl: json['subClass1Lvl']?.toString() ?? '0',
       subClass2Lvl: json['subClass2Lvl']?.toString() ?? '0',
       charID: json['charID'].toString(),
-      currentHp: json['currentHp']?.toString() ?? '0',
-      maxHp: json['maxHp']?.toString() ?? '0',
-      tempHp: json['tempHp']?.toString() ?? '0',
-      speed: json['speed']?.toString() ?? '0',
-      inspiration: json['inspiration']?.toString() ?? '0',
+      currentHp: json['currentHp']?.toString() ?? '',
+      maxHp: json['maxHp']?.toString() ?? '',
+      tempHp: json['tempHp']?.toString() ?? '',
+      speed: json['speed']?.toString() ?? '',
+      inspiration: json['inspiration'] ?? false,
       proficiencyBonus: json['proficiencyBonus']?.toString() ?? '0',
       strength: json['strength']?.toString() ?? '10',
       dexterity: json['dexterity']?.toString() ?? '10',
@@ -181,7 +181,7 @@ class Stats extends Equatable {
       hitDiceType: json['hitDiceType']?.toString() ?? 'd8',
       deathSaveSuccesses: json['deathSaveSuccesses']?.toString() ?? '0',
       deathSaveFailures: json['deathSaveFailures']?.toString() ?? '0',
-      passivePerception: json['passivePerception']?.toString() ?? '0',
+      proficiencies: json['proficiencies']?.toString() ?? '',
       acrobaticsProf: json['acrobaticsProf'] ?? false,
       animalHandlingProf: json['animalHandlingProf'] ?? false,
       arcanaProf: json['arcanaProf'] ?? false,
@@ -220,7 +220,7 @@ class Stats extends Equatable {
     String? maxHp,
     String? tempHp,
     String? speed,
-    String? inspiration,
+    bool? inspiration,
     String? proficiencyBonus,
     String? strength,
     String? dexterity,
@@ -232,7 +232,7 @@ class Stats extends Equatable {
     String? hitDiceType,
     String? deathSaveSuccesses,
     String? deathSaveFailures,
-    String? passivePerception, //potentially convert to something, not needed as of now
+    String? proficiencies,
     bool? acrobaticsProf,
     bool? animalHandlingProf,
     bool? arcanaProf,
@@ -281,7 +281,7 @@ class Stats extends Equatable {
       hitDiceType: hitDiceType ?? this.hitDiceType,
       deathSaveSuccesses: deathSaveSuccesses ?? this.deathSaveSuccesses,
       deathSaveFailures: deathSaveFailures ?? this.deathSaveFailures,
-      passivePerception: passivePerception ?? this.passivePerception,
+      proficiencies: proficiencies ?? this.proficiencies,
       acrobaticsProf: acrobaticsProf ?? this.acrobaticsProf,
       animalHandlingProf: animalHandlingProf ?? this.animalHandlingProf,
       arcanaProf: arcanaProf ?? this.arcanaProf,
@@ -333,7 +333,7 @@ class Stats extends Equatable {
         hitDiceType,
         deathSaveSuccesses,
         deathSaveFailures,
-        passivePerception,
+        proficiencies,
         acrobaticsProf,
         animalHandlingProf,
         arcanaProf,
