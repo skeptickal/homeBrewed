@@ -141,7 +141,7 @@ class BioTab extends StatelessWidget {
                         dndAlignment.text = value ?? 'Select an Alignment';
                       }
                     : null,
-                decoration: textInputDecoration.copyWith(hintText: 'Select an Alignment'),
+                decoration: dndFieldInputDecoration(enabled: state.bioEdit!, hintText: 'Select an Alignment'),
               ),
             ),
           ],
