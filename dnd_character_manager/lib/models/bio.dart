@@ -31,6 +31,38 @@ class Bio extends Equatable {
     this.languages,
   });
 
+  Bio copyWith({
+    String? userID,
+    String? race,
+    String? name,
+    String? dndClass,
+    String? charID,
+    String? subclass1,
+    String? subclass2,
+    String? alignment,
+    String? personality,
+    String? bonds,
+    String? flaws,
+    String? background,
+    String? languages,
+  }) {
+    return Bio(
+      userID: userID ?? this.userID,
+      race: race ?? this.race,
+      name: name ?? this.name,
+      dndClass: dndClass ?? this.dndClass,
+      charID: charID ?? this.charID,
+      subclass1: subclass1 ?? this.subclass1,
+      subclass2: subclass2 ?? this.subclass2,
+      alignment: alignment ?? this.alignment,
+      personality: personality ?? this.personality,
+      bonds: bonds ?? this.bonds,
+      flaws: flaws ?? this.flaws,
+      background: background ?? this.background,
+      languages: languages ?? this.languages,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {
       'userID': userID,
