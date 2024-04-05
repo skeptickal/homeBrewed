@@ -16,81 +16,37 @@ class HomeScreen extends StatelessWidget {
     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) => _listener(state, context),
       builder: (context, userState) {
-        return BlocBuilder<BioCubit, BioState>(builder: (context, bioState) {
-          context.read<BioCubit>().readBiosByUserID(userState.myUser!.userID);
-          print('bios state ${bioState.bios}');
-          List<Padding> bios = bioState.bios.map(
-            (bio) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: blueGrey), // Border properties
-                  ),
-                  child: ListTile(
-                      onTap: () => context.push('/character_viewer', extra: bio),
-                      leading: Icon(
-                        Icons.person,
-                        color: blueGrey,
-                      ),
-                      title: Text(
-                        bio.name ?? '',
-                        style: dndFont.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: Text(
-                        '${bio.race ?? ''} | ${bio.dndClass ?? ''}',
-                        style: dndFont.copyWith(fontSize: 16, fontStyle: FontStyle.italic),
-                      ),
-                      trailing: IconButton(
-                        icon: Icon(Icons.delete),
-                        onPressed: () => _onPressedDeleteIcon(context, userState.myUser!.userID!, bio.charID!, bio.name!),
-                      )),
-                ),
-              );
-            },
-          ).toList();
-          return ScreenWrapper(
-            title: 'D&D Character Manager',
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  seperation,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Text(userState.myUser!.email),
-                      ),
-                      TextButton(
-                        onPressed: () => context.read<UserCubit>().signOut(),
-                        child: Text(
-                          'sign out',
-                          style: dndFont.copyWith(
-                            color: blueGrey,
-                          ),
+        return ScreenWrapper(
+          title: 'D&D Character Manager',
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                seperation,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Text(userState.myUser!.email),
+                    ),
+                    TextButton(
+                      onPressed: () => context.read<UserCubit>().signOut(),
+                      child: Text(
+                        'sign out',
+                        style: dndFont.copyWith(
+                          color: blueGrey,
                         ),
                       ),
-                    ],
-                  ),
-                  seperation,
-                  Text(
-                    'Your Characters',
-                    style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
-                  ),
-                  ...bios,
-                  IconButton(
-                    onPressed: () => _showEditPanel(context),
-                    icon: const Icon(
-                      Icons.add,
-                      size: 30,
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
+                seperation,
+                _CharacterList(userState: userState),
+                const _AddCharacter(),
+              ],
             ),
-          );
-        });
+          ),
+        );
       },
     );
   }
@@ -121,7 +77,7 @@ void _onPressedDeleteIcon(BuildContext context, String userID, String charID, St
     builder: (context) => AlertDialog(
       title: Text(
         'Are you sure you want to delete $name?',
-        style: TextStyle(color: Colors.white, fontSize: 18),
+        style: TextStyle(color: white, fontSize: 18),
       ),
       backgroundColor: blueGrey,
       surfaceTintColor: blueGrey,
@@ -141,4 +97,76 @@ void _onPressedDeleteIcon(BuildContext context, String userID, String charID, St
       ],
     ),
   );
+}
+
+class _CharacterList extends StatelessWidget {
+  final UserState userState;
+  const _CharacterList({required this.userState});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<BioCubit, BioState>(
+      builder: (context, bioState) {
+        context.read<BioCubit>().readBiosByUserID(userState.myUser!.userID);
+        List<Padding> bios = bioState.bios.map(
+          (bio) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: blueGrey), // Border properties
+                ),
+                child: ListTile(
+                  onTap: () => context.push('/character_viewer', extra: bio),
+                  leading: Icon(
+                    Icons.person,
+                    color: blueGrey,
+                  ),
+                  title: Text(
+                    bio.name ?? '',
+                    style: dndFont.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: Text(
+                    '${bio.race ?? ''} | ${bio.dndClass ?? ''}',
+                    style: dndFont.copyWith(fontSize: 16, fontStyle: FontStyle.italic),
+                  ),
+                  trailing: IconButton(
+                    icon: Icon(
+                      Icons.delete_forever_outlined,
+                      color: black,
+                    ),
+                    onPressed: () => _onPressedDeleteIcon(context, userState.myUser!.userID!, bio.charID!, bio.name!),
+                  ),
+                ),
+              ),
+            );
+          },
+        ).toList();
+        return Column(
+          children: [
+            Text(
+              'Your Characters',
+              style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+            ),
+            ...bios,
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _AddCharacter extends StatelessWidget {
+  const _AddCharacter();
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () => _showEditPanel(context),
+      icon: const Icon(
+        Icons.add,
+        size: 30,
+      ),
+    );
+  }
 }
