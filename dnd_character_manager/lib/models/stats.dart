@@ -232,7 +232,7 @@ class Stats extends Equatable {
     String? hitDiceType,
     String? deathSaveSuccesses,
     String? deathSaveFailures,
-    String? passivePerception, //potentially conver to something, not needed as of now
+    String? passivePerception, //potentially convert to something, not needed as of now
     bool? acrobaticsProf,
     bool? animalHandlingProf,
     bool? arcanaProf,
