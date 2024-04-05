@@ -1,5 +1,5 @@
 import 'package:dnd_character_manager/constants/text_fields.dart';
-import 'package:dnd_character_manager/cubits/character_cubit/user_cubit.dart';
+import 'package:dnd_character_manager/cubits/user_cubit/user_cubit.dart';
 import 'package:dnd_character_manager/cubits/notes_cubit/cubit/notes_cubit.dart';
 import 'package:dnd_character_manager/models/bio.dart';
 import 'package:dnd_character_manager/models/notes.dart';
