@@ -20,11 +20,161 @@ class StatTab extends StatelessWidget {
           _Levels(),
           _Hps(),
           _CoreStats(),
+          _SavingThrows(),
           _SkillChecks(),
           _StatNotes(),
           _EditBlock(),
         ],
       ),
+    );
+  }
+}
+
+class _SavingThrows extends StatelessWidget {
+  const _SavingThrows();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<StatCubit, StatState>(
+      builder: (context, state) {
+        return Column(
+          children: [
+            Text(
+              'Saving Throws',
+              style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+            ),
+            CheckboxListTile(
+              title: Text(_calcModifierWithProf(
+                'Strength',
+                state.stats!.strength,
+                state.stats!.strSaveProf,
+                state.stats!.proficiencyBonus,
+              )),
+              checkColor: blueGrey,
+              activeColor: white,
+              tristate: true,
+              value: state.stats!.strSaveProf,
+              onChanged: state.statEdit!
+                  ? (newBool) {
+                      context.read<StatCubit>().setStatsData(
+                            state.stats!.copyWith(
+                              strSaveProf: !state.stats!.strSaveProf!,
+                            ),
+                          );
+                    }
+                  : null,
+            ),
+            CheckboxListTile(
+              title: Text(_calcModifierWithProf(
+                'Dexterity',
+                state.stats!.dexterity,
+                state.stats!.dexSaveProf,
+                state.stats!.proficiencyBonus,
+              )),
+              checkColor: blueGrey,
+              activeColor: white,
+              tristate: true,
+              value: state.stats!.dexSaveProf,
+              onChanged: state.statEdit!
+                  ? (newBool) {
+                      context.read<StatCubit>().setStatsData(
+                            state.stats!.copyWith(
+                              dexSaveProf: !state.stats!.dexSaveProf!,
+                            ),
+                          );
+                    }
+                  : null,
+            ),
+            CheckboxListTile(
+              title: Text(_calcModifierWithProf(
+                'Constitution',
+                state.stats!.constitution,
+                state.stats!.conSaveProf,
+                state.stats!.proficiencyBonus,
+              )),
+              checkColor: blueGrey,
+              activeColor: white,
+              tristate: true,
+              value: state.stats!.conSaveProf,
+              onChanged: state.statEdit!
+                  ? (newBool) {
+                      context.read<StatCubit>().setStatsData(
+                            state.stats!.copyWith(
+                              conSaveProf: !state.stats!.conSaveProf!,
+                            ),
+                          );
+                    }
+                  : null,
+            ),
+            CheckboxListTile(
+              title: Text(_calcModifierWithProf(
+                'Intelligence',
+                state.stats!.intelligence,
+                state.stats!.intSaveProf,
+                state.stats!.proficiencyBonus,
+              )),
+              checkColor: blueGrey,
+              activeColor: white,
+              tristate: true,
+              value: state.stats!.intSaveProf,
+              onChanged: state.statEdit!
+                  ? (newBool) {
+                      context.read<StatCubit>().setStatsData(
+                            state.stats!.copyWith(
+                              intSaveProf: !state.stats!.intSaveProf!,
+                            ),
+                          );
+                    }
+                  : null,
+            ),
+            CheckboxListTile(
+              title: Text(_calcModifierWithProf(
+                'Wisdom',
+                state.stats!.wisdom,
+                state.stats!.wisSaveProf,
+                state.stats!.proficiencyBonus,
+              )),
+              checkColor: blueGrey,
+              activeColor: white,
+              tristate: true,
+              value: state.stats!.wisSaveProf,
+              onChanged: state.statEdit!
+                  ? (newBool) {
+                      context.read<StatCubit>().setStatsData(
+                            state.stats!.copyWith(
+                              wisSaveProf: !state.stats!.wisSaveProf!,
+                            ),
+                          );
+                    }
+                  : null,
+            ),
+            CheckboxListTile(
+              title: Text(_calcModifierWithProf(
+                'Charisma',
+                state.stats!.charisma,
+                state.stats!.chaSaveProf,
+                state.stats!.proficiencyBonus,
+              )),
+              checkColor: blueGrey,
+              activeColor: white,
+              tristate: true,
+              value: state.stats!.chaSaveProf,
+              onChanged: state.statEdit!
+                  ? (newBool) {
+                      context.read<StatCubit>().setStatsData(
+                            state.stats!.copyWith(
+                              chaSaveProf: !state.stats!.chaSaveProf!,
+                            ),
+                          );
+                    }
+                  : null,
+            ),
+            seperation,
+            horizontalLine,
+            seperation,
+          ],
+        );
+      },
     );
   }
 }
@@ -440,6 +590,10 @@ class _SkillChecks extends StatelessWidget {
         );
         return Column(
           children: [
+            Text(
+              'Skills',
+              style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+            ),
             acrobaticsProfCheck,
             animalHandlingProfCheck,
             arcanaProfCheck,
@@ -458,6 +612,9 @@ class _SkillChecks extends StatelessWidget {
             sleightOfHandProfCheck,
             stealthProfCheck,
             survivalProfCheck,
+            seperation,
+            horizontalLine,
+            seperation,
           ],
         );
       },
@@ -468,7 +625,7 @@ class _SkillChecks extends StatelessWidget {
 String _calcModifierWithProf(String statAbbrev, String? statToMod, bool? prof, String? profBonus) {
   int statToModNullSafe = int.tryParse(statToMod ?? '10') ?? 10;
   int profBonusAsInt = int.tryParse(profBonus ?? '0') ?? 1;
-  return '$statAbbrev : ${(((statToModNullSafe) - 10)) < 0 ? (((statToModNullSafe) - 11) ~/ 2) : (((statToModNullSafe) - 10) ~/ 2) + (prof ?? false ? (profBonusAsInt) : 0)}';
+  return '$statAbbrev : ${(((statToModNullSafe) - 10)) < 0 ? (((statToModNullSafe) - 11) ~/ 2 + (prof ?? false ? (profBonusAsInt) : 0)) : (((statToModNullSafe) - 10) ~/ 2) + (prof ?? false ? (profBonusAsInt) : 0)}';
 }
 
 class _EditBlock extends StatelessWidget {
@@ -497,7 +654,6 @@ class _EditBlock extends StatelessWidget {
                 ),
               ],
             ),
-            seperation,
             seperation,
           ],
         );
@@ -529,6 +685,12 @@ class _CoreStats extends StatelessWidget {
         cha.text = state.stats!.charisma ?? '';
         return Column(
           children: [
+            seperation,
+            Text(
+              'Core Stats',
+              style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+            ),
+            seperation,
             Row(
               children: [
                 Flexible(
@@ -618,7 +780,7 @@ class _Hps extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const EdgeInsets twox1RowPadding = EdgeInsets.symmetric(horizontal: 40);
+    const EdgeInsets twox1RowPadding = EdgeInsets.symmetric(horizontal: 50);
     return BlocBuilder<StatCubit, StatState>(
       builder: (context, state) {
         TextEditingController currentHp = TextEditingController();
@@ -629,6 +791,10 @@ class _Hps extends StatelessWidget {
         tempHp.text = state.stats!.tempHp ?? '0';
         return Column(
           children: [
+            Text(
+              'Hit Points',
+              style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -663,7 +829,7 @@ class _Hps extends StatelessWidget {
                     onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(tempHp: tempHp.text)),
                     onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(tempHp: tempHp.text)),
                     enabled: state.statEdit!,
-                    padding: const EdgeInsets.symmetric(horizontal: 140),
+                    padding: const EdgeInsets.symmetric(horizontal: 150),
                     controller: tempHp,
                     hintText: 'Temp HP',
                     subtitle: 'Temp HP',
@@ -697,6 +863,11 @@ class _Levels extends StatelessWidget {
         TextEditingController subClass2Lvl = TextEditingController();
         subClass2Lvl.text = state.stats!.subClass2Lvl ?? '1';
         return Column(children: [
+          Text(
+            'Levels',
+            style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+          ),
+          seperation,
           Row(
             children: [
               Flexible(
