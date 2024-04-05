@@ -35,4 +35,8 @@ class BioCubit extends Cubit<BioState> {
       print('error reading characters from state');
     }
   }
+
+  Future<void> deleteBiosByCharID(String charID) async {
+    await dndService.deleteDocumentByName(charID: charID);
+  }
 }

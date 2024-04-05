@@ -18,7 +18,6 @@ class FirebaseClient {
     }
   }
 
-
   Future<dynamic> getData({required String collectionName}) async {
     CollectionReference collection = firestore.collection(collectionName);
     return collection.get();
@@ -49,6 +48,10 @@ class FirebaseClient {
     } else {
       return null;
     }
+  }
+
+  Future<void> deleteDocumentByName({required String documentName, required String collectionName}) async {
+    await firestore.collection(collectionName).doc(documentName).delete();
   }
 
   Future<void> initNotifications() async {

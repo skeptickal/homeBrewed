@@ -1,6 +1,8 @@
 import 'package:dnd_character_manager/constants/text_fields.dart';
 import 'package:dnd_character_manager/cubits/character_cubit/user_cubit.dart';
+import 'package:dnd_character_manager/cubits/notes_cubit/cubit/notes_cubit.dart';
 import 'package:dnd_character_manager/models/bio.dart';
+import 'package:dnd_character_manager/models/notes.dart';
 import 'package:dnd_character_manager/models/stats.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -66,6 +68,7 @@ class AddDndCharacterScreen extends StatelessWidget {
   }
 
   void _addCharacter(BuildContext context, UserState userState, String name, String race, String dndClass) {
+    //initialize bio data for new character
     const uuid = Uuid();
     Bio newDndCharacter = Bio(
       charID: uuid.v4(),
@@ -75,9 +78,15 @@ class AddDndCharacterScreen extends StatelessWidget {
       dndClass: dndClass,
       alignment: 'Select an Alignment',
     );
-    Stats newStats = Stats(charID: newDndCharacter.charID);
     context.read<BioCubit>().setBioData(newDndCharacter);
+
+    //initialize stats for new character
+    Stats newStats = Stats(charID: newDndCharacter.charID);
     context.read<StatCubit>().setStatsData(newStats);
+
+    //initialize notes for new character
+    Notes newNotes = Notes(charID: newDndCharacter.charID);
+    context.read<NotesCubit>().setNotesData(newNotes);
     context.pop();
   }
 }
