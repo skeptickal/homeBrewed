@@ -45,9 +45,7 @@ class CharacterViewerScreen extends StatelessWidget {
                 Expanded(
                   child: TabBarView(
                     children: [
-                      StatTab(
-                        charID: bio.charID!,
-                      ),
+                      StatTab(charID: bio.charID!),
                       Center(child: Text('Abilities ${bio.charID}')),
                       const Center(child: Text('Spells')),
                       const Center(child: Text('Weapons')),
