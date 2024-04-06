@@ -50,6 +50,10 @@ class _SignUp extends StatelessWidget {
               subtitle: 'Sign Up with Email',
             ),
             CustomTextBox(
+              validator: (password) {
+                password!.length < 6 ? 'Enter a password 6+ characters long' : null;
+                return password;
+              },
               obscureText: true,
               padding: const EdgeInsets.all(6),
               controller: password,
