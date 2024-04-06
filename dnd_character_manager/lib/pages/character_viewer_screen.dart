@@ -22,7 +22,7 @@ class CharacterViewerScreen extends StatelessWidget {
     return BlocBuilder<UserCubit, UserState>(
       builder: (context, state) {
         return ScreenWrapper(
-          title: bio.name!,
+          title: 'Character',
           child: DefaultTabController(
             length: 9,
             child: Column(
