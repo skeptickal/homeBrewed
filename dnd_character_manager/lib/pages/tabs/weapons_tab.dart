@@ -20,6 +20,7 @@ class WeaponsTab extends StatelessWidget {
       child: Column(
         children: [
           _WeaponsList(charID: charID),
+          seperation,
           _AddWeapon(charID: charID),
         ],
       ),
@@ -152,17 +153,27 @@ class _AddWeapon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        IconButton(
-          onPressed: () => _showEditPanel(context, charID),
-          icon: const Icon(
-            Icons.add,
-            size: 30,
-          ),
+    return Center(
+      child: Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 2,
+              blurRadius: 3,
+              offset: const Offset(0, 2),
+            ),
+          ],
         ),
-        seperation,
-      ],
+        child: IconButton(
+          iconSize: 25,
+          color: themeColor,
+          icon: const Icon(Icons.add),
+          onPressed: () => _showEditPanel(context, charID),
+        ),
+      ),
     );
   }
 }
