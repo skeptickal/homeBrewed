@@ -4,7 +4,7 @@ part of 'weapon_cubit.dart';
 class WeaponState extends Equatable {
   final Weapon? weapon;
   final bool? weaponEdit;
-  final List<Weapon> weapons;
+  final List<Weapon>? weapons;
 
   const WeaponState({this.weapon, this.weaponEdit, required this.weapons});
 
@@ -19,7 +19,13 @@ class WeaponState extends Equatable {
 final class WeaponInitial extends WeaponState {
   WeaponInitial()
       : super(
-          weapons: [],
+          weapons: [
+            const Weapon(
+              name: 'Long Sword',
+              damageRoll: '1d4+3',
+              attackRoll: '1d20+5',
+            ),
+          ],
           weapon: const Weapon(
             name: 'Long Sword',
             damageRoll: '1d4+3',

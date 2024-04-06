@@ -1,6 +1,7 @@
 import 'package:dnd_character_manager/cubits/weapon_cubit/weapon_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../client/spacing.dart';
 import '../../constants/theme_data.dart';
@@ -34,34 +35,35 @@ class _WeaponsList extends StatelessWidget {
     return BlocBuilder<WeaponCubit, WeaponState>(
       builder: (context, state) {
         context.read<WeaponCubit>().readWeaponsByCharID(charID);
-        List<Padding> weapons = state.weapons.map(
+        print('Jackson: ${state.weapons}');
+        List<Padding> weapons = state.weapons!.map(
           (weapon) {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
               child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: blueGrey), // Border properties
-                ),
+                decoration: BoxDecoration(border: Border.all(color: blueGrey), borderRadius: BorderRadius.circular(20)),
                 child: ListTile(
                   onTap: () {}, // context.push('/character_viewer', extra: bio),
-                  leading: Icon(
-                    Icons.person,
-                    color: blueGrey,
-                  ),
+                  leading: const FaIcon(FontAwesomeIcons.solidHandBackFist),
+                  //Image.asset('assets/sword.png', height: 20),
+
                   title: Text(
                     weapon.name ?? '',
                     style: dndFont.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   subtitle: Text(
-                    '${weapon.attackRoll ?? ''} | ${weapon.damageRoll ?? ''}',
-                    style: dndFont.copyWith(fontSize: 16, fontStyle: FontStyle.italic),
+                    'Attack: ${weapon.attackRoll ?? ''}\nDamage: ${weapon.damageRoll ?? ''}',
+                    style: dndFont.copyWith(fontSize: 14, fontStyle: FontStyle.italic),
                   ),
                   trailing: IconButton(
                       icon: Icon(
                         Icons.delete_forever_outlined,
                         color: black,
                       ),
-                      onPressed: () {} //_onPressedDeleteIcon(context, userState.myUser!.userID!, bio.charID!, bio.name!),
+                      onPressed: () {
+                        context.read<WeaponCubit>().deleteWeaponByWeaponID(weapon.weaponID!);
+                        context.read<WeaponCubit>().readWeaponsByCharID(charID);
+                      } //_onPressedDeleteIcon(context, userState.myUser!.userID!, bio.charID!, bio.name!),
                       ),
                 ),
               ),

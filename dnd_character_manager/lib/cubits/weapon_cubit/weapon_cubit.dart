@@ -26,7 +26,7 @@ class WeaponCubit extends Cubit<WeaponState> {
   }
 
   Future<void> setWeaponsData(Weapon weapon) async {
-    emit(state.copyWith(weapon: weapon, weapons: [...state.weapons, weapon]));
+    emit(state.copyWith(weapon: weapon, weapons: [...?state.weapons, weapon]));
     await dndService.setWeaponsData(weapon: weapon);
   }
 
@@ -37,5 +37,9 @@ class WeaponCubit extends Cubit<WeaponState> {
     } catch (e) {
       print('error reading weapons from state');
     }
+  }
+
+  Future<void> deleteWeaponByWeaponID(String weaponID) async {
+    await dndService.deleteWeaponByWeaponID(weaponID: weaponID);
   }
 }

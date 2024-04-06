@@ -37,6 +37,6 @@ class BioCubit extends Cubit<BioState> {
   }
 
   Future<void> deleteCharacterByCharID(String charID) async {
-    await dndService.deleteDocumentByName(charID: charID);
+    await dndService.deleteFullCharacter(charID: charID);
   }
 }

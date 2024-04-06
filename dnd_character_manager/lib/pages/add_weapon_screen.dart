@@ -4,6 +4,7 @@ import 'package:dnd_character_manager/models/weapon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:uuid/uuid.dart';
 
 import '../cubits/weapon_cubit/weapon_cubit.dart';
 
@@ -76,7 +77,9 @@ class AddWeaponScreen extends StatelessWidget {
   }
 
   void _addWeapon({required BuildContext context, String? name, String? attackRoll, String? damageRoll, String? charID, String? description}) {
+    const uuid = Uuid();
     Weapon newWeapon = Weapon(
+      weaponID: uuid.v4(),
       charID: charID,
       name: name,
       attackRoll: attackRoll,
