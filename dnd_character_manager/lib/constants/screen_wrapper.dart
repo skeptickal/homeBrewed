@@ -16,7 +16,7 @@ class ScreenWrapper extends StatelessWidget {
           style: dndFont.copyWith(color: white),
         ),
         centerTitle: true,
-        backgroundColor: blueGrey,
+        backgroundColor: themeColor,
       ),
       body: child,
     );

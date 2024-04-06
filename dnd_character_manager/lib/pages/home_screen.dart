@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
                       child: Text(
                         'sign out',
                         style: dndFont.copyWith(
-                          color: blueGrey,
+                          color: themeColor,
                         ),
                       ),
                     ),
@@ -79,8 +79,8 @@ void _onPressedDeleteIcon(BuildContext context, String userID, String charID, St
         'Are you sure you want to delete $name?',
         style: TextStyle(color: white, fontSize: 18),
       ),
-      backgroundColor: blueGrey,
-      surfaceTintColor: blueGrey,
+      backgroundColor: themeColor,
+      surfaceTintColor: themeColor,
       actions: [
         TextButton(
           child: Text(
@@ -114,13 +114,13 @@ class _CharacterList extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
               child: Container(
                 decoration: BoxDecoration(
-                  border: Border.all(color: blueGrey), // Border properties
+                  border: Border.all(color: themeColor), // Border properties
                 ),
                 child: ListTile(
                   onTap: () => context.push('/character_viewer', extra: bio),
                   leading: Icon(
                     Icons.person,
-                    color: blueGrey,
+                    color: themeColor,
                   ),
                   title: Text(
                     bio.name ?? '',
