@@ -29,8 +29,8 @@ class CharacterViewerScreen extends StatelessWidget {
             child: Column(
               children: [
                 TabBar(
-                  indicatorColor: blueGrey,
-                  labelColor: blueGrey,
+                  indicatorColor: themeColor,
+                  labelColor: themeColor,
                   isScrollable: true,
                   tabAlignment: TabAlignment.start,
                   tabs: const [

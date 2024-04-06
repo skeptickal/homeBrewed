@@ -159,7 +159,7 @@ final textInputDecoration = InputDecoration(
   filled: true,
   hintStyle: dndFont.copyWith(fontSize: 14),
   enabledBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: blueGrey, width: 2.0),
+    borderSide: BorderSide(color: themeColor, width: 2.0),
   ),
   focusedBorder: OutlineInputBorder(
     borderSide: BorderSide(color: black, width: 2.0),
@@ -173,7 +173,7 @@ InputDecoration dndFieldInputDecoration({required bool enabled, required String 
     filled: true,
     hintStyle: dndFont.copyWith(fontSize: 14),
     enabledBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: blueGrey, width: enabled ? 2.0 : 0),
+      borderSide: BorderSide(color: themeColor, width: enabled ? 2.0 : 0),
     ),
     focusedBorder: OutlineInputBorder(
       borderSide: BorderSide(color: black, width: enabled ? 2.0 : 1),

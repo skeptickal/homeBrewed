@@ -42,7 +42,7 @@ class _WeaponsList extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
               child: Container(
-                decoration: BoxDecoration(border: Border.all(color: blueGrey), borderRadius: BorderRadius.circular(20)),
+                decoration: BoxDecoration(border: Border.all(color: themeColor), borderRadius: BorderRadius.circular(20)),
                 child: ListTile(
                   onTap: () => _onPressedTile(context: context, description: weapon.description ?? '', name: weapon.name ?? ''),
                   leading: IconButton(
@@ -96,8 +96,8 @@ void _onPressedDeleteIcon({required BuildContext context, required String weapon
         'Are you sure you want to delete $name?',
         style: TextStyle(color: white, fontSize: 18),
       ),
-      backgroundColor: blueGrey,
-      surfaceTintColor: blueGrey,
+      backgroundColor: themeColor,
+      surfaceTintColor: themeColor,
       actions: [
         TextButton(
           child: Text(
@@ -127,8 +127,8 @@ void _onPressedTile({required BuildContext context, required String name, requir
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 18, color: white),
           ),
-          backgroundColor: blueGrey,
-          surfaceTintColor: blueGrey,
+          backgroundColor: themeColor,
+          surfaceTintColor: themeColor,
           actions: [
             TextButton(
               child: Text(

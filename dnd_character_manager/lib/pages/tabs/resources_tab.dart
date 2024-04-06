@@ -41,7 +41,7 @@ class ResourceTab extends StatelessWidget {
                     ),
                     child: IconButton(
                       iconSize: 25,
-                      color: Colors.blueGrey,
+                      color: themeColor,
                       icon: const Icon(Icons.add),
                       onPressed: () {},
                     ),
@@ -68,7 +68,7 @@ class _ResourceBox extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget box = Container(
       decoration: BoxDecoration(
-        border: Border.all(color: blueGrey, width: 2),
+        border: Border.all(color: themeColor, width: 2),
         borderRadius: BorderRadius.circular(20),
       ),
       child: InkWell(
