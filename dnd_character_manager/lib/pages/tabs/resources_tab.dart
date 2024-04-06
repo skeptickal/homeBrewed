@@ -29,13 +29,13 @@ class ResourceTab extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.white, // Adjust color as needed
+                      color: Colors.white,
                       boxShadow: [
                         BoxShadow(
                           color: Colors.grey.withOpacity(0.5),
                           spreadRadius: 2,
                           blurRadius: 3,
-                          offset: const Offset(0, 2), // changes position of shadow
+                          offset: const Offset(0, 2),
                         ),
                       ],
                     ),
