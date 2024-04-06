@@ -66,22 +66,32 @@ class DndService {
 
   //edit weapon data for specific character
   Future<void> setWeaponsData({required Weapon weapon}) async {
-    client.setData(collectionName: 'weapons', documentName: weapon.charID, body: weapon.toJson());
+    client.setData(collectionName: 'weapons', documentName: weapon.weaponID, body: weapon.toJson());
   }
 
   //read weapons data by charID
   Future<List<Weapon>> readWeaponsByCharID({required String? charID}) async {
     QuerySnapshot<Map<String, dynamic>> data = await client.getData(collectionName: 'weapons');
-
-    List<Weapon> weapons = data.docs.map((doc) => Weapon.fromJson(doc.data())).where((weapon) => weapon.charID == charID).toList();
+    List<Weapon> weapons = data.docs
+        .map((doc) => Weapon.fromJson(doc.data()))
+        .where(
+          (weapon) => weapon.charID == charID,
+        )
+        .toList();
+    print('Jackson service: $weapons');
     return weapons;
   }
 
+  //delete weapon by weaponID
+  Future<void> deleteWeaponByWeaponID({required String? weaponID}) async {
+    client.deleteDocumentByName(documentName: weaponID!, collectionName: 'weapons');
+  }
+
   //delete docs
-  Future<void> deleteDocumentByName({required String charID}) async {
+  Future<void> deleteFullCharacter({required String charID}) async {
     client.deleteDocumentByName(documentName: charID, collectionName: 'bio');
     client.deleteDocumentByName(documentName: charID, collectionName: 'stats');
     client.deleteDocumentByName(documentName: charID, collectionName: 'notes');
-    client.deleteDocumentByName(documentName: charID, collectionName: 'weapons');
+    client.deleteDocumentByFieldValue(fieldName: 'charID', fieldValue: charID, collectionName: 'weapons');
   }
 }

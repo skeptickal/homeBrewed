@@ -54,6 +54,13 @@ class FirebaseClient {
     await firestore.collection(collectionName).doc(documentName).delete();
   }
 
+  Future<void> deleteDocumentByFieldValue({required String collectionName, required String fieldName, required String fieldValue}) async {
+    final QuerySnapshot querySnapshot = await firestore.collection(collectionName).where(fieldName, isEqualTo: fieldValue).get();
+    for (final docSnapshot in querySnapshot.docs) {
+      await firestore.collection(collectionName).doc(docSnapshot.id).delete();
+    }
+  }
+
   Future<void> initNotifications() async {
     await _firebaseMessaging.requestPermission();
     final fCMToken = await _firebaseMessaging.getToken();
