@@ -24,12 +24,14 @@ final class WeaponInitial extends WeaponState {
               name: 'Long Sword',
               damageRoll: '1d4+3',
               attackRoll: '1d20+5',
+              weaponID: '1234',
             ),
           ],
           weapon: const Weapon(
             name: 'Long Sword',
             damageRoll: '1d4+3',
             attackRoll: '1d20+5',
+            weaponID: '4567',
           ),
           weaponEdit: false,
         );

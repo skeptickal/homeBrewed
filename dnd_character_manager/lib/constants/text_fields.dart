@@ -2,6 +2,7 @@ import 'package:dnd_character_manager/constants/theme_data.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextBox extends StatelessWidget {
+  final int? maxLines;
   final EdgeInsets padding;
   final TextEditingController controller;
   final String hintText;
@@ -10,6 +11,7 @@ class CustomTextBox extends StatelessWidget {
   final bool obscureText;
 
   const CustomTextBox({
+    this.maxLines,
     required this.padding,
     required this.controller,
     required this.hintText,
@@ -32,7 +34,7 @@ class CustomTextBox extends StatelessWidget {
             controller: controller,
             minLines: minLines,
             obscureText: obscureText,
-            maxLines: 1,
+            maxLines: !obscureText ? maxLines : 1,
             keyboardType: TextInputType.multiline,
             decoration: textInputDecoration.copyWith(hintText: hintText),
           ),

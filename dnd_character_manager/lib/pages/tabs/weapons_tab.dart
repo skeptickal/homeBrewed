@@ -1,11 +1,14 @@
 import 'package:dnd_character_manager/cubits/weapon_cubit/weapon_cubit.dart';
+import 'package:dnd_character_manager/models/weapon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../client/spacing.dart';
 import '../../constants/theme_data.dart';
 import '../add_weapon_screen.dart';
+import '../edit_weapon_screen.dart';
 
 class WeaponsTab extends StatelessWidget {
   final String charID;
@@ -16,10 +19,8 @@ class WeaponsTab extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const _EditBlock(),
           _WeaponsList(charID: charID),
           _AddWeapon(charID: charID),
-          const _EditBlock(),
         ],
       ),
     );
@@ -43,10 +44,11 @@ class _WeaponsList extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(border: Border.all(color: blueGrey), borderRadius: BorderRadius.circular(20)),
                 child: ListTile(
-                  onTap: () {}, // context.push('/character_viewer', extra: bio),
-                  leading: const FaIcon(FontAwesomeIcons.solidHandBackFist),
-                  //Image.asset('assets/sword.png', height: 20),
-
+                  onTap: () => _onPressedTile(context: context, description: weapon.description ?? '', name: weapon.name ?? ''),
+                  leading: IconButton(
+                    onPressed: () => _showPostEditPanel(context, weapon),
+                    icon: const FaIcon(FontAwesomeIcons.penToSquare),
+                  ),
                   title: Text(
                     weapon.name ?? '',
                     style: dndFont.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
@@ -56,58 +58,89 @@ class _WeaponsList extends StatelessWidget {
                     style: dndFont.copyWith(fontSize: 14, fontStyle: FontStyle.italic),
                   ),
                   trailing: IconButton(
-                      icon: Icon(
-                        Icons.delete_forever_outlined,
-                        color: black,
-                      ),
-                      onPressed: () {
-                        context.read<WeaponCubit>().deleteWeaponByWeaponID(weapon.weaponID!);
-                        context.read<WeaponCubit>().readWeaponsByCharID(charID);
-                      } //_onPressedDeleteIcon(context, userState.myUser!.userID!, bio.charID!, bio.name!),
-                      ),
+                    icon: Icon(
+                      Icons.delete_forever_outlined,
+                      color: black,
+                    ),
+                    onPressed: () => _onPressedDeleteIcon(
+                      context: context,
+                      weaponID: weapon.weaponID!,
+                      name: weapon.name!,
+                      charID: charID!,
+                    ),
+                  ),
                 ),
               ),
             );
           },
         ).toList();
-        return Column(children: [...weapons]);
+        return Column(children: [
+          seperation,
+          Text(
+            'Weapons',
+            style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+          ),
+          seperation,
+          ...weapons
+        ]);
       },
     );
   }
 }
 
-class _EditBlock extends StatelessWidget {
-  const _EditBlock();
+void _onPressedDeleteIcon({required BuildContext context, required String weaponID, required String name, required String charID}) {
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Text(
+        'Are you sure you want to delete $name?',
+        style: TextStyle(color: white, fontSize: 18),
+      ),
+      backgroundColor: blueGrey,
+      surfaceTintColor: blueGrey,
+      actions: [
+        TextButton(
+          child: Text(
+            'Delete Permanently',
+            style: TextStyle(color: white),
+          ),
+          onPressed: () {
+            context.read<WeaponCubit>().deleteWeaponByWeaponID(weaponID).then((result) {
+              context.read<WeaponCubit>().readWeaponsByCharID(charID);
+              context.pop();
+            });
+          },
+        ),
+      ],
+    ),
+  );
+}
 
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<WeaponCubit, WeaponState>(
-      builder: (context, state) {
-        return Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  onPressed: () {
-                    context.read<WeaponCubit>().weaponEdit(!state.weaponEdit!);
-                  },
-                  icon: const Icon(
-                    Icons.edit,
-                  ),
-                ),
-                Text(
-                  !state.weaponEdit! ? 'Enable Edit' : 'Disable Edit',
-                  style: dndFont.copyWith(color: state.weaponEdit! ? black : disableGrey),
-                ),
-              ],
+void _onPressedTile({required BuildContext context, required String name, required String description}) {
+  showDialog(
+    context: context,
+    builder: (context) => SingleChildScrollView(
+      child: AlertDialog(
+        title: Text(
+          description,
+          style: TextStyle(color: white, fontSize: 18),
+        ),
+        backgroundColor: blueGrey,
+        surfaceTintColor: blueGrey,
+        actions: [
+          TextButton(
+            child: Text(
+              'Back',
+              style: TextStyle(color: white),
             ),
-            seperation,
-          ],
-        );
-      },
-    );
-  }
+            onPressed: () {
+              context.pop();
+            },
+          ),
+        ],
+      ),
+    ),
+  );
 }
 
 class _AddWeapon extends StatelessWidget {
@@ -139,6 +172,18 @@ void _showEditPanel(BuildContext context, String charID) {
         return Container(
           padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 60),
           child: AddWeaponScreen(charID: charID),
+        );
+      });
+}
+
+void _showPostEditPanel(BuildContext context, Weapon weapon) {
+  showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      builder: (context) {
+        return Container(
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 60),
+          child: EditWeaponScreen(weapon: weapon),
         );
       });
 }

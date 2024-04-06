@@ -52,5 +52,5 @@ class Weapon extends Equatable {
   }
 
   @override
-  List<Object?> get props => [charID, name, description, damageRoll, attackRoll];
+  List<Object?> get props => [charID, name, description, damageRoll, attackRoll, weaponID];
 }
