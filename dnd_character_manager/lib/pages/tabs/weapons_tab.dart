@@ -94,7 +94,7 @@ void _onPressedDeleteIcon({required BuildContext context, required String weapon
     builder: (context) => AlertDialog(
       title: Text(
         'Are you sure you want to delete $name?',
-        style: TextStyle(color: white, fontSize: 18),
+        style: TextStyle(color: black, fontSize: 18),
       ),
       backgroundColor: themeColor,
       surfaceTintColor: themeColor,
@@ -102,7 +102,7 @@ void _onPressedDeleteIcon({required BuildContext context, required String weapon
         TextButton(
           child: Text(
             'Delete Permanently',
-            style: TextStyle(color: white),
+            style: TextStyle(color: black),
           ),
           onPressed: () {
             context.read<WeaponCubit>().deleteWeaponByWeaponID(weaponID).then((result) {
@@ -125,7 +125,7 @@ void _onPressedTile({required BuildContext context, required String name, requir
           title: Text(
             '$name\n\n$description',
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 18, color: white),
+            style: TextStyle(fontSize: 18, color: black),
           ),
           backgroundColor: themeColor,
           surfaceTintColor: themeColor,
@@ -133,7 +133,7 @@ void _onPressedTile({required BuildContext context, required String name, requir
             TextButton(
               child: Text(
                 'Back',
-                style: TextStyle(color: white),
+                style: TextStyle(color: black),
               ),
               onPressed: () {
                 context.pop();

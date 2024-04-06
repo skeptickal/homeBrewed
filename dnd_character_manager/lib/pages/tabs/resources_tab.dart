@@ -29,7 +29,7 @@ class ResourceTab extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.white,
+                      color: Colors.black,
                       boxShadow: [
                         BoxShadow(
                           color: Colors.grey.withOpacity(0.5),
@@ -78,7 +78,7 @@ class _ResourceBox extends StatelessWidget {
           builder: (context) => Center(
             child: Text(
               'hello',
-              style: dndFont.copyWith(color: white),
+              style: dndFont.copyWith(color: black),
             ),
           ),
         ),

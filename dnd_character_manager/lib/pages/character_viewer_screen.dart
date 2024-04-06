@@ -29,12 +29,16 @@ class CharacterViewerScreen extends StatelessWidget {
             child: Column(
               children: [
                 TabBar(
+                  unselectedLabelColor: white,
                   indicatorColor: themeColor,
                   labelColor: themeColor,
                   isScrollable: true,
                   tabAlignment: TabAlignment.start,
                   tabs: const [
-                    Tab(text: 'Stats', icon: FaIcon(FontAwesomeIcons.shieldHalved)),
+                    Tab(
+                      text: 'Stats',
+                      icon: FaIcon(FontAwesomeIcons.shieldHalved),
+                    ),
                     Tab(text: 'Actions', icon: FaIcon(FontAwesomeIcons.exclamation)),
                     Tab(text: 'Spells', icon: FaIcon(FontAwesomeIcons.wandMagicSparkles)),
                     Tab(text: 'Weapons', icon: ImageIcon(AssetImage('assets/sword.png'))),

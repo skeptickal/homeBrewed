@@ -74,14 +74,17 @@ class _SavingThrows extends StatelessWidget {
           children: [
             Text(
               'Proficiency',
-              style: dndFont.copyWith(fontWeight: FontWeight.bold),
+              style: dndFont.copyWith(fontWeight: FontWeight.bold, color: white),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Padding(
+                Padding(
                   padding: EdgeInsets.symmetric(horizontal: 70.0),
-                  child: Icon(Icons.check_box_outline_blank),
+                  child: Icon(
+                    Icons.check_box_outline_blank,
+                    color: white,
+                  ),
                 ),
                 Flexible(
                   child: StatTextBox(
@@ -111,15 +114,18 @@ class _SavingThrows extends StatelessWidget {
             seperation,
             Text(
               'Saving Throws',
-              style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+              style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: white),
             ),
             CheckboxListTile(
-              title: Text(_calcModifierWithProf(
-                'Strength',
-                state.stats!.strength,
-                state.stats!.strSaveProf,
-                state.stats!.proficiencyBonus,
-              )),
+              title: Text(
+                _calcModifierWithProf(
+                  'Strength',
+                  state.stats!.strength,
+                  state.stats!.strSaveProf,
+                  state.stats!.proficiencyBonus,
+                ),
+                style: TextStyle(color: white),
+              ),
               checkColor: themeColor,
               activeColor: white,
               tristate: true,
@@ -135,12 +141,15 @@ class _SavingThrows extends StatelessWidget {
                   : null,
             ),
             CheckboxListTile(
-              title: Text(_calcModifierWithProf(
-                'Dexterity',
-                state.stats!.dexterity,
-                state.stats!.dexSaveProf,
-                state.stats!.proficiencyBonus,
-              )),
+              title: Text(
+                _calcModifierWithProf(
+                  'Dexterity',
+                  state.stats!.dexterity,
+                  state.stats!.dexSaveProf,
+                  state.stats!.proficiencyBonus,
+                ),
+                style: TextStyle(color: white),
+              ),
               checkColor: themeColor,
               activeColor: white,
               tristate: true,
@@ -156,12 +165,15 @@ class _SavingThrows extends StatelessWidget {
                   : null,
             ),
             CheckboxListTile(
-              title: Text(_calcModifierWithProf(
-                'Constitution',
-                state.stats!.constitution,
-                state.stats!.conSaveProf,
-                state.stats!.proficiencyBonus,
-              )),
+              title: Text(
+                _calcModifierWithProf(
+                  'Constitution',
+                  state.stats!.constitution,
+                  state.stats!.conSaveProf,
+                  state.stats!.proficiencyBonus,
+                ),
+                style: TextStyle(color: white),
+              ),
               checkColor: themeColor,
               activeColor: white,
               tristate: true,
@@ -177,12 +189,15 @@ class _SavingThrows extends StatelessWidget {
                   : null,
             ),
             CheckboxListTile(
-              title: Text(_calcModifierWithProf(
-                'Intelligence',
-                state.stats!.intelligence,
-                state.stats!.intSaveProf,
-                state.stats!.proficiencyBonus,
-              )),
+              title: Text(
+                _calcModifierWithProf(
+                  'Intelligence',
+                  state.stats!.intelligence,
+                  state.stats!.intSaveProf,
+                  state.stats!.proficiencyBonus,
+                ),
+                style: TextStyle(color: white),
+              ),
               checkColor: themeColor,
               activeColor: white,
               tristate: true,
@@ -198,12 +213,15 @@ class _SavingThrows extends StatelessWidget {
                   : null,
             ),
             CheckboxListTile(
-              title: Text(_calcModifierWithProf(
-                'Wisdom',
-                state.stats!.wisdom,
-                state.stats!.wisSaveProf,
-                state.stats!.proficiencyBonus,
-              )),
+              title: Text(
+                _calcModifierWithProf(
+                  'Wisdom',
+                  state.stats!.wisdom,
+                  state.stats!.wisSaveProf,
+                  state.stats!.proficiencyBonus,
+                ),
+                style: TextStyle(color: white),
+              ),
               checkColor: themeColor,
               activeColor: white,
               tristate: true,
@@ -219,12 +237,15 @@ class _SavingThrows extends StatelessWidget {
                   : null,
             ),
             CheckboxListTile(
-              title: Text(_calcModifierWithProf(
-                'Charisma',
-                state.stats!.charisma,
-                state.stats!.chaSaveProf,
-                state.stats!.proficiencyBonus,
-              )),
+              title: Text(
+                _calcModifierWithProf(
+                  'Charisma',
+                  state.stats!.charisma,
+                  state.stats!.chaSaveProf,
+                  state.stats!.proficiencyBonus,
+                ),
+                style: TextStyle(color: white),
+              ),
               checkColor: themeColor,
               activeColor: white,
               tristate: true,
@@ -288,7 +309,7 @@ class _SkillChecks extends StatelessWidget {
             state.stats!.proficiencyBonus,
           )),
           checkColor: themeColor,
-          activeColor: white,
+          activeColor: black,
           tristate: true,
           value: state.stats!.acrobaticsProf,
           onChanged: state.statEdit!
@@ -309,7 +330,7 @@ class _SkillChecks extends StatelessWidget {
             state.stats!.proficiencyBonus,
           )),
           checkColor: themeColor,
-          activeColor: white,
+          activeColor: black,
           tristate: true,
           value: state.stats!.animalHandlingProf,
           onChanged: state.statEdit!
@@ -330,7 +351,7 @@ class _SkillChecks extends StatelessWidget {
             state.stats!.proficiencyBonus,
           )),
           checkColor: themeColor,
-          activeColor: white,
+          activeColor: black,
           tristate: true,
           value: state.stats!.arcanaProf,
           onChanged: state.statEdit!
@@ -351,7 +372,7 @@ class _SkillChecks extends StatelessWidget {
             state.stats!.proficiencyBonus,
           )),
           checkColor: themeColor,
-          activeColor: white,
+          activeColor: black,
           tristate: true,
           value: state.stats!.athleticsProf,
           onChanged: state.statEdit!
@@ -372,7 +393,7 @@ class _SkillChecks extends StatelessWidget {
             state.stats!.proficiencyBonus,
           )),
           checkColor: themeColor,
-          activeColor: white,
+          activeColor: black,
           tristate: true,
           value: state.stats!.deceptionProf,
           onChanged: state.statEdit!
@@ -393,7 +414,7 @@ class _SkillChecks extends StatelessWidget {
             state.stats!.proficiencyBonus,
           )),
           checkColor: themeColor,
-          activeColor: white,
+          activeColor: black,
           tristate: true,
           value: state.stats!.historyProf,
           onChanged: state.statEdit!
@@ -414,7 +435,7 @@ class _SkillChecks extends StatelessWidget {
             state.stats!.proficiencyBonus,
           )),
           checkColor: themeColor,
-          activeColor: white,
+          activeColor: black,
           tristate: true,
           value: state.stats!.insightProf,
           onChanged: state.statEdit!
@@ -435,7 +456,7 @@ class _SkillChecks extends StatelessWidget {
             state.stats!.proficiencyBonus,
           )),
           checkColor: themeColor,
-          activeColor: white,
+          activeColor: black,
           tristate: true,
           value: state.stats!.intimidationProf,
           onChanged: state.statEdit!
@@ -456,7 +477,7 @@ class _SkillChecks extends StatelessWidget {
             state.stats!.proficiencyBonus,
           )),
           checkColor: themeColor,
-          activeColor: white,
+          activeColor: black,
           tristate: true,
           value: state.stats!.investigationProf,
           onChanged: state.statEdit!
@@ -477,7 +498,7 @@ class _SkillChecks extends StatelessWidget {
             state.stats!.proficiencyBonus,
           )),
           checkColor: themeColor,
-          activeColor: white,
+          activeColor: black,
           tristate: true,
           value: state.stats!.medicineProf,
           onChanged: state.statEdit!
@@ -498,7 +519,7 @@ class _SkillChecks extends StatelessWidget {
             state.stats!.proficiencyBonus,
           )),
           checkColor: themeColor,
-          activeColor: white,
+          activeColor: black,
           tristate: true,
           value: state.stats!.natureProf,
           onChanged: state.statEdit!
@@ -519,7 +540,7 @@ class _SkillChecks extends StatelessWidget {
             state.stats!.proficiencyBonus,
           )),
           checkColor: themeColor,
-          activeColor: white,
+          activeColor: black,
           tristate: true,
           value: state.stats!.perceptionProf,
           onChanged: state.statEdit!
@@ -540,7 +561,7 @@ class _SkillChecks extends StatelessWidget {
             state.stats!.proficiencyBonus,
           )),
           checkColor: themeColor,
-          activeColor: white,
+          activeColor: black,
           tristate: true,
           value: state.stats!.performanceProf,
           onChanged: state.statEdit!
@@ -561,7 +582,7 @@ class _SkillChecks extends StatelessWidget {
             state.stats!.proficiencyBonus,
           )),
           checkColor: themeColor,
-          activeColor: white,
+          activeColor: black,
           tristate: true,
           value: state.stats!.persuasionProf,
           onChanged: state.statEdit!
@@ -582,7 +603,7 @@ class _SkillChecks extends StatelessWidget {
             state.stats!.proficiencyBonus,
           )),
           checkColor: themeColor,
-          activeColor: white,
+          activeColor: black,
           tristate: true,
           value: state.stats!.religionProf,
           onChanged: state.statEdit!
@@ -603,7 +624,7 @@ class _SkillChecks extends StatelessWidget {
             state.stats!.proficiencyBonus,
           )),
           checkColor: themeColor,
-          activeColor: white,
+          activeColor: black,
           tristate: true,
           value: state.stats!.sleightOfHandProf,
           onChanged: state.statEdit!
@@ -624,7 +645,7 @@ class _SkillChecks extends StatelessWidget {
             state.stats!.proficiencyBonus,
           )),
           checkColor: themeColor,
-          activeColor: white,
+          activeColor: black,
           tristate: true,
           value: state.stats!.stealthProf,
           onChanged: state.statEdit!
@@ -645,7 +666,7 @@ class _SkillChecks extends StatelessWidget {
             state.stats!.proficiencyBonus,
           )),
           checkColor: themeColor,
-          activeColor: white,
+          activeColor: black,
           tristate: true,
           value: state.stats!.survivalProf,
           onChanged: state.statEdit!
@@ -669,7 +690,7 @@ class _SkillChecks extends StatelessWidget {
                 ),
                 Checkbox(
                   checkColor: themeColor,
-                  activeColor: white,
+                  activeColor: black,
                   tristate: true,
                   value: state.stats!.inspiration,
                   onChanged: state.statEdit!

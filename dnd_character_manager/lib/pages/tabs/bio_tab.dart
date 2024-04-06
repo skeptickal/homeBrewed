@@ -152,7 +152,7 @@ class _Traits extends StatelessWidget {
             Center(
               child: Text(
                 'Select Your Character\'s Alignment',
-                style: dndFont.copyWith(fontWeight: FontWeight.bold),
+                style: dndFont.copyWith(fontWeight: FontWeight.bold, color: white),
               ),
             ),
             Padding(
@@ -276,7 +276,7 @@ class _EditBlock extends StatelessWidget {
                 ),
                 Text(
                   !state.bioEdit! ? 'Enable Edit' : 'Disable Edit',
-                  style: dndFont.copyWith(color: state.bioEdit! ? black : disableGrey),
+                  style: dndFont.copyWith(color: state.bioEdit! ? white : disableGrey),
                 ),
               ],
             ),

@@ -28,7 +28,7 @@ class CustomTextBox extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Center(child: Text(subtitle, style: dndFont.copyWith(fontSize: 14, fontWeight: FontWeight.bold))),
+          Center(child: Text(subtitle, style: dndFont.copyWith(fontSize: 14, fontWeight: FontWeight.bold, color: white))),
           const SizedBox(height: 4),
           TextFormField(
             controller: controller,
@@ -75,12 +75,12 @@ class BigTextBox extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Center(child: Text(subtitle, style: dndFont.copyWith(fontSize: 14, fontWeight: FontWeight.bold))),
+          Center(child: Text(subtitle, style: dndFont.copyWith(fontSize: 14, fontWeight: FontWeight.bold, color: white))),
           const SizedBox(height: 4),
           Focus(
             onFocusChange: (hasFocus) => hasFocus ? null : onEditingComplete!(),
             child: TextField(
-              style: TextStyle(color: !enabled ? disableGrey : black),
+              style: TextStyle(color: !enabled ? disableGrey : white),
               textInputAction: TextInputAction.none,
               onTapOutside: onTapOutside,
               onEditingComplete: onEditingComplete,
@@ -131,11 +131,11 @@ class StatTextBox extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Center(child: Text(subtitle, textAlign: TextAlign.center, style: dndFont.copyWith(fontSize: 14, fontWeight: FontWeight.bold))),
+          Center(child: Text(subtitle, textAlign: TextAlign.center, style: dndFont.copyWith(fontSize: 14, fontWeight: FontWeight.bold, color: white))),
           Focus(
             onFocusChange: (hasFocus) => hasFocus ? null : onEditingComplete!(),
             child: TextFormField(
-              style: TextStyle(color: !enabled ? const Color.fromARGB(255, 124, 124, 124) : black),
+              style: TextStyle(color: !enabled ? const Color.fromARGB(255, 124, 124, 124) : white),
               onTapOutside: onTapOutside,
               onEditingComplete: onEditingComplete,
               textAlign: TextAlign.center,
@@ -155,28 +155,28 @@ class StatTextBox extends StatelessWidget {
 }
 
 final textInputDecoration = InputDecoration(
-  fillColor: white,
+  fillColor: black,
   filled: true,
-  hintStyle: dndFont.copyWith(fontSize: 14),
+  hintStyle: dndFont.copyWith(fontSize: 14, color: white),
   enabledBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: themeColor, width: 2.0),
+    borderSide: BorderSide(color: white, width: 2.0),
   ),
   focusedBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: black, width: 2.0),
+    borderSide: BorderSide(color: white, width: 2.0),
   ),
 );
 
 InputDecoration dndFieldInputDecoration({required bool enabled, required String hintText}) {
   return InputDecoration(
     hintText: hintText,
-    fillColor: white,
+    fillColor: black,
     filled: true,
-    hintStyle: dndFont.copyWith(fontSize: 14),
+    hintStyle: dndFont.copyWith(fontSize: 14, color: white),
     enabledBorder: OutlineInputBorder(
       borderSide: BorderSide(color: themeColor, width: enabled ? 2.0 : 0),
     ),
     focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: black, width: enabled ? 2.0 : 1),
+      borderSide: BorderSide(color: white, width: enabled ? 2.0 : 1),
     ),
   );
 }

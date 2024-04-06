@@ -77,7 +77,7 @@ void _onPressedDeleteIcon(BuildContext context, String userID, String charID, St
     builder: (context) => AlertDialog(
       title: Text(
         'Are you sure you want to delete $name?',
-        style: TextStyle(color: white, fontSize: 18),
+        style: TextStyle(color: black, fontSize: 18),
       ),
       backgroundColor: themeColor,
       surfaceTintColor: themeColor,
@@ -85,7 +85,7 @@ void _onPressedDeleteIcon(BuildContext context, String userID, String charID, St
         TextButton(
           child: Text(
             'Delete Permanently',
-            style: TextStyle(color: white),
+            style: TextStyle(color: black),
           ),
           onPressed: () {
             context.read<BioCubit>().deleteCharacterByCharID(charID).then((result) {
