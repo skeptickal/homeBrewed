@@ -123,8 +123,9 @@ void _onPressedTile({required BuildContext context, required String name, requir
       child: SingleChildScrollView(
         child: AlertDialog(
           title: Text(
-            description,
-            style: TextStyle(color: white, fontSize: 18),
+            '$name\n\n$description',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 18, color: white),
           ),
           backgroundColor: blueGrey,
           surfaceTintColor: blueGrey,

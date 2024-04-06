@@ -3,6 +3,7 @@ import 'package:dnd_character_manager/cubits/user_cubit/user_cubit.dart';
 import 'package:dnd_character_manager/models/bio.dart';
 import 'package:dnd_character_manager/pages/tabs/bio_tab.dart';
 import 'package:dnd_character_manager/pages/tabs/notes_tab.dart';
+import 'package:dnd_character_manager/pages/tabs/resources_tab.dart';
 import 'package:dnd_character_manager/pages/tabs/stat_tab.dart';
 import 'package:dnd_character_manager/pages/tabs/weapons_tab.dart';
 
@@ -51,7 +52,7 @@ class CharacterViewerScreen extends StatelessWidget {
                       Center(child: Text('Actions ${bio.charID}')),
                       const Center(child: Text('Spells')),
                       WeaponsTab(charID: bio.charID!),
-                      const Center(child: Text('Resources')),
+                      const ResourceTab(),
                       const Center(child: Text('Items')),
                       const Center(child: Text('Income')),
                       BioTab(bio: bio),
