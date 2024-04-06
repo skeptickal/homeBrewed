@@ -43,6 +43,10 @@ class _SignIn extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CustomTextBox(
+              validator: (value) {
+                value!.isEmpty ? 'Enter an email' : null;
+                return value;
+              },
               obscureText: false,
               padding: const EdgeInsets.all(6),
               controller: email,
@@ -57,8 +61,15 @@ class _SignIn extends StatelessWidget {
               subtitle: 'Enter Password',
             ),
             TextButton(
-              onPressed: () {
-                context.read<UserCubit>().signIn(email.text, password.text);
+              onPressed: () async {
+                dynamic result = await context.read<UserCubit>().signIn(email.text, password.text);
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(result),
+                    ),
+                  );
+                }
               },
               child: Text(
                 'Sign In',
