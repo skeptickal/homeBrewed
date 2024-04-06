@@ -57,8 +57,15 @@ class _SignUp extends StatelessWidget {
               subtitle: 'Enter New Password',
             ),
             TextButton(
-              onPressed: () {
-                context.read<UserCubit>().signUp(email.text, password.text);
+              onPressed: () async {
+                dynamic result = await context.read<UserCubit>().signUp(email.text, password.text);
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(result),
+                    ),
+                  );
+                }
               },
               child: Text(
                 'Sign Up',

@@ -18,24 +18,26 @@ class FirebaseAuthClient {
     });
   }
 
-  Future<void> signIn(String email, String password) async {
+  Future<String> signIn(String email, String password) async {
     try {
       await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+      return 'Successful Login';
     } catch (e) {
       print(e.toString());
-      rethrow;
+      return 'Login Unsuccessful, Try Again';
     }
   }
 
-  Future<void> signUp({required MyUser myUser, required String password}) async {
+  Future<String> signUp({required MyUser myUser, required String password}) async {
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
         email: myUser.email,
         password: password,
       );
+      return 'Successful Registration';
     } catch (e) {
       print(e.toString());
-      rethrow;
+      return 'Registration Unsuccessful, Try Again';
     }
   }
 

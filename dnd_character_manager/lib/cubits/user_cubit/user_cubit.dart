@@ -18,7 +18,6 @@ class UserCubit extends Cubit<UserState> {
 
   //edit booleans -> add setData functionality eventually to all these
 
-
 // Firebase Auth related cubit functions
   Future<void> initialize() async {
     firebaseAuthClient.user.listen((MyUser? myUser) => _onUserChange(myUser));
@@ -28,13 +27,13 @@ class UserCubit extends Cubit<UserState> {
     emit(state.copyWith(signedIn: myUser != null, myUser: myUser));
   }
 
-  Future<void> signIn(String email, String password) async {
-    firebaseAuthClient.signIn(email, password);
+  Future<String> signIn(String email, String password) async {
+    return firebaseAuthClient.signIn(email, password);
   }
 
-  Future<void> signUp(String email, String password) async {
+  Future<String> signUp(String email, String password) async {
     MyUser myUser = MyUser(email: email);
-    firebaseAuthClient.signUp(myUser: myUser, password: password);
+    return firebaseAuthClient.signUp(myUser: myUser, password: password);
   }
 
   Future<void> signOut() => firebaseAuthClient.signOut();

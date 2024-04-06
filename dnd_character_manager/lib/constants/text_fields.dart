@@ -2,6 +2,7 @@ import 'package:dnd_character_manager/constants/theme_data.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextBox extends StatelessWidget {
+  final String? Function(String?)? validator;
   final int? maxLines;
   final EdgeInsets padding;
   final TextEditingController controller;
@@ -11,6 +12,7 @@ class CustomTextBox extends StatelessWidget {
   final bool obscureText;
 
   const CustomTextBox({
+    this.validator,
     this.maxLines,
     required this.padding,
     required this.controller,
@@ -31,6 +33,7 @@ class CustomTextBox extends StatelessWidget {
           Center(child: Text(subtitle, style: dndFont.copyWith(fontSize: 14, fontWeight: FontWeight.bold))),
           const SizedBox(height: 4),
           TextFormField(
+            validator: validator,
             controller: controller,
             minLines: minLines,
             obscureText: obscureText,
