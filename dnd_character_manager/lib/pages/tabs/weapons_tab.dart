@@ -119,25 +119,27 @@ void _onPressedDeleteIcon({required BuildContext context, required String weapon
 void _onPressedTile({required BuildContext context, required String name, required String description}) {
   showDialog(
     context: context,
-    builder: (context) => SingleChildScrollView(
-      child: AlertDialog(
-        title: Text(
-          description,
-          style: TextStyle(color: white, fontSize: 18),
-        ),
-        backgroundColor: blueGrey,
-        surfaceTintColor: blueGrey,
-        actions: [
-          TextButton(
-            child: Text(
-              'Back',
-              style: TextStyle(color: white),
-            ),
-            onPressed: () {
-              context.pop();
-            },
+    builder: (context) => Center(
+      child: SingleChildScrollView(
+        child: AlertDialog(
+          title: Text(
+            description,
+            style: TextStyle(color: white, fontSize: 18),
           ),
-        ],
+          backgroundColor: blueGrey,
+          surfaceTintColor: blueGrey,
+          actions: [
+            TextButton(
+              child: Text(
+                'Back',
+                style: TextStyle(color: white),
+              ),
+              onPressed: () {
+                context.pop();
+              },
+            ),
+          ],
+        ),
       ),
     ),
   );
