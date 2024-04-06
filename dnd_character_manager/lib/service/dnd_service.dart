@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dnd_character_manager/client/firebase_client.dart';
 import 'package:dnd_character_manager/models/bio.dart';
 import 'package:dnd_character_manager/models/notes.dart';
+import 'package:dnd_character_manager/models/resource.dart';
 import 'package:dnd_character_manager/models/stats.dart';
 import 'package:dnd_character_manager/models/weapon.dart';
 
@@ -87,11 +88,42 @@ class DndService {
     client.deleteDocumentByName(documentName: weaponID!, collectionName: 'weapons');
   }
 
+  //read resource data from specific character
+  Future<Resource> readResourcesData({required String charID}) async {
+    DocumentSnapshot documentSnapshot = await client.getDocumentData(collectionName: 'resources', documentName: charID);
+    Map<String, dynamic> data = documentSnapshot.data() as Map<String, dynamic>;
+    return Resource.fromJson(data);
+  }
+
+  //edit resource data for specific character
+  Future<void> setResourcesData({required Resource resource}) async {
+    client.setData(collectionName: 'resources', documentName: resource.resourceID, body: resource.toJson());
+  }
+
+  //read resources data by charID
+  Future<List<Resource>> readResourcesByCharID({required String? charID}) async {
+    QuerySnapshot<Map<String, dynamic>> data = await client.getData(collectionName: 'resources');
+    List<Resource> resources = data.docs
+        .map((doc) => Resource.fromJson(doc.data()))
+        .where(
+          (resource) => resource.charID == charID,
+        )
+        .toList();
+    print('Jackson service: $resources');
+    return resources;
+  }
+
+  //delete resource by resourceID
+  Future<void> deleteResourceByResourceID({required String? resourceID}) async {
+    client.deleteDocumentByName(documentName: resourceID!, collectionName: 'resources');
+  }
+
   //delete docs
   Future<void> deleteFullCharacter({required String charID}) async {
     client.deleteDocumentByName(documentName: charID, collectionName: 'bio');
     client.deleteDocumentByName(documentName: charID, collectionName: 'stats');
     client.deleteDocumentByName(documentName: charID, collectionName: 'notes');
     client.deleteDocumentByFieldValue(fieldName: 'charID', fieldValue: charID, collectionName: 'weapons');
+    client.deleteDocumentByFieldValue(fieldName: 'charID', fieldValue: charID, collectionName: 'resources');
   }
 }

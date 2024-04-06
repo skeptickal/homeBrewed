@@ -52,7 +52,7 @@ class CharacterViewerScreen extends StatelessWidget {
                       Center(child: Text('Actions ${bio.charID}')),
                       const Center(child: Text('Spells')),
                       WeaponsTab(charID: bio.charID!),
-                      const ResourceTab(),
+                      ResourcesTab(charID: bio.charID!),
                       const Center(child: Text('Items')),
                       const Center(child: Text('Income')),
                       BioTab(bio: bio),
