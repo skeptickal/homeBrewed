@@ -8,38 +8,55 @@ class ResourceTab extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController value = TextEditingController();
     value.text = '1';
-    return GridView(
-      shrinkWrap: true,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, crossAxisSpacing: 10, mainAxisSpacing: 10),
-      children: [
-        Center(
-          child: Text(
-            'E.g. Spell Slots\nMax 3, Current 2',
-            style: dndFont.copyWith(fontStyle: FontStyle.italic, fontSize: 14),
-            textAlign: TextAlign.center,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: GridView(
+        shrinkWrap: true,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, crossAxisSpacing: 10, mainAxisSpacing: 10),
+        children: [
+          const Center(
+            child: SizedBox(),
           ),
-        ),
-        Center(
-          child: Text(
-            'Resources',
-            style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
-            textAlign: TextAlign.center,
+          Center(
+            child: Column(
+              children: [
+                Text(
+                  'Resources\n',
+                  style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+                  textAlign: TextAlign.center,
+                ),
+                Center(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white, // Adjust color as needed
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 2,
+                          blurRadius: 3,
+                          offset: const Offset(0, 2), // changes position of shadow
+                        ),
+                      ],
+                    ),
+                    child: IconButton(
+                      iconSize: 25,
+                      color: Colors.blueGrey,
+                      icon: const Icon(Icons.add),
+                      onPressed: () {},
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-        Center(
-            child: IconButton(
-          iconSize: 25,
-          color: blueGrey,
-          icon: Icon(
-            Icons.add,
-          ),
-          onPressed: () {},
-        )),
-        const _ResourceBox(),
-        const _ResourceBox(),
-        const _ResourceBox(),
-        const _ResourceBox(),
-      ],
+          const SizedBox(),
+          const _ResourceBox(),
+          const _ResourceBox(),
+          const _ResourceBox(),
+          const _ResourceBox(),
+        ],
+      ),
     );
   }
 }
@@ -49,7 +66,7 @@ class _ResourceBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    Widget box = Container(
       decoration: BoxDecoration(
         border: Border.all(color: blueGrey, width: 2),
         borderRadius: BorderRadius.circular(20),
@@ -99,5 +116,7 @@ class _ResourceBox extends StatelessWidget {
         ),
       ),
     );
+
+    return box;
   }
 }

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 //colors
-Color blueGrey = Colors.blueGrey;
+Color blueGrey = const Color.fromARGB(255, 4, 58, 9);
+// Colors.blueGrey;
 
 Color white = Colors.white;
 
