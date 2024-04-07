@@ -13,17 +13,16 @@ class EditResourceScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController name = TextEditingController();
+    name.text = resource.name ?? '';
+    TextEditingController currentResourceValue = TextEditingController();
+    currentResourceValue.text = resource.currentResourceValue ?? '';
+    TextEditingController maxResourceValue = TextEditingController();
+    maxResourceValue.text = resource.maxResourceValue ?? '';
+    TextEditingController description = TextEditingController();
+    description.text = resource.description ?? '';
     return BlocBuilder<ResourceCubit, ResourceState>(
       builder: (context, state) {
-        TextEditingController name = TextEditingController();
-        name.text = state.resource!.name ?? '';
-        TextEditingController currentResourceValue = TextEditingController();
-        currentResourceValue.text = state.resource!.currentResourceValue ?? '';
-        TextEditingController maxResourceValue = TextEditingController();
-        maxResourceValue.text = state.resource!.maxResourceValue ?? '';
-        TextEditingController description = TextEditingController();
-        description.text = state.resource!.description ?? '';
-
         return Form(
           child: SingleChildScrollView(
             padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
@@ -31,10 +30,20 @@ class EditResourceScreen extends StatelessWidget {
               children: [
                 BigTextBox(
                   onTapOutside: (clickOut) => context.read<ResourceCubit>().setResourcesData(
-                        state.resource!.copyWith(name: name.text),
+                        resource.copyWith(
+                          name: name.text,
+                          currentResourceValue: currentResourceValue.text,
+                          maxResourceValue: maxResourceValue.text,
+                          description: description.text,
+                        ),
                       ),
                   onEditingComplete: () => context.read<ResourceCubit>().setResourcesData(
-                        state.resource!.copyWith(name: name.text),
+                        resource.copyWith(
+                          name: name.text,
+                          currentResourceValue: currentResourceValue.text,
+                          maxResourceValue: maxResourceValue.text,
+                          description: description.text,
+                        ),
                       ),
                   enabled: true,
                   padding: const EdgeInsets.all(6),
@@ -44,10 +53,20 @@ class EditResourceScreen extends StatelessWidget {
                 ),
                 BigTextBox(
                   onTapOutside: (clickOut) => context.read<ResourceCubit>().setResourcesData(
-                        state.resource!.copyWith(currentResourceValue: currentResourceValue.text),
+                        resource.copyWith(
+                          name: name.text,
+                          currentResourceValue: currentResourceValue.text,
+                          maxResourceValue: maxResourceValue.text,
+                          description: description.text,
+                        ),
                       ),
                   onEditingComplete: () => context.read<ResourceCubit>().setResourcesData(
-                        state.resource!.copyWith(currentResourceValue: currentResourceValue.text),
+                        resource.copyWith(
+                          name: name.text,
+                          currentResourceValue: currentResourceValue.text,
+                          maxResourceValue: maxResourceValue.text,
+                          description: description.text,
+                        ),
                       ),
                   enabled: true,
                   padding: const EdgeInsets.all(6),
@@ -57,10 +76,20 @@ class EditResourceScreen extends StatelessWidget {
                 ),
                 BigTextBox(
                   onTapOutside: (clickOut) => context.read<ResourceCubit>().setResourcesData(
-                        state.resource!.copyWith(maxResourceValue: maxResourceValue.text),
+                        resource.copyWith(
+                          name: name.text,
+                          currentResourceValue: currentResourceValue.text,
+                          maxResourceValue: maxResourceValue.text,
+                          description: description.text,
+                        ),
                       ),
                   onEditingComplete: () => context.read<ResourceCubit>().setResourcesData(
-                        state.resource!.copyWith(maxResourceValue: maxResourceValue.text),
+                        resource.copyWith(
+                          name: name.text,
+                          currentResourceValue: currentResourceValue.text,
+                          maxResourceValue: maxResourceValue.text,
+                          description: description.text,
+                        ),
                       ),
                   enabled: true,
                   padding: const EdgeInsets.all(6),
@@ -70,10 +99,20 @@ class EditResourceScreen extends StatelessWidget {
                 ),
                 BigTextBox(
                   onTapOutside: (clickOut) => context.read<ResourceCubit>().setResourcesData(
-                        state.resource!.copyWith(description: description.text),
+                        resource.copyWith(
+                          name: name.text,
+                          currentResourceValue: currentResourceValue.text,
+                          maxResourceValue: maxResourceValue.text,
+                          description: description.text,
+                        ),
                       ),
                   onEditingComplete: () => context.read<ResourceCubit>().setResourcesData(
-                        state.resource!.copyWith(description: description.text),
+                        resource.copyWith(
+                          name: name.text,
+                          currentResourceValue: currentResourceValue.text,
+                          maxResourceValue: maxResourceValue.text,
+                          description: description.text,
+                        ),
                       ),
                   enabled: true,
                   padding: const EdgeInsets.all(6),

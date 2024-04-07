@@ -28,10 +28,20 @@ class EditWeaponScreen extends StatelessWidget {
               children: [
                 BigTextBox(
                   onTapOutside: (clickOut) {
-                    context.read<WeaponCubit>().setWeaponsData(weapon.copyWith(name: name.text));
+                    context.read<WeaponCubit>().setWeaponsData(weapon.copyWith(
+                          name: name.text,
+                          attackRoll: attackRoll.text,
+                          damageRoll: damageRoll.text,
+                          description: description.text,
+                        ));
                   },
                   onEditingComplete: () {
-                    context.read<WeaponCubit>().setWeaponsData(weapon.copyWith(name: name.text));
+                    context.read<WeaponCubit>().setWeaponsData(weapon.copyWith(
+                          name: name.text,
+                          attackRoll: attackRoll.text,
+                          damageRoll: damageRoll.text,
+                          description: description.text,
+                        ));
                   },
                   enabled: true,
                   padding: const EdgeInsets.all(6),
@@ -41,10 +51,20 @@ class EditWeaponScreen extends StatelessWidget {
                 ),
                 BigTextBox(
                   onTapOutside: (clickOut) {
-                    context.read<WeaponCubit>().setWeaponsData(weapon.copyWith(attackRoll: attackRoll.text));
+                    context.read<WeaponCubit>().setWeaponsData(weapon.copyWith(
+                          name: name.text,
+                          attackRoll: attackRoll.text,
+                          damageRoll: damageRoll.text,
+                          description: description.text,
+                        ));
                   },
                   onEditingComplete: () {
-                    context.read<WeaponCubit>().setWeaponsData(weapon.copyWith(attackRoll: attackRoll.text));
+                    context.read<WeaponCubit>().setWeaponsData(weapon.copyWith(
+                          name: name.text,
+                          attackRoll: attackRoll.text,
+                          damageRoll: damageRoll.text,
+                          description: description.text,
+                        ));
                   },
                   enabled: true,
                   padding: const EdgeInsets.all(6),
@@ -54,10 +74,20 @@ class EditWeaponScreen extends StatelessWidget {
                 ),
                 BigTextBox(
                   onTapOutside: (clickOut) {
-                    context.read<WeaponCubit>().setWeaponsData(weapon.copyWith(damageRoll: damageRoll.text));
+                    context.read<WeaponCubit>().setWeaponsData(weapon.copyWith(
+                          name: name.text,
+                          attackRoll: attackRoll.text,
+                          damageRoll: damageRoll.text,
+                          description: description.text,
+                        ));
                   },
                   onEditingComplete: () {
-                    context.read<WeaponCubit>().setWeaponsData(weapon.copyWith(damageRoll: damageRoll.text));
+                    context.read<WeaponCubit>().setWeaponsData(weapon.copyWith(
+                          name: name.text,
+                          attackRoll: attackRoll.text,
+                          damageRoll: damageRoll.text,
+                          description: description.text,
+                        ));
                   },
                   enabled: true,
                   padding: const EdgeInsets.all(6),
@@ -67,10 +97,20 @@ class EditWeaponScreen extends StatelessWidget {
                 ),
                 BigTextBox(
                   onTapOutside: (clickOut) {
-                    context.read<WeaponCubit>().setWeaponsData(weapon.copyWith(description: description.text));
+                    context.read<WeaponCubit>().setWeaponsData(weapon.copyWith(
+                          name: name.text,
+                          attackRoll: attackRoll.text,
+                          damageRoll: damageRoll.text,
+                          description: description.text,
+                        ));
                   },
                   onEditingComplete: () {
-                    context.read<WeaponCubit>().setWeaponsData(weapon.copyWith(description: description.text));
+                    context.read<WeaponCubit>().setWeaponsData(weapon.copyWith(
+                          name: name.text,
+                          attackRoll: attackRoll.text,
+                          damageRoll: damageRoll.text,
+                          description: description.text,
+                        ));
                   },
                   enabled: true,
                   padding: const EdgeInsets.all(6),
@@ -81,6 +121,7 @@ class EditWeaponScreen extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
+                    context.read<WeaponCubit>().readWeaponsByCharID(weapon.charID);
                     context.pop();
                   },
                   child: Text(
