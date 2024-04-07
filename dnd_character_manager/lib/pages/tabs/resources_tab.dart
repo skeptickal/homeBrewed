@@ -56,11 +56,10 @@ class _ResourcesList extends StatelessWidget {
                         IconButton(
                           onPressed: () {
                             int? resourceValueAsInt = int.tryParse(resource.currentResourceValue ?? '0')! - 1;
-                            context.read<ResourceCubit>().setResourcesData(
-                                  resource.copyWith(
-                                    currentResourceValue: resourceValueAsInt.toString(),
-                                  ),
-                                );
+                            context.read<ResourceCubit>().setResourcesData(resource.copyWith(
+                                  currentResourceValue: resourceValueAsInt.toString(),
+                                ));
+                            context.read<ResourceCubit>().readResourcesByCharID(charID);
                           },
                           icon: const Icon(Icons.remove),
                         ),
@@ -81,6 +80,7 @@ class _ResourcesList extends StatelessWidget {
                           onPressed: () {
                             int? resourceValueAsInt = int.tryParse(resource.currentResourceValue ?? '0')! + 1;
                             context.read<ResourceCubit>().setResourcesData(resource.copyWith(currentResourceValue: resourceValueAsInt.toString()));
+                            context.read<ResourceCubit>().readResourcesByCharID(charID);
                           },
                           icon: const Icon(
                             Icons.add,

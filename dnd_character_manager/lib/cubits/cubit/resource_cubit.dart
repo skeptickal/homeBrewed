@@ -26,7 +26,7 @@ class ResourceCubit extends Cubit<ResourceState> {
 
   Future<void> setResourcesData(Resource resource) async {
     await dndService.setResourcesData(resource: resource);
-    emit(state.copyWith(resources: [...?state.resources, resource]));
+    //emit(state.copyWith(resources: [...?state.resources, resource]));
   }
 
   Future<void> readResourcesByCharID(String? charID) async {
