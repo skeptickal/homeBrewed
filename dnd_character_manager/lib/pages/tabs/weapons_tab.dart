@@ -34,28 +34,31 @@ class _WeaponsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<WeaponCubit>().readWeaponsByCharID(charID);
     return BlocBuilder<WeaponCubit, WeaponState>(
       builder: (context, state) {
-        context.read<WeaponCubit>().readWeaponsByCharID(charID);
-        print('Jackson: ${state.weapons}');
         List<Padding> weapons = state.weapons!.map(
-          (weapon) {
+          (weapon1) {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
               child: Container(
                 decoration: BoxDecoration(border: Border.all(color: themeColor), borderRadius: BorderRadius.circular(20)),
                 child: ListTile(
-                  onTap: () => _onPressedTile(context: context, description: weapon.description ?? '', name: weapon.name ?? ''),
+                  onTap: () => _onPressedTile(context: context, description: weapon1.description ?? '', name: weapon1.name ?? ''),
                   leading: IconButton(
-                    onPressed: () => _showPostEditPanel(context, weapon),
+                    onPressed: () {
+                      print('Jeff 123 ${weapon1.weaponID}');
+                      //context.read<WeaponCubit>().readWeaponData(weapon1.weaponID!);
+                      _showPostEditPanel(context, weapon1);
+                    },
                     icon: const FaIcon(FontAwesomeIcons.penToSquare),
                   ),
                   title: Text(
-                    weapon.name ?? '',
+                    weapon1.name ?? '',
                     style: dndFont.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   subtitle: Text(
-                    'Attack: ${weapon.attackRoll ?? ''}\nDamage: ${weapon.damageRoll ?? ''}',
+                    'Attack: ${weapon1.attackRoll ?? ''}\nDamage: ${weapon1.damageRoll ?? ''}',
                     style: dndFont.copyWith(fontSize: 14, fontStyle: FontStyle.italic),
                   ),
                   trailing: IconButton(
@@ -65,8 +68,8 @@ class _WeaponsList extends StatelessWidget {
                     ),
                     onPressed: () => _onPressedDeleteIcon(
                       context: context,
-                      weaponID: weapon.weaponID!,
-                      name: weapon.name!,
+                      weaponID: weapon1.weaponID!,
+                      name: weapon1.name!,
                       charID: charID!,
                     ),
                   ),

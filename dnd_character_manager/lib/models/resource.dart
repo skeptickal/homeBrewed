@@ -42,7 +42,7 @@ class Resource extends Equatable {
 
   factory Resource.fromJson(Map<String, dynamic> json) {
     return Resource(
-      resourceID: json['ResourceID'].toString(),
+      resourceID: json['resourceID'].toString(),
       charID: json['charID'].toString(),
       name: json['name'].toString(),
       description: json['description'].toString(),

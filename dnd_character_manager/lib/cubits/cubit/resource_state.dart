@@ -19,20 +19,8 @@ class ResourceState extends Equatable {
 final class ResourceInitial extends ResourceState {
   ResourceInitial()
       : super(
-          resources: [
-            const Resource(
-              name: 'Long Sword',
-              currentResourceValue: '1',
-              maxResourceValue: '4',
-              resourceID: '1234',
-            ),
-          ],
-          resource: const Resource(
-            name: 'Long Sword',
-            currentResourceValue: '1d4+3',
-            maxResourceValue: '1d20+5',
-            resourceID: '4567',
-          ),
+          resources: [],
+          resource: null,
           resourceEdit: false,
         );
 }

@@ -17,7 +17,6 @@ class AddResourceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextEditingController name = TextEditingController();
-    TextEditingController currentResourceValue = TextEditingController();
     TextEditingController maxResourceValue = TextEditingController();
     TextEditingController description = TextEditingController();
 
@@ -31,28 +30,21 @@ class AddResourceScreen extends StatelessWidget {
                 CustomTextBox(
                   padding: const EdgeInsets.all(6),
                   controller: name,
-                  hintText: 'Resource name',
+                  hintText: 'e.g. Spell Splots',
                   subtitle: 'Resource name',
                   obscureText: false,
                 ),
                 CustomTextBox(
                   padding: const EdgeInsets.all(6),
-                  controller: currentResourceValue,
-                  hintText: '1d20 + 5 (STR)',
-                  subtitle: 'Attack Roll',
-                  obscureText: false,
-                ),
-                CustomTextBox(
-                  padding: const EdgeInsets.all(6),
                   controller: maxResourceValue,
-                  hintText: '1d10 + 2 Bludgeoning',
-                  subtitle: 'Damage Roll + Type',
+                  hintText: 'e.g. 5',
+                  subtitle: 'Max Value',
                   obscureText: false,
                 ),
                 CustomTextBox(
                   padding: const EdgeInsets.all(6),
                   controller: description,
-                  hintText: 'Has a chance to burn target',
+                  hintText: 'E.g. expend to cast a leveled spell',
                   subtitle: 'Description (Optional)',
                   obscureText: false,
                 ),
@@ -60,7 +52,7 @@ class AddResourceScreen extends StatelessWidget {
                   onPressed: () => _addResource(
                     context: context,
                     name: name.text,
-                    currentResourceValue: currentResourceValue.text,
+                    currentResourceValue: maxResourceValue.text,
                     maxResourceValue: maxResourceValue.text,
                     description: description.text,
                     charID: charID,

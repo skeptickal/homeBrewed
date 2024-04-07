@@ -58,10 +58,11 @@ class DndService {
     client.setData(collectionName: 'notes', documentName: notes.charID, body: notes.toJson());
   }
 
-  //read weapon data from specific character
-  Future<Weapon> readWeaponsData({required String charID}) async {
-    DocumentSnapshot documentSnapshot = await client.getDocumentData(collectionName: 'weapons', documentName: charID);
+  // //read weapon data from specific character
+  Future<Weapon> readWeaponData({required String weaponID}) async {
+    DocumentSnapshot documentSnapshot = await client.getDocumentData(collectionName: 'weapons', documentName: weaponID);
     Map<String, dynamic> data = documentSnapshot.data() as Map<String, dynamic>;
+    print('Jeff service: $data');
     return Weapon.fromJson(data);
   }
 
@@ -88,12 +89,12 @@ class DndService {
     client.deleteDocumentByName(documentName: weaponID!, collectionName: 'weapons');
   }
 
-  //read resource data from specific character
-  Future<Resource> readResourcesData({required String charID}) async {
-    DocumentSnapshot documentSnapshot = await client.getDocumentData(collectionName: 'resources', documentName: charID);
-    Map<String, dynamic> data = documentSnapshot.data() as Map<String, dynamic>;
-    return Resource.fromJson(data);
-  }
+  // //read resource data from specific character
+  // Future<Resource> readResourcesData({required String charID}) async {
+  //   DocumentSnapshot documentSnapshot = await client.getDocumentData(collectionName: 'resources', documentName: charID);
+  //   Map<String, dynamic> data = documentSnapshot.data() as Map<String, dynamic>;
+  //   return Resource.fromJson(data);
+  // }
 
   //edit resource data for specific character
   Future<void> setResourcesData({required Resource resource}) async {
