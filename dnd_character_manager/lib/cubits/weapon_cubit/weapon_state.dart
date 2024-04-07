@@ -2,25 +2,30 @@ part of 'weapon_cubit.dart';
 
 @immutable
 class WeaponState extends Equatable {
-  final Weapon? weapon;
-  final bool? weaponEdit;
   final List<Weapon>? weapons;
+  final Weapon? currentSelectedWeapon;
 
-  const WeaponState({required this.weapon, this.weaponEdit, required this.weapons});
+  const WeaponState({required this.weapons, this.currentSelectedWeapon});
 
-  WeaponState copyWith({weapon, weaponEdit, weapons}) {
-    return WeaponState(weapon: weapon ?? this.weapon, weaponEdit: weaponEdit ?? this.weaponEdit, weapons: weapons ?? this.weapons);
+  WeaponState copyWith({weapons, currentSelectedWeapon}) {
+    return WeaponState(weapons: weapons ?? this.weapons, currentSelectedWeapon: currentSelectedWeapon);
   }
 
   @override
-  List<Object?> get props => [weapon, weaponEdit, weapons];
+  List<Object?> get props => [weapons, currentSelectedWeapon];
 }
 
 final class WeaponInitial extends WeaponState {
   WeaponInitial()
       : super(
           weapons: [],
-          weapon: null,
-          weaponEdit: false,
+          currentSelectedWeapon: Weapon(
+            charID: '1234',
+            weaponID: '5678',
+            damageRoll: '1',
+            description: '2',
+            attackRoll: '3',
+            name: 'axe',
+          ),
         );
 }
