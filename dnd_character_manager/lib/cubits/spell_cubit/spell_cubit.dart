@@ -16,16 +16,8 @@ class SpellCubit extends Cubit<SpellState> {
           SpellInitial(),
         );
 
-  // Future<void> readSpellData(Spell newlySelectedspell) async {
-  //   //final Spell newlySelectedspell = await dndService.readSpellData(spellID: spellID);
-  //   print('Jeff before emit: $newlySelectedspell');
-  //   emit(state.copyWith(currentSelectedSpell: newlySelectedspell));
-  //   print('Jeff after emit ${state.currentSelectedSpell}');
-  // }
-
   Future<void> setSpellsData(Spell spell) async {
     await dndService.setSpellsData(spell: spell);
-    //emit(state.copyWith(spells: [...?state.spells, spell]));
   }
 
   Future<void> readSpellsByCharID(String? charID) async {

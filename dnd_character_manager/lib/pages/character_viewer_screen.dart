@@ -1,6 +1,7 @@
 import 'package:dnd_character_manager/constants/screen_wrapper.dart';
 import 'package:dnd_character_manager/cubits/user_cubit/user_cubit.dart';
 import 'package:dnd_character_manager/models/bio.dart';
+import 'package:dnd_character_manager/pages/tabs/actions_tab.dart';
 import 'package:dnd_character_manager/pages/tabs/bio_tab.dart';
 import 'package:dnd_character_manager/pages/tabs/notes_tab.dart';
 import 'package:dnd_character_manager/pages/tabs/resources_tab.dart';
@@ -50,7 +51,7 @@ class CharacterViewerScreen extends StatelessWidget {
                   child: TabBarView(
                     children: [
                       StatTab(charID: bio.charID!),
-                      Center(child: Text('Actions ${bio.charID}')),
+                      DndActionsTab(charID: bio.charID!),
                       SpellsTab(charID: bio.charID!),
                       WeaponsTab(charID: bio.charID!),
                       ResourcesTab(charID: bio.charID!),
