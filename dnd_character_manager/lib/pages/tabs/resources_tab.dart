@@ -179,7 +179,6 @@ void _showEditPanel(BuildContext context, String charID) {
       });
 }
 
-
 void _showPostEditPanel(BuildContext context, Resource resource) {
   showDialog(
     barrierDismissible: false,

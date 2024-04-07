@@ -1,8 +1,10 @@
 import 'package:dnd_character_manager/constants/text_fields.dart';
 import 'package:dnd_character_manager/constants/theme_data.dart';
+import 'package:dnd_character_manager/cubits/income_cubit/income_cubit.dart';
 import 'package:dnd_character_manager/cubits/user_cubit/user_cubit.dart';
 import 'package:dnd_character_manager/cubits/notes_cubit/cubit/notes_cubit.dart';
 import 'package:dnd_character_manager/models/bio.dart';
+import 'package:dnd_character_manager/models/income.dart';
 import 'package:dnd_character_manager/models/notes.dart';
 import 'package:dnd_character_manager/models/stats.dart';
 import 'package:flutter/material.dart';
@@ -92,5 +94,16 @@ class AddDndCharacterScreen extends StatelessWidget {
     Notes newNotes = Notes(charID: newDndCharacter.charID);
     context.read<NotesCubit>().setNotesData(newNotes);
     context.pop();
+
+    //initialize income for new character
+    Income newIncomes = Income(
+      charID: newDndCharacter.charID,
+      gold: '0',
+      platinum: '0',
+      copper: '0',
+      electrum: '0',
+      silver: '0',
+    );
+    context.read<IncomeCubit>().setIncomesData(newIncomes);
   }
 }
