@@ -27,26 +27,34 @@ class AddResourceScreen extends StatelessWidget {
             padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
             child: Column(
               children: [
-                CustomTextBox(
+                BigTextBox(
+                  maxLength: 15,
+                  maxLines: 1,
+                  enabled: true,
+                  onEditingComplete: () {},
                   padding: const EdgeInsets.all(6),
                   controller: name,
                   hintText: 'e.g. Spell Splots',
                   subtitle: 'Resource name',
-                  obscureText: false,
                 ),
-                CustomTextBox(
-                  padding: const EdgeInsets.all(6),
+                BigTextBox(
+                  enabled: true,
+                  onEditingComplete: () {},
+                  padding: const EdgeInsets.symmetric(horizontal: 100),
                   controller: maxResourceValue,
                   hintText: 'e.g. 5',
                   subtitle: 'Max Value',
-                  obscureText: false,
+                  keyboardType: TextInputType.number,
+                  maxLength: 3,
                 ),
-                CustomTextBox(
+                BigTextBox(
+                  minLines: 5,
+                  onEditingComplete: () {},
+                  enabled: true,
                   padding: const EdgeInsets.all(6),
                   controller: description,
                   hintText: 'E.g. expend to cast a leveled spell',
                   subtitle: 'Description (Optional)',
-                  obscureText: false,
                 ),
                 TextButton(
                   onPressed: () => _addResource(
@@ -82,6 +90,7 @@ class AddResourceScreen extends StatelessWidget {
       description: description,
     );
     context.read<ResourceCubit>().setResourcesData(newResource);
+    context.read<ResourceCubit>().readResourcesByCharID(charID);
     context.pop();
   }
 }

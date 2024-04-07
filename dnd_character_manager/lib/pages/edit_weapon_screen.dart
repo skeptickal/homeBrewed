@@ -34,6 +34,7 @@ class EditWeaponScreen extends StatelessWidget {
                           damageRoll: damageRoll.text,
                           description: description.text,
                         ));
+                    context.read<WeaponCubit>().readWeaponsByCharID(weapon.charID);
                   },
                   onEditingComplete: () {
                     context.read<WeaponCubit>().setWeaponsData(weapon.copyWith(
@@ -42,6 +43,7 @@ class EditWeaponScreen extends StatelessWidget {
                           damageRoll: damageRoll.text,
                           description: description.text,
                         ));
+                    context.read<WeaponCubit>().readWeaponsByCharID(weapon.charID);
                   },
                   enabled: true,
                   padding: const EdgeInsets.all(6),
@@ -57,6 +59,7 @@ class EditWeaponScreen extends StatelessWidget {
                           damageRoll: damageRoll.text,
                           description: description.text,
                         ));
+                    context.read<WeaponCubit>().readWeaponsByCharID(weapon.charID);
                   },
                   onEditingComplete: () {
                     context.read<WeaponCubit>().setWeaponsData(weapon.copyWith(
@@ -65,6 +68,7 @@ class EditWeaponScreen extends StatelessWidget {
                           damageRoll: damageRoll.text,
                           description: description.text,
                         ));
+                    context.read<WeaponCubit>().readWeaponsByCharID(weapon.charID);
                   },
                   enabled: true,
                   padding: const EdgeInsets.all(6),
@@ -80,6 +84,7 @@ class EditWeaponScreen extends StatelessWidget {
                           damageRoll: damageRoll.text,
                           description: description.text,
                         ));
+                    context.read<WeaponCubit>().readWeaponsByCharID(weapon.charID);
                   },
                   onEditingComplete: () {
                     context.read<WeaponCubit>().setWeaponsData(weapon.copyWith(
@@ -88,6 +93,7 @@ class EditWeaponScreen extends StatelessWidget {
                           damageRoll: damageRoll.text,
                           description: description.text,
                         ));
+                    context.read<WeaponCubit>().readWeaponsByCharID(weapon.charID);
                   },
                   enabled: true,
                   padding: const EdgeInsets.all(6),
@@ -103,6 +109,7 @@ class EditWeaponScreen extends StatelessWidget {
                           damageRoll: damageRoll.text,
                           description: description.text,
                         ));
+                    context.read<WeaponCubit>().readWeaponsByCharID(weapon.charID);
                   },
                   onEditingComplete: () {
                     context.read<WeaponCubit>().setWeaponsData(weapon.copyWith(
@@ -111,6 +118,7 @@ class EditWeaponScreen extends StatelessWidget {
                           damageRoll: damageRoll.text,
                           description: description.text,
                         ));
+                    context.read<WeaponCubit>().readWeaponsByCharID(weapon.charID);
                   },
                   enabled: true,
                   padding: const EdgeInsets.all(6),

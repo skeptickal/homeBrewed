@@ -87,6 +87,7 @@ class AddWeaponScreen extends StatelessWidget {
       description: description,
     );
     context.read<WeaponCubit>().setWeaponsData(newWeapon);
+    context.read<WeaponCubit>().readWeaponsByCharID(charID);
     context.pop();
   }
 }

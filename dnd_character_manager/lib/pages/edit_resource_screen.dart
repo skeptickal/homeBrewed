@@ -1,3 +1,4 @@
+import 'package:dnd_character_manager/client/spacing.dart';
 import 'package:dnd_character_manager/constants/text_fields.dart';
 import 'package:dnd_character_manager/constants/theme_data.dart';
 import 'package:dnd_character_manager/models/resource.dart';
@@ -45,57 +46,68 @@ class EditResourceScreen extends StatelessWidget {
                           description: description.text,
                         ),
                       ),
+                  maxLength: 15,
                   enabled: true,
                   padding: const EdgeInsets.all(6),
                   controller: name,
                   hintText: 'Resource name',
                   subtitle: 'Resource name',
+                  keyboardType: TextInputType.text,
+                  maxLines: 1,
                 ),
-                BigTextBox(
-                  onTapOutside: (clickOut) => context.read<ResourceCubit>().setResourcesData(
-                        resource.copyWith(
-                          name: name.text,
-                          currentResourceValue: currentResourceValue.text,
-                          maxResourceValue: maxResourceValue.text,
-                          description: description.text,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 70.0),
+                  child: StatTextBox(
+                    onTapOutside: (clickOut) => context.read<ResourceCubit>().setResourcesData(
+                          resource.copyWith(
+                            name: name.text,
+                            currentResourceValue: currentResourceValue.text,
+                            maxResourceValue: maxResourceValue.text,
+                            description: description.text,
+                          ),
                         ),
-                      ),
-                  onEditingComplete: () => context.read<ResourceCubit>().setResourcesData(
-                        resource.copyWith(
-                          name: name.text,
-                          currentResourceValue: currentResourceValue.text,
-                          maxResourceValue: maxResourceValue.text,
-                          description: description.text,
+                    onEditingComplete: () => context.read<ResourceCubit>().setResourcesData(
+                          resource.copyWith(
+                            name: name.text,
+                            currentResourceValue: currentResourceValue.text,
+                            maxResourceValue: maxResourceValue.text,
+                            description: description.text,
+                          ),
                         ),
-                      ),
-                  enabled: true,
-                  padding: const EdgeInsets.all(6),
-                  controller: currentResourceValue,
-                  hintText: '1d20 + 5 (STR)',
-                  subtitle: 'Attack Roll',
+                    maxLength: 3,
+                    enabled: true,
+                    padding: const EdgeInsets.all(6),
+                    controller: currentResourceValue,
+                    hintText: '5',
+                    subtitle: 'Current Value',
+                  ),
                 ),
-                BigTextBox(
-                  onTapOutside: (clickOut) => context.read<ResourceCubit>().setResourcesData(
-                        resource.copyWith(
-                          name: name.text,
-                          currentResourceValue: currentResourceValue.text,
-                          maxResourceValue: maxResourceValue.text,
-                          description: description.text,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 70),
+                  child: StatTextBox(
+                    onTapOutside: (clickOut) => context.read<ResourceCubit>().setResourcesData(
+                          resource.copyWith(
+                            name: name.text,
+                            currentResourceValue: currentResourceValue.text,
+                            maxResourceValue: maxResourceValue.text,
+                            description: description.text,
+                          ),
                         ),
-                      ),
-                  onEditingComplete: () => context.read<ResourceCubit>().setResourcesData(
-                        resource.copyWith(
-                          name: name.text,
-                          currentResourceValue: currentResourceValue.text,
-                          maxResourceValue: maxResourceValue.text,
-                          description: description.text,
+                    onEditingComplete: () => context.read<ResourceCubit>().setResourcesData(
+                          resource.copyWith(
+                            name: name.text,
+                            currentResourceValue: currentResourceValue.text,
+                            maxResourceValue: maxResourceValue.text,
+                            description: description.text,
+                          ),
                         ),
-                      ),
-                  enabled: true,
-                  padding: const EdgeInsets.all(6),
-                  controller: maxResourceValue,
-                  hintText: '1d10 + 2 Bludgeoning',
-                  subtitle: 'Damage Roll + Type',
+                    maxLength: 3,
+                    enabled: true,
+                    padding: const EdgeInsets.all(6),
+                    controller: maxResourceValue,
+                    hintText: '5',
+                    subtitle: 'Max Value',
+                  ),
                 ),
                 BigTextBox(
                   onTapOutside: (clickOut) => context.read<ResourceCubit>().setResourcesData(
@@ -123,11 +135,28 @@ class EditResourceScreen extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
+                    context.read<ResourceCubit>().readResourcesByCharID(resource.charID);
                     context.pop();
                   },
                   child: Text(
                     'Done Editing',
-                    style: dndFont,
+                    style: dndFont.copyWith(color: black),
+                  ),
+                ),
+                horizontalLine,
+                seperation,
+                TextButton(
+                  onPressed: () {
+                    _onPressedDeleteIcon(
+                      context: context,
+                      charID: resource.charID!,
+                      name: resource.name ?? '',
+                      resourceID: resource.resourceID!,
+                    );
+                  },
+                  child: Text(
+                    'Delete Resource?',
+                    style: dndFont.copyWith(color: Colors.red),
                   ),
                 ),
               ],
@@ -137,4 +166,32 @@ class EditResourceScreen extends StatelessWidget {
       },
     );
   }
+}
+
+void _onPressedDeleteIcon({required BuildContext context, required String resourceID, required String name, required String charID}) {
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Text(
+        'Are you sure you want to delete $name?',
+        style: TextStyle(color: white, fontSize: 18),
+      ),
+      backgroundColor: themeColor,
+      surfaceTintColor: themeColor,
+      actions: [
+        TextButton(
+          child: Text(
+            'Delete Permanently',
+            style: TextStyle(color: white),
+          ),
+          onPressed: () {
+            context.read<ResourceCubit>().deleteResourceByResourceID(resourceID);
+            context.read<ResourceCubit>().readResourcesByCharID(charID);
+            context.pop();
+            context.pop();
+          },
+        ),
+      ],
+    ),
+  );
 }
