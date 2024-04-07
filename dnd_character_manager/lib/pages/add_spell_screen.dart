@@ -101,7 +101,7 @@ class AddSpellScreen extends StatelessWidget {
                     context.pop();
                   },
                   child: Text(
-                    'Done Editing',
+                    'Add Spell',
                     style: dndFont,
                   ),
                 ),

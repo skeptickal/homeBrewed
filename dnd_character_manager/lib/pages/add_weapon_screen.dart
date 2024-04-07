@@ -133,7 +133,7 @@ class AddWeaponScreen extends StatelessWidget {
                     context.pop();
                   },
                   child: Text(
-                    'Done Editing',
+                    'Add Weapon',
                     style: dndFont,
                   ),
                 ),

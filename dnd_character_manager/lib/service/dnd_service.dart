@@ -6,6 +6,7 @@ import 'package:dnd_character_manager/models/resource.dart';
 import 'package:dnd_character_manager/models/stats.dart';
 import 'package:dnd_character_manager/models/weapon.dart';
 
+import '../models/dnd_action.dart';
 import '../models/spell.dart';
 
 class DndService {
@@ -106,7 +107,7 @@ class DndService {
     client.deleteDocumentByName(documentName: resourceID!, collectionName: 'resources');
   }
 
-  //edit weapon data for specific character
+  //edit spell data for specific character
   Future<void> setSpellsData({required Spell spell}) async {
     client.setData(collectionName: 'spells', documentName: spell.spellID, body: spell.toJson());
   }
@@ -129,6 +130,29 @@ class DndService {
     client.deleteDocumentByName(documentName: spellID!, collectionName: 'spells');
   }
 
+  //edit action data for specific character
+  Future<void> setDndActionsData({required DndAction dndAction}) async {
+    client.setData(collectionName: 'dndActions', documentName: dndAction.dndActionID, body: dndAction.toJson());
+  }
+
+  //read dndActions data by charID
+  Future<List<DndAction>> readDndActionsByCharID({required String? charID}) async {
+    QuerySnapshot<Map<String, dynamic>> data = await client.getData(collectionName: 'dndActions');
+    List<DndAction> dndActions = data.docs
+        .map((doc) => DndAction.fromJson(doc.data()))
+        .where(
+          (dndAction) => dndAction.charID == charID,
+        )
+        .toList();
+    print('Jackson service: $dndActions');
+    return dndActions;
+  }
+
+  //delete dndAction by dndActionID
+  Future<void> deleteDndActionByDndActionID({required String? dndActionID}) async {
+    client.deleteDocumentByName(documentName: dndActionID!, collectionName: 'dndActions');
+  }
+
   //delete docs
   Future<void> deleteFullCharacter({required String charID}) async {
     client.deleteDocumentByName(documentName: charID, collectionName: 'bio');
@@ -137,5 +161,6 @@ class DndService {
     client.deleteDocumentByFieldValue(fieldName: 'charID', fieldValue: charID, collectionName: 'weapons');
     client.deleteDocumentByFieldValue(fieldName: 'charID', fieldValue: charID, collectionName: 'resources');
     client.deleteDocumentByFieldValue(fieldName: 'charID', fieldValue: charID, collectionName: 'spells');
+    client.deleteDocumentByFieldValue(fieldName: 'charID', fieldValue: charID, collectionName: 'dndActions');
   }
 }
