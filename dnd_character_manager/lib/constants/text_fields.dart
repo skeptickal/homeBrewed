@@ -48,6 +48,9 @@ class CustomTextBox extends StatelessWidget {
 }
 
 class BigTextBox extends StatelessWidget {
+  final int? maxLength;
+  final int? maxLines;
+  final TextInputType? keyboardType;
   final bool? readOnly;
   final void Function(PointerDownEvent)? onTapOutside;
   final void Function()? onEditingComplete;
@@ -59,6 +62,9 @@ class BigTextBox extends StatelessWidget {
   final int? minLines;
 
   const BigTextBox({
+    this.maxLength,
+    this.maxLines,
+    this.keyboardType,
     this.readOnly,
     this.onTapOutside,
     this.onEditingComplete,
@@ -83,6 +89,7 @@ class BigTextBox extends StatelessWidget {
           Focus(
             onFocusChange: (hasFocus) => hasFocus ? null : onEditingComplete!(),
             child: TextField(
+              maxLength: maxLength,
               style: TextStyle(color: !enabled ? disableGrey : black),
               textInputAction: TextInputAction.none,
               onTapOutside: onTapOutside,
@@ -90,8 +97,8 @@ class BigTextBox extends StatelessWidget {
               readOnly: !enabled,
               controller: controller,
               minLines: minLines,
-              maxLines: null,
-              keyboardType: TextInputType.multiline,
+              maxLines: maxLines,
+              keyboardType: keyboardType ?? TextInputType.multiline,
               decoration: dndFieldInputDecoration(enabled: enabled, hintText: hintText),
             ),
           ),
@@ -102,6 +109,7 @@ class BigTextBox extends StatelessWidget {
 }
 
 class StatTextBox extends StatelessWidget {
+  final int? maxLength;
   final TextInputAction? action;
   final TextInputType? inputType;
   final void Function(PointerDownEvent)? onTapOutside;
@@ -114,6 +122,7 @@ class StatTextBox extends StatelessWidget {
   final int? minLines;
 
   const StatTextBox({
+    this.maxLength,
     this.action,
     this.inputType,
     this.onTapOutside,
@@ -138,6 +147,7 @@ class StatTextBox extends StatelessWidget {
           Focus(
             onFocusChange: (hasFocus) => hasFocus ? null : onEditingComplete!(),
             child: TextFormField(
+              maxLength: maxLength,
               style: TextStyle(color: !enabled ? const Color.fromARGB(255, 124, 124, 124) : black),
               onTapOutside: onTapOutside,
               onEditingComplete: onEditingComplete,
@@ -171,6 +181,7 @@ final textInputDecoration = InputDecoration(
 
 InputDecoration dndFieldInputDecoration({required bool enabled, required String hintText}) {
   return InputDecoration(
+    focusColor: themeColor,
     hintText: hintText,
     fillColor: white,
     filled: true,
@@ -179,7 +190,7 @@ InputDecoration dndFieldInputDecoration({required bool enabled, required String 
       borderSide: BorderSide(color: themeColor, width: enabled ? 2.0 : 0),
     ),
     focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: black, width: enabled ? 2.0 : 1),
+      borderSide: BorderSide(color: themeColor, width: enabled ? 2.0 : 1),
     ),
   );
 }

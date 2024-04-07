@@ -19,7 +19,7 @@ final class WeaponInitial extends WeaponState {
   WeaponInitial()
       : super(
           weapons: [],
-          currentSelectedWeapon: Weapon(
+          currentSelectedWeapon: const Weapon(
             charID: '1234',
             weaponID: '5678',
             damageRoll: '1',

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../client/spacing.dart';
 import '../../constants/theme_data.dart';
@@ -145,64 +144,7 @@ class _ResourcesList extends StatelessWidget {
   }
 }
 
-void _onPressedDeleteIcon({required BuildContext context, required String resourceID, required String name, required String charID}) {
-  showDialog(
-    context: context,
-    builder: (context) => AlertDialog(
-      title: Text(
-        'Are you sure you want to delete $name?',
-        style: TextStyle(color: white, fontSize: 18),
-      ),
-      backgroundColor: themeColor,
-      surfaceTintColor: themeColor,
-      actions: [
-        TextButton(
-          child: Text(
-            'Delete Permanently',
-            style: TextStyle(color: white),
-          ),
-          onPressed: () {
-            context.read<ResourceCubit>().deleteResourceByResourceID(resourceID).then((result) {
-              context.read<ResourceCubit>().readResourcesByCharID(charID);
-              context.pop();
-            });
-          },
-        ),
-      ],
-    ),
-  );
-}
-
-void _onPressedTile({required BuildContext context, required String name, required String description}) {
-  showDialog(
-    context: context,
-    builder: (context) => Center(
-      child: SingleChildScrollView(
-        child: AlertDialog(
-          title: Text(
-            '$name\n\n$description',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 18, color: white),
-          ),
-          backgroundColor: themeColor,
-          surfaceTintColor: themeColor,
-          actions: [
-            TextButton(
-              child: Text(
-                'Back',
-                style: TextStyle(color: white),
-              ),
-              onPressed: () {
-                context.pop();
-              },
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
-}
-
+// ignore: unused_element
 class _AddResource extends StatelessWidget {
   final String charID;
   const _AddResource({required this.charID});
@@ -239,7 +181,6 @@ void _showEditPanel(BuildContext context, String charID) {
 void _showPostEditPanel(BuildContext context, Resource resource) {
   showDialog(
     barrierDismissible: false,
-    barrierColor: black,
     context: context,
     builder: (context) => Center(
       child: SingleChildScrollView(
