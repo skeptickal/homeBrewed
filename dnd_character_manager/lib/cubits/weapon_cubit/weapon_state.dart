@@ -6,7 +6,7 @@ class WeaponState extends Equatable {
   final bool? weaponEdit;
   final List<Weapon>? weapons;
 
-  const WeaponState({this.weapon, this.weaponEdit, required this.weapons});
+  const WeaponState({required this.weapon, this.weaponEdit, required this.weapons});
 
   WeaponState copyWith({weapon, weaponEdit, weapons}) {
     return WeaponState(weapon: weapon ?? this.weapon, weaponEdit: weaponEdit ?? this.weaponEdit, weapons: weapons ?? this.weapons);
@@ -19,20 +19,8 @@ class WeaponState extends Equatable {
 final class WeaponInitial extends WeaponState {
   WeaponInitial()
       : super(
-          weapons: [
-            const Weapon(
-              name: 'Long Sword',
-              damageRoll: '1d4+3',
-              attackRoll: '1d20+5',
-              weaponID: '1234',
-            ),
-          ],
-          weapon: const Weapon(
-            name: 'Long Sword',
-            damageRoll: '1d4+3',
-            attackRoll: '1d20+5',
-            weaponID: '4567',
-          ),
+          weapons: [],
+          weapon: null,
           weaponEdit: false,
         );
 }

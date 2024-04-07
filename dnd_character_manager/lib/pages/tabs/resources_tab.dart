@@ -34,7 +34,7 @@ class _ResourcesList extends StatelessWidget {
     return BlocBuilder<ResourceCubit, ResourceState>(
       builder: (context, state) {
         context.read<ResourceCubit>().readResourcesByCharID(charID);
-        print('Jackson: ${state.resources}');
+        print('Jackson List: ${state.resources}');
         List<Container> resources = state.resources!.map(
           (resource) {
             return Container(
@@ -56,28 +56,44 @@ class _ResourcesList extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    const Text('ResourceName'),
-                    const Text('MAX : 4'),
+                    Text(resource.name ?? ''),
+                    Text('MAX : ${resource.maxResourceValue ?? '0'}'),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            int? resourceValueAsInt = int.tryParse(resource.currentResourceValue ?? '0')! - 1;
+                            context.read<ResourceCubit>().setResourcesData(
+                                  state.resource!.copyWith(
+                                    currentResourceValue: resourceValueAsInt.toString(),
+                                  ),
+                                );
+                          },
                           icon: const Icon(Icons.remove),
                         ),
-                        const Flexible(
+                        Flexible(
                             child: TextField(
-                          style: TextStyle(fontSize: 18),
+                          enabled: false,
+                          controller: TextEditingController(text: resource.currentResourceValue ?? '0'),
+                          style: const TextStyle(fontSize: 18),
                           textAlign: TextAlign.center,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             border: InputBorder.none,
-                            hintText: '1',
+                            hintText: '0',
                             hintStyle: TextStyle(fontSize: 18),
                             contentPadding: EdgeInsets.symmetric(vertical: 10),
                           ),
                         )),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            int? resourceValueAsInt = int.tryParse(resource.currentResourceValue ?? '0')! + 1;
+                            context.read<ResourceCubit>().setResourcesData(
+                                  state.resource!.copyWith(
+                                    currentResourceValue: resourceValueAsInt.toString(),
+                                  ),
+                                );
+                          },
                           icon: const Icon(
                             Icons.add,
                           ),

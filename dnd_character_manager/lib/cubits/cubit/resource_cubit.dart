@@ -19,14 +19,14 @@ class ResourceCubit extends Cubit<ResourceState> {
     emit(state.copyWith(resourceEdit: resourceEdit));
   }
 
-  Future<void> readResourceData(String charID) async {
-    final Resource resource = await dndService.readResourcesData(charID: charID);
-    emit(state.copyWith(resource: resource));
-  }
+  // Future<void> readResourceData(String charID) async {
+  //   final Resource resource = await dndService.readResourcesData(charID: charID);
+  //   emit(state.copyWith(resource: resource));
+  // }
 
   Future<void> setResourcesData(Resource resource) async {
-    emit(state.copyWith(resource: resource, resources: [...?state.resources, resource]));
     await dndService.setResourcesData(resource: resource);
+    emit(state.copyWith(resources: [...?state.resources, resource]));
   }
 
   Future<void> readResourcesByCharID(String? charID) async {

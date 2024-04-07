@@ -20,14 +20,16 @@ class WeaponCubit extends Cubit<WeaponState> {
     emit(state.copyWith(weaponEdit: weaponEdit));
   }
 
-  Future<void> readWeaponData(String charID) async {
-    final Weapon weapon = await dndService.readWeaponsData(charID: charID);
+  Future<void> readWeaponData(String weaponID) async {
+    final Weapon weapon = await dndService.readWeaponData(weaponID: weaponID);
+    print('Jeff cubit: $weapon');
     emit(state.copyWith(weapon: weapon));
+    print('Jeff after emit ${state.weapon}');
   }
 
   Future<void> setWeaponsData(Weapon weapon) async {
-    emit(state.copyWith(weapon: weapon, weapons: [...?state.weapons, weapon]));
     await dndService.setWeaponsData(weapon: weapon);
+    emit(state.copyWith(weapon: weapon, weapons: [...?state.weapons, weapon]));
   }
 
   Future<void> readWeaponsByCharID(String? charID) async {
