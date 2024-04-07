@@ -6,6 +6,8 @@ import 'package:dnd_character_manager/models/resource.dart';
 import 'package:dnd_character_manager/models/stats.dart';
 import 'package:dnd_character_manager/models/weapon.dart';
 
+import '../models/spell.dart';
+
 class DndService {
   final FirebaseClient client;
 
@@ -58,14 +60,6 @@ class DndService {
     client.setData(collectionName: 'notes', documentName: notes.charID, body: notes.toJson());
   }
 
-  // //read weapon data from specific character
-  Future<Weapon> readWeaponData({required String weaponID}) async {
-    DocumentSnapshot documentSnapshot = await client.getDocumentData(collectionName: 'weapons', documentName: weaponID);
-    Map<String, dynamic> data = documentSnapshot.data() as Map<String, dynamic>;
-    print('Jeff service: $data');
-    return Weapon.fromJson(data);
-  }
-
   //edit weapon data for specific character
   Future<void> setWeaponsData({required Weapon weapon}) async {
     client.setData(collectionName: 'weapons', documentName: weapon.weaponID, body: weapon.toJson());
@@ -88,13 +82,6 @@ class DndService {
   Future<void> deleteWeaponByWeaponID({required String? weaponID}) async {
     client.deleteDocumentByName(documentName: weaponID!, collectionName: 'weapons');
   }
-
-  // //read resource data from specific character
-  // Future<Resource> readResourcesData({required String charID}) async {
-  //   DocumentSnapshot documentSnapshot = await client.getDocumentData(collectionName: 'resources', documentName: charID);
-  //   Map<String, dynamic> data = documentSnapshot.data() as Map<String, dynamic>;
-  //   return Resource.fromJson(data);
-  // }
 
   //edit resource data for specific character
   Future<void> setResourcesData({required Resource resource}) async {
@@ -119,6 +106,29 @@ class DndService {
     client.deleteDocumentByName(documentName: resourceID!, collectionName: 'resources');
   }
 
+  //edit weapon data for specific character
+  Future<void> setSpellsData({required Spell spell}) async {
+    client.setData(collectionName: 'spells', documentName: spell.spellID, body: spell.toJson());
+  }
+
+  //read spells data by charID
+  Future<List<Spell>> readSpellsByCharID({required String? charID}) async {
+    QuerySnapshot<Map<String, dynamic>> data = await client.getData(collectionName: 'spells');
+    List<Spell> spells = data.docs
+        .map((doc) => Spell.fromJson(doc.data()))
+        .where(
+          (spell) => spell.charID == charID,
+        )
+        .toList();
+    print('Jackson service: $spells');
+    return spells;
+  }
+
+  //delete spell by spellID
+  Future<void> deleteSpellBySpellID({required String? spellID}) async {
+    client.deleteDocumentByName(documentName: spellID!, collectionName: 'spells');
+  }
+
   //delete docs
   Future<void> deleteFullCharacter({required String charID}) async {
     client.deleteDocumentByName(documentName: charID, collectionName: 'bio');
@@ -126,5 +136,6 @@ class DndService {
     client.deleteDocumentByName(documentName: charID, collectionName: 'notes');
     client.deleteDocumentByFieldValue(fieldName: 'charID', fieldValue: charID, collectionName: 'weapons');
     client.deleteDocumentByFieldValue(fieldName: 'charID', fieldValue: charID, collectionName: 'resources');
+    client.deleteDocumentByFieldValue(fieldName: 'charID', fieldValue: charID, collectionName: 'spells');
   }
 }

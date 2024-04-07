@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../client/spacing.dart';
 import '../../constants/theme_data.dart';
-import '../../cubits/cubit/resource_cubit.dart';
+import '../../cubits/resource_cubit/resource_cubit.dart';
 import '../../models/resource.dart';
 import '../add_resource_screen.dart';
 import '../edit_resource_screen.dart';
@@ -167,16 +168,17 @@ class _AddResource extends StatelessWidget {
 }
 
 void _showEditPanel(BuildContext context, String charID) {
-  showModalBottomSheet(
-      isScrollControlled: true,
+  const uuid = Uuid();
+  Resource resource = Resource(charID: charID, resourceID: uuid.v4());
+  context.read<ResourceCubit>().setResourcesData(resource);
+  showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (context) {
-        return Container(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 60),
-          child: AddResourceScreen(charID: charID),
-        );
+        return Center(child: SingleChildScrollView(child: AlertDialog(title: AddResourceScreen(resource: resource))));
       });
 }
+
 
 void _showPostEditPanel(BuildContext context, Resource resource) {
   showDialog(

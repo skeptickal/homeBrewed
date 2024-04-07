@@ -11,10 +11,10 @@ class Weapon extends Equatable {
   const Weapon({
     this.weaponID,
     this.charID,
-    required this.name,
+    this.name,
     this.description,
-    required this.damageRoll,
-    required this.attackRoll,
+    this.damageRoll,
+    this.attackRoll,
   });
 
   Weapon copyWith({String? charID, String? name, String? description, String? damageRoll, String? attackRoll, String? weaponID}) {

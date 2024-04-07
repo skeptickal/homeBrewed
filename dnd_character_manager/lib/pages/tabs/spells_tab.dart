@@ -1,62 +1,63 @@
-import 'package:dnd_character_manager/cubits/weapon_cubit/weapon_cubit.dart';
-import 'package:dnd_character_manager/models/weapon.dart';
+import 'package:dnd_character_manager/cubits/spell_cubit/spell_cubit.dart';
+import 'package:dnd_character_manager/models/spell.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../client/spacing.dart';
 import '../../constants/theme_data.dart';
-import '../add_weapon_screen.dart';
-import '../edit_weapon_screen.dart';
+import '../add_spell_screen.dart';
+import '../edit_spell_screen.dart';
 
-class WeaponsTab extends StatelessWidget {
+class SpellsTab extends StatelessWidget {
   final String charID;
-  const WeaponsTab({super.key, required this.charID});
+  const SpellsTab({super.key, required this.charID});
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         children: [
-          _WeaponsList(charID: charID),
+          _SpellsList(charID: charID),
           seperation,
-          _AddWeapon(charID: charID),
+          _AddSpell(charID: charID),
         ],
       ),
     );
   }
 }
 
-class _WeaponsList extends StatelessWidget {
+class _SpellsList extends StatelessWidget {
   final String? charID;
-  const _WeaponsList({required this.charID});
+  const _SpellsList({required this.charID});
 
   @override
   Widget build(BuildContext context) {
-    context.read<WeaponCubit>().readWeaponsByCharID(charID);
-    return BlocBuilder<WeaponCubit, WeaponState>(
+    context.read<SpellCubit>().readSpellsByCharID(charID);
+    return BlocBuilder<SpellCubit, SpellState>(
       builder: (context, state) {
-        List<Padding> weapons = state.weapons!.map(
-          (weapon) {
+        List<Padding> spells = state.spells!.map(
+          (spell) {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
               child: Container(
                 decoration: BoxDecoration(border: Border.all(color: themeColor), borderRadius: BorderRadius.circular(20)),
                 child: ListTile(
-                  onTap: () => _onPressedTile(context: context, description: weapon.description ?? '', name: weapon.name ?? ''),
+                  onTap: () => _onPressedTile(context: context, description: spell.description ?? '', name: spell.name ?? ''),
                   leading: IconButton(
                     onPressed: () {
-                      _showPostEditPanel(context, weapon);
+                      _showPostEditPanel(context, spell);
                     },
-                    icon: const ImageIcon(AssetImage('assets/sword.png')),
+                    icon: const FaIcon(FontAwesomeIcons.wandMagic),
                   ),
                   title: Text(
-                    weapon.name ?? '',
+                    spell.name ?? '',
                     style: dndFont.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   subtitle: Text(
-                    'Attack: ${weapon.attackRoll ?? ''}\nDamage: ${weapon.damageRoll ?? ''}',
+                    spell.spellAtkOrDC ?? '',
                     style: dndFont.copyWith(fontSize: 14, fontStyle: FontStyle.italic),
                   ),
                   trailing: IconButton(
@@ -66,8 +67,8 @@ class _WeaponsList extends StatelessWidget {
                     ),
                     onPressed: () => _onPressedDeleteIcon(
                       context: context,
-                      weaponID: weapon.weaponID!,
-                      name: weapon.name!,
+                      spellID: spell.spellID!,
+                      name: spell.name!,
                       charID: charID!,
                     ),
                   ),
@@ -79,18 +80,18 @@ class _WeaponsList extends StatelessWidget {
         return Column(children: [
           seperation,
           Text(
-            'Weapons',
+            'Spells',
             style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
           ),
           seperation,
-          ...weapons
+          ...spells
         ]);
       },
     );
   }
 }
 
-void _onPressedDeleteIcon({required BuildContext context, required String weaponID, required String name, required String charID}) {
+void _onPressedDeleteIcon({required BuildContext context, required String spellID, required String name, required String charID}) {
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
@@ -107,8 +108,8 @@ void _onPressedDeleteIcon({required BuildContext context, required String weapon
             style: TextStyle(color: white),
           ),
           onPressed: () {
-            context.read<WeaponCubit>().deleteWeaponByWeaponID(weaponID).then((result) {
-              context.read<WeaponCubit>().readWeaponsByCharID(charID);
+            context.read<SpellCubit>().deleteSpellBySpellID(spellID).then((result) {
+              context.read<SpellCubit>().readSpellsByCharID(charID);
               context.pop();
             });
           },
@@ -148,9 +149,9 @@ void _onPressedTile({required BuildContext context, required String name, requir
   );
 }
 
-class _AddWeapon extends StatelessWidget {
+class _AddSpell extends StatelessWidget {
   final String charID;
-  const _AddWeapon({required this.charID});
+  const _AddSpell({required this.charID});
 
   @override
   Widget build(BuildContext context) {
@@ -181,17 +182,17 @@ class _AddWeapon extends StatelessWidget {
 
 void _showEditPanel(BuildContext context, String charID) {
   const uuid = Uuid();
-  Weapon weapon = Weapon(charID: charID, weaponID: uuid.v4());
-  context.read<WeaponCubit>().setWeaponsData(weapon);
+  Spell spell = Spell(charID: charID, spellID: uuid.v4());
+  context.read<SpellCubit>().setSpellsData(spell);
   showDialog(
       barrierDismissible: false,
       context: context,
       builder: (context) {
-        return Center(child: SingleChildScrollView(child: AlertDialog(title: AddWeaponScreen(weapon: weapon))));
+        return Center(child: SingleChildScrollView(child: AlertDialog(title: AddSpellScreen(spell: spell))));
       });
 }
 
-void _showPostEditPanel(BuildContext context, Weapon weapon) {
+void _showPostEditPanel(BuildContext context, Spell spell) {
   showDialog(
     barrierDismissible: false,
     //barrierColor: black,
@@ -199,7 +200,7 @@ void _showPostEditPanel(BuildContext context, Weapon weapon) {
     builder: (context) => Center(
       child: SingleChildScrollView(
         child: AlertDialog(
-          title: EditWeaponScreen(weapon: weapon),
+          title: EditSpellScreen(spell: spell),
         ),
       ),
     ),
