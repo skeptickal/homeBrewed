@@ -24,7 +24,7 @@ class FirebaseClient {
   }
 
   Future<dynamic> getDocumentData({required String collectionName, required String documentName}) async {
-    DocumentReference document = firestore.doc('$collectionName/$documentName');
+    DocumentReference document = firestore.doc('/$collectionName/$documentName');
 
     try {
       DocumentSnapshot snapshot = await document.get();

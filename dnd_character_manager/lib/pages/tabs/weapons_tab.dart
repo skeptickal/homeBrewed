@@ -47,8 +47,6 @@ class _WeaponsList extends StatelessWidget {
                   onTap: () => _onPressedTile(context: context, description: weapon1.description ?? '', name: weapon1.name ?? ''),
                   leading: IconButton(
                     onPressed: () {
-                      print('Jeff 123 ${weapon1.weaponID}');
-                      //context.read<WeaponCubit>().readWeaponData(weapon1.weaponID!);
                       _showPostEditPanel(context, weapon1);
                     },
                     icon: const FaIcon(FontAwesomeIcons.penToSquare),

@@ -13,20 +13,16 @@ class EditWeaponScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('Jeff ${weapon.weaponID}');
     context.read<WeaponCubit>().readWeaponData(weapon.weaponID!);
+    print('Jeff ${weapon.weaponID}');
 
     return BlocBuilder<WeaponCubit, WeaponState>(
       builder: (context, state) {
-        TextEditingController name = TextEditingController();
-        name.text = state.weapon!.name ?? '';
-        TextEditingController attackRoll = TextEditingController();
-        attackRoll.text = state.weapon!.attackRoll ?? '';
-        TextEditingController damageRoll = TextEditingController();
-        damageRoll.text = state.weapon!.damageRoll ?? '';
-        TextEditingController description = TextEditingController();
-        description.text = state.weapon!.description ?? '';
-        print('Jeff pls ${state.weapon}');
+        print('Jeff : ${state.currentSelectedWeapon}');
+        TextEditingController name = TextEditingController(text: state.currentSelectedWeapon!.name);
+        TextEditingController attackRoll = TextEditingController(text: state.currentSelectedWeapon!.attackRoll);
+        TextEditingController damageRoll = TextEditingController(text: state.currentSelectedWeapon!.damageRoll);
+        TextEditingController description = TextEditingController(text: state.currentSelectedWeapon!.description);
 
         return Form(
           child: SingleChildScrollView(
