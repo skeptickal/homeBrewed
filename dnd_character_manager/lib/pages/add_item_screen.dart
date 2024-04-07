@@ -14,7 +14,6 @@ class AddItemScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('Jeff ${item.itemID}');
     TextEditingController name = TextEditingController(text: item.name);
     TextEditingController amount = TextEditingController(text: item.amount);
     TextEditingController description = TextEditingController(text: item.description);
