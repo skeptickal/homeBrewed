@@ -16,9 +16,17 @@ class AddResourceScreen extends StatelessWidget {
     TextEditingController name = TextEditingController();
     name.text = resource.name ?? '';
     TextEditingController maxResourceValue = TextEditingController();
-    maxResourceValue.text = resource.maxResourceValue ?? '';
+    maxResourceValue.text = resource.maxResourceValue ?? '0';
     TextEditingController description = TextEditingController();
     description.text = resource.description ?? '';
+    context.read<ResourceCubit>().setResourcesData(
+          resource.copyWith(
+            name: name.text,
+            currentResourceValue: '0',
+            maxResourceValue: '0',
+            description: description.text,
+          ),
+        );
     return BlocBuilder<ResourceCubit, ResourceState>(
       builder: (context, state) {
         return Form(

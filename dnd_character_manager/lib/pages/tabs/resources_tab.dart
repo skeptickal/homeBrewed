@@ -34,6 +34,7 @@ class _ResourcesList extends StatelessWidget {
     return BlocBuilder<ResourceCubit, ResourceState>(
       builder: (context, state) {
         context.read<ResourceCubit>().readResourcesByCharID(charID);
+
         print('Jackson List: ${state.resources}');
         List<Container> resources = state.resources!.map(
           (resource) {
