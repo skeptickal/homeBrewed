@@ -7,6 +7,7 @@ import 'package:dnd_character_manager/models/stats.dart';
 import 'package:dnd_character_manager/models/weapon.dart';
 
 import '../models/dnd_action.dart';
+import '../models/item.dart';
 import '../models/spell.dart';
 
 class DndService {
@@ -153,6 +154,29 @@ class DndService {
     client.deleteDocumentByName(documentName: dndActionID!, collectionName: 'dndActions');
   }
 
+  //edit action data for specific character
+  Future<void> setItemsData({required Item item}) async {
+    client.setData(collectionName: 'items', documentName: item.itemID, body: item.toJson());
+  }
+
+  //read items data by charID
+  Future<List<Item>> readItemsByCharID({required String? charID}) async {
+    QuerySnapshot<Map<String, dynamic>> data = await client.getData(collectionName: 'items');
+    List<Item> items = data.docs
+        .map((doc) => Item.fromJson(doc.data()))
+        .where(
+          (item) => item.charID == charID,
+        )
+        .toList();
+    print('Jackson service: $items');
+    return items;
+  }
+
+  //delete item by itemID
+  Future<void> deleteItemByItemID({required String? itemID}) async {
+    client.deleteDocumentByName(documentName: itemID!, collectionName: 'items');
+  }
+
   //delete docs
   Future<void> deleteFullCharacter({required String charID}) async {
     client.deleteDocumentByName(documentName: charID, collectionName: 'bio');
@@ -162,5 +186,6 @@ class DndService {
     client.deleteDocumentByFieldValue(fieldName: 'charID', fieldValue: charID, collectionName: 'resources');
     client.deleteDocumentByFieldValue(fieldName: 'charID', fieldValue: charID, collectionName: 'spells');
     client.deleteDocumentByFieldValue(fieldName: 'charID', fieldValue: charID, collectionName: 'dndActions');
+    client.deleteDocumentByFieldValue(fieldName: 'charID', fieldValue: charID, collectionName: 'items');
   }
 }
