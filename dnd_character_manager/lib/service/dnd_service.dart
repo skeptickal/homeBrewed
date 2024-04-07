@@ -7,6 +7,7 @@ import 'package:dnd_character_manager/models/stats.dart';
 import 'package:dnd_character_manager/models/weapon.dart';
 
 import '../models/dnd_action.dart';
+import '../models/income.dart';
 import '../models/item.dart';
 import '../models/spell.dart';
 
@@ -177,11 +178,37 @@ class DndService {
     client.deleteDocumentByName(documentName: itemID!, collectionName: 'items');
   }
 
+  //edit action data for specific character
+  Future<void> setIncomesData({required Income income}) async {
+    client.setData(collectionName: 'incomes', documentName: income.charID, body: income.toJson());
+  }
+
+  //read bio data from specific character
+  Future<Income> readIncomeData({required String charID}) async {
+    DocumentSnapshot documentSnapshot = await client.getDocumentData(collectionName: 'incomes', documentName: charID);
+    Map<String, dynamic> data = documentSnapshot.data() as Map<String, dynamic>;
+    return Income.fromJson(data);
+  }
+
+  //read incomes data by charID
+  Future<List<Income>> readIncomesByCharID({required String? charID}) async {
+    QuerySnapshot<Map<String, dynamic>> data = await client.getData(collectionName: 'incomes');
+    List<Income> incomes = data.docs
+        .map((doc) => Income.fromJson(doc.data()))
+        .where(
+          (income) => income.charID == charID,
+        )
+        .toList();
+    print('Jackson service: $incomes');
+    return incomes;
+  }
+
   //delete docs
   Future<void> deleteFullCharacter({required String charID}) async {
     client.deleteDocumentByName(documentName: charID, collectionName: 'bio');
     client.deleteDocumentByName(documentName: charID, collectionName: 'stats');
     client.deleteDocumentByName(documentName: charID, collectionName: 'notes');
+    client.deleteDocumentByName(documentName: charID, collectionName: 'incomes');
     client.deleteDocumentByFieldValue(fieldName: 'charID', fieldValue: charID, collectionName: 'weapons');
     client.deleteDocumentByFieldValue(fieldName: 'charID', fieldValue: charID, collectionName: 'resources');
     client.deleteDocumentByFieldValue(fieldName: 'charID', fieldValue: charID, collectionName: 'spells');
