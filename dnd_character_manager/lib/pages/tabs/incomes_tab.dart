@@ -1,3 +1,4 @@
+import 'package:dnd_character_manager/client/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -39,9 +40,14 @@ class _IncomesList extends StatelessWidget {
                 mainAxisSpacing: 10,
               ),
               children: [
-                const Center(
-                  child: Text('100 copper (cp) = 1 silver (sp)\n\n'
-                      '10 silver (sp) = 1 gold (gp)'),
+                Column(
+                  children: [
+                    const Center(
+                      child: Text('100 copper (cp) = 1 silver (sp)\n\n'
+                          '10 silver (sp) = 1 gold (gp)'),
+                    ),
+                    horizontalLine,
+                  ],
                 ),
                 Center(
                   child: Text(
@@ -50,9 +56,14 @@ class _IncomesList extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                const Center(
-                  child: Text('2 electrum (ep) = 1 gold (gp)\n\n'
-                      '10 gold (gp) = 1 platinum (pp)'),
+                Column(
+                  children: [
+                    const Center(
+                      child: Text('2 electrum (ep) = 1 gold (gp)\n\n'
+                          '10 gold (gp) = 1 platinum (pp)'),
+                    ),
+                    horizontalLine,
+                  ],
                 ),
                 Container(
                   decoration: BoxDecoration(
