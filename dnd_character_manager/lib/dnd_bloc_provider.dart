@@ -1,11 +1,12 @@
 import 'package:dnd_character_manager/cubits/bio_cubit/cubit/bio_cubit.dart';
-import 'package:dnd_character_manager/cubits/cubit/resource_cubit.dart';
+import 'package:dnd_character_manager/cubits/resource_cubit/resource_cubit.dart';
 import 'package:dnd_character_manager/cubits/user_cubit/user_cubit.dart';
 import 'package:dnd_character_manager/cubits/notes_cubit/cubit/notes_cubit.dart';
 import 'package:dnd_character_manager/cubits/weapon_cubit/weapon_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'cubits/spell_cubit/spell_cubit.dart';
 import 'cubits/stat_cubit/cubit/stat_cubit.dart';
 
 class DndBlocProvider extends StatelessWidget {
@@ -21,6 +22,7 @@ class DndBlocProvider extends StatelessWidget {
       BlocProvider(create: (context) => NotesCubit()),
       BlocProvider(create: (context) => WeaponCubit()),
       BlocProvider(create: (context) => ResourceCubit()),
+      BlocProvider(create: (context) => SpellCubit()),
     ], child: child);
   }
 }

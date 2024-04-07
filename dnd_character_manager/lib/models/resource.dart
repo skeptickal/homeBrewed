@@ -11,10 +11,10 @@ class Resource extends Equatable {
   const Resource({
     this.resourceID,
     this.charID,
-    required this.name,
+    this.name,
     this.description,
-    required this.currentResourceValue,
-    required this.maxResourceValue,
+    this.currentResourceValue,
+    this.maxResourceValue,
   });
 
   Resource copyWith({String? charID, String? name, String? description, String? currentResourceValue, String? maxResourceValue, String? resourceID}) {
