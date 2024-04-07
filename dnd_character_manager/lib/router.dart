@@ -1,10 +1,13 @@
 import 'package:dnd_character_manager/models/bio.dart';
 import 'package:dnd_character_manager/pages/character_viewer_screen.dart';
+import 'package:dnd_character_manager/pages/edit_weapon_screen.dart';
 import 'package:dnd_character_manager/pages/home_screen.dart';
 import 'package:dnd_character_manager/pages/login_screen.dart';
 import 'package:dnd_character_manager/pages/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+import 'models/weapon.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: '/',
@@ -32,6 +35,13 @@ final GoRouter router = GoRouter(
       builder: (BuildContext context, GoRouterState state) {
         Bio dndCharacter = state.extra as Bio;
         return CharacterViewerScreen(bio: dndCharacter);
+      },
+    ),
+    GoRoute(
+      path: '/edit_weapon',
+      builder: (BuildContext context, GoRouterState state) {
+        Weapon weapon = state.extra as Weapon;
+        return EditWeaponScreen(weapon: weapon);
       },
     ),
   ],

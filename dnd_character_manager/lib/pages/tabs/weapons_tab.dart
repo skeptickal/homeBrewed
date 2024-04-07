@@ -38,25 +38,25 @@ class _WeaponsList extends StatelessWidget {
     return BlocBuilder<WeaponCubit, WeaponState>(
       builder: (context, state) {
         List<Padding> weapons = state.weapons!.map(
-          (weapon1) {
+          (weapon) {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
               child: Container(
                 decoration: BoxDecoration(border: Border.all(color: themeColor), borderRadius: BorderRadius.circular(20)),
                 child: ListTile(
-                  onTap: () => _onPressedTile(context: context, description: weapon1.description ?? '', name: weapon1.name ?? ''),
+                  onTap: () => _onPressedTile(context: context, description: weapon.description ?? '', name: weapon.name ?? ''),
                   leading: IconButton(
                     onPressed: () {
-                      _showPostEditPanel(context, weapon1);
+                      _showPostEditPanel(context, weapon);
                     },
                     icon: const FaIcon(FontAwesomeIcons.penToSquare),
                   ),
                   title: Text(
-                    weapon1.name ?? '',
+                    weapon.name ?? '',
                     style: dndFont.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   subtitle: Text(
-                    'Attack: ${weapon1.attackRoll ?? ''}\nDamage: ${weapon1.damageRoll ?? ''}',
+                    'Attack: ${weapon.attackRoll ?? ''}\nDamage: ${weapon.damageRoll ?? ''}',
                     style: dndFont.copyWith(fontSize: 14, fontStyle: FontStyle.italic),
                   ),
                   trailing: IconButton(
@@ -66,8 +66,8 @@ class _WeaponsList extends StatelessWidget {
                     ),
                     onPressed: () => _onPressedDeleteIcon(
                       context: context,
-                      weaponID: weapon1.weaponID!,
-                      name: weapon1.name!,
+                      weaponID: weapon.weaponID!,
+                      name: weapon.name!,
                       charID: charID!,
                     ),
                   ),
