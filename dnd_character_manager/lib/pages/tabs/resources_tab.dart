@@ -44,15 +44,7 @@ class _ResourcesList extends StatelessWidget {
               ),
               child: InkWell(
                 borderRadius: BorderRadius.circular(20),
-                onLongPress: () => showDialog(
-                  context: context,
-                  builder: (context) => Center(
-                    child: Text(
-                      'hello',
-                      style: dndFont.copyWith(color: white),
-                    ),
-                  ),
-                ),
+                onLongPress: () => _showPostEditPanel(context, resource),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -65,7 +57,7 @@ class _ResourcesList extends StatelessWidget {
                           onPressed: () {
                             int? resourceValueAsInt = int.tryParse(resource.currentResourceValue ?? '0')! - 1;
                             context.read<ResourceCubit>().setResourcesData(
-                                  state.resource!.copyWith(
+                                  resource.copyWith(
                                     currentResourceValue: resourceValueAsInt.toString(),
                                   ),
                                 );
@@ -88,11 +80,7 @@ class _ResourcesList extends StatelessWidget {
                         IconButton(
                           onPressed: () {
                             int? resourceValueAsInt = int.tryParse(resource.currentResourceValue ?? '0')! + 1;
-                            context.read<ResourceCubit>().setResourcesData(
-                                  state.resource!.copyWith(
-                                    currentResourceValue: resourceValueAsInt.toString(),
-                                  ),
-                                );
+                            context.read<ResourceCubit>().setResourcesData(resource.copyWith(currentResourceValue: resourceValueAsInt.toString()));
                           },
                           icon: const Icon(
                             Icons.add,
@@ -249,13 +237,16 @@ void _showEditPanel(BuildContext context, String charID) {
 }
 
 void _showPostEditPanel(BuildContext context, Resource resource) {
-  showModalBottomSheet(
-      isScrollControlled: true,
-      context: context,
-      builder: (context) {
-        return Container(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 60),
-          child: EditResourceScreen(resource: resource),
-        );
-      });
+  showDialog(
+    barrierDismissible: false,
+    barrierColor: black,
+    context: context,
+    builder: (context) => Center(
+      child: SingleChildScrollView(
+        child: AlertDialog(
+          title: EditResourceScreen(resource: resource),
+        ),
+      ),
+    ),
+  );
 }

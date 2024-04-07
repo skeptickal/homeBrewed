@@ -1,6 +1,7 @@
 import 'package:dnd_character_manager/cubits/weapon_cubit/weapon_cubit.dart';
 import 'package:dnd_character_manager/models/weapon.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
@@ -192,13 +193,16 @@ void _showEditPanel(BuildContext context, String charID) {
 }
 
 void _showPostEditPanel(BuildContext context, Weapon weapon) {
-  showModalBottomSheet(
-      isScrollControlled: true,
-      context: context,
-      builder: (context) {
-        return Container(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 60),
-          child: EditWeaponScreen(weapon: weapon),
-        );
-      });
+  showDialog(
+    barrierDismissible: false,
+    barrierColor: black,
+    context: context,
+    builder: (context) => Center(
+      child: SingleChildScrollView(
+        child: AlertDialog(
+          title: EditWeaponScreen(weapon: weapon),
+        ),
+      ),
+    ),
+  );
 }
