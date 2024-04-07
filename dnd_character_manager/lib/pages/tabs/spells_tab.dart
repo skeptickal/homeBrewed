@@ -83,6 +83,20 @@ class _SpellsList extends StatelessWidget {
             'Spells',
             style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
           ),
+          TextButton(
+            child: Text(
+              'What is my Spell Casting Ability?',
+              style: dndFont.copyWith(fontStyle: FontStyle.italic, color: themeColor),
+            ),
+            onPressed: () => _onPressedSpellCastingAbilityQuestion(context),
+          ),
+          TextButton(
+            child: Text(
+              'What is my Spell Save DC (Difficulty Class)?',
+              style: dndFont.copyWith(fontStyle: FontStyle.italic, color: themeColor),
+            ),
+            onPressed: () => _onPressedSpellSaveDCQuestion(context),
+          ),
           seperation,
           ...spells
         ]);
@@ -125,10 +139,102 @@ void _onPressedTile({required BuildContext context, required String name, requir
     builder: (context) => Center(
       child: SingleChildScrollView(
         child: AlertDialog(
-          title: Text(
-            '$name\n\n$description',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 18, color: white),
+          title: Column(
+            children: [
+              Text(
+                name,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 22, color: white, fontWeight: FontWeight.bold),
+              ),
+              seperation,
+              Text(
+                description,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 18, color: white, fontStyle: FontStyle.italic),
+              ),
+            ],
+          ),
+          backgroundColor: themeColor,
+          surfaceTintColor: themeColor,
+          actions: [
+            TextButton(
+              child: Text(
+                'Back',
+                style: TextStyle(color: white),
+              ),
+              onPressed: () {
+                context.pop();
+              },
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
+void _onPressedSpellCastingAbilityQuestion(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (context) => Center(
+      child: SingleChildScrollView(
+        child: AlertDialog(
+          title: Column(
+            children: [
+              Text(
+                'Spellcasting Ability:\n',
+                style: TextStyle(fontSize: 22, color: white, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                '• Clerics, Druids, Paladins, and Rangers: Your spellcasting ability is determined by your Wisdom modifier.\n\n'
+                '• Sorcerers, Bards, and Warlocks: Your spellcasting ability is determined by your Charisma modifier.\n\n'
+                '• Wizards: Your spellcasting ability is determined by your Intelligence modifier.\n\n'
+                'Your Spell Attack Modifier is = your proficiency bonus + your spellcasting modifier\n\n'
+                'e.g. Bard with Proficiency 3: \n3 + 4(CHA) = 7',
+                textAlign: TextAlign.start,
+                style: TextStyle(fontSize: 18, color: white),
+              ),
+            ],
+          ),
+          backgroundColor: themeColor,
+          surfaceTintColor: themeColor,
+          actions: [
+            TextButton(
+              child: Text(
+                'Back',
+                style: TextStyle(color: white),
+              ),
+              onPressed: () {
+                context.pop();
+              },
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
+void _onPressedSpellSaveDCQuestion(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (context) => Center(
+      child: SingleChildScrollView(
+        child: AlertDialog(
+          title: Column(
+            children: [
+              Text(
+                'Spell Save DC (Difficulty Class):\n',
+                style: TextStyle(fontSize: 22, color: white, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                '• Your Spell Save DC is a number that represents the difficulty for enemies to resist your spells. It\'s calculated as follows:\n\n'
+                '• Spell Save DC = 8 + your proficiency bonus + your spellcasting ability modifier.\n\n'
+                'e.g. Bard with Proficiency 3: \n8 + 3(Prof) + 4(CHA) = 15',
+                textAlign: TextAlign.start,
+                style: TextStyle(fontSize: 18, color: white),
+              ),
+            ],
           ),
           backgroundColor: themeColor,
           surfaceTintColor: themeColor,

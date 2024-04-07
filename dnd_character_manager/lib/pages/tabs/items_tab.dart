@@ -1,5 +1,3 @@
-import 'package:dnd_character_manager/cubits/weapon_cubit/weapon_cubit.dart';
-import 'package:dnd_character_manager/models/weapon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -7,57 +5,59 @@ import 'package:uuid/uuid.dart';
 
 import '../../client/spacing.dart';
 import '../../constants/theme_data.dart';
-import '../add_weapon_screen.dart';
-import '../edit_weapon_screen.dart';
+import '../../cubits/item_cubit/item_cubit.dart';
+import '../../models/item.dart';
+import '../add_item_screen.dart';
+import '../edit_item_screen.dart';
 
-class WeaponsTab extends StatelessWidget {
+class ItemsTab extends StatelessWidget {
   final String charID;
-  const WeaponsTab({super.key, required this.charID});
+  const ItemsTab({super.key, required this.charID});
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         children: [
-          _WeaponsList(charID: charID),
+          _ItemsList(charID: charID),
           seperation,
-          _AddWeapon(charID: charID),
+          _AddItem(charID: charID),
         ],
       ),
     );
   }
 }
 
-class _WeaponsList extends StatelessWidget {
+class _ItemsList extends StatelessWidget {
   final String? charID;
-  const _WeaponsList({required this.charID});
+  const _ItemsList({required this.charID});
 
   @override
   Widget build(BuildContext context) {
-    context.read<WeaponCubit>().readWeaponsByCharID(charID);
-    return BlocBuilder<WeaponCubit, WeaponState>(
+    context.read<ItemCubit>().readItemsByCharID(charID);
+    return BlocBuilder<ItemCubit, ItemState>(
       builder: (context, state) {
-        List<Padding> weapons = state.weapons!.map(
-          (weapon) {
+        List<Padding> items = state.items!.map(
+          (item) {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
               child: Container(
                 decoration: BoxDecoration(border: Border.all(color: themeColor), borderRadius: BorderRadius.circular(20)),
                 child: ListTile(
-                  onTap: () => _onPressedTile(context: context, description: weapon.description ?? '', name: weapon.name ?? ''),
+                  onTap: () => _onPressedTile(context: context, description: item.description ?? '', name: item.name ?? ''),
                   leading: IconButton(
                     onPressed: () {
-                      _showPostEditPanel(context, weapon);
+                      _showPostEditPanel(context, item);
                     },
-                    icon: const ImageIcon(AssetImage('assets/sword.png')),
+                    icon: const Icon(Icons.handyman),
                   ),
                   title: Text(
-                    weapon.name ?? '',
+                    item.name ?? '',
                     style: dndFont.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   subtitle: Text(
-                    'Attack: ${weapon.attackRoll ?? ''}\nDamage: ${weapon.damageRoll ?? ''}',
-                    style: dndFont.copyWith(fontSize: 14, fontStyle: FontStyle.italic),
+                    'x${item.amount ?? ''}',
+                    style: dndFont.copyWith(fontSize: 16),
                   ),
                   trailing: IconButton(
                     icon: Icon(
@@ -66,8 +66,8 @@ class _WeaponsList extends StatelessWidget {
                     ),
                     onPressed: () => _onPressedDeleteIcon(
                       context: context,
-                      weaponID: weapon.weaponID!,
-                      name: weapon.name!,
+                      itemID: item.itemID!,
+                      name: item.name!,
                       charID: charID!,
                     ),
                   ),
@@ -79,18 +79,18 @@ class _WeaponsList extends StatelessWidget {
         return Column(children: [
           seperation,
           Text(
-            'Weapons',
+            'Items',
             style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
           ),
           seperation,
-          ...weapons
+          ...items
         ]);
       },
     );
   }
 }
 
-void _onPressedDeleteIcon({required BuildContext context, required String weaponID, required String name, required String charID}) {
+void _onPressedDeleteIcon({required BuildContext context, required String itemID, required String name, required String charID}) {
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
@@ -107,8 +107,8 @@ void _onPressedDeleteIcon({required BuildContext context, required String weapon
             style: TextStyle(color: white),
           ),
           onPressed: () {
-            context.read<WeaponCubit>().deleteWeaponByWeaponID(weaponID).then((result) {
-              context.read<WeaponCubit>().readWeaponsByCharID(charID);
+            context.read<ItemCubit>().deleteItemByItemID(itemID).then((result) {
+              context.read<ItemCubit>().readItemsByCharID(charID);
               context.pop();
             });
           },
@@ -124,20 +124,10 @@ void _onPressedTile({required BuildContext context, required String name, requir
     builder: (context) => Center(
       child: SingleChildScrollView(
         child: AlertDialog(
-          title: Column(
-            children: [
-              Text(
-                name,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 22, color: white, fontWeight: FontWeight.bold),
-              ),
-              seperation,
-              Text(
-                description,
-                textAlign: TextAlign.start,
-                style: TextStyle(fontSize: 18, color: white, fontStyle: FontStyle.italic),
-              ),
-            ],
+          title: Text(
+            '$name\n\n$description',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 18, color: white),
           ),
           backgroundColor: themeColor,
           surfaceTintColor: themeColor,
@@ -158,9 +148,9 @@ void _onPressedTile({required BuildContext context, required String name, requir
   );
 }
 
-class _AddWeapon extends StatelessWidget {
+class _AddItem extends StatelessWidget {
   final String charID;
-  const _AddWeapon({required this.charID});
+  const _AddItem({required this.charID});
 
   @override
   Widget build(BuildContext context) {
@@ -191,17 +181,17 @@ class _AddWeapon extends StatelessWidget {
 
 void _showEditPanel(BuildContext context, String charID) {
   const uuid = Uuid();
-  Weapon weapon = Weapon(charID: charID, weaponID: uuid.v4());
-  context.read<WeaponCubit>().setWeaponsData(weapon);
+  Item item = Item(charID: charID, itemID: uuid.v4());
+  context.read<ItemCubit>().setItemsData(item);
   showDialog(
       barrierDismissible: false,
       context: context,
       builder: (context) {
-        return Center(child: SingleChildScrollView(child: AlertDialog(title: AddWeaponScreen(weapon: weapon))));
+        return Center(child: SingleChildScrollView(child: AlertDialog(title: AddItemScreen(item: item))));
       });
 }
 
-void _showPostEditPanel(BuildContext context, Weapon weapon) {
+void _showPostEditPanel(BuildContext context, Item item) {
   showDialog(
     barrierDismissible: false,
     //barrierColor: black,
@@ -209,7 +199,7 @@ void _showPostEditPanel(BuildContext context, Weapon weapon) {
     builder: (context) => Center(
       child: SingleChildScrollView(
         child: AlertDialog(
-          title: EditWeaponScreen(weapon: weapon),
+          title: EditItemScreen(item: item),
         ),
       ),
     ),
