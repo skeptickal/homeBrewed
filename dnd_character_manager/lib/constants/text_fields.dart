@@ -1,5 +1,6 @@
 import 'package:dnd_character_manager/constants/theme_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CustomTextBox extends StatelessWidget {
   final String? Function(String?)? validator;
@@ -89,6 +90,7 @@ class BigTextBox extends StatelessWidget {
           Focus(
             onFocusChange: (hasFocus) => hasFocus ? null : onEditingComplete!(),
             child: TextField(
+              maxLengthEnforcement: MaxLengthEnforcement.enforced,
               maxLength: maxLength,
               style: TextStyle(color: !enabled ? disableGrey : black),
               textInputAction: TextInputAction.none,
@@ -147,6 +149,7 @@ class StatTextBox extends StatelessWidget {
           Focus(
             onFocusChange: (hasFocus) => hasFocus ? null : onEditingComplete!(),
             child: TextFormField(
+              maxLengthEnforcement: MaxLengthEnforcement.enforced,
               maxLength: maxLength,
               style: TextStyle(color: !enabled ? const Color.fromARGB(255, 124, 124, 124) : black),
               onTapOutside: onTapOutside,

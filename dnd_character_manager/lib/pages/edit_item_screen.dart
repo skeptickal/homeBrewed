@@ -48,7 +48,7 @@ class EditItemScreen extends StatelessWidget {
                   hintText: 'Item name',
                   subtitle: 'Item name',
                 ),
-                BigTextBox(
+                StatTextBox(
                   onTapOutside: (clickOut) {
                     context.read<ItemCubit>().setItemsData(item.copyWith(
                           name: name.text,
@@ -70,7 +70,6 @@ class EditItemScreen extends StatelessWidget {
                   controller: amount,
                   hintText: '2',
                   subtitle: 'Amount',
-                  keyboardType: TextInputType.number,
                   maxLength: 3,
                 ),
                 BigTextBox(

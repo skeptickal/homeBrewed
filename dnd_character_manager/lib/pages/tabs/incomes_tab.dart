@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import '../../constants/theme_data.dart';
 import '../../cubits/income_cubit/income_cubit.dart';
+import '../../models/income.dart';
 
 class IncomesTab extends StatelessWidget {
   final String charID;
@@ -77,7 +78,7 @@ class _IncomesList extends StatelessWidget {
                 ),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(20),
-                  onLongPress: () {},
+                  onLongPress: () => _showEditDialog(context, state.income!.copper, 'Copper', charID!, state),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -135,7 +136,7 @@ class _IncomesList extends StatelessWidget {
                 ),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(20),
-                  onLongPress: () {},
+                  onLongPress: () => _showEditDialog(context, state.income!.silver, 'Silver', charID!, state),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -193,7 +194,7 @@ class _IncomesList extends StatelessWidget {
                 ),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(20),
-                  onLongPress: () {},
+                  onLongPress: () => _showEditDialog(context, state.income!.electrum, 'Electrum', charID!, state),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -251,7 +252,7 @@ class _IncomesList extends StatelessWidget {
                 ),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(20),
-                  onLongPress: () {},
+                  onLongPress: () => _showEditDialog(context, state.income!.gold, 'Gold', charID!, state),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -380,6 +381,7 @@ void _showEditDialog(BuildContext context, String? currentValue, String currency
           style: dndFont,
         ),
         content: TextField(
+          maxLength: 3,
           controller: TextEditingController(text: currentValue),
           keyboardType: TextInputType.number,
           onChanged: (newValue) {
@@ -389,7 +391,7 @@ void _showEditDialog(BuildContext context, String? currentValue, String currency
         actions: <Widget>[
           TextButton(
             onPressed: () {
-              context.read<IncomeCubit>().setIncomesData(incomeState.income!.copyWith(platinum: currentValue));
+              context.read<IncomeCubit>().setIncomesData(_updateIncome(incomeState.income!, currencyType, currentValue));
               context.read<IncomeCubit>().readIncomeData(charID!);
               context.pop();
             },
@@ -411,4 +413,21 @@ void _showEditDialog(BuildContext context, String? currentValue, String currency
       );
     },
   );
+}
+
+Income _updateIncome(Income income, String currencyType, String? value) {
+  switch (currencyType) {
+    case 'Copper':
+      return income.copyWith(copper: value);
+    case 'Silver':
+      return income.copyWith(silver: value);
+    case 'Electrum':
+      return income.copyWith(electrum: value);
+    case 'Gold':
+      return income.copyWith(gold: value);
+    case 'Platinum':
+      return income.copyWith(platinum: value);
+    default:
+      return income;
+  }
 }
