@@ -30,13 +30,18 @@ class DiceRollScreen extends StatelessWidget {
         ),
         seperation,
         IconButton(
-            onPressed: () {
-              _showRollDialog(context, diceRoll.text);
-            },
-            icon: const FaIcon(
-              FontAwesomeIcons.diceD20,
-              size: 30,
-            ))
+          onPressed: () {
+            _showRollDialog(context, diceRoll.text);
+          },
+          icon: const FaIcon(
+            FontAwesomeIcons.diceD20,
+            size: 30,
+          ),
+        ),
+        Text(
+          '(rolls 1d20 if left blank)',
+          style: TextStyle(fontSize: 16, color: themeColor, fontStyle: FontStyle.italic),
+        )
       ],
     );
   }
@@ -48,6 +53,9 @@ void _showRollDialog(
 ) {
   String rollResult;
   try {
+    if (roll == '') {
+      roll = 'd20';
+    }
     final d20 = D20();
     rollResult = d20.roll(roll!).toString();
   } catch (e) {
