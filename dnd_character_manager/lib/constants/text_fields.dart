@@ -172,7 +172,7 @@ class StatTextBox extends StatelessWidget {
 }
 
 final textInputDecoration = InputDecoration(
-  fillColor: white,
+  fillColor: backgroundColor,
   filled: true,
   hintStyle: dndFont.copyWith(fontSize: 14),
   enabledBorder: OutlineInputBorder(
@@ -187,7 +187,7 @@ InputDecoration dndFieldInputDecoration({required bool enabled, required String 
   return InputDecoration(
     focusColor: themeColor,
     hintText: hintText,
-    fillColor: white,
+    fillColor: backgroundColor,
     filled: true,
     hintStyle: dndFont.copyWith(fontSize: 14),
     enabledBorder: OutlineInputBorder(

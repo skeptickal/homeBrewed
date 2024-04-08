@@ -156,7 +156,7 @@ class _AddDndAction extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: Colors.white,
+          color: themeColor,
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.5),
@@ -168,7 +168,7 @@ class _AddDndAction extends StatelessWidget {
         ),
         child: IconButton(
           iconSize: 25,
-          color: themeColor,
+          color: white,
           icon: const Icon(Icons.add),
           onPressed: () => _showEditPanel(context, charID),
         ),
