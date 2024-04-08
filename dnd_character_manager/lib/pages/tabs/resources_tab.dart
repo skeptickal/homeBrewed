@@ -6,8 +6,8 @@ import '../../client/spacing.dart';
 import '../../constants/theme_data.dart';
 import '../../cubits/resource_cubit/resource_cubit.dart';
 import '../../models/resource.dart';
-import '../add_resource_screen.dart';
-import '../edit_resource_screen.dart';
+import '../add_popups/add_resource_screen.dart';
+import '../edit_popups/edit_resource_screen.dart';
 
 class ResourcesTab extends StatelessWidget {
   final String charID;

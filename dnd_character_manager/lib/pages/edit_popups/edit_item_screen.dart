@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../cubits/item_cubit/item_cubit.dart';
-import '../models/item.dart';
+import '../../cubits/item_cubit/item_cubit.dart';
+import '../../models/item.dart';
 
 class EditItemScreen extends StatelessWidget {
   final Item item;

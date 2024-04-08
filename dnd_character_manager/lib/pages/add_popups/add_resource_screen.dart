@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../cubits/resource_cubit/resource_cubit.dart';
+import '../../cubits/resource_cubit/resource_cubit.dart';
 
 class AddResourceScreen extends StatelessWidget {
   final Resource resource;

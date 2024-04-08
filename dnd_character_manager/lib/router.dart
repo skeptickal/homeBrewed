@@ -1,6 +1,6 @@
 import 'package:dnd_character_manager/models/bio.dart';
 import 'package:dnd_character_manager/pages/character_viewer_screen.dart';
-import 'package:dnd_character_manager/pages/edit_weapon_screen.dart';
+import 'package:dnd_character_manager/pages/edit_popups/edit_weapon_screen.dart';
 import 'package:dnd_character_manager/pages/home_screen.dart';
 import 'package:dnd_character_manager/pages/login_screen.dart';
 import 'package:dnd_character_manager/pages/sign_up_screen.dart';
