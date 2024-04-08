@@ -15,6 +15,7 @@ class BioTab extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<BioCubit>().readBioData(bio.charID!);
     return const SingleChildScrollView(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       child: Column(
         children: [
           _EditBlock(),

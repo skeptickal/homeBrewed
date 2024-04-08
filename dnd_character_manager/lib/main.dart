@@ -16,6 +16,7 @@ Future<void> main() async {
       child: Builder(builder: (context) {
         context.read<UserCubit>().initialize();
         return GestureDetector(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           child: MaterialApp.router(
             debugShowCheckedModeBanner: false,
             routerConfig: router,

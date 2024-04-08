@@ -19,6 +19,7 @@ class HomeScreen extends StatelessWidget {
         return ScreenWrapper(
           title: 'D&D Character Manager',
           child: SingleChildScrollView(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             child: Column(
               children: [
                 seperation,
