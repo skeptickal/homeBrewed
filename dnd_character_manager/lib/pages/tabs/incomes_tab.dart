@@ -353,7 +353,7 @@ void _showEditDialog(BuildContext context, String? currentValue, String currency
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: SelectableText(
+        title: Text(
           'Edit $currencyType',
           style: dndFont,
         ),
@@ -372,7 +372,7 @@ void _showEditDialog(BuildContext context, String? currentValue, String currency
               context.read<IncomeCubit>().readIncomeData(charID!);
               context.pop();
             },
-            child: SelectableText(
+            child: Text(
               'Save',
               style: dndFont.copyWith(color: themeColor),
             ),
@@ -381,7 +381,7 @@ void _showEditDialog(BuildContext context, String? currentValue, String currency
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: SelectableText(
+            child: Text(
               'Cancel',
               style: dndFont.copyWith(color: themeColor),
             ),

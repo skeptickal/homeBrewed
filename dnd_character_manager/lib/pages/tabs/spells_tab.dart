@@ -53,11 +53,11 @@ class _SpellsList extends StatelessWidget {
                     },
                     icon: const FaIcon(FontAwesomeIcons.wandMagic),
                   ),
-                  title: SelectableText(
+                  title: Text(
                     spell.name ?? '',
                     style: dndFont.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
-                  subtitle: SelectableText(
+                  subtitle: Text(
                     spell.spellAtkOrDC ?? '',
                     style: dndFont.copyWith(fontSize: 14, fontStyle: FontStyle.italic),
                   ),
@@ -85,14 +85,14 @@ class _SpellsList extends StatelessWidget {
             style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
           ),
           TextButton(
-            child: SelectableText(
+            child: Text(
               'What is my Spell Casting Ability?',
               style: dndFont.copyWith(fontStyle: FontStyle.italic, color: themeColor),
             ),
             onPressed: () => _onPressedSpellCastingAbilityQuestion(context),
           ),
           TextButton(
-            child: SelectableText(
+            child: Text(
               'What is my Spell Save DC (Difficulty Class)?',
               style: dndFont.copyWith(fontStyle: FontStyle.italic, color: themeColor),
             ),
@@ -110,7 +110,7 @@ void _onPressedDeleteIcon({required BuildContext context, required String spellI
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
-      title: SelectableText(
+      title: Text(
         'Are you sure you want to delete $name?',
         style: TextStyle(color: white, fontSize: 18),
       ),
@@ -118,7 +118,7 @@ void _onPressedDeleteIcon({required BuildContext context, required String spellI
       surfaceTintColor: themeColor,
       actions: [
         TextButton(
-          child: SelectableText(
+          child: Text(
             'Delete Permanently',
             style: TextStyle(color: white),
           ),
@@ -159,7 +159,7 @@ void _onPressedTile({required BuildContext context, required String name, requir
           surfaceTintColor: themeColor,
           actions: [
             TextButton(
-              child: SelectableText(
+              child: Text(
                 'Back',
                 style: TextStyle(color: white),
               ),
@@ -201,7 +201,7 @@ void _onPressedSpellCastingAbilityQuestion(BuildContext context) {
           surfaceTintColor: themeColor,
           actions: [
             TextButton(
-              child: SelectableText(
+              child: Text(
                 'Back',
                 style: TextStyle(color: white),
               ),
@@ -241,7 +241,7 @@ void _onPressedSpellSaveDCQuestion(BuildContext context) {
           surfaceTintColor: themeColor,
           actions: [
             TextButton(
-              child: SelectableText(
+              child: Text(
                 'Back',
                 style: TextStyle(color: white),
               ),

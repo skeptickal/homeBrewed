@@ -73,7 +73,7 @@ class EditDndActionScreen extends StatelessWidget {
                     context.read<DndActionCubit>().readDndActionsByCharID(dndAction.charID);
                     context.pop();
                   },
-                  child: SelectableText(
+                  child: Text(
                     'Done Editing',
                     style: dndFont.copyWith(color: black),
                   ),

@@ -117,7 +117,7 @@ class AddResourceScreen extends StatelessWidget {
                     context.read<ResourceCubit>().readResourcesByCharID(resource.charID);
                     context.pop();
                   },
-                  child: SelectableText(
+                  child: Text(
                     'Add Resource',
                     style: dndFont.copyWith(color: black),
                   ),
@@ -127,7 +127,7 @@ class AddResourceScreen extends StatelessWidget {
                     context.read<ResourceCubit>().deleteResourceByResourceID(resource.resourceID!);
                     context.pop();
                   },
-                  child: SelectableText(
+                  child: Text(
                     'Cancel',
                     style: dndFont.copyWith(color: black),
                   ),

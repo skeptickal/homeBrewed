@@ -32,7 +32,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () => context.read<UserCubit>().signOut(),
-                      child: SelectableText(
+                      child: Text(
                         'sign out',
                         style: dndFont.copyWith(
                           color: themeColor,
@@ -76,7 +76,7 @@ void _onPressedDeleteIcon(BuildContext context, String userID, String charID, St
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
-      title: SelectableText(
+      title: Text(
         'Are you sure you want to delete $name?',
         style: TextStyle(color: white, fontSize: 18),
       ),
@@ -84,7 +84,7 @@ void _onPressedDeleteIcon(BuildContext context, String userID, String charID, St
       surfaceTintColor: themeColor,
       actions: [
         TextButton(
-          child: SelectableText(
+          child: Text(
             'Delete Permanently',
             style: TextStyle(color: white),
           ),
@@ -123,11 +123,11 @@ class _CharacterList extends StatelessWidget {
                     Icons.person,
                     color: themeColor,
                   ),
-                  title: SelectableText(
+                  title: Text(
                     bio.name ?? '',
                     style: dndFont.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
-                  subtitle: SelectableText(
+                  subtitle: Text(
                     '${bio.race ?? ''} | ${bio.dndClass ?? ''}',
                     style: dndFont.copyWith(fontSize: 16, fontStyle: FontStyle.italic),
                   ),

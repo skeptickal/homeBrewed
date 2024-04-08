@@ -52,11 +52,11 @@ class _WeaponsList extends StatelessWidget {
                     },
                     icon: const ImageIcon(AssetImage('assets/sword.png')),
                   ),
-                  title: SelectableText(
+                  title: Text(
                     weapon.name ?? '',
                     style: dndFont.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
-                  subtitle: SelectableText(
+                  subtitle: Text(
                     'Attack: ${weapon.attackRoll ?? ''}\nDamage: ${weapon.damageRoll ?? ''}',
                     style: dndFont.copyWith(fontSize: 14, fontStyle: FontStyle.italic),
                   ),
@@ -95,7 +95,7 @@ void _onPressedDeleteIcon({required BuildContext context, required String weapon
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
-      title: SelectableText(
+      title: Text(
         'Are you sure you want to delete $name?',
         style: TextStyle(color: white, fontSize: 18),
       ),
@@ -103,7 +103,7 @@ void _onPressedDeleteIcon({required BuildContext context, required String weapon
       surfaceTintColor: themeColor,
       actions: [
         TextButton(
-          child: SelectableText(
+          child: Text(
             'Delete Permanently',
             style: TextStyle(color: white),
           ),
@@ -144,7 +144,7 @@ void _onPressedTile({required BuildContext context, required String name, requir
           surfaceTintColor: themeColor,
           actions: [
             TextButton(
-              child: SelectableText(
+              child: Text(
                 'Back',
                 style: TextStyle(color: white),
               ),
