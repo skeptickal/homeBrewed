@@ -42,7 +42,7 @@ class CustomTextBox extends StatelessWidget {
             obscureText: obscureText,
             maxLines: !obscureText ? maxLines : 1,
             keyboardType: TextInputType.multiline,
-            decoration: textInputDecoration.copyWith(hintText: hintText),
+            decoration: textInputDecoration.copyWith(hintText: hintText, fillColor: backgroundColor),
           ),
         ],
       ),
