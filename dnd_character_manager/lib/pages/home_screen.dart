@@ -65,6 +65,7 @@ void _showEditPanel(BuildContext context) {
       context: context,
       builder: (context) {
         return Container(
+          color: backgroundColor,
           key: const Key('edit_container'),
           padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 60),
           child: const AddDndCharacterScreen(),
