@@ -73,14 +73,14 @@ class _SignIn extends StatelessWidget {
               },
               child: Text(
                 'Sign In',
-                style: dndFont.copyWith(fontSize: 16),
+                style: dndFont.copyWith(fontSize: 16, color: themeColor),
               ),
             ),
             TextButton(
                 onPressed: () => context.push('/sign_up'),
                 child: Text(
                   'No Account yet? Sign Up',
-                  style: dndFont.copyWith(fontSize: 16),
+                  style: dndFont.copyWith(fontSize: 16, color: themeColor),
                 ))
           ],
         ),

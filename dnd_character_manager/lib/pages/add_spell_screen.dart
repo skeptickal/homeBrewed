@@ -68,8 +68,8 @@ class AddSpellScreen extends StatelessWidget {
                   enabled: true,
                   padding: const EdgeInsets.all(6),
                   controller: spellAtkOrDC,
-                  hintText: '1d10 + 2 Bludgeoning',
-                  subtitle: 'Damage Roll + Type',
+                  hintText: 'CHA + 5 or DC 12 DEX',
+                  subtitle: 'Spell Attack or DC Save',
                 ),
                 BigTextBox(
                   onTapOutside: (clickOut) {
@@ -91,7 +91,7 @@ class AddSpellScreen extends StatelessWidget {
                   enabled: true,
                   padding: const EdgeInsets.all(6),
                   controller: description,
-                  hintText: 'Has a chance to burn target',
+                  hintText: 'e.g. Graphic description of Fireball',
                   subtitle: 'Description (Optional)',
                   minLines: 5,
                 ),
