@@ -102,18 +102,12 @@ class _IncomesList extends StatelessWidget {
                             icon: const Icon(Icons.remove),
                           ),
                           Flexible(
-                              child: TextField(
-                            enabled: false,
-                            controller: TextEditingController(text: state.income!.copper ?? '0'),
-                            style: const TextStyle(fontSize: 16),
-                            textAlign: TextAlign.center,
-                            decoration: const InputDecoration(
-                              border: InputBorder.none,
-                              hintText: '0',
-                              hintStyle: TextStyle(fontSize: 16),
-                              contentPadding: EdgeInsets.symmetric(vertical: 10),
+                            child: SelectableText(
+                              state.income!.copper ?? '0',
+                              style: const TextStyle(fontSize: 16),
+                              textAlign: TextAlign.center,
                             ),
-                          )),
+                          ),
                           IconButton(
                             onPressed: () {
                               int? copperValueAsInt = int.tryParse(state.income!.copper ?? '0')! + 1;
@@ -160,18 +154,12 @@ class _IncomesList extends StatelessWidget {
                             icon: const Icon(Icons.remove),
                           ),
                           Flexible(
-                              child: TextField(
-                            enabled: false,
-                            controller: TextEditingController(text: state.income!.silver ?? '0'),
-                            style: const TextStyle(fontSize: 16),
-                            textAlign: TextAlign.center,
-                            decoration: const InputDecoration(
-                              border: InputBorder.none,
-                              hintText: '0',
-                              hintStyle: TextStyle(fontSize: 16),
-                              contentPadding: EdgeInsets.symmetric(vertical: 10),
+                            child: SelectableText(
+                              state.income!.silver ?? '0',
+                              style: const TextStyle(fontSize: 16),
+                              textAlign: TextAlign.center,
                             ),
-                          )),
+                          ),
                           IconButton(
                             onPressed: () {
                               int? silverValueAsInt = int.tryParse(state.income!.silver ?? '0')! + 1;
@@ -218,18 +206,12 @@ class _IncomesList extends StatelessWidget {
                             icon: const Icon(Icons.remove),
                           ),
                           Flexible(
-                              child: TextField(
-                            enabled: false,
-                            controller: TextEditingController(text: state.income!.electrum ?? '0'),
-                            style: const TextStyle(fontSize: 16),
-                            textAlign: TextAlign.center,
-                            decoration: const InputDecoration(
-                              border: InputBorder.none,
-                              hintText: '0',
-                              hintStyle: TextStyle(fontSize: 16),
-                              contentPadding: EdgeInsets.symmetric(vertical: 10),
+                            child: SelectableText(
+                              state.income!.electrum ?? '0',
+                              style: const TextStyle(fontSize: 16),
+                              textAlign: TextAlign.center,
                             ),
-                          )),
+                          ),
                           IconButton(
                             onPressed: () {
                               int? electrumValueAsInt = int.tryParse(state.income!.electrum ?? '0')! + 1;
@@ -276,18 +258,12 @@ class _IncomesList extends StatelessWidget {
                             icon: const Icon(Icons.remove),
                           ),
                           Flexible(
-                              child: TextField(
-                            enabled: false,
-                            controller: TextEditingController(text: state.income!.gold ?? '0'),
-                            style: const TextStyle(fontSize: 16),
-                            textAlign: TextAlign.center,
-                            decoration: const InputDecoration(
-                              border: InputBorder.none,
-                              hintText: '0',
-                              hintStyle: TextStyle(fontSize: 16),
-                              contentPadding: EdgeInsets.symmetric(vertical: 10),
+                            child: SelectableText(
+                              state.income!.gold ?? '0',
+                              style: const TextStyle(fontSize: 16),
+                              textAlign: TextAlign.center,
                             ),
-                          )),
+                          ),
                           IconButton(
                             onPressed: () {
                               int? goldValueAsInt = int.tryParse(state.income!.gold ?? '0')! + 1;
@@ -338,18 +314,12 @@ class _IncomesList extends StatelessWidget {
                             icon: const Icon(Icons.remove),
                           ),
                           Flexible(
-                              child: TextField(
-                            enabled: false,
-                            controller: TextEditingController(text: state.income!.platinum ?? '0'),
-                            style: const TextStyle(fontSize: 16),
-                            textAlign: TextAlign.center,
-                            decoration: const InputDecoration(
-                              border: InputBorder.none,
-                              hintText: '0',
-                              hintStyle: TextStyle(fontSize: 16),
-                              contentPadding: EdgeInsets.symmetric(vertical: 10),
+                            child: SelectableText(
+                              state.income!.platinum ?? '0',
+                              style: const TextStyle(fontSize: 16),
+                              textAlign: TextAlign.center,
                             ),
-                          )),
+                          ),
                           IconButton(
                             onPressed: () {
                               int? platinumValueAsInt = int.tryParse(state.income!.platinum ?? '0')! + 1;
