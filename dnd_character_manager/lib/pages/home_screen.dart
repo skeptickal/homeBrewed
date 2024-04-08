@@ -1,3 +1,4 @@
+import 'package:d20/d20.dart';
 import 'package:dnd_character_manager/client/spacing.dart';
 import 'package:dnd_character_manager/constants/screen_wrapper.dart';
 import 'package:dnd_character_manager/constants/theme_data.dart';
@@ -44,6 +45,18 @@ class HomeScreen extends StatelessWidget {
                 seperation,
                 _CharacterList(userState: userState),
                 const _AddCharacter(),
+                TextButton(
+                  onPressed: () {
+                    try {
+                      final d20 = D20();
+                      final result = d20.roll('2d8+1');
+                      print(result);
+                    } catch (e) {
+                      print('Invalid input: $e');
+                    }
+                  },
+                  child: const Text('Roll dice'),
+                )
               ],
             ),
           ),
