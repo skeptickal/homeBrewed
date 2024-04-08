@@ -101,7 +101,7 @@ class AddSpellScreen extends StatelessWidget {
                     context.read<SpellCubit>().readSpellsByCharID(spell.charID);
                     context.pop();
                   },
-                  child: Text(
+                  child: SelectableText(
                     'Add Spell',
                     style: dndFont.copyWith(color: black),
                   ),
@@ -111,7 +111,7 @@ class AddSpellScreen extends StatelessWidget {
                     context.read<SpellCubit>().deleteSpellBySpellID(spell.spellID!);
                     context.pop();
                   },
-                  child: Text(
+                  child: SelectableText(
                     'Cancel',
                     style: dndFont.copyWith(color: black),
                   ),

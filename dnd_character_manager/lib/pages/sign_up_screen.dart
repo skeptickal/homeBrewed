@@ -62,12 +62,12 @@ class _SignUp extends StatelessWidget {
                 if (context.mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text(result),
+                      content: SelectableText(result),
                     ),
                   );
                 }
               },
-              child: Text(
+              child: SelectableText(
                 'Sign Up',
                 style: dndFont.copyWith(fontSize: 16, color: themeColor),
               ),

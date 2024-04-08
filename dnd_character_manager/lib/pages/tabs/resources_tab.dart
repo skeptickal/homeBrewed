@@ -50,8 +50,8 @@ class _ResourcesList extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text(resource.name ?? ''),
-                    Text(
+                    SelectableText(resource.name ?? ''),
+                    SelectableText(
                       resource.maxResourceValue ?? '0',
                       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: themeColor),
                     ),
@@ -107,7 +107,7 @@ class _ResourcesList extends StatelessWidget {
               Center(
                 child: Column(
                   children: [
-                    Text(
+                    SelectableText(
                       'Resources\n',
                       style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
                       textAlign: TextAlign.center,

@@ -53,7 +53,7 @@ class _DndActionsList extends StatelessWidget {
                     },
                     icon: const FaIcon(FontAwesomeIcons.exclamation),
                   ),
-                  title: Text(
+                  title: SelectableText(
                     dndAction.name ?? '',
                     style: dndFont.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
@@ -76,7 +76,7 @@ class _DndActionsList extends StatelessWidget {
         ).toList();
         return Column(children: [
           seperation,
-          Text(
+          SelectableText(
             'Actions',
             style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
           ),
@@ -92,7 +92,7 @@ void _onPressedDeleteIcon({required BuildContext context, required String dndAct
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
-      title: Text(
+      title: SelectableText(
         'Are you sure you want to delete $name?',
         style: TextStyle(color: white, fontSize: 18),
       ),
@@ -100,7 +100,7 @@ void _onPressedDeleteIcon({required BuildContext context, required String dndAct
       surfaceTintColor: themeColor,
       actions: [
         TextButton(
-          child: Text(
+          child: SelectableText(
             'Delete Permanently',
             style: TextStyle(color: white),
           ),
@@ -122,7 +122,7 @@ void _onPressedTile({required BuildContext context, required String name, requir
     builder: (context) => Center(
       child: SingleChildScrollView(
         child: AlertDialog(
-          title: Text(
+          title: SelectableText(
             '$name\n\n$description',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 18, color: white),
@@ -131,7 +131,7 @@ void _onPressedTile({required BuildContext context, required String name, requir
           surfaceTintColor: themeColor,
           actions: [
             TextButton(
-              child: Text(
+              child: SelectableText(
                 'Back',
                 style: TextStyle(color: white),
               ),

@@ -101,7 +101,7 @@ class EditSpellScreen extends StatelessWidget {
                     context.read<SpellCubit>().readSpellsByCharID(spell.charID);
                     context.pop();
                   },
-                  child: Text(
+                  child: SelectableText(
                     'Done Editing',
                     style: dndFont.copyWith(color: black),
                   ),

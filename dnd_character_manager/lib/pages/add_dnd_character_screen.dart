@@ -59,14 +59,14 @@ class AddDndCharacterScreen extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () => _addCharacter(context, userState, name.text, race.text, dndClass.text),
-                      child: Text(
+                      child: SelectableText(
                         'Add Character',
                         style: dndFont.copyWith(color: black),
                       ),
                     ),
                     TextButton(
                         onPressed: () => context.pop(),
-                        child: Text(
+                        child: SelectableText(
                           'Cancel',
                           style: dndFont.copyWith(color: black),
                         ))

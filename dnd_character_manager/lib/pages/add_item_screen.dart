@@ -102,7 +102,7 @@ class AddItemScreen extends StatelessWidget {
                     context.read<ItemCubit>().readItemsByCharID(item.charID);
                     context.pop();
                   },
-                  child: Text(
+                  child: SelectableText(
                     'Add Item',
                     style: dndFont.copyWith(color: black),
                   ),
@@ -112,7 +112,7 @@ class AddItemScreen extends StatelessWidget {
                     context.read<ItemCubit>().deleteItemByItemID(item.itemID!);
                     context.pop();
                   },
-                  child: Text(
+                  child: SelectableText(
                     'Cancel',
                     style: dndFont.copyWith(color: black),
                   ),

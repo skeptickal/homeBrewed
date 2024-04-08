@@ -45,7 +45,7 @@ class _EditBlock extends StatelessWidget {
                     Icons.edit,
                   ),
                 ),
-                Text(
+                SelectableText(
                   !state.notesEdit! ? 'Enable Edit' : 'Disable Edit',
                   style: dndFont.copyWith(color: state.notesEdit! ? black : disableGrey),
                 ),

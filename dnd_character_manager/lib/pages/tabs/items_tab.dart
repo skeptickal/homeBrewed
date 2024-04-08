@@ -52,11 +52,11 @@ class _ItemsList extends StatelessWidget {
                     },
                     icon: const Icon(Icons.handyman),
                   ),
-                  title: Text(
+                  title: SelectableText(
                     item.name ?? '',
                     style: dndFont.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
-                  subtitle: Text(
+                  subtitle: SelectableText(
                     'x${item.amount ?? ''}',
                     style: dndFont.copyWith(fontSize: 16),
                   ),
@@ -79,7 +79,7 @@ class _ItemsList extends StatelessWidget {
         ).toList();
         return Column(children: [
           seperation,
-          Text(
+          SelectableText(
             'Items',
             style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
           ),
@@ -95,7 +95,7 @@ void _onPressedDeleteIcon({required BuildContext context, required String itemID
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
-      title: Text(
+      title: SelectableText(
         'Are you sure you want to delete $name?',
         style: TextStyle(color: white, fontSize: 18),
       ),
@@ -103,7 +103,7 @@ void _onPressedDeleteIcon({required BuildContext context, required String itemID
       surfaceTintColor: themeColor,
       actions: [
         TextButton(
-          child: Text(
+          child: SelectableText(
             'Delete Permanently',
             style: TextStyle(color: white),
           ),
@@ -125,7 +125,7 @@ void _onPressedTile({required BuildContext context, required String name, requir
     builder: (context) => Center(
       child: SingleChildScrollView(
         child: AlertDialog(
-          title: Text(
+          title: SelectableText(
             '$name\n\n$description',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 18, color: white),
@@ -134,7 +134,7 @@ void _onPressedTile({required BuildContext context, required String name, requir
           surfaceTintColor: themeColor,
           actions: [
             TextButton(
-              child: Text(
+              child: SelectableText(
                 'Back',
                 style: TextStyle(color: white),
               ),

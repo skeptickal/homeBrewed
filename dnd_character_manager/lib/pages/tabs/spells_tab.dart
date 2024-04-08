@@ -53,11 +53,11 @@ class _SpellsList extends StatelessWidget {
                     },
                     icon: const FaIcon(FontAwesomeIcons.wandMagic),
                   ),
-                  title: Text(
+                  title: SelectableText(
                     spell.name ?? '',
                     style: dndFont.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
-                  subtitle: Text(
+                  subtitle: SelectableText(
                     spell.spellAtkOrDC ?? '',
                     style: dndFont.copyWith(fontSize: 14, fontStyle: FontStyle.italic),
                   ),
@@ -80,19 +80,19 @@ class _SpellsList extends StatelessWidget {
         ).toList();
         return Column(children: [
           seperation,
-          Text(
+          SelectableText(
             'Spells',
             style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
           ),
           TextButton(
-            child: Text(
+            child: SelectableText(
               'What is my Spell Casting Ability?',
               style: dndFont.copyWith(fontStyle: FontStyle.italic, color: themeColor),
             ),
             onPressed: () => _onPressedSpellCastingAbilityQuestion(context),
           ),
           TextButton(
-            child: Text(
+            child: SelectableText(
               'What is my Spell Save DC (Difficulty Class)?',
               style: dndFont.copyWith(fontStyle: FontStyle.italic, color: themeColor),
             ),
@@ -110,7 +110,7 @@ void _onPressedDeleteIcon({required BuildContext context, required String spellI
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
-      title: Text(
+      title: SelectableText(
         'Are you sure you want to delete $name?',
         style: TextStyle(color: white, fontSize: 18),
       ),
@@ -118,7 +118,7 @@ void _onPressedDeleteIcon({required BuildContext context, required String spellI
       surfaceTintColor: themeColor,
       actions: [
         TextButton(
-          child: Text(
+          child: SelectableText(
             'Delete Permanently',
             style: TextStyle(color: white),
           ),
@@ -142,13 +142,13 @@ void _onPressedTile({required BuildContext context, required String name, requir
         child: AlertDialog(
           title: Column(
             children: [
-              Text(
+              SelectableText(
                 name,
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 22, color: white, fontWeight: FontWeight.bold),
               ),
               seperation,
-              Text(
+              SelectableText(
                 description,
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 18, color: white, fontStyle: FontStyle.italic),
@@ -159,7 +159,7 @@ void _onPressedTile({required BuildContext context, required String name, requir
           surfaceTintColor: themeColor,
           actions: [
             TextButton(
-              child: Text(
+              child: SelectableText(
                 'Back',
                 style: TextStyle(color: white),
               ),
@@ -182,11 +182,11 @@ void _onPressedSpellCastingAbilityQuestion(BuildContext context) {
         child: AlertDialog(
           title: Column(
             children: [
-              Text(
+              SelectableText(
                 'Spellcasting Ability:\n',
                 style: TextStyle(fontSize: 22, color: white, fontWeight: FontWeight.bold),
               ),
-              Text(
+              SelectableText(
                 '• Clerics, Druids, Paladins, and Rangers: Your spellcasting ability is determined by your Wisdom modifier.\n\n'
                 '• Sorcerers, Bards, and Warlocks: Your spellcasting ability is determined by your Charisma modifier.\n\n'
                 '• Wizards: Your spellcasting ability is determined by your Intelligence modifier.\n\n'
@@ -201,7 +201,7 @@ void _onPressedSpellCastingAbilityQuestion(BuildContext context) {
           surfaceTintColor: themeColor,
           actions: [
             TextButton(
-              child: Text(
+              child: SelectableText(
                 'Back',
                 style: TextStyle(color: white),
               ),
@@ -224,11 +224,11 @@ void _onPressedSpellSaveDCQuestion(BuildContext context) {
         child: AlertDialog(
           title: Column(
             children: [
-              Text(
+              SelectableText(
                 'Spell Save DC (Difficulty Class):\n',
                 style: TextStyle(fontSize: 22, color: white, fontWeight: FontWeight.bold),
               ),
-              Text(
+              SelectableText(
                 '• Your Spell Save DC is a number that represents the difficulty for enemies to resist your spells. It\'s calculated as follows:\n\n'
                 '• Spell Save DC = 8 + your proficiency bonus + your spellcasting ability modifier.\n\n'
                 'e.g. Bard with Proficiency 3: \n8 + 3(Prof) + 4(CHA) = 15',
@@ -241,7 +241,7 @@ void _onPressedSpellSaveDCQuestion(BuildContext context) {
           surfaceTintColor: themeColor,
           actions: [
             TextButton(
-              child: Text(
+              child: SelectableText(
                 'Back',
                 style: TextStyle(color: white),
               ),

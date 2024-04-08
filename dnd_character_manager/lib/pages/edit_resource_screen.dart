@@ -139,7 +139,7 @@ class EditResourceScreen extends StatelessWidget {
                     context.read<ResourceCubit>().readResourcesByCharID(resource.charID);
                     context.pop();
                   },
-                  child: Text(
+                  child: SelectableText(
                     'Done Editing',
                     style: dndFont.copyWith(color: black),
                   ),
@@ -155,7 +155,7 @@ class EditResourceScreen extends StatelessWidget {
                       resourceID: resource.resourceID!,
                     );
                   },
-                  child: Text(
+                  child: SelectableText(
                     'Delete ${resource.name}?',
                     style: dndFont.copyWith(color: themeColor),
                   ),
@@ -173,7 +173,7 @@ void _onPressedDeleteIcon({required BuildContext context, required String resour
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
-      title: Text(
+      title: SelectableText(
         'Are you sure you want to delete $name?',
         style: TextStyle(color: white, fontSize: 18),
       ),
@@ -181,7 +181,7 @@ void _onPressedDeleteIcon({required BuildContext context, required String resour
       surfaceTintColor: themeColor,
       actions: [
         TextButton(
-          child: Text(
+          child: SelectableText(
             'Delete Permanently',
             style: TextStyle(color: white),
           ),

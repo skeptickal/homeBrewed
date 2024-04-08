@@ -133,7 +133,7 @@ class EditWeaponScreen extends StatelessWidget {
                     context.read<WeaponCubit>().readWeaponsByCharID(weapon.charID);
                     context.pop();
                   },
-                  child: Text(
+                  child: SelectableText(
                     'Done Editing',
                     style: dndFont.copyWith(color: black),
                   ),

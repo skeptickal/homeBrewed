@@ -46,7 +46,7 @@ class _IncomesList extends StatelessWidget {
                 child: Column(
                   children: [
                     const Center(
-                      child: Text('100 copper (cp) = 1 silver (sp)\n\n'
+                      child: SelectableText('100 copper (cp) = 1 silver (sp)\n\n'
                           '10 silver (sp) = 1 gold (gp)'),
                     ),
                     horizontalLine,
@@ -54,7 +54,7 @@ class _IncomesList extends StatelessWidget {
                 ),
               ),
               Center(
-                child: Text(
+                child: SelectableText(
                   'Incomes\n',
                   style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 16),
                   textAlign: TextAlign.center,
@@ -65,7 +65,7 @@ class _IncomesList extends StatelessWidget {
                 child: Column(
                   children: [
                     const Center(
-                      child: Text('2 electrum (ep) = 1 gold (gp)\n\n'
+                      child: SelectableText('2 electrum (ep) = 1 gold (gp)\n\n'
                           '10 gold (gp) = 1 platinum (pp)'),
                     ),
                     horizontalLine,
@@ -83,7 +83,7 @@ class _IncomesList extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      const Text('Copper'),
+                      const SelectableText('Copper'),
                       const FaIcon(
                         FontAwesomeIcons.coins,
                         color: Colors.brown,
@@ -135,7 +135,7 @@ class _IncomesList extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      const Text('Silver'),
+                      const SelectableText('Silver'),
                       const FaIcon(
                         FontAwesomeIcons.coins,
                         color: Colors.grey,
@@ -187,7 +187,7 @@ class _IncomesList extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      const Text('Electrum'),
+                      const SelectableText('Electrum'),
                       const FaIcon(
                         FontAwesomeIcons.coins,
                         color: Color.fromARGB(255, 90, 87, 87),
@@ -239,7 +239,7 @@ class _IncomesList extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      const Text('Gold'),
+                      const SelectableText('Gold'),
                       const FaIcon(
                         FontAwesomeIcons.coins,
                         color: Color.fromARGB(255, 212, 196, 49),
@@ -295,7 +295,7 @@ class _IncomesList extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      const Text('Platinum'),
+                      const SelectableText('Platinum'),
                       const FaIcon(
                         FontAwesomeIcons.coins,
                         color: Color(0xffe5e4e2),
@@ -347,7 +347,7 @@ void _showEditDialog(BuildContext context, String? currentValue, String currency
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text(
+        title: SelectableText(
           'Edit $currencyType',
           style: dndFont,
         ),
@@ -366,7 +366,7 @@ void _showEditDialog(BuildContext context, String? currentValue, String currency
               context.read<IncomeCubit>().readIncomeData(charID!);
               context.pop();
             },
-            child: Text(
+            child: SelectableText(
               'Save',
               style: dndFont.copyWith(color: themeColor),
             ),
@@ -375,7 +375,7 @@ void _showEditDialog(BuildContext context, String? currentValue, String currency
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: Text(
+            child: SelectableText(
               'Cancel',
               style: dndFont.copyWith(color: themeColor),
             ),
