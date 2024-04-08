@@ -23,6 +23,7 @@ class EditWeaponScreen extends StatelessWidget {
       builder: (context, state) {
         return Form(
           child: SingleChildScrollView(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
             child: Column(
               children: [

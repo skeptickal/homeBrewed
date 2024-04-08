@@ -14,6 +14,7 @@ class StatTab extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<StatCubit>().readStatsData(charID);
     return const SingleChildScrollView(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       child: Column(
         children: [
           _EditBlock(),
