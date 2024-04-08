@@ -1,4 +1,6 @@
+import 'package:dnd_character_manager/client/spacing.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
@@ -33,139 +35,130 @@ class _IncomesList extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<IncomeCubit, IncomeState>(
       builder: (context, state) {
-        return GridView(
-            shrinkWrap: true,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              crossAxisSpacing: 5,
-              mainAxisSpacing: 5,
+        return Column(
+          children: [
+            seperation,
+            SelectableText(
+              'Incomes\n',
+              style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+              textAlign: TextAlign.center,
             ),
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: TextButton(
-                        onPressed: () => _onPressedRatios(context),
-                        child: Text(
-                          'Ratios?',
-                          style: TextStyle(fontSize: 14, color: themeColor),
-                        ),
-                      ),
-                    ),
-                  ],
+            TextButton(
+              onPressed: () => _onPressedRatios(context),
+              child: Text(
+                'What are Income Ratios?',
+                style: TextStyle(fontSize: 14, color: themeColor),
+              ),
+            ),
+            GridView(
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 5,
+                  mainAxisSpacing: 5,
                 ),
-              ),
-              Center(
-                child: SelectableText(
-                  'Incomes\n',
-                  style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 16),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              const SizedBox(),
-              _IncomeContainer(
-                title: 'Copper',
-                value: state.income!.copper,
-                state: state,
-                charID: charID,
-                onLongPress: () => _showEditDialog(context, state.income!.copper, 'Copper', charID!, state),
-                onIncrement: () {
-                  int? copperValueAsInt = int.tryParse(state.income!.copper ?? '0')! + 1;
-                  context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(copper: copperValueAsInt.toString()));
-                  context.read<IncomeCubit>().readIncomesByCharID(charID);
-                },
-                onDecrement: () {
-                  int? copperValueAsInt = int.tryParse(state.income!.copper ?? '0')! - 1;
-                  context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(copper: copperValueAsInt.toString()));
-                  context.read<IncomeCubit>().readIncomesByCharID(charID);
-                },
-                color: Colors.brown,
-              ),
-              _IncomeContainer(
-                title: 'Silver',
-                value: state.income!.silver,
-                state: state,
-                charID: charID,
-                onLongPress: () => _showEditDialog(context, state.income!.silver, 'Silver', charID!, state),
-                onIncrement: () {
-                  int? silverValueAsInt = int.tryParse(state.income!.silver ?? '0')! + 1;
-                  context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(silver: silverValueAsInt.toString()));
-                  context.read<IncomeCubit>().readIncomesByCharID(charID);
-                },
-                onDecrement: () {
-                  int? silverValueAsInt = int.tryParse(state.income!.silver ?? '0')! - 1;
-                  context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(silver: silverValueAsInt.toString()));
-                  context.read<IncomeCubit>().readIncomesByCharID(charID);
-                },
-                color: Colors.grey,
-              ),
-              _IncomeContainer(
-                title: 'Electrum',
-                value: state.income!.electrum,
-                state: state,
-                charID: charID,
-                onLongPress: () => _showEditDialog(context, state.income!.electrum, 'Electrum', charID!, state),
-                onIncrement: () {
-                  int? electrumValueAsInt = int.tryParse(state.income!.electrum ?? '0')! + 1;
-                  context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(electrum: electrumValueAsInt.toString()));
-                  context.read<IncomeCubit>().readIncomesByCharID(charID);
-                },
-                onDecrement: () {
-                  int? electrumValueAsInt = int.tryParse(state.income!.electrum ?? '0')! - 1;
-                  context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(electrum: electrumValueAsInt.toString()));
-                  context.read<IncomeCubit>().readIncomesByCharID(charID);
-                },
-                color: const Color.fromARGB(255, 90, 87, 87),
-              ),
-              _IncomeContainer(
-                title: 'Gold',
-                value: state.income!.gold,
-                state: state,
-                charID: charID,
-                onLongPress: () => _showEditDialog(context, state.income!.gold, 'Gold', charID!, state),
-                onIncrement: () {
-                  int? goldValueAsInt = int.tryParse(state.income!.gold ?? '0')! + 1;
-                  context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(gold: goldValueAsInt.toString()));
-                  context.read<IncomeCubit>().readIncomesByCharID(charID);
-                },
-                onDecrement: () {
-                  int? goldValueAsInt = int.tryParse(state.income!.gold ?? '0')! - 1;
-                  context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(gold: goldValueAsInt.toString()));
-                  context.read<IncomeCubit>().readIncomesByCharID(charID);
-                },
-                color: const Color.fromARGB(255, 212, 196, 49),
-              ),
-              const Icon(
-                Icons.attach_money,
-                size: 45,
-              ),
-              _IncomeContainer(
-                title: 'Platinum',
-                value: state.income!.platinum,
-                state: state,
-                charID: charID,
-                onLongPress: () => _showEditDialog(context, state.income!.platinum, 'Platinum', charID!, state),
-                onIncrement: () {
-                  int? platinumValueAsInt = int.tryParse(state.income!.platinum ?? '0')! + 1;
-                  context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(platinum: platinumValueAsInt.toString()));
-                  context.read<IncomeCubit>().readIncomesByCharID(charID);
-                },
-                onDecrement: () {
-                  {
-                    int? platinumValueAsInt = int.tryParse(state.income!.platinum ?? '0')! - 1;
-                    context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(
-                          platinum: platinumValueAsInt.toString(),
-                        ));
-                    context.read<IncomeCubit>().readIncomesByCharID(charID);
-                  }
-                },
-                color: const Color(0xffe5e4e2),
-              )
-            ]);
+                children: [
+                  _IncomeContainer(
+                    title: 'Copper',
+                    value: state.income!.copper,
+                    state: state,
+                    charID: charID,
+                    onLongPress: () => _showEditDialog(context, state.income!.copper, 'Copper', charID!, state),
+                    onIncrement: () {
+                      int? copperValueAsInt = int.tryParse(state.income!.copper ?? '0')! + 1;
+                      context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(copper: copperValueAsInt.toString()));
+                      context.read<IncomeCubit>().readIncomesByCharID(charID);
+                    },
+                    onDecrement: () {
+                      int? copperValueAsInt = int.tryParse(state.income!.copper ?? '0')! - 1;
+                      context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(copper: copperValueAsInt.toString()));
+                      context.read<IncomeCubit>().readIncomesByCharID(charID);
+                    },
+                    color: Colors.brown,
+                  ),
+                  _IncomeContainer(
+                    title: 'Silver',
+                    value: state.income!.silver,
+                    state: state,
+                    charID: charID,
+                    onLongPress: () => _showEditDialog(context, state.income!.silver, 'Silver', charID!, state),
+                    onIncrement: () {
+                      int? silverValueAsInt = int.tryParse(state.income!.silver ?? '0')! + 1;
+                      context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(silver: silverValueAsInt.toString()));
+                      context.read<IncomeCubit>().readIncomesByCharID(charID);
+                    },
+                    onDecrement: () {
+                      int? silverValueAsInt = int.tryParse(state.income!.silver ?? '0')! - 1;
+                      context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(silver: silverValueAsInt.toString()));
+                      context.read<IncomeCubit>().readIncomesByCharID(charID);
+                    },
+                    color: Colors.grey,
+                  ),
+                  _IncomeContainer(
+                    title: 'Electrum',
+                    value: state.income!.electrum,
+                    state: state,
+                    charID: charID,
+                    onLongPress: () => _showEditDialog(context, state.income!.electrum, 'Electrum', charID!, state),
+                    onIncrement: () {
+                      int? electrumValueAsInt = int.tryParse(state.income!.electrum ?? '0')! + 1;
+                      context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(electrum: electrumValueAsInt.toString()));
+                      context.read<IncomeCubit>().readIncomesByCharID(charID);
+                    },
+                    onDecrement: () {
+                      int? electrumValueAsInt = int.tryParse(state.income!.electrum ?? '0')! - 1;
+                      context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(electrum: electrumValueAsInt.toString()));
+                      context.read<IncomeCubit>().readIncomesByCharID(charID);
+                    },
+                    color: const Color.fromARGB(255, 90, 87, 87),
+                  ),
+                  _IncomeContainer(
+                    title: 'Gold',
+                    value: state.income!.gold,
+                    state: state,
+                    charID: charID,
+                    onLongPress: () => _showEditDialog(context, state.income!.gold, 'Gold', charID!, state),
+                    onIncrement: () {
+                      int? goldValueAsInt = int.tryParse(state.income!.gold ?? '0')! + 1;
+                      context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(gold: goldValueAsInt.toString()));
+                      context.read<IncomeCubit>().readIncomesByCharID(charID);
+                    },
+                    onDecrement: () {
+                      int? goldValueAsInt = int.tryParse(state.income!.gold ?? '0')! - 1;
+                      context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(gold: goldValueAsInt.toString()));
+                      context.read<IncomeCubit>().readIncomesByCharID(charID);
+                    },
+                    color: const Color.fromARGB(255, 212, 196, 49),
+                  ),
+                  // const Icon(
+                  //   Icons.attach_money,
+                  //   size: 45,
+                  // ),
+                  _IncomeContainer(
+                    title: 'Platinum',
+                    value: state.income!.platinum,
+                    state: state,
+                    charID: charID,
+                    onLongPress: () => _showEditDialog(context, state.income!.platinum, 'Platinum', charID!, state),
+                    onIncrement: () {
+                      int? platinumValueAsInt = int.tryParse(state.income!.platinum ?? '0')! + 1;
+                      context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(platinum: platinumValueAsInt.toString()));
+                      context.read<IncomeCubit>().readIncomesByCharID(charID);
+                    },
+                    onDecrement: () {
+                      {
+                        int? platinumValueAsInt = int.tryParse(state.income!.platinum ?? '0')! - 1;
+                        context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(
+                              platinum: platinumValueAsInt.toString(),
+                            ));
+                        context.read<IncomeCubit>().readIncomesByCharID(charID);
+                      }
+                    },
+                    color: const Color(0xffe5e4e2),
+                  )
+                ]),
+          ],
+        );
       },
     );
   }
