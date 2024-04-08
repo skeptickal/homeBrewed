@@ -94,6 +94,16 @@ class AddDndActionScreen extends StatelessWidget {
                     style: dndFont,
                   ),
                 ),
+                TextButton(
+                  onPressed: () {
+                    context.read<DndActionCubit>().deleteDndActionByDndActionID(dndAction.dndActionID!);
+                    context.pop();
+                  },
+                  child: Text(
+                    'Cancel',
+                    style: dndFont,
+                  ),
+                ),
               ],
             ),
           ),

@@ -102,7 +102,7 @@ class EditSpellScreen extends StatelessWidget {
                   },
                   child: Text(
                     'Done Editing',
-                    style: dndFont,
+                    style: dndFont.copyWith(color: black),
                   ),
                 ),
               ],
