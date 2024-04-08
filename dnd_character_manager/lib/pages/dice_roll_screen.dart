@@ -26,7 +26,7 @@ class DiceRollScreen extends StatelessWidget {
           child: TextField(
             maxLines: 1,
             controller: diceRoll,
-            keyboardType: TextInputType.numberWithOptions(signed: true, decimal: false),
+            keyboardType: const TextInputType.numberWithOptions(signed: true, decimal: false),
           ),
         ),
         seperation,
