@@ -15,8 +15,8 @@ class LoginScreen extends StatelessWidget {
       listener: (context, state) => _listener(state, context),
       builder: (context, state) {
         return const ScreenWrapper(
-          title: 'Welcome',
-          child: _SignIn(), //body: state.signedIn! ? const _SignIn() : const _SignUp(),
+          title: 'Welcome to homeBrewed',
+          child: _SignIn(), 
         );
       },
     );

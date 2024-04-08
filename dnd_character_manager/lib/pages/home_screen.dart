@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
       listener: (context, state) => _listener(state, context),
       builder: (context, userState) {
         return ScreenWrapper(
-          title: 'D&D Character Manager',
+          title: 'homeBrewed',
           child: SingleChildScrollView(
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             child: Column(
