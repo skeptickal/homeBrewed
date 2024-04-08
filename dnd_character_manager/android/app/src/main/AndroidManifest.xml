@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="dnd_character_manager"
+        android:label="homeBrewed"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
