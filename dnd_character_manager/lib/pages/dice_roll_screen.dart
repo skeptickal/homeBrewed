@@ -14,7 +14,7 @@ class DiceRollScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          'Roll (Standard Format)',
+          'Roll',
           style: dndFont.copyWith(fontSize: 18, color: themeColor, fontWeight: FontWeight.bold),
         ),
         Text(
