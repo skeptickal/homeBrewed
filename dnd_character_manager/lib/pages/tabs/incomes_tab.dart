@@ -46,8 +46,11 @@ class _IncomesList extends StatelessWidget {
                 child: Column(
                   children: [
                     const Center(
-                      child: SelectableText('100 copper (cp) = 1 silver (sp)\n\n'
-                          '10 silver (sp) = 1 gold (gp)'),
+                      child: SelectableText(
+                        '100 copper (cp) = 1 silver (sp)\n\n'
+                        '10 silver (sp) = 1 gold (gp)',
+                        style: TextStyle(fontSize: 12),
+                      ),
                     ),
                     horizontalLine,
                   ],
@@ -65,8 +68,11 @@ class _IncomesList extends StatelessWidget {
                 child: Column(
                   children: [
                     const Center(
-                      child: SelectableText('2 electrum (ep) = 1 gold (gp)\n\n'
-                          '10 gold (gp) = 1 platinum (pp)'),
+                      child: SelectableText(
+                        '2 electrum (ep) = 1 gold (gp)\n\n'
+                        '10 gold (gp) = 1 platinum (pp)',
+                        style: TextStyle(fontSize: 12),
+                      ),
                     ),
                     horizontalLine,
                   ],
