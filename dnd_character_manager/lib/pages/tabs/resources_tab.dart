@@ -68,12 +68,12 @@ class _ResourcesList extends StatelessWidget {
                             child: TextField(
                           enabled: false,
                           controller: TextEditingController(text: resource.currentResourceValue ?? '0'),
-                          style: const TextStyle(fontSize: 18),
+                          style: const TextStyle(fontSize: 16),
                           textAlign: TextAlign.center,
                           decoration: const InputDecoration(
                             border: InputBorder.none,
                             hintText: '0',
-                            hintStyle: TextStyle(fontSize: 18),
+                            hintStyle: TextStyle(fontSize: 16),
                             contentPadding: EdgeInsets.symmetric(vertical: 10),
                           ),
                         )),
