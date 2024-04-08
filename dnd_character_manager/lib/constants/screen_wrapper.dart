@@ -1,5 +1,7 @@
 import 'package:dnd_character_manager/constants/theme_data.dart';
+import 'package:dnd_character_manager/pages/dice_roll_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ScreenWrapper extends StatelessWidget {
   final Widget child;
@@ -10,6 +12,7 @@ class ScreenWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [IconButton(onPressed: () => _showDiceRoll(context), icon: const FaIcon(FontAwesomeIcons.diceD20))],
         iconTheme: IconThemeData(color: white),
         title: Text(
           title,
@@ -21,4 +24,17 @@ class ScreenWrapper extends StatelessWidget {
       body: child,
     );
   }
+}
+
+void _showDiceRoll(
+  BuildContext context,
+) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return const AlertDialog(
+        title: DiceRollScreen(),
+      );
+    },
+  );
 }
