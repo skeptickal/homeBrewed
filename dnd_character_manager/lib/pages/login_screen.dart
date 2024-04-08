@@ -66,19 +66,19 @@ class _SignIn extends StatelessWidget {
                 if (context.mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: SelectableText(result),
+                      content: Text(result),
                     ),
                   );
                 }
               },
-              child: SelectableText(
+              child: Text(
                 'Sign In',
                 style: dndFont.copyWith(fontSize: 16, color: themeColor),
               ),
             ),
             TextButton(
                 onPressed: () => context.push('/sign_up'),
-                child: SelectableText(
+                child: Text(
                   'No Account yet? Sign Up',
                   style: dndFont.copyWith(fontSize: 16, color: themeColor),
                 ))

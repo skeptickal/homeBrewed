@@ -133,7 +133,7 @@ class AddWeaponScreen extends StatelessWidget {
                     context.read<WeaponCubit>().readWeaponsByCharID(weapon.charID);
                     context.pop();
                   },
-                  child: SelectableText(
+                  child: Text(
                     'Add Weapon',
                     style: dndFont.copyWith(color: black),
                   ),
@@ -143,7 +143,7 @@ class AddWeaponScreen extends StatelessWidget {
                     context.read<WeaponCubit>().deleteWeaponByWeaponID(weapon.weaponID!);
                     context.pop();
                   },
-                  child: SelectableText(
+                  child: Text(
                     'Cancel',
                     style: dndFont.copyWith(color: black),
                   ),

@@ -11,7 +11,7 @@ class ScreenWrapper extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: white),
-        title: SelectableText(
+        title: Text(
           title,
           style: dndFont.copyWith(color: white),
         ),

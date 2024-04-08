@@ -15,9 +15,13 @@ Future<void> main() async {
     DndBlocProvider(
       child: Builder(builder: (context) {
         context.read<UserCubit>().initialize();
-        return MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          routerConfig: router,
+        return MaterialApp(
+          builder: (context, child) {
+            return MaterialApp.router(
+              routerConfig: router,
+              debugShowCheckedModeBanner: false,
+            );
+          },
         );
       }),
     ),

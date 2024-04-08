@@ -52,11 +52,11 @@ class _ItemsList extends StatelessWidget {
                     },
                     icon: const Icon(Icons.handyman),
                   ),
-                  title: SelectableText(
+                  title: Text(
                     item.name ?? '',
                     style: dndFont.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
-                  subtitle: SelectableText(
+                  subtitle: Text(
                     'x${item.amount ?? ''}',
                     style: dndFont.copyWith(fontSize: 16),
                   ),
@@ -95,7 +95,7 @@ void _onPressedDeleteIcon({required BuildContext context, required String itemID
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
-      title: SelectableText(
+      title: Text(
         'Are you sure you want to delete $name?',
         style: TextStyle(color: white, fontSize: 18),
       ),
@@ -103,7 +103,7 @@ void _onPressedDeleteIcon({required BuildContext context, required String itemID
       surfaceTintColor: themeColor,
       actions: [
         TextButton(
-          child: SelectableText(
+          child: Text(
             'Delete Permanently',
             style: TextStyle(color: white),
           ),
@@ -125,7 +125,7 @@ void _onPressedTile({required BuildContext context, required String name, requir
     builder: (context) => Center(
       child: SingleChildScrollView(
         child: AlertDialog(
-          title: SelectableText(
+          title: Text(
             '$name\n\n$description',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 18, color: white),
@@ -134,7 +134,7 @@ void _onPressedTile({required BuildContext context, required String name, requir
           surfaceTintColor: themeColor,
           actions: [
             TextButton(
-              child: SelectableText(
+              child: Text(
                 'Back',
                 style: TextStyle(color: white),
               ),
