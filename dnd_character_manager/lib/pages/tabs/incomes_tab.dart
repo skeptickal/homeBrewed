@@ -2,6 +2,7 @@ import 'package:dnd_character_manager/client/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import '../../constants/theme_data.dart';
 import '../../cubits/income_cubit/income_cubit.dart';
 
@@ -53,7 +54,7 @@ class _IncomesList extends StatelessWidget {
               Center(
                 child: Text(
                   'Incomes\n',
-                  style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+                  style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 16),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -312,7 +313,7 @@ class _IncomesList extends StatelessWidget {
                 ),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(20),
-                  onLongPress: () {},
+                  onLongPress: () => _showEditDialog(context, state.income!.platinum, 'Platinum', charID!, state),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -367,4 +368,47 @@ class _IncomesList extends StatelessWidget {
       },
     );
   }
+}
+
+void _showEditDialog(BuildContext context, String? currentValue, String currencyType, String? charID, IncomeState incomeState) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text(
+          'Edit $currencyType',
+          style: dndFont,
+        ),
+        content: TextField(
+          controller: TextEditingController(text: currentValue),
+          keyboardType: TextInputType.number,
+          onChanged: (newValue) {
+            currentValue = newValue;
+          },
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              context.read<IncomeCubit>().setIncomesData(incomeState.income!.copyWith(platinum: currentValue));
+              context.read<IncomeCubit>().readIncomeData(charID!);
+              context.pop();
+            },
+            child: Text(
+              'Save',
+              style: dndFont.copyWith(color: themeColor),
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text(
+              'Cancel',
+              style: dndFont.copyWith(color: themeColor),
+            ),
+          ),
+        ],
+      );
+    },
+  );
 }
