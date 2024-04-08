@@ -50,7 +50,10 @@ class _ResourcesList extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(resource.name ?? ''),
-                    Text('MAX : ${resource.maxResourceValue ?? '0'}'),
+                    Text(
+                      resource.maxResourceValue ?? '0',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: themeColor),
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -95,52 +98,53 @@ class _ResourcesList extends StatelessWidget {
             );
           },
         ).toList();
-        return Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: GridView(
-              shrinkWrap: true,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, crossAxisSpacing: 10, mainAxisSpacing: 10),
-              children: [
-                const Center(
-                  child: SizedBox(),
-                ),
-                Center(
-                  child: Column(
-                    children: [
-                      Text(
-                        'Resources\n',
-                        style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
-                        textAlign: TextAlign.center,
-                      ),
-                      Center(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 2,
-                                blurRadius: 3,
-                                offset: const Offset(0, 2),
-                              ),
-                            ],
-                          ),
-                          child: IconButton(
-                            iconSize: 25,
-                            color: themeColor,
-                            icon: const Icon(Icons.add),
-                            onPressed: () => _showEditPanel(context, charID!),
-                          ),
+        return GridView(
+            shrinkWrap: true,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              crossAxisSpacing: 5,
+              mainAxisSpacing: 5,
+            ),
+            children: [
+              const Center(
+                child: SizedBox(),
+              ),
+              Center(
+                child: Column(
+                  children: [
+                    Text(
+                      'Resources\n',
+                      style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+                      textAlign: TextAlign.center,
+                    ),
+                    Center(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 2,
+                              blurRadius: 3,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: IconButton(
+                          iconSize: 25,
+                          color: themeColor,
+                          icon: const Icon(Icons.add),
+                          onPressed: () => _showEditPanel(context, charID!),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                const SizedBox(),
-                ...resources
-              ]),
-        );
+              ),
+              const SizedBox(),
+              ...resources
+            ]);
       },
     );
   }
