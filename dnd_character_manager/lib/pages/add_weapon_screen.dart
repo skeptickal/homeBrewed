@@ -134,7 +134,17 @@ class AddWeaponScreen extends StatelessWidget {
                   },
                   child: Text(
                     'Add Weapon',
-                    style: dndFont,
+                    style: dndFont.copyWith(color: black),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    context.read<WeaponCubit>().deleteWeaponByWeaponID(weapon.weaponID!);
+                    context.pop();
+                  },
+                  child: Text(
+                    'Cancel',
+                    style: dndFont.copyWith(color: black),
                   ),
                 ),
               ],

@@ -121,6 +121,16 @@ class AddResourceScreen extends StatelessWidget {
                     style: dndFont.copyWith(color: black),
                   ),
                 ),
+                TextButton(
+                  onPressed: () {
+                    context.read<ResourceCubit>().deleteResourceByResourceID(resource.resourceID!);
+                    context.pop();
+                  },
+                  child: Text(
+                    'Cancel',
+                    style: dndFont.copyWith(color: black),
+                  ),
+                ),
               ],
             ),
           ),

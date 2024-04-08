@@ -48,7 +48,7 @@ class AddItemScreen extends StatelessWidget {
                   hintText: 'e.g. Crowbar',
                   subtitle: 'Item name',
                 ),
-                BigTextBox(
+                StatTextBox(
                   onTapOutside: (clickOut) {
                     context.read<ItemCubit>().setItemsData(item.copyWith(
                           name: name.text,
@@ -70,7 +70,6 @@ class AddItemScreen extends StatelessWidget {
                   controller: amount,
                   hintText: '2',
                   subtitle: 'Amount',
-                  keyboardType: TextInputType.number,
                   maxLength: 3,
                 ),
                 BigTextBox(
@@ -93,7 +92,7 @@ class AddItemScreen extends StatelessWidget {
                   enabled: true,
                   padding: const EdgeInsets.all(6),
                   controller: description,
-                  hintText: 'x1\nA Useful Crowbar',
+                  hintText: 'A Useful Crowbar',
                   subtitle: 'Description (Optional)',
                   minLines: 5,
                 ),
@@ -104,7 +103,17 @@ class AddItemScreen extends StatelessWidget {
                   },
                   child: Text(
                     'Add Item',
-                    style: dndFont,
+                    style: dndFont.copyWith(color: black),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    context.read<ItemCubit>().deleteItemByItemID(item.itemID!);
+                    context.pop();
+                  },
+                  child: Text(
+                    'Cancel',
+                    style: dndFont.copyWith(color: black),
                   ),
                 ),
               ],

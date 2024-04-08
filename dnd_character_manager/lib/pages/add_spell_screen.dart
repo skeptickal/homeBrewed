@@ -102,7 +102,17 @@ class AddSpellScreen extends StatelessWidget {
                   },
                   child: Text(
                     'Add Spell',
-                    style: dndFont,
+                    style: dndFont.copyWith(color: black),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    context.read<SpellCubit>().deleteSpellBySpellID(spell.spellID!);
+                    context.pop();
+                  },
+                  child: Text(
+                    'Cancel',
+                    style: dndFont.copyWith(color: black),
                   ),
                 ),
               ],

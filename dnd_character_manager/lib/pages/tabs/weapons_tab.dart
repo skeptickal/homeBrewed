@@ -204,7 +204,6 @@ void _showEditPanel(BuildContext context, String charID) {
 void _showPostEditPanel(BuildContext context, Weapon weapon) {
   showDialog(
     barrierDismissible: false,
-    //barrierColor: black,
     context: context,
     builder: (context) => Center(
       child: SingleChildScrollView(
