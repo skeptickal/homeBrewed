@@ -1,4 +1,3 @@
-import 'package:dnd_character_manager/client/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -44,15 +43,18 @@ class _IncomesList extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Center(
-                      child: SelectableText(
-                        '100 copper (cp) = 1 silver (sp)\n\n'
-                        '10 silver (sp) = 1 gold (gp)',
-                        style: TextStyle(fontSize: 12),
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: TextButton(
+                        onPressed: () => _onPressedRatios(context),
+                        child: Text(
+                          'Ratios?',
+                          style: TextStyle(fontSize: 14, color: themeColor),
+                        ),
                       ),
                     ),
-                    horizontalLine,
                   ],
                 ),
               ),
@@ -63,21 +65,7 @@ class _IncomesList extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    const Center(
-                      child: SelectableText(
-                        '2 electrum (ep) = 1 gold (gp)\n\n'
-                        '10 gold (gp) = 1 platinum (pp)',
-                        style: TextStyle(fontSize: 12),
-                      ),
-                    ),
-                    horizontalLine,
-                  ],
-                ),
-              ),
+              const SizedBox(),
               Container(
                 decoration: BoxDecoration(
                   border: Border.all(color: themeColor, width: 2),
@@ -108,10 +96,13 @@ class _IncomesList extends StatelessWidget {
                             icon: const Icon(Icons.remove),
                           ),
                           Flexible(
-                            child: SelectableText(
-                              state.income!.copper ?? '0',
-                              style: const TextStyle(fontSize: 16),
-                              textAlign: TextAlign.center,
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: SelectableText(
+                                state.income!.copper ?? '0',
+                                style: const TextStyle(fontSize: 16),
+                                textAlign: TextAlign.center,
+                              ),
                             ),
                           ),
                           IconButton(
@@ -160,10 +151,13 @@ class _IncomesList extends StatelessWidget {
                             icon: const Icon(Icons.remove),
                           ),
                           Flexible(
-                            child: SelectableText(
-                              state.income!.silver ?? '0',
-                              style: const TextStyle(fontSize: 16),
-                              textAlign: TextAlign.center,
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: SelectableText(
+                                state.income!.silver ?? '0',
+                                style: const TextStyle(fontSize: 16),
+                                textAlign: TextAlign.center,
+                              ),
                             ),
                           ),
                           IconButton(
@@ -212,10 +206,13 @@ class _IncomesList extends StatelessWidget {
                             icon: const Icon(Icons.remove),
                           ),
                           Flexible(
-                            child: SelectableText(
-                              state.income!.electrum ?? '0',
-                              style: const TextStyle(fontSize: 16),
-                              textAlign: TextAlign.center,
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: SelectableText(
+                                state.income!.electrum ?? '0',
+                                style: const TextStyle(fontSize: 16),
+                                textAlign: TextAlign.center,
+                              ),
                             ),
                           ),
                           IconButton(
@@ -264,10 +261,13 @@ class _IncomesList extends StatelessWidget {
                             icon: const Icon(Icons.remove),
                           ),
                           Flexible(
-                            child: SelectableText(
-                              state.income!.gold ?? '0',
-                              style: const TextStyle(fontSize: 16),
-                              textAlign: TextAlign.center,
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: SelectableText(
+                                state.income!.gold ?? '0',
+                                style: const TextStyle(fontSize: 16),
+                                textAlign: TextAlign.center,
+                              ),
                             ),
                           ),
                           IconButton(
@@ -320,10 +320,13 @@ class _IncomesList extends StatelessWidget {
                             icon: const Icon(Icons.remove),
                           ),
                           Flexible(
-                            child: SelectableText(
-                              state.income!.platinum ?? '0',
-                              style: const TextStyle(fontSize: 16),
-                              textAlign: TextAlign.center,
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: SelectableText(
+                                state.income!.platinum ?? '0',
+                                style: const TextStyle(fontSize: 16),
+                                textAlign: TextAlign.center,
+                              ),
                             ),
                           ),
                           IconButton(
@@ -407,4 +410,45 @@ Income _updateIncome(Income income, String currencyType, String? value) {
     default:
       return income;
   }
+}
+
+void _onPressedRatios(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (context) => Center(
+      child: SingleChildScrollView(
+        child: AlertDialog(
+          title: Column(
+            children: [
+              SelectableText(
+                'Income Ratios:\n',
+                style: TextStyle(fontSize: 22, color: white, fontWeight: FontWeight.bold),
+              ),
+              SelectableText(
+                '• 100 copper (cp) = 1 silver (sp)\n\n'
+                '• 10 silver (sp) = 1 gold (gp).\n\n'
+                '• 2 electrum (ep) = 1 gold (gp)\n\n'
+                '• 10 gold (gp) = 1 platinum (pp)',
+                textAlign: TextAlign.start,
+                style: TextStyle(fontSize: 18, color: white),
+              ),
+            ],
+          ),
+          backgroundColor: themeColor,
+          surfaceTintColor: themeColor,
+          actions: [
+            TextButton(
+              child: Text(
+                'Back',
+                style: TextStyle(color: white),
+              ),
+              onPressed: () {
+                context.pop();
+              },
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
 }

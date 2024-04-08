@@ -69,10 +69,13 @@ class _ResourcesList extends StatelessWidget {
                           icon: const Icon(Icons.remove),
                         ),
                         Flexible(
-                          child: SelectableText(
-                            resource.currentResourceValue ?? '0',
-                            style: const TextStyle(fontSize: 16),
-                            textAlign: TextAlign.center,
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: SelectableText(
+                              resource.currentResourceValue ?? '0',
+                              style: const TextStyle(fontSize: 16),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                         ),
                         IconButton(
