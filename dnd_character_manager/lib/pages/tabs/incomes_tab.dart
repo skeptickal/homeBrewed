@@ -82,7 +82,7 @@ class _IncomesList extends StatelessWidget {
                           color: Colors.brown,
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             IconButton(
                               onPressed: () {
@@ -98,12 +98,12 @@ class _IncomesList extends StatelessWidget {
                                 child: TextField(
                               enabled: false,
                               controller: TextEditingController(text: state.income!.copper ?? '0'),
-                              style: const TextStyle(fontSize: 18),
+                              style: const TextStyle(fontSize: 16),
                               textAlign: TextAlign.center,
                               decoration: const InputDecoration(
                                 border: InputBorder.none,
                                 hintText: '0',
-                                hintStyle: TextStyle(fontSize: 18),
+                                hintStyle: TextStyle(fontSize: 16),
                                 contentPadding: EdgeInsets.symmetric(vertical: 10),
                               ),
                             )),
@@ -156,12 +156,12 @@ class _IncomesList extends StatelessWidget {
                                 child: TextField(
                               enabled: false,
                               controller: TextEditingController(text: state.income!.silver ?? '0'),
-                              style: const TextStyle(fontSize: 18),
+                              style: const TextStyle(fontSize: 16),
                               textAlign: TextAlign.center,
                               decoration: const InputDecoration(
                                 border: InputBorder.none,
                                 hintText: '0',
-                                hintStyle: TextStyle(fontSize: 18),
+                                hintStyle: TextStyle(fontSize: 16),
                                 contentPadding: EdgeInsets.symmetric(vertical: 10),
                               ),
                             )),
@@ -214,12 +214,12 @@ class _IncomesList extends StatelessWidget {
                                 child: TextField(
                               enabled: false,
                               controller: TextEditingController(text: state.income!.electrum ?? '0'),
-                              style: const TextStyle(fontSize: 18),
+                              style: const TextStyle(fontSize: 16),
                               textAlign: TextAlign.center,
                               decoration: const InputDecoration(
                                 border: InputBorder.none,
                                 hintText: '0',
-                                hintStyle: TextStyle(fontSize: 18),
+                                hintStyle: TextStyle(fontSize: 16),
                                 contentPadding: EdgeInsets.symmetric(vertical: 10),
                               ),
                             )),
@@ -272,12 +272,12 @@ class _IncomesList extends StatelessWidget {
                                 child: TextField(
                               enabled: false,
                               controller: TextEditingController(text: state.income!.gold ?? '0'),
-                              style: const TextStyle(fontSize: 18),
+                              style: const TextStyle(fontSize: 16),
                               textAlign: TextAlign.center,
                               decoration: const InputDecoration(
                                 border: InputBorder.none,
                                 hintText: '0',
-                                hintStyle: TextStyle(fontSize: 18),
+                                hintStyle: TextStyle(fontSize: 16),
                                 contentPadding: EdgeInsets.symmetric(vertical: 10),
                               ),
                             )),
@@ -334,12 +334,12 @@ class _IncomesList extends StatelessWidget {
                                 child: TextField(
                               enabled: false,
                               controller: TextEditingController(text: state.income!.platinum ?? '0'),
-                              style: const TextStyle(fontSize: 18),
+                              style: const TextStyle(fontSize: 16),
                               textAlign: TextAlign.center,
                               decoration: const InputDecoration(
                                 border: InputBorder.none,
                                 hintText: '0',
-                                hintStyle: TextStyle(fontSize: 18),
+                                hintStyle: TextStyle(fontSize: 16),
                                 contentPadding: EdgeInsets.symmetric(vertical: 10),
                               ),
                             )),
