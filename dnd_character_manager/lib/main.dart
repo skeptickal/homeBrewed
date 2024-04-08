@@ -15,9 +15,11 @@ Future<void> main() async {
     DndBlocProvider(
       child: Builder(builder: (context) {
         context.read<UserCubit>().initialize();
-        return MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          routerConfig: router,
+        return GestureDetector(
+          child: MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            routerConfig: router,
+          ),
         );
       }),
     ),

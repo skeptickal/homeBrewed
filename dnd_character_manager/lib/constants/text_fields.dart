@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dnd_character_manager/constants/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -93,7 +95,6 @@ class BigTextBox extends StatelessWidget {
               maxLengthEnforcement: MaxLengthEnforcement.enforced,
               maxLength: maxLength,
               style: TextStyle(color: !enabled ? disableGrey : black),
-              textInputAction: TextInputAction.none,
               onTapOutside: onTapOutside,
               onEditingComplete: onEditingComplete,
               readOnly: !enabled,
@@ -160,7 +161,7 @@ class StatTextBox extends StatelessWidget {
               minLines: minLines,
               maxLines: null,
               textInputAction: action,
-              keyboardType: inputType ?? TextInputType.number,
+              keyboardType: Platform.isIOS ? const TextInputType.numberWithOptions(signed: true, decimal: true) : TextInputType.number,
               decoration: dndFieldInputDecoration(enabled: enabled, hintText: hintText),
             ),
           ),
