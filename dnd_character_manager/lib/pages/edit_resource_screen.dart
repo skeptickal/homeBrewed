@@ -155,8 +155,8 @@ class EditResourceScreen extends StatelessWidget {
                     );
                   },
                   child: Text(
-                    'Delete Resource?',
-                    style: dndFont.copyWith(color: Colors.red),
+                    'Delete ${resource.name}?',
+                    style: dndFont.copyWith(color: themeColor),
                   ),
                 ),
               ],

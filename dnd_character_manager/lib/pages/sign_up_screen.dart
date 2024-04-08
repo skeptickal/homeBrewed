@@ -50,10 +50,6 @@ class _SignUp extends StatelessWidget {
               subtitle: 'Sign Up with Email',
             ),
             CustomTextBox(
-              validator: (password) {
-                password!.length < 6 ? 'Enter a password 6+ characters long' : null;
-                return password;
-              },
               obscureText: true,
               padding: const EdgeInsets.all(6),
               controller: password,
@@ -73,7 +69,7 @@ class _SignUp extends StatelessWidget {
               },
               child: Text(
                 'Sign Up',
-                style: dndFont.copyWith(fontSize: 16),
+                style: dndFont.copyWith(fontSize: 16, color: themeColor),
               ),
             ),
           ],
