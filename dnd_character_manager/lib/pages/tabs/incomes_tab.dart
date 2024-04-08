@@ -24,6 +24,7 @@ class IncomesTab extends StatelessWidget {
   }
 }
 
+//list with containers
 class _IncomesList extends StatelessWidget {
   final String? charID;
   const _IncomesList({required this.charID});
