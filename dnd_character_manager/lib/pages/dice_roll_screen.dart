@@ -15,17 +15,24 @@ class DiceRollScreen extends StatelessWidget {
       children: [
         Text(
           'Roll',
-          style: dndFont.copyWith(fontSize: 18, color: themeColor, fontWeight: FontWeight.bold),
-        ),
-        Text(
-          'e.g. 2d8 + 4d6 + 5',
-          style: dndFont.copyWith(fontSize: 16, color: themeColor, fontStyle: FontStyle.italic),
+          style: dndFont.copyWith(fontSize: 18, color: white, fontWeight: FontWeight.bold),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 50.0),
           child: TextField(
+            style: TextStyle(color: white),
             maxLines: 1,
             controller: diceRoll,
+            decoration: InputDecoration(
+              labelText: 'e.g. 2d8 + 4d6 + 5',
+              labelStyle: TextStyle(color: white),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: white),
+              ),
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: white),
+              ),
+            ),
           ),
         ),
         seperation,
@@ -33,14 +40,15 @@ class DiceRollScreen extends StatelessWidget {
           onPressed: () {
             _showRollDialog(context, diceRoll.text);
           },
-          icon: const FaIcon(
+          icon: FaIcon(
             FontAwesomeIcons.diceD20,
             size: 30,
+            color: white,
           ),
         ),
         Text(
           '(rolls 1d20 if left blank)',
-          style: TextStyle(fontSize: 16, color: themeColor, fontStyle: FontStyle.italic),
+          style: TextStyle(fontSize: 16, color: white, fontStyle: FontStyle.italic),
         )
       ],
     );
@@ -66,14 +74,21 @@ void _showRollDialog(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text(
-          'Roll Result of $roll: ',
-          style: dndFont,
+        backgroundColor: themeColor,
+        title: Center(
+          child: Text(
+            '$roll: ',
+            style: dndFont.copyWith(fontSize: 20, color: white),
+          ),
         ),
         content: Text(
           textAlign: TextAlign.center,
-          rollResult,
-          style: (const TextStyle(fontSize: 18)),
+          '= $rollResult',
+          style: (TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: white,
+          )),
         ),
       );
     },

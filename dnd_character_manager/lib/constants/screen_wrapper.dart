@@ -11,8 +11,15 @@ class ScreenWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: backgroundColor,
       appBar: AppBar(
-        actions: [IconButton(onPressed: () => _showDiceRoll(context), icon: const FaIcon(FontAwesomeIcons.diceD20))],
+        actions: [
+          IconButton(
+              onPressed: () => _showDiceRoll(context),
+              icon: const FaIcon(
+                FontAwesomeIcons.diceD20,
+              )),
+        ],
         iconTheme: IconThemeData(color: white),
         title: Text(
           title,
@@ -32,8 +39,9 @@ void _showDiceRoll(
   showDialog(
     context: context,
     builder: (BuildContext context) {
-      return const AlertDialog(
-        title: DiceRollScreen(),
+      return AlertDialog(
+        backgroundColor: themeColor,
+        title: const DiceRollScreen(),
       );
     },
   );
