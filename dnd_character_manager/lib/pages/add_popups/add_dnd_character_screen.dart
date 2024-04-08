@@ -12,8 +12,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:uuid/uuid.dart';
 
-import '../cubits/bio_cubit/cubit/bio_cubit.dart';
-import '../cubits/stat_cubit/cubit/stat_cubit.dart';
+import '../../cubits/bio_cubit/cubit/bio_cubit.dart';
+import '../../cubits/stat_cubit/cubit/stat_cubit.dart';
 
 class AddDndCharacterScreen extends StatelessWidget {
   const AddDndCharacterScreen({

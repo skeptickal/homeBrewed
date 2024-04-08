@@ -8,8 +8,8 @@ import '../../client/spacing.dart';
 import '../../constants/theme_data.dart';
 import '../../cubits/action_cubit/dndAction_cubit.dart';
 import '../../models/dnd_action.dart';
-import '../add_dnd_action_screen.dart';
-import '../edit_dnd_action_screen.dart';
+import '../add_popups/add_dnd_action_screen.dart';
+import '../edit_popups/edit_dnd_action_screen.dart';
 
 class DndActionsTab extends StatelessWidget {
   final String charID;

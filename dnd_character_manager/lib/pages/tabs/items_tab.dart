@@ -7,8 +7,8 @@ import '../../client/spacing.dart';
 import '../../constants/theme_data.dart';
 import '../../cubits/item_cubit/item_cubit.dart';
 import '../../models/item.dart';
-import '../add_item_screen.dart';
-import '../edit_item_screen.dart';
+import '../add_popups/add_item_screen.dart';
+import '../edit_popups/edit_item_screen.dart';
 
 class ItemsTab extends StatelessWidget {
   final String charID;

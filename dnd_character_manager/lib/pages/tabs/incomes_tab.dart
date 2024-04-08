@@ -66,285 +66,104 @@ class _IncomesList extends StatelessWidget {
                 ),
               ),
               const SizedBox(),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: themeColor, width: 2),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(20),
-                  onLongPress: () => _showEditDialog(context, state.income!.copper, 'Copper', charID!, state),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      const SelectableText('Copper'),
-                      const FaIcon(
-                        FontAwesomeIcons.coins,
-                        color: Colors.brown,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              int? copperValueAsInt = int.tryParse(state.income!.copper ?? '0')! - 1;
-                              context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(
-                                    copper: copperValueAsInt.toString(),
-                                  ));
-                              context.read<IncomeCubit>().readIncomesByCharID(charID);
-                            },
-                            icon: const Icon(Icons.remove),
-                          ),
-                          Flexible(
-                            child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: SelectableText(
-                                state.income!.copper ?? '0',
-                                style: const TextStyle(fontSize: 16),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              int? copperValueAsInt = int.tryParse(state.income!.copper ?? '0')! + 1;
-                              context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(copper: copperValueAsInt.toString()));
-                              context.read<IncomeCubit>().readIncomesByCharID(charID);
-                            },
-                            icon: const Icon(
-                              Icons.add,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+              _IncomeContainer(
+                title: 'Copper',
+                value: state.income!.copper,
+                state: state,
+                charID: charID,
+                onLongPress: () => _showEditDialog(context, state.income!.copper, 'Copper', charID!, state),
+                onIncrement: () {
+                  int? copperValueAsInt = int.tryParse(state.income!.copper ?? '0')! + 1;
+                  context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(copper: copperValueAsInt.toString()));
+                  context.read<IncomeCubit>().readIncomesByCharID(charID);
+                },
+                onDecrement: () {
+                  int? copperValueAsInt = int.tryParse(state.income!.copper ?? '0')! - 1;
+                  context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(copper: copperValueAsInt.toString()));
+                  context.read<IncomeCubit>().readIncomesByCharID(charID);
+                },
+                color: Colors.brown,
               ),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: themeColor, width: 2),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(20),
-                  onLongPress: () => _showEditDialog(context, state.income!.silver, 'Silver', charID!, state),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      const SelectableText('Silver'),
-                      const FaIcon(
-                        FontAwesomeIcons.coins,
-                        color: Colors.grey,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              int? silverValueAsInt = int.tryParse(state.income!.silver ?? '0')! - 1;
-                              context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(
-                                    silver: silverValueAsInt.toString(),
-                                  ));
-                              context.read<IncomeCubit>().readIncomesByCharID(charID);
-                            },
-                            icon: const Icon(Icons.remove),
-                          ),
-                          Flexible(
-                            child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: SelectableText(
-                                state.income!.silver ?? '0',
-                                style: const TextStyle(fontSize: 16),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              int? silverValueAsInt = int.tryParse(state.income!.silver ?? '0')! + 1;
-                              context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(silver: silverValueAsInt.toString()));
-                              context.read<IncomeCubit>().readIncomesByCharID(charID);
-                            },
-                            icon: const Icon(
-                              Icons.add,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+              _IncomeContainer(
+                title: 'Silver',
+                value: state.income!.silver,
+                state: state,
+                charID: charID,
+                onLongPress: () => _showEditDialog(context, state.income!.silver, 'Silver', charID!, state),
+                onIncrement: () {
+                  int? silverValueAsInt = int.tryParse(state.income!.silver ?? '0')! + 1;
+                  context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(silver: silverValueAsInt.toString()));
+                  context.read<IncomeCubit>().readIncomesByCharID(charID);
+                },
+                onDecrement: () {
+                  int? silverValueAsInt = int.tryParse(state.income!.silver ?? '0')! - 1;
+                  context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(silver: silverValueAsInt.toString()));
+                  context.read<IncomeCubit>().readIncomesByCharID(charID);
+                },
+                color: Colors.grey,
               ),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: themeColor, width: 2),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(20),
-                  onLongPress: () => _showEditDialog(context, state.income!.electrum, 'Electrum', charID!, state),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      const SelectableText('Electrum'),
-                      const FaIcon(
-                        FontAwesomeIcons.coins,
-                        color: Color.fromARGB(255, 90, 87, 87),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              int? electrumValueAsInt = int.tryParse(state.income!.electrum ?? '0')! - 1;
-                              context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(
-                                    electrum: electrumValueAsInt.toString(),
-                                  ));
-                              context.read<IncomeCubit>().readIncomesByCharID(charID);
-                            },
-                            icon: const Icon(Icons.remove),
-                          ),
-                          Flexible(
-                            child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: SelectableText(
-                                state.income!.electrum ?? '0',
-                                style: const TextStyle(fontSize: 16),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              int? electrumValueAsInt = int.tryParse(state.income!.electrum ?? '0')! + 1;
-                              context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(electrum: electrumValueAsInt.toString()));
-                              context.read<IncomeCubit>().readIncomesByCharID(charID);
-                            },
-                            icon: const Icon(
-                              Icons.add,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+              _IncomeContainer(
+                title: 'Electrum',
+                value: state.income!.electrum,
+                state: state,
+                charID: charID,
+                onLongPress: () => _showEditDialog(context, state.income!.electrum, 'Electrum', charID!, state),
+                onIncrement: () {
+                  int? electrumValueAsInt = int.tryParse(state.income!.electrum ?? '0')! + 1;
+                  context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(electrum: electrumValueAsInt.toString()));
+                  context.read<IncomeCubit>().readIncomesByCharID(charID);
+                },
+                onDecrement: () {
+                  int? electrumValueAsInt = int.tryParse(state.income!.electrum ?? '0')! - 1;
+                  context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(electrum: electrumValueAsInt.toString()));
+                  context.read<IncomeCubit>().readIncomesByCharID(charID);
+                },
+                color: const Color.fromARGB(255, 90, 87, 87),
               ),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: themeColor, width: 2),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(20),
-                  onLongPress: () => _showEditDialog(context, state.income!.gold, 'Gold', charID!, state),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      const SelectableText('Gold'),
-                      const FaIcon(
-                        FontAwesomeIcons.coins,
-                        color: Color.fromARGB(255, 212, 196, 49),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              int? goldValueAsInt = int.tryParse(state.income!.gold ?? '0')! - 1;
-                              context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(
-                                    gold: goldValueAsInt.toString(),
-                                  ));
-                              context.read<IncomeCubit>().readIncomesByCharID(charID);
-                            },
-                            icon: const Icon(Icons.remove),
-                          ),
-                          Flexible(
-                            child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: SelectableText(
-                                state.income!.gold ?? '0',
-                                style: const TextStyle(fontSize: 16),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              int? goldValueAsInt = int.tryParse(state.income!.gold ?? '0')! + 1;
-                              context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(gold: goldValueAsInt.toString()));
-                              context.read<IncomeCubit>().readIncomesByCharID(charID);
-                            },
-                            icon: const Icon(
-                              Icons.add,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+              _IncomeContainer(
+                title: 'Gold',
+                value: state.income!.gold,
+                state: state,
+                charID: charID,
+                onLongPress: () => _showEditDialog(context, state.income!.gold, 'Gold', charID!, state),
+                onIncrement: () {
+                  int? goldValueAsInt = int.tryParse(state.income!.gold ?? '0')! + 1;
+                  context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(gold: goldValueAsInt.toString()));
+                  context.read<IncomeCubit>().readIncomesByCharID(charID);
+                },
+                onDecrement: () {
+                  int? goldValueAsInt = int.tryParse(state.income!.gold ?? '0')! - 1;
+                  context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(gold: goldValueAsInt.toString()));
+                  context.read<IncomeCubit>().readIncomesByCharID(charID);
+                },
+                color: const Color.fromARGB(255, 212, 196, 49),
               ),
               const Icon(
                 Icons.attach_money,
                 size: 45,
               ),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: themeColor, width: 2),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(20),
-                  onLongPress: () => _showEditDialog(context, state.income!.platinum, 'Platinum', charID!, state),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      const SelectableText('Platinum'),
-                      const FaIcon(
-                        FontAwesomeIcons.coins,
-                        color: Color(0xffe5e4e2),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              int? platinumValueAsInt = int.tryParse(state.income!.platinum ?? '0')! - 1;
-                              context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(
-                                    platinum: platinumValueAsInt.toString(),
-                                  ));
-                              context.read<IncomeCubit>().readIncomesByCharID(charID);
-                            },
-                            icon: const Icon(Icons.remove),
-                          ),
-                          Flexible(
-                            child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: SelectableText(
-                                state.income!.platinum ?? '0',
-                                style: const TextStyle(fontSize: 16),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              int? platinumValueAsInt = int.tryParse(state.income!.platinum ?? '0')! + 1;
-                              context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(platinum: platinumValueAsInt.toString()));
-                              context.read<IncomeCubit>().readIncomesByCharID(charID);
-                            },
-                            icon: const Icon(
-                              Icons.add,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              _IncomeContainer(
+                title: 'Platinum',
+                value: state.income!.platinum,
+                state: state,
+                charID: charID,
+                onLongPress: () => _showEditDialog(context, state.income!.platinum, 'Platinum', charID!, state),
+                onIncrement: () {
+                  int? platinumValueAsInt = int.tryParse(state.income!.platinum ?? '0')! + 1;
+                  context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(platinum: platinumValueAsInt.toString()));
+                  context.read<IncomeCubit>().readIncomesByCharID(charID);
+                },
+                onDecrement: () {
+                  {
+                    int? platinumValueAsInt = int.tryParse(state.income!.platinum ?? '0')! - 1;
+                    context.read<IncomeCubit>().setIncomesData(state.income!.copyWith(
+                          platinum: platinumValueAsInt.toString(),
+                        ));
+                    context.read<IncomeCubit>().readIncomesByCharID(charID);
+                  }
+                },
+                color: const Color(0xffe5e4e2),
+              )
             ]);
       },
     );
@@ -451,4 +270,75 @@ void _onPressedRatios(BuildContext context) {
       ),
     ),
   );
+}
+
+class _IncomeContainer extends StatelessWidget {
+  final String? title;
+  final String? value;
+  final IncomeState state;
+  final String? charID;
+  final void Function() onLongPress;
+  final void Function() onIncrement;
+  final void Function() onDecrement;
+  final Color color;
+
+  const _IncomeContainer({
+    required this.title,
+    required this.value,
+    required this.state,
+    required this.charID,
+    required this.onLongPress,
+    required this.onIncrement,
+    required this.onDecrement,
+    required this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: themeColor, width: 2),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(20),
+        onLongPress: () => onLongPress(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            SelectableText(title!),
+            FaIcon(
+              FontAwesomeIcons.coins,
+              color: color,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                IconButton(
+                  onPressed: () => onDecrement(),
+                  icon: const Icon(Icons.remove),
+                ),
+                Flexible(
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: SelectableText(
+                      value!,
+                      style: const TextStyle(fontSize: 16),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+                IconButton(
+                  onPressed: () => onIncrement(),
+                  icon: const Icon(
+                    Icons.add,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }

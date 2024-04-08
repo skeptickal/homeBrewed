@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../cubits/weapon_cubit/weapon_cubit.dart';
+import '../../cubits/weapon_cubit/weapon_cubit.dart';
 
-class EditWeaponScreen extends StatelessWidget {
+class AddWeaponScreen extends StatelessWidget {
   final Weapon weapon;
-  const EditWeaponScreen({super.key, required this.weapon});
+  const AddWeaponScreen({super.key, required this.weapon});
 
   @override
   Widget build(BuildContext context) {
@@ -134,7 +134,17 @@ class EditWeaponScreen extends StatelessWidget {
                     context.pop();
                   },
                   child: Text(
-                    'Done Editing',
+                    'Add Weapon',
+                    style: dndFont.copyWith(color: black),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    context.read<WeaponCubit>().deleteWeaponByWeaponID(weapon.weaponID!);
+                    context.pop();
+                  },
+                  child: Text(
+                    'Cancel',
                     style: dndFont.copyWith(color: black),
                   ),
                 ),

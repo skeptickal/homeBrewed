@@ -7,8 +7,8 @@ import 'package:uuid/uuid.dart';
 
 import '../../client/spacing.dart';
 import '../../constants/theme_data.dart';
-import '../add_weapon_screen.dart';
-import '../edit_weapon_screen.dart';
+import '../add_popups/add_weapon_screen.dart';
+import '../edit_popups/edit_weapon_screen.dart';
 
 class WeaponsTab extends StatelessWidget {
   final String charID;

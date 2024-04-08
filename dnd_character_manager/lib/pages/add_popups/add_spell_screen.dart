@@ -1,24 +1,24 @@
 import 'package:dnd_character_manager/constants/text_fields.dart';
 import 'package:dnd_character_manager/constants/theme_data.dart';
-
+import 'package:dnd_character_manager/models/spell.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../cubits/item_cubit/item_cubit.dart';
-import '../models/item.dart';
+import '../../cubits/spell_cubit/spell_cubit.dart';
 
-class AddItemScreen extends StatelessWidget {
-  final Item item;
-  const AddItemScreen({super.key, required this.item});
+class AddSpellScreen extends StatelessWidget {
+  final Spell spell;
+  const AddSpellScreen({super.key, required this.spell});
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController name = TextEditingController(text: item.name);
-    TextEditingController amount = TextEditingController(text: item.amount);
-    TextEditingController description = TextEditingController(text: item.description);
+    print('Jeff ${spell.spellID}');
+    TextEditingController name = TextEditingController(text: spell.name);
+    TextEditingController spellAtkOrDC = TextEditingController(text: spell.spellAtkOrDC);
+    TextEditingController description = TextEditingController(text: spell.description);
 
-    return BlocBuilder<ItemCubit, ItemState>(
+    return BlocBuilder<SpellCubit, SpellState>(
       builder: (context, state) {
         return Form(
           child: SingleChildScrollView(
@@ -28,88 +28,87 @@ class AddItemScreen extends StatelessWidget {
               children: [
                 BigTextBox(
                   onTapOutside: (clickOut) {
-                    context.read<ItemCubit>().setItemsData(item.copyWith(
+                    context.read<SpellCubit>().setSpellsData(spell.copyWith(
                           name: name.text,
+                          spellAtkOrDC: spellAtkOrDC.text,
                           description: description.text,
-                          amount: amount.text,
                         ));
-                    context.read<ItemCubit>().readItemsByCharID(item.charID);
+                    context.read<SpellCubit>().readSpellsByCharID(spell.charID);
                   },
                   onEditingComplete: () {
-                    context.read<ItemCubit>().setItemsData(item.copyWith(
+                    context.read<SpellCubit>().setSpellsData(spell.copyWith(
                           name: name.text,
+                          spellAtkOrDC: spellAtkOrDC.text,
                           description: description.text,
-                          amount: amount.text,
                         ));
-                    context.read<ItemCubit>().readItemsByCharID(item.charID);
+                    context.read<SpellCubit>().readSpellsByCharID(spell.charID);
                   },
                   enabled: true,
                   padding: const EdgeInsets.all(6),
                   controller: name,
-                  hintText: 'e.g. Crowbar',
-                  subtitle: 'Item name',
-                ),
-                StatTextBox(
-                  onTapOutside: (clickOut) {
-                    context.read<ItemCubit>().setItemsData(item.copyWith(
-                          name: name.text,
-                          description: description.text,
-                          amount: amount.text,
-                        ));
-                    context.read<ItemCubit>().readItemsByCharID(item.charID);
-                  },
-                  onEditingComplete: () {
-                    context.read<ItemCubit>().setItemsData(item.copyWith(
-                          name: name.text,
-                          description: description.text,
-                          amount: amount.text,
-                        ));
-                    context.read<ItemCubit>().readItemsByCharID(item.charID);
-                  },
-                  enabled: true,
-                  padding: const EdgeInsets.symmetric(horizontal: 80),
-                  controller: amount,
-                  hintText: '2',
-                  subtitle: 'Amount',
-                  maxLength: 3,
+                  hintText: 'Spell name',
+                  subtitle: 'Spell name',
                 ),
                 BigTextBox(
                   onTapOutside: (clickOut) {
-                    context.read<ItemCubit>().setItemsData(item.copyWith(
+                    context.read<SpellCubit>().setSpellsData(spell.copyWith(
                           name: name.text,
+                          spellAtkOrDC: spellAtkOrDC.text,
                           description: description.text,
-                          amount: amount.text,
                         ));
-                    context.read<ItemCubit>().readItemsByCharID(item.charID);
+                    context.read<SpellCubit>().readSpellsByCharID(spell.charID);
                   },
                   onEditingComplete: () {
-                    context.read<ItemCubit>().setItemsData(item.copyWith(
+                    context.read<SpellCubit>().setSpellsData(spell.copyWith(
                           name: name.text,
+                          spellAtkOrDC: spellAtkOrDC.text,
                           description: description.text,
-                          amount: amount.text,
                         ));
-                    context.read<ItemCubit>().readItemsByCharID(item.charID);
+                    context.read<SpellCubit>().readSpellsByCharID(spell.charID);
+                  },
+                  enabled: true,
+                  padding: const EdgeInsets.all(6),
+                  controller: spellAtkOrDC,
+                  hintText: 'CHA + 5 or DC 12 DEX',
+                  subtitle: 'Spell Attack or DC Save',
+                ),
+                BigTextBox(
+                  onTapOutside: (clickOut) {
+                    context.read<SpellCubit>().setSpellsData(spell.copyWith(
+                          name: name.text,
+                          spellAtkOrDC: spellAtkOrDC.text,
+                          description: description.text,
+                        ));
+                    context.read<SpellCubit>().readSpellsByCharID(spell.charID);
+                  },
+                  onEditingComplete: () {
+                    context.read<SpellCubit>().setSpellsData(spell.copyWith(
+                          name: name.text,
+                          spellAtkOrDC: spellAtkOrDC.text,
+                          description: description.text,
+                        ));
+                    context.read<SpellCubit>().readSpellsByCharID(spell.charID);
                   },
                   enabled: true,
                   padding: const EdgeInsets.all(6),
                   controller: description,
-                  hintText: 'A Useful Crowbar',
+                  hintText: 'e.g. Graphic description of Fireball',
                   subtitle: 'Description (Optional)',
                   minLines: 5,
                 ),
                 TextButton(
                   onPressed: () {
-                    context.read<ItemCubit>().readItemsByCharID(item.charID);
+                    context.read<SpellCubit>().readSpellsByCharID(spell.charID);
                     context.pop();
                   },
                   child: Text(
-                    'Add Item',
+                    'Add Spell',
                     style: dndFont.copyWith(color: black),
                   ),
                 ),
                 TextButton(
                   onPressed: () {
-                    context.read<ItemCubit>().deleteItemByItemID(item.itemID!);
+                    context.read<SpellCubit>().deleteSpellBySpellID(spell.spellID!);
                     context.pop();
                   },
                   child: Text(
