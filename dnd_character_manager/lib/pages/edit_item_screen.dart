@@ -102,7 +102,7 @@ class EditItemScreen extends StatelessWidget {
                     context.read<ItemCubit>().readItemsByCharID(item.charID);
                     context.pop();
                   },
-                  child: Text(
+                  child: SelectableText(
                     'Done Editing',
                     style: dndFont.copyWith(color: black),
                   ),

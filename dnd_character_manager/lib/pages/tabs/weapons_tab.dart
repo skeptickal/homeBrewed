@@ -52,11 +52,11 @@ class _WeaponsList extends StatelessWidget {
                     },
                     icon: const ImageIcon(AssetImage('assets/sword.png')),
                   ),
-                  title: Text(
+                  title: SelectableText(
                     weapon.name ?? '',
                     style: dndFont.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
-                  subtitle: Text(
+                  subtitle: SelectableText(
                     'Attack: ${weapon.attackRoll ?? ''}\nDamage: ${weapon.damageRoll ?? ''}',
                     style: dndFont.copyWith(fontSize: 14, fontStyle: FontStyle.italic),
                   ),
@@ -79,7 +79,7 @@ class _WeaponsList extends StatelessWidget {
         ).toList();
         return Column(children: [
           seperation,
-          Text(
+          SelectableText(
             'Weapons',
             style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
           ),
@@ -95,7 +95,7 @@ void _onPressedDeleteIcon({required BuildContext context, required String weapon
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
-      title: Text(
+      title: SelectableText(
         'Are you sure you want to delete $name?',
         style: TextStyle(color: white, fontSize: 18),
       ),
@@ -103,7 +103,7 @@ void _onPressedDeleteIcon({required BuildContext context, required String weapon
       surfaceTintColor: themeColor,
       actions: [
         TextButton(
-          child: Text(
+          child: SelectableText(
             'Delete Permanently',
             style: TextStyle(color: white),
           ),
@@ -127,13 +127,13 @@ void _onPressedTile({required BuildContext context, required String name, requir
         child: AlertDialog(
           title: Column(
             children: [
-              Text(
+              SelectableText(
                 name,
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 22, color: white, fontWeight: FontWeight.bold),
               ),
               seperation,
-              Text(
+              SelectableText(
                 description,
                 textAlign: TextAlign.start,
                 style: TextStyle(fontSize: 18, color: white, fontStyle: FontStyle.italic),
@@ -144,7 +144,7 @@ void _onPressedTile({required BuildContext context, required String name, requir
           surfaceTintColor: themeColor,
           actions: [
             TextButton(
-              child: Text(
+              child: SelectableText(
                 'Back',
                 style: TextStyle(color: white),
               ),

@@ -90,7 +90,7 @@ class AddDndActionScreen extends StatelessWidget {
                     context.read<DndActionCubit>().readDndActionsByCharID(dndAction.charID);
                     context.pop();
                   },
-                  child: Text(
+                  child: SelectableText(
                     'Add Action',
                     style: dndFont,
                   ),
@@ -100,7 +100,7 @@ class AddDndActionScreen extends StatelessWidget {
                     context.read<DndActionCubit>().deleteDndActionByDndActionID(dndAction.dndActionID!);
                     context.pop();
                   },
-                  child: Text(
+                  child: SelectableText(
                     'Cancel',
                     style: dndFont,
                   ),

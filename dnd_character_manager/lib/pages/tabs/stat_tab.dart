@@ -73,7 +73,7 @@ class _SavingThrows extends StatelessWidget {
         proficiencyBonus.text = state.stats!.proficiencyBonus ?? '1';
         return Column(
           children: [
-            Text(
+            SelectableText(
               'Proficiency',
               style: dndFont.copyWith(fontWeight: FontWeight.bold),
             ),
@@ -110,12 +110,12 @@ class _SavingThrows extends StatelessWidget {
             ),
             horizontalLine,
             seperation,
-            Text(
+            SelectableText(
               'Saving Throws',
               style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
             ),
             CheckboxListTile(
-              title: Text(_calcModifierWithProf(
+              title: SelectableText(_calcModifierWithProf(
                 'Strength',
                 state.stats!.strength,
                 state.stats!.strSaveProf,
@@ -136,7 +136,7 @@ class _SavingThrows extends StatelessWidget {
                   : null,
             ),
             CheckboxListTile(
-              title: Text(_calcModifierWithProf(
+              title: SelectableText(_calcModifierWithProf(
                 'Dexterity',
                 state.stats!.dexterity,
                 state.stats!.dexSaveProf,
@@ -157,7 +157,7 @@ class _SavingThrows extends StatelessWidget {
                   : null,
             ),
             CheckboxListTile(
-              title: Text(_calcModifierWithProf(
+              title: SelectableText(_calcModifierWithProf(
                 'Constitution',
                 state.stats!.constitution,
                 state.stats!.conSaveProf,
@@ -178,7 +178,7 @@ class _SavingThrows extends StatelessWidget {
                   : null,
             ),
             CheckboxListTile(
-              title: Text(_calcModifierWithProf(
+              title: SelectableText(_calcModifierWithProf(
                 'Intelligence',
                 state.stats!.intelligence,
                 state.stats!.intSaveProf,
@@ -199,7 +199,7 @@ class _SavingThrows extends StatelessWidget {
                   : null,
             ),
             CheckboxListTile(
-              title: Text(_calcModifierWithProf(
+              title: SelectableText(_calcModifierWithProf(
                 'Wisdom',
                 state.stats!.wisdom,
                 state.stats!.wisSaveProf,
@@ -220,7 +220,7 @@ class _SavingThrows extends StatelessWidget {
                   : null,
             ),
             CheckboxListTile(
-              title: Text(_calcModifierWithProf(
+              title: SelectableText(_calcModifierWithProf(
                 'Charisma',
                 state.stats!.charisma,
                 state.stats!.chaSaveProf,
@@ -282,7 +282,7 @@ class _SkillChecks extends StatelessWidget {
     return BlocBuilder<StatCubit, StatState>(
       builder: (context, state) {
         CheckboxListTile acrobaticsProfCheck = CheckboxListTile(
-          title: Text(_calcModifierWithProf(
+          title: SelectableText(_calcModifierWithProf(
             'Acrobatics (DEX)',
             state.stats!.dexterity,
             state.stats!.acrobaticsProf,
@@ -303,7 +303,7 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile animalHandlingProfCheck = CheckboxListTile(
-          title: Text(_calcModifierWithProf(
+          title: SelectableText(_calcModifierWithProf(
             'Animal Handling (WIS)',
             state.stats!.wisdom,
             state.stats!.animalHandlingProf,
@@ -324,7 +324,7 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile arcanaProfCheck = CheckboxListTile(
-          title: Text(_calcModifierWithProf(
+          title: SelectableText(_calcModifierWithProf(
             'Arcana (INT)',
             state.stats!.intelligence,
             state.stats!.arcanaProf,
@@ -345,7 +345,7 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile athleticsProfCheck = CheckboxListTile(
-          title: Text(_calcModifierWithProf(
+          title: SelectableText(_calcModifierWithProf(
             'Athletics (STR)',
             state.stats!.strength,
             state.stats!.athleticsProf,
@@ -366,7 +366,7 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile deceptionProfCheck = CheckboxListTile(
-          title: Text(_calcModifierWithProf(
+          title: SelectableText(_calcModifierWithProf(
             'Deception (CHA)',
             state.stats!.charisma,
             state.stats!.deceptionProf,
@@ -387,7 +387,7 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile historyProfCheck = CheckboxListTile(
-          title: Text(_calcModifierWithProf(
+          title: SelectableText(_calcModifierWithProf(
             'History (INT)',
             state.stats!.intelligence,
             state.stats!.historyProf,
@@ -408,7 +408,7 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile insightProfCheck = CheckboxListTile(
-          title: Text(_calcModifierWithProf(
+          title: SelectableText(_calcModifierWithProf(
             'Insight (WIS)',
             state.stats!.wisdom,
             state.stats!.insightProf,
@@ -429,7 +429,7 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile intimidationProfCheck = CheckboxListTile(
-          title: Text(_calcModifierWithProf(
+          title: SelectableText(_calcModifierWithProf(
             'Intimidation (CHA)',
             state.stats!.charisma,
             state.stats!.intimidationProf,
@@ -450,7 +450,7 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile investigationProfCheck = CheckboxListTile(
-          title: Text(_calcModifierWithProf(
+          title: SelectableText(_calcModifierWithProf(
             'Investigation (INT)',
             state.stats!.intelligence,
             state.stats!.investigationProf,
@@ -471,7 +471,7 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile medicineProfCheck = CheckboxListTile(
-          title: Text(_calcModifierWithProf(
+          title: SelectableText(_calcModifierWithProf(
             'Medicine (WIS)',
             state.stats!.wisdom,
             state.stats!.medicineProf,
@@ -492,7 +492,7 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile natureProfCheck = CheckboxListTile(
-          title: Text(_calcModifierWithProf(
+          title: SelectableText(_calcModifierWithProf(
             'Nature (INT)',
             state.stats!.intelligence,
             state.stats!.natureProf,
@@ -513,7 +513,7 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile perceptionProfCheck = CheckboxListTile(
-          title: Text(_calcModifierWithProf(
+          title: SelectableText(_calcModifierWithProf(
             'Perception (WIS)',
             state.stats!.wisdom,
             state.stats!.perceptionProf,
@@ -534,7 +534,7 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile performanceProfCheck = CheckboxListTile(
-          title: Text(_calcModifierWithProf(
+          title: SelectableText(_calcModifierWithProf(
             'Performance (CHA)',
             state.stats!.charisma,
             state.stats!.performanceProf,
@@ -555,7 +555,7 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile persuasionProfCheck = CheckboxListTile(
-          title: Text(_calcModifierWithProf(
+          title: SelectableText(_calcModifierWithProf(
             'Persuasion (CHA)',
             state.stats!.charisma,
             state.stats!.persuasionProf,
@@ -576,7 +576,7 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile religionProfCheck = CheckboxListTile(
-          title: Text(_calcModifierWithProf(
+          title: SelectableText(_calcModifierWithProf(
             'Religion (INT)',
             state.stats!.intelligence,
             state.stats!.religionProf,
@@ -597,7 +597,7 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile sleightOfHandProfCheck = CheckboxListTile(
-          title: Text(_calcModifierWithProf(
+          title: SelectableText(_calcModifierWithProf(
             'Sleight of Hand (DEX)',
             state.stats!.dexterity,
             state.stats!.sleightOfHandProf,
@@ -618,7 +618,7 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile stealthProfCheck = CheckboxListTile(
-          title: Text(_calcModifierWithProf(
+          title: SelectableText(_calcModifierWithProf(
             'Stealth (DEX)',
             state.stats!.dexterity,
             state.stats!.stealthProf,
@@ -639,7 +639,7 @@ class _SkillChecks extends StatelessWidget {
               : null,
         );
         CheckboxListTile survivalProfCheck = CheckboxListTile(
-          title: Text(_calcModifierWithProf(
+          title: SelectableText(_calcModifierWithProf(
             'Survival (WIS)',
             state.stats!.wisdom,
             state.stats!.survivalProf,
@@ -664,7 +664,7 @@ class _SkillChecks extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                SelectableText(
                   'Inspiration',
                   style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 16),
                 ),
@@ -683,7 +683,7 @@ class _SkillChecks extends StatelessWidget {
             ),
             horizontalLine,
             seperation,
-            Text(
+            SelectableText(
               'Skills',
               style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
             ),
@@ -741,7 +741,7 @@ class _EditBlock extends StatelessWidget {
                     Icons.edit,
                   ),
                 ),
-                Text(
+                SelectableText(
                   !state.statEdit! ? 'Enable Edit' : 'Disable Edit',
                   style: dndFont.copyWith(color: state.statEdit! ? black : disableGrey),
                 ),
@@ -781,11 +781,11 @@ class _CoreStats extends StatelessWidget {
         return Column(
           children: [
             seperation,
-            Text(
+            SelectableText(
               'Core Stats',
               style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
             ),
-            Text(
+            SelectableText(
               'Passive Perception: ${wisdomStat + passivePerceptionWithBonus}',
               style: dndFont,
             ),
@@ -901,7 +901,7 @@ class _Hps extends StatelessWidget {
         deathSaveFailures.text = state.stats!.deathSaveFailures ?? 'D6';
         return Column(
           children: [
-            Text(
+            SelectableText(
               'Hit Points',
               style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
             ),
@@ -979,11 +979,11 @@ class _Hps extends StatelessWidget {
             seperation,
             horizontalLine,
             seperation,
-            Text(
+            SelectableText(
               'Death Saves',
               style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
             ),
-            Text(
+            SelectableText(
               'Min 0, Max 3',
               style: dndFont,
             ),
@@ -1041,7 +1041,7 @@ class _Levels extends StatelessWidget {
         TextEditingController subClass2Lvl = TextEditingController();
         subClass2Lvl.text = state.stats!.subClass2Lvl ?? '1';
         return Column(children: [
-          Text(
+          SelectableText(
             'Levels',
             style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
           ),
@@ -1104,7 +1104,7 @@ class _Levels extends StatelessWidget {
             ],
           ),
           seperation,
-          Text(
+          SelectableText(
             'hint: Class + Subclass Level should = Player Level',
             style: dndFont,
           ),

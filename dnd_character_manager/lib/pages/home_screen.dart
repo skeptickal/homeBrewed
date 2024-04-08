@@ -28,11 +28,11 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Text(userState.myUser!.email),
+                      child: SelectableText(userState.myUser!.email),
                     ),
                     TextButton(
                       onPressed: () => context.read<UserCubit>().signOut(),
-                      child: Text(
+                      child: SelectableText(
                         'sign out',
                         style: dndFont.copyWith(
                           color: themeColor,
@@ -76,7 +76,7 @@ void _onPressedDeleteIcon(BuildContext context, String userID, String charID, St
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
-      title: Text(
+      title: SelectableText(
         'Are you sure you want to delete $name?',
         style: TextStyle(color: white, fontSize: 18),
       ),
@@ -84,7 +84,7 @@ void _onPressedDeleteIcon(BuildContext context, String userID, String charID, St
       surfaceTintColor: themeColor,
       actions: [
         TextButton(
-          child: Text(
+          child: SelectableText(
             'Delete Permanently',
             style: TextStyle(color: white),
           ),
@@ -123,11 +123,11 @@ class _CharacterList extends StatelessWidget {
                     Icons.person,
                     color: themeColor,
                   ),
-                  title: Text(
+                  title: SelectableText(
                     bio.name ?? '',
                     style: dndFont.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
-                  subtitle: Text(
+                  subtitle: SelectableText(
                     '${bio.race ?? ''} | ${bio.dndClass ?? ''}',
                     style: dndFont.copyWith(fontSize: 16, fontStyle: FontStyle.italic),
                   ),
@@ -145,7 +145,7 @@ class _CharacterList extends StatelessWidget {
         ).toList();
         return Column(
           children: [
-            Text(
+            SelectableText(
               'Your Characters',
               style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
             ),

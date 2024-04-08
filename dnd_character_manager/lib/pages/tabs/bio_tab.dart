@@ -151,7 +151,7 @@ class _Traits extends StatelessWidget {
         return Column(
           children: [
             Center(
-              child: Text(
+              child: SelectableText(
                 'Select Your Character\'s Alignment',
                 style: dndFont.copyWith(fontWeight: FontWeight.bold),
               ),
@@ -164,7 +164,7 @@ class _Traits extends StatelessWidget {
                 items: dndAlignments.map((alignment) {
                   return DropdownMenuItem<String>(
                     value: alignment,
-                    child: Text(alignment),
+                    child: SelectableText(alignment),
                   );
                 }).toList(),
                 onChanged: state.bioEdit!
@@ -275,7 +275,7 @@ class _EditBlock extends StatelessWidget {
                     Icons.edit,
                   ),
                 ),
-                Text(
+                SelectableText(
                   !state.bioEdit! ? 'Enable Edit' : 'Disable Edit',
                   style: dndFont.copyWith(color: state.bioEdit! ? black : disableGrey),
                 ),
