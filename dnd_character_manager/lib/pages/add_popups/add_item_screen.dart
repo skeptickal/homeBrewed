@@ -1,4 +1,3 @@
-import 'package:dnd_character_manager/constants/text_fields.dart';
 import 'package:dnd_character_manager/constants/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,8 +28,7 @@ class AddItemScreen extends StatelessWidget {
                   children: [
                     ReactiveTextField<String>(
                       formControlName: 'name',
-                      decoration: textInputDecoration.copyWith(labelText: 'Item Name'),
-                      //InputDecoration(labelText: 'Item Name', labelStyle: dndFont),
+                      decoration: InputDecoration(labelText: 'Item Name', labelStyle: dndFont),
                     ),
                     ReactiveTextField<String>(
                       formControlName: 'amount',
