@@ -23,7 +23,7 @@ class AddItemScreen extends StatelessWidget {
         return Form(
           child: SingleChildScrollView(
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-            padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+            // padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
             child: Column(
               children: [
                 BigTextBox(
@@ -110,6 +110,7 @@ class AddItemScreen extends StatelessWidget {
                 TextButton(
                   onPressed: () {
                     context.read<ItemCubit>().deleteItemByItemID(item.itemID!);
+                    context.read<ItemCubit>().readItemsByCharID(item.charID);
                     context.pop();
                   },
                   child: Text(

@@ -109,6 +109,7 @@ class AddSpellScreen extends StatelessWidget {
                 TextButton(
                   onPressed: () {
                     context.read<SpellCubit>().deleteSpellBySpellID(spell.spellID!);
+                    context.read<SpellCubit>().readSpellsByCharID(spell.charID);
                     context.pop();
                   },
                   child: Text(
