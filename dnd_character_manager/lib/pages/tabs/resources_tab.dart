@@ -178,7 +178,14 @@ void _showEditPanel(BuildContext context, String charID) {
       barrierDismissible: false,
       context: context,
       builder: (context) {
-        return Center(child: SingleChildScrollView(child: AlertDialog(title: AddResourceScreen(resource: resource))));
+        return Center(
+          child: SingleChildScrollView(
+            child: AlertDialog(
+              backgroundColor: backgroundColor,
+              title: AddResourceScreen(resource: resource),
+            ),
+          ),
+        );
       });
 }
 
@@ -189,6 +196,7 @@ void _showPostEditPanel(BuildContext context, Resource resource) {
     builder: (context) => Center(
       child: SingleChildScrollView(
         child: AlertDialog(
+          backgroundColor: backgroundColor,
           title: EditResourceScreen(resource: resource),
         ),
       ),

@@ -67,7 +67,7 @@ class _SignUp extends StatelessWidget {
                   );
                 }
               },
-              child: SelectableText(
+              child: Text(
                 'Sign Up',
                 style: dndFont.copyWith(fontSize: 16, color: themeColor),
               ),

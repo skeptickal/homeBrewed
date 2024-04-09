@@ -185,7 +185,14 @@ void _showEditPanel(BuildContext context, String charID) {
       barrierDismissible: false,
       context: context,
       builder: (context) {
-        return Center(child: SingleChildScrollView(child: AlertDialog(title: AddDndActionScreen(dndAction: dndAction))));
+        return Center(
+          child: SingleChildScrollView(
+            child: AlertDialog(
+              title: AddDndActionScreen(dndAction: dndAction),
+              backgroundColor: backgroundColor,
+            ),
+          ),
+        );
       });
 }
 
@@ -197,6 +204,7 @@ void _showPostEditPanel(BuildContext context, DndAction dndAction) {
     builder: (context) => Center(
       child: SingleChildScrollView(
         child: AlertDialog(
+          backgroundColor: backgroundColor,
           title: EditDndActionScreen(dndAction: dndAction),
         ),
       ),

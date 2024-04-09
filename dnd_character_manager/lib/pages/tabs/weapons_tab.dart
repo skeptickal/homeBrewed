@@ -198,7 +198,14 @@ void _showEditPanel(BuildContext context, String charID) {
       barrierDismissible: false,
       context: context,
       builder: (context) {
-        return Center(child: SingleChildScrollView(child: AlertDialog(title: AddWeaponScreen(weapon: weapon))));
+        return Center(
+          child: SingleChildScrollView(
+            child: AlertDialog(
+              backgroundColor: backgroundColor,
+              title: AddWeaponScreen(weapon: weapon),
+            ),
+          ),
+        );
       });
 }
 
@@ -209,6 +216,7 @@ void _showPostEditPanel(BuildContext context, Weapon weapon) {
     builder: (context) => Center(
       child: SingleChildScrollView(
         child: AlertDialog(
+          backgroundColor: backgroundColor,
           title: EditWeaponScreen(weapon: weapon),
         ),
       ),
