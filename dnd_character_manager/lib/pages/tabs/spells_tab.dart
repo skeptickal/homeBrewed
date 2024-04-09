@@ -295,7 +295,14 @@ void _showEditPanel(BuildContext context, String charID) {
       barrierDismissible: false,
       context: context,
       builder: (context) {
-        return Center(child: SingleChildScrollView(child: AlertDialog(title: AddSpellScreen(spell: spell))));
+        return Center(
+          child: SingleChildScrollView(
+            child: AlertDialog(
+              title: AddSpellScreen(spell: spell),
+              backgroundColor: backgroundColor,
+            ),
+          ),
+        );
       });
 }
 
@@ -307,6 +314,7 @@ void _showPostEditPanel(BuildContext context, Spell spell) {
     builder: (context) => Center(
       child: SingleChildScrollView(
         child: AlertDialog(
+          backgroundColor: backgroundColor,
           title: EditSpellScreen(spell: spell),
         ),
       ),

@@ -92,7 +92,7 @@ class AddDndActionScreen extends StatelessWidget {
                   },
                   child: Text(
                     'Add Action',
-                    style: dndFont,
+                    style: dndFont.copyWith(color: themeColor),
                   ),
                 ),
                 TextButton(
@@ -102,7 +102,7 @@ class AddDndActionScreen extends StatelessWidget {
                   },
                   child: Text(
                     'Cancel',
-                    style: dndFont,
+                    style: dndFont.copyWith(color: themeColor),
                   ),
                 ),
               ],

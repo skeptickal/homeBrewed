@@ -168,6 +168,7 @@ void _showEditDialog(BuildContext context, String? currentValue, String currency
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
+        backgroundColor: backgroundColor,
         title: Text(
           'Edit $currencyType',
           style: dndFont,
