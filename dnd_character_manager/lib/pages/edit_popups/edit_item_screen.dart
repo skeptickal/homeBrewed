@@ -25,6 +25,7 @@ class EditItemScreen extends StatelessWidget {
           form: buildForm,
           builder: (context, formGroup, child) {
             return SingleChildScrollView(
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               child: Column(
                 children: [
                   ReactiveTextField<String>(
@@ -33,6 +34,7 @@ class EditItemScreen extends StatelessWidget {
                   ),
                   ReactiveTextField<String>(
                     formControlName: 'amount',
+                    keyboardType: TextInputType.number,
                     decoration: InputDecoration(labelText: 'Amount', labelStyle: dndFont),
                   ),
                   ReactiveTextField<String>(
