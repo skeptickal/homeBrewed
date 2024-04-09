@@ -28,7 +28,7 @@ class CharacterViewerScreen extends StatelessWidget {
       builder: (context, state) {
         context.read<BioCubit>().readBioData(bio.charID!);
         return ScreenWrapper(
-          title: state.bio!.name != '' ? state.bio!.name ?? 'Character' : 'Character',
+          title: state.bio?.name?.isNotEmpty ?? false ? state.bio!.name! : 'Character',
           child: DefaultTabController(
             length: 9,
             child: Column(
