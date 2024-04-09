@@ -1,4 +1,4 @@
-import 'package:dnd_character_manager/cubits/action_cubit/dndAction_cubit.dart';
+import 'package:dnd_character_manager/cubits/action_cubit/dnd_action_cubit.dart';
 import 'package:dnd_character_manager/cubits/bio_cubit/cubit/bio_cubit.dart';
 import 'package:dnd_character_manager/cubits/income_cubit/income_cubit.dart';
 import 'package:dnd_character_manager/cubits/item_cubit/item_cubit.dart';

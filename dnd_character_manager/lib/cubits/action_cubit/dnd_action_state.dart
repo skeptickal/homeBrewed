@@ -1,6 +1,6 @@
 // ignore_for_file: file_names
 
-part of 'dndAction_cubit.dart';
+part of 'dnd_action_cubit.dart';
 
 @immutable
 class DndActionState extends Equatable {

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-import '../../cubits/action_cubit/dndAction_cubit.dart';
+import '../../cubits/action_cubit/dnd_action_cubit.dart';
 import '../../models/dnd_action.dart';
 
 class EditDndActionScreen extends StatelessWidget {

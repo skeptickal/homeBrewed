@@ -49,7 +49,7 @@ class AddResourceScreen extends StatelessWidget {
                           charID: resource.charID,
                           name: form.control('name').value,
                           maxResourceValue: form.control('maxResourceValue').value,
-                          currentResourceValue: form.control('maxResourceValue').value,
+                          currentResourceValue: form.control('maxResourceValue').value ?? '0',
                           description: form.control('description').value,
                         );
 

@@ -15,14 +15,7 @@ class ResourcesTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-      child: Column(
-        children: [
-          _ResourcesList(charID: charID),
-        ],
-      ),
-    );
+    return _ResourcesList(charID: charID);
   }
 }
 
@@ -35,8 +28,6 @@ class _ResourcesList extends StatelessWidget {
     return BlocBuilder<ResourceCubit, ResourceState>(
       builder: (context, state) {
         context.read<ResourceCubit>().readResourcesByCharID(charID);
-
-        print('Jackson List: ${state.resources}');
         List<Container> resources = state.resources!.map(
           (resource) {
             return Container(
@@ -96,76 +87,60 @@ class _ResourcesList extends StatelessWidget {
             );
           },
         ).toList();
-        return GridView(
-            shrinkWrap: true,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              crossAxisSpacing: 5,
-              mainAxisSpacing: 5,
+        return Column(
+          children: [
+            seperation,
+            Text(
+              'Resources',
+              style: dndFont.copyWith(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            children: [
-              const Center(
-                child: SizedBox(),
-              ),
-              Center(
-                child: Column(
-                  children: [
-                    SelectableText(
-                      'Resources\n',
-                      style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
-                      textAlign: TextAlign.center,
-                    ),
-                    Center(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: themeColor,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 2,
-                              blurRadius: 3,
-                              offset: const Offset(0, 2),
-                            ),
-                          ],
-                        ),
-                        child: IconButton(
-                          iconSize: 25,
-                          color: white,
-                          icon: const Icon(Icons.add),
-                          onPressed: () => _showEditPanel(context, charID!),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(),
-              ...resources
-            ]);
+            seperation,
+            _AddResource(charID: charID!),
+            seperation,
+            seperation,
+            Expanded(
+              child: GridView(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: false,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 5,
+                    mainAxisSpacing: 5,
+                  ),
+                  children: [...resources]),
+            ),
+          ],
+        );
       },
     );
   }
 }
 
-// ignore: unused_element
 class _AddResource extends StatelessWidget {
   final String charID;
   const _AddResource({required this.charID});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        IconButton(
-          onPressed: () => _showEditPanel(context, charID),
-          icon: const Icon(
-            Icons.add,
-            size: 30,
+    return Container(
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: themeColor,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 3,
+            offset: const Offset(0, 2),
           ),
-        ),
-        seperation,
-      ],
+        ],
+      ),
+      child: IconButton(
+        iconSize: 25,
+        color: white,
+        icon: const Icon(Icons.add),
+        onPressed: () => _showEditPanel(context, charID),
+      ),
     );
   }
 }
