@@ -125,10 +125,26 @@ void _onPressedTile({required BuildContext context, required String name, requir
     builder: (context) => Center(
       child: SingleChildScrollView(
         child: AlertDialog(
-          title: Text(
-            '$name\n\n$description',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 18, color: white),
+          title: SingleChildScrollView(
+            child: Column(
+              children: [
+                Text(
+                  name,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 18, color: white),
+                ),
+                seperation,
+                Text(
+                  description,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: white,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+              ],
+            ),
           ),
           backgroundColor: themeColor,
           surfaceTintColor: themeColor,
@@ -207,6 +223,7 @@ void _showPostEditPanel(BuildContext context, Item item) {
     builder: (context) => Center(
       child: SingleChildScrollView(
         child: AlertDialog(
+          surfaceTintColor: backgroundColor,
           backgroundColor: backgroundColor,
           title: EditItemScreen(item: item),
         ),
