@@ -140,6 +140,7 @@ class AddWeaponScreen extends StatelessWidget {
                 TextButton(
                   onPressed: () {
                     context.read<WeaponCubit>().deleteWeaponByWeaponID(weapon.weaponID!);
+                    context.read<WeaponCubit>().readWeaponsByCharID(weapon.charID);
                     context.pop();
                   },
                   child: Text(

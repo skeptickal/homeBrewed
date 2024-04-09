@@ -125,6 +125,7 @@ class AddResourceScreen extends StatelessWidget {
                 TextButton(
                   onPressed: () {
                     context.read<ResourceCubit>().deleteResourceByResourceID(resource.resourceID!);
+                    context.read<ResourceCubit>().readResourcesByCharID(resource.charID);
                     context.pop();
                   },
                   child: Text(

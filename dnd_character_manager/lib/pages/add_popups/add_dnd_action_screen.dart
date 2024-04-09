@@ -113,6 +113,7 @@ class _AddDndActionScreenState extends State<AddDndActionScreen> {
                 TextButton(
                   onPressed: () {
                     context.read<DndActionCubit>().deleteDndActionByDndActionID(widget.dndAction.dndActionID!);
+                    context.read<DndActionCubit>().readDndActionsByCharID(widget.dndAction.charID);
                     context.pop();
                   },
                   child: Text(
