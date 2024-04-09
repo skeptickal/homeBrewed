@@ -50,7 +50,6 @@ class CustomTextBox extends StatelessWidget {
   }
 }
 
-
 class BigTextBox extends StatelessWidget {
   final int? maxLength;
   final int? maxLines;
@@ -176,10 +175,10 @@ final textInputDecoration = InputDecoration(
   fillColor: backgroundColor,
   filled: true,
   hintStyle: dndFont.copyWith(fontSize: 14),
-  enabledBorder: OutlineInputBorder(
+  enabledBorder: UnderlineInputBorder(
     borderSide: BorderSide(color: themeColor, width: 2.0),
   ),
-  focusedBorder: OutlineInputBorder(
+  focusedBorder: UnderlineInputBorder(
     borderSide: BorderSide(color: black, width: 2.0),
   ),
 );
@@ -190,6 +189,9 @@ InputDecoration dndFieldInputDecoration({required bool enabled, required String 
     hintText: hintText,
     fillColor: backgroundColor,
     filled: true,
+    border: OutlineInputBorder(
+      borderSide: BorderSide(color: themeColor, width: enabled ? 2.0 : 1),
+    ),
     hintStyle: dndFont.copyWith(fontSize: 14),
     enabledBorder: OutlineInputBorder(
       borderSide: BorderSide(color: themeColor, width: enabled ? 2.0 : 0),

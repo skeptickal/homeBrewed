@@ -182,8 +182,7 @@ class _AddItem extends StatelessWidget {
 
 void _showEditPanel(BuildContext context, String charID) {
   const uuid = Uuid();
-  Item item = Item(charID: charID, itemID: uuid.v4());
-  context.read<ItemCubit>().setItemsData(item);
+  Item item = Item(charID: charID, itemID: uuid.v4(), name: '', description: '', amount: '');
   showDialog(
       barrierDismissible: false,
       context: context,
@@ -191,6 +190,7 @@ void _showEditPanel(BuildContext context, String charID) {
         return Center(
           child: SingleChildScrollView(
             child: AlertDialog(
+              surfaceTintColor: backgroundColor,
               backgroundColor: backgroundColor,
               title: AddItemScreen(item: item),
             ),
