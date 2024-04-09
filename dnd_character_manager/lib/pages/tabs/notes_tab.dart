@@ -12,6 +12,7 @@ class NotesTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<NotesCubit>().readNotesData(charID);
     return const SingleChildScrollView(
       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       child: Column(
@@ -66,15 +67,15 @@ class _NotesBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<NotesCubit, NotesState>(
       builder: (context, state) {
-        TextEditingController notes = TextEditingController();
-        notes.text = state.notes!.notes ?? '';
+        TextEditingController notesController = TextEditingController();
+        notesController.text = state.notes!.notes ?? '';
         return BigTextBox(
-          onEditingComplete: () => context.read<NotesCubit>().setNotesData(state.notes!.copyWith(notes: notes.text)),
-          onTapOutside: (clickOut) => context.read<NotesCubit>().setNotesData(state.notes!.copyWith(notes: notes.text)),
+          onEditingComplete: () => context.read<NotesCubit>().setNotesData(state.notes!.copyWith(notes: notesController.text)),
+          onTapOutside: (clickOut) => context.read<NotesCubit>().setNotesData(state.notes!.copyWith(notes: notesController.text)),
           minLines: 50,
           enabled: state.notesEdit!,
           padding: const EdgeInsets.all(6),
-          controller: notes,
+          controller: notesController,
           hintText: 'e.g. Random Shopkeep\'s name is Gorgug',
           subtitle: 'Campaign Notes',
         );
