@@ -164,7 +164,7 @@ class _Traits extends StatelessWidget {
                 items: dndAlignments.map((alignment) {
                   return DropdownMenuItem<String>(
                     value: alignment,
-                    child: SelectableText(alignment),
+                    child: Text(alignment),
                   );
                 }).toList(),
                 onChanged: state.bioEdit!
