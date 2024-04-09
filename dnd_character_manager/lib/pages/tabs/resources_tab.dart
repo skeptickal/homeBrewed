@@ -182,6 +182,7 @@ void _showEditPanel(BuildContext context, String charID) {
           child: SingleChildScrollView(
             child: AlertDialog(
               backgroundColor: backgroundColor,
+              surfaceTintColor: backgroundColor,
               title: AddResourceScreen(resource: resource),
             ),
           ),
@@ -197,6 +198,7 @@ void _showPostEditPanel(BuildContext context, Resource resource) {
       child: SingleChildScrollView(
         child: AlertDialog(
           backgroundColor: backgroundColor,
+          surfaceTintColor: backgroundColor,
           title: EditResourceScreen(resource: resource),
         ),
       ),

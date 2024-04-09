@@ -190,6 +190,7 @@ void _showEditPanel(BuildContext context, String charID) {
             child: AlertDialog(
               title: AddDndActionScreen(dndAction: dndAction),
               backgroundColor: backgroundColor,
+              surfaceTintColor: backgroundColor,
             ),
           ),
         );
@@ -205,6 +206,7 @@ void _showPostEditPanel(BuildContext context, DndAction dndAction) {
       child: SingleChildScrollView(
         child: AlertDialog(
           backgroundColor: backgroundColor,
+          surfaceTintColor: backgroundColor,
           title: EditDndActionScreen(dndAction: dndAction),
         ),
       ),
