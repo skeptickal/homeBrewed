@@ -1,23 +1,40 @@
 import 'package:dnd_character_manager/constants/text_fields.dart';
 import 'package:dnd_character_manager/constants/theme_data.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../cubits/action_cubit/dndAction_cubit.dart';
-
 import '../../models/dnd_action.dart';
 
-class AddDndActionScreen extends StatelessWidget {
+class AddDndActionScreen extends StatefulWidget {
   final DndAction dndAction;
-  const AddDndActionScreen({super.key, required this.dndAction});
+  const AddDndActionScreen({Key? key, required this.dndAction}) : super(key: key);
+
+  @override
+  _AddDndActionScreenState createState() => _AddDndActionScreenState();
+}
+
+class _AddDndActionScreenState extends State<AddDndActionScreen> {
+  late TextEditingController name;
+  late TextEditingController description;
+
+  @override
+  void initState() {
+    super.initState();
+    name = TextEditingController(text: widget.dndAction.name);
+    description = TextEditingController(text: widget.dndAction.description);
+  }
+
+  @override
+  void dispose() {
+    name.dispose();
+    description.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController name = TextEditingController(text: dndAction.name);
-    TextEditingController description = TextEditingController(text: dndAction.description);
-
     return BlocBuilder<DndActionCubit, DndActionState>(
       builder: (context, state) {
         return Form(
@@ -28,18 +45,18 @@ class AddDndActionScreen extends StatelessWidget {
               children: [
                 BigTextBox(
                   onTapOutside: (clickOut) {
-                    context.read<DndActionCubit>().setDndActionsData(dndAction.copyWith(
+                    context.read<DndActionCubit>().setDndActionsData(widget.dndAction.copyWith(
                           name: name.text,
                           description: description.text,
                         ));
-                    context.read<DndActionCubit>().readDndActionsByCharID(dndAction.charID);
+                    context.read<DndActionCubit>().readDndActionsByCharID(widget.dndAction.charID);
                   },
                   onEditingComplete: () {
-                    context.read<DndActionCubit>().setDndActionsData(dndAction.copyWith(
+                    context.read<DndActionCubit>().setDndActionsData(widget.dndAction.copyWith(
                           name: name.text,
                           description: description.text,
                         ));
-                    context.read<DndActionCubit>().readDndActionsByCharID(dndAction.charID);
+                    context.read<DndActionCubit>().readDndActionsByCharID(widget.dndAction.charID);
                   },
                   enabled: true,
                   padding: const EdgeInsets.all(6),
@@ -49,18 +66,18 @@ class AddDndActionScreen extends StatelessWidget {
                 ),
                 BigTextBox(
                   onTapOutside: (clickOut) {
-                    context.read<DndActionCubit>().setDndActionsData(dndAction.copyWith(
+                    context.read<DndActionCubit>().setDndActionsData(widget.dndAction.copyWith(
                           name: name.text,
                           description: description.text,
                         ));
-                    context.read<DndActionCubit>().readDndActionsByCharID(dndAction.charID);
+                    context.read<DndActionCubit>().readDndActionsByCharID(widget.dndAction.charID);
                   },
                   onEditingComplete: () {
-                    context.read<DndActionCubit>().setDndActionsData(dndAction.copyWith(
+                    context.read<DndActionCubit>().setDndActionsData(widget.dndAction.copyWith(
                           name: name.text,
                           description: description.text,
                         ));
-                    context.read<DndActionCubit>().readDndActionsByCharID(dndAction.charID);
+                    context.read<DndActionCubit>().readDndActionsByCharID(widget.dndAction.charID);
                   },
                   enabled: true,
                   padding: const EdgeInsets.all(6),
@@ -85,7 +102,7 @@ class AddDndActionScreen extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    context.read<DndActionCubit>().readDndActionsByCharID(dndAction.charID);
+                    context.read<DndActionCubit>().readDndActionsByCharID(widget.dndAction.charID);
                     context.pop();
                   },
                   child: Text(
@@ -95,7 +112,7 @@ class AddDndActionScreen extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    context.read<DndActionCubit>().deleteDndActionByDndActionID(dndAction.dndActionID!);
+                    context.read<DndActionCubit>().deleteDndActionByDndActionID(widget.dndAction.dndActionID!);
                     context.pop();
                   },
                   child: Text(
