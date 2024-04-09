@@ -1,142 +1,82 @@
-import 'package:dnd_character_manager/constants/text_fields.dart';
 import 'package:dnd_character_manager/constants/theme_data.dart';
-import 'package:dnd_character_manager/models/resource.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 
 import '../../cubits/resource_cubit/resource_cubit.dart';
+import '../../models/resource.dart';
 
 class AddResourceScreen extends StatelessWidget {
   final Resource resource;
-  const AddResourceScreen({super.key, required this.resource});
 
+  const AddResourceScreen({Key? key, required this.resource}) : super(key: key);
+  FormGroup buildForm() => fb.group(<String, Object>{
+        'name': FormControl<String>(value: resource.name),
+        'maxResourceValue': FormControl<String>(value: resource.maxResourceValue),
+        'description': FormControl<String>(value: resource.description),
+      });
   @override
   Widget build(BuildContext context) {
-    TextEditingController name = TextEditingController();
-    name.text = resource.name ?? '';
-    TextEditingController maxResourceValue = TextEditingController();
-    maxResourceValue.text = resource.maxResourceValue ?? '0';
-    TextEditingController description = TextEditingController();
-    description.text = resource.description ?? '';
-    context.read<ResourceCubit>().setResourcesData(
-          resource.copyWith(
-            name: name.text,
-            currentResourceValue: '0',
-            maxResourceValue: '0',
-            description: description.text,
-          ),
-        );
     return BlocBuilder<ResourceCubit, ResourceState>(
       builder: (context, state) {
-        return Form(
-          child: SingleChildScrollView(
-            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-            padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-            child: Column(
-              children: [
-                BigTextBox(
-                  onTapOutside: (clickOut) => context.read<ResourceCubit>().setResourcesData(
-                        resource.copyWith(
-                          name: name.text,
-                          currentResourceValue: maxResourceValue.text,
-                          maxResourceValue: maxResourceValue.text,
-                          description: description.text,
-                        ),
+        return ReactiveFormBuilder(
+            form: buildForm,
+            builder: (context, form, child) {
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    ReactiveTextField<String>(
+                      formControlName: 'name',
+                      decoration: InputDecoration(labelText: 'Resource Name', labelStyle: dndFont),
+                    ),
+                    ReactiveTextField<String>(
+                      keyboardType: TextInputType.number,
+                      formControlName: 'maxResourceValue',
+                      decoration: InputDecoration(labelText: 'Max Value', labelStyle: dndFont),
+                    ),
+                    ReactiveTextField<String>(
+                      minLines: 1,
+                      maxLines: 10,
+                      formControlName: 'description',
+                      decoration: InputDecoration(labelText: 'Description', labelStyle: dndFont),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        print('Jeff ${form.control('name').value}');
+                        Resource updatedResource = Resource(
+                          resourceID: resource.resourceID,
+                          charID: resource.charID,
+                          name: form.control('name').value,
+                          maxResourceValue: form.control('maxResourceValue').value,
+                          currentResourceValue: form.control('maxResourceValue').value,
+                          description: form.control('description').value,
+                        );
+
+                        context.read<ResourceCubit>().setResourcesData(updatedResource);
+                        context.read<ResourceCubit>().readResourcesByCharID(resource.charID);
+                        context.pop();
+                      },
+                      child: Text(
+                        'Save Resource',
+                        style: dndFont.copyWith(color: themeColor),
                       ),
-                  onEditingComplete: () => context.read<ResourceCubit>().setResourcesData(
-                        resource.copyWith(
-                          name: name.text,
-                          currentResourceValue: maxResourceValue.text,
-                          maxResourceValue: maxResourceValue.text,
-                          description: description.text,
-                        ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        context.read<ResourceCubit>().deleteResourceByResourceID(resource.resourceID!);
+                        context.read<ResourceCubit>().readResourcesByCharID(resource.charID);
+                        context.pop();
+                      },
+                      child: Text(
+                        'Cancel',
+                        style: dndFont.copyWith(color: themeColor),
                       ),
-                  maxLength: 15,
-                  enabled: true,
-                  padding: const EdgeInsets.all(6),
-                  controller: name,
-                  hintText: 'Resource name',
-                  subtitle: 'Resource name',
-                  keyboardType: TextInputType.text,
-                  maxLines: 1,
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 70),
-                  child: StatTextBox(
-                    onTapOutside: (clickOut) => context.read<ResourceCubit>().setResourcesData(
-                          resource.copyWith(
-                            name: name.text,
-                            currentResourceValue: maxResourceValue.text,
-                            maxResourceValue: maxResourceValue.text,
-                            description: description.text,
-                          ),
-                        ),
-                    onEditingComplete: () => context.read<ResourceCubit>().setResourcesData(
-                          resource.copyWith(
-                            name: name.text,
-                            currentResourceValue: maxResourceValue.text,
-                            maxResourceValue: maxResourceValue.text,
-                            description: description.text,
-                          ),
-                        ),
-                    maxLength: 3,
-                    enabled: true,
-                    padding: const EdgeInsets.all(6),
-                    controller: maxResourceValue,
-                    hintText: '5',
-                    subtitle: 'Max Value',
-                  ),
-                ),
-                BigTextBox(
-                  onTapOutside: (clickOut) => context.read<ResourceCubit>().setResourcesData(
-                        resource.copyWith(
-                          name: name.text,
-                          currentResourceValue: maxResourceValue.text,
-                          maxResourceValue: maxResourceValue.text,
-                          description: description.text,
-                        ),
-                      ),
-                  onEditingComplete: () => context.read<ResourceCubit>().setResourcesData(
-                        resource.copyWith(
-                          name: name.text,
-                          currentResourceValue: maxResourceValue.text,
-                          maxResourceValue: maxResourceValue.text,
-                          description: description.text,
-                        ),
-                      ),
-                  enabled: true,
-                  padding: const EdgeInsets.all(6),
-                  controller: description,
-                  hintText: 'Has a chance to burn target',
-                  subtitle: 'Description (Optional)',
-                  minLines: 5,
-                ),
-                TextButton(
-                  onPressed: () {
-                    context.read<ResourceCubit>().readResourcesByCharID(resource.charID);
-                    context.pop();
-                  },
-                  child: Text(
-                    'Add Resource',
-                    style: dndFont.copyWith(color: black),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    context.read<ResourceCubit>().deleteResourceByResourceID(resource.resourceID!);
-                    context.read<ResourceCubit>().readResourcesByCharID(resource.charID);
-                    context.pop();
-                  },
-                  child: Text(
-                    'Cancel',
-                    style: dndFont.copyWith(color: black),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
+              );
+            });
       },
     );
   }

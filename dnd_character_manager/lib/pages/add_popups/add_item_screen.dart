@@ -31,6 +31,7 @@ class AddItemScreen extends StatelessWidget {
                       decoration: InputDecoration(labelText: 'Item Name', labelStyle: dndFont),
                     ),
                     ReactiveTextField<String>(
+                      keyboardType: TextInputType.number,
                       formControlName: 'amount',
                       decoration: InputDecoration(labelText: 'Amount', labelStyle: dndFont),
                     ),
