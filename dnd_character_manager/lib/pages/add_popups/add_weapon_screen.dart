@@ -13,7 +13,6 @@ class AddWeaponScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('Jeff ${weapon.weaponID}');
     TextEditingController name = TextEditingController(text: weapon.name);
     TextEditingController attackRoll = TextEditingController(text: weapon.attackRoll);
     TextEditingController damageRoll = TextEditingController(text: weapon.damageRoll);

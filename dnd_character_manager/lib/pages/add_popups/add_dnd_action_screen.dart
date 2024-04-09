@@ -15,9 +15,7 @@ class AddDndActionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('Jeff ${dndAction.dndActionID}');
     TextEditingController name = TextEditingController(text: dndAction.name);
-
     TextEditingController description = TextEditingController(text: dndAction.description);
 
     return BlocBuilder<DndActionCubit, DndActionState>(
