@@ -12,15 +12,13 @@ class AddItemScreen extends StatelessWidget {
   final Item item;
 
   const AddItemScreen({Key? key, required this.item}) : super(key: key);
-
+  FormGroup buildForm() => fb.group(<String, Object>{
+        'name': FormControl<String>(value: item.name),
+        'amount': FormControl<String>(value: item.amount),
+        'description': FormControl<String>(value: item.description),
+      });
   @override
   Widget build(BuildContext context) {
-    FormGroup buildForm() => fb.group(<String, Object>{
-          'name': FormControl<String>(value: item.name),
-          'amount': FormControl<String>(value: item.amount),
-          'description': FormControl<String>(value: item.description),
-        });
-
     return BlocBuilder<ItemCubit, ItemState>(
       builder: (context, state) {
         return ReactiveFormBuilder(
@@ -39,7 +37,7 @@ class AddItemScreen extends StatelessWidget {
                       decoration: InputDecoration(labelText: 'Amount', labelStyle: dndFont),
                     ),
                     ReactiveTextField<String>(
-                      minLines: 3,
+                      minLines: 1,
                       maxLines: 10,
                       formControlName: 'description',
                       decoration: InputDecoration(labelText: 'Description', labelStyle: dndFont),
