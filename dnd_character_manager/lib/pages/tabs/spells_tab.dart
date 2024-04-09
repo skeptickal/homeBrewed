@@ -300,6 +300,7 @@ void _showEditPanel(BuildContext context, String charID) {
             child: AlertDialog(
               title: AddSpellScreen(spell: spell),
               backgroundColor: backgroundColor,
+              surfaceTintColor: backgroundColor,
             ),
           ),
         );
@@ -314,6 +315,7 @@ void _showPostEditPanel(BuildContext context, Spell spell) {
     builder: (context) => Center(
       child: SingleChildScrollView(
         child: AlertDialog(
+          surfaceTintColor: backgroundColor,
           backgroundColor: backgroundColor,
           title: EditSpellScreen(spell: spell),
         ),

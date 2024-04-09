@@ -202,6 +202,7 @@ void _showEditPanel(BuildContext context, String charID) {
           child: SingleChildScrollView(
             child: AlertDialog(
               backgroundColor: backgroundColor,
+              surfaceTintColor: backgroundColor,
               title: AddWeaponScreen(weapon: weapon),
             ),
           ),
@@ -217,6 +218,7 @@ void _showPostEditPanel(BuildContext context, Weapon weapon) {
       child: SingleChildScrollView(
         child: AlertDialog(
           backgroundColor: backgroundColor,
+          surfaceTintColor: backgroundColor,
           title: EditWeaponScreen(weapon: weapon),
         ),
       ),
