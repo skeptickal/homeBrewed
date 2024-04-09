@@ -1,5 +1,4 @@
 import 'package:dnd_character_manager/constants/screen_wrapper.dart';
-import 'package:dnd_character_manager/cubits/user_cubit/user_cubit.dart';
 import 'package:dnd_character_manager/models/bio.dart';
 import 'package:dnd_character_manager/pages/tabs/actions_tab.dart';
 import 'package:dnd_character_manager/pages/tabs/bio_tab.dart';
@@ -17,6 +16,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../constants/theme_data.dart';
+import '../cubits/bio_cubit/cubit/bio_cubit.dart';
 
 class CharacterViewerScreen extends StatelessWidget {
   final Bio bio;
@@ -24,10 +24,11 @@ class CharacterViewerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UserCubit, UserState>(
+    return BlocBuilder<BioCubit, BioState>(
       builder: (context, state) {
+        context.read<BioCubit>().readBioData(bio.charID!);
         return ScreenWrapper(
-          title: 'Character',
+          title: state.bio!.name != '' ? state.bio!.name! : 'Character',
           child: DefaultTabController(
             length: 9,
             child: Column(
