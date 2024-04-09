@@ -50,6 +50,7 @@ class CustomTextBox extends StatelessWidget {
   }
 }
 
+
 class BigTextBox extends StatelessWidget {
   final int? maxLength;
   final int? maxLines;
