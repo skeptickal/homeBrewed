@@ -116,7 +116,7 @@ class _CharacterList extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
               child: Container(
                 decoration: BoxDecoration(
-                  border: Border.all(color: themeColor), // Border properties
+                  border: Border.all(color: themeColor),
                 ),
                 child: ListTile(
                   onTap: () => context.push('/character_viewer', extra: bio),
