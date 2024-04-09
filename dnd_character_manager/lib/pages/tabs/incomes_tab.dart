@@ -16,11 +16,7 @@ class IncomesTab extends StatelessWidget {
     context.read<IncomeCubit>().readIncomeData(charID);
     return SingleChildScrollView(
       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-      child: Column(
-        children: [
-          _IncomesList(charID: charID),
-        ],
-      ),
+      child: _IncomesList(charID: charID),
     );
   }
 }
