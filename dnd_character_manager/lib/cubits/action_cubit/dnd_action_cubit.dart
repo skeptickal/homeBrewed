@@ -7,7 +7,7 @@ import 'package:meta/meta.dart';
 
 import '../../models/dnd_action.dart';
 
-part  'dndAction_state.dart';
+part  'dnd_action_state.dart';
 
 
 class DndActionCubit extends Cubit<DndActionState> {
