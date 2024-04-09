@@ -1,7 +1,9 @@
+import 'package:d20/d20.dart';
 import 'package:dnd_character_manager/cubits/weapon_cubit/weapon_cubit.dart';
 import 'package:dnd_character_manager/models/weapon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:uuid/uuid.dart';
 
@@ -52,13 +54,35 @@ class _WeaponsList extends StatelessWidget {
                     },
                     icon: const ImageIcon(AssetImage('assets/sword.png')),
                   ),
-                  title: Text(
-                    weapon.name ?? '',
-                    style: dndFont.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
+                  title: Column(
+                    children: [
+                      Center(
+                        child: Text(
+                          weapon.name ?? '',
+                          style: dndFont.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      horizontalLine
+                    ],
                   ),
-                  subtitle: Text(
-                    'Attack: ${weapon.attackRoll ?? ''}\nDamage: ${weapon.damageRoll ?? ''}',
-                    style: dndFont.copyWith(fontSize: 14, fontStyle: FontStyle.italic),
+                  subtitle: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      TextButton(
+                        onPressed: () => _showRollDialog(context, weapon.attackRoll),
+                        child: Text(
+                          'Attack: ${weapon.attackRoll ?? ''}',
+                          style: dndFont.copyWith(fontSize: 14, fontStyle: FontStyle.italic, color: themeColor),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () => _showRollDialog(context, weapon.damageRoll),
+                        child: Text(
+                          'Damage: ${weapon.damageRoll ?? ''}',
+                          style: dndFont.copyWith(fontSize: 14, fontStyle: FontStyle.italic, color: themeColor),
+                        ),
+                      ),
+                    ],
                   ),
                   trailing: IconButton(
                     icon: Icon(
@@ -223,5 +247,53 @@ void _showPostEditPanel(BuildContext context, Weapon weapon) {
         ),
       ),
     ),
+  );
+}
+
+void _showRollDialog(
+  BuildContext context,
+  String? roll,
+) {
+  String rollResult;
+  try {
+    if (roll == '') {
+      roll = 'd20';
+    }
+    final d20 = D20();
+    rollResult = d20.roll(roll!).toString();
+  } catch (e) {
+    rollResult = 'Invalid input';
+  }
+
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        backgroundColor: themeColor,
+        title: Column(
+          children: [
+            FaIcon(
+              FontAwesomeIcons.diceD20,
+              size: 30,
+              color: white,
+            ),
+            seperation,
+            Text(
+              '$roll: ',
+              style: dndFont.copyWith(fontSize: 20, color: white),
+            ),
+          ],
+        ),
+        content: Text(
+          textAlign: TextAlign.center,
+          '= $rollResult',
+          style: (TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: white,
+          )),
+        ),
+      );
+    },
   );
 }

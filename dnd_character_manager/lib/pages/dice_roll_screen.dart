@@ -75,11 +75,21 @@ void _showRollDialog(
     builder: (BuildContext context) {
       return AlertDialog(
         backgroundColor: themeColor,
-        title: Center(
-          child: Text(
-            '$roll: ',
-            style: dndFont.copyWith(fontSize: 20, color: white),
-          ),
+        title: Column(
+          children: [
+            FaIcon(
+              FontAwesomeIcons.diceD20,
+              color: white,
+              size: 30,
+            ),
+            seperation,
+            Center(
+              child: Text(
+                '$roll: ',
+                style: dndFont.copyWith(fontSize: 20, color: white),
+              ),
+            ),
+          ],
         ),
         content: Text(
           textAlign: TextAlign.center,
