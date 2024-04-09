@@ -100,7 +100,6 @@ class AddDndCharacterScreen extends StatelessWidget {
     //initialize notes for new character
     Notes newNotes = Notes(charID: newDndCharacter.charID);
     context.read<NotesCubit>().setNotesData(newNotes);
-    context.pop();
 
     //initialize income for new character
     Income newIncomes = Income(
@@ -112,5 +111,7 @@ class AddDndCharacterScreen extends StatelessWidget {
       silver: '0',
     );
     context.read<IncomeCubit>().setIncomesData(newIncomes);
+
+    context.pop();
   }
 }
