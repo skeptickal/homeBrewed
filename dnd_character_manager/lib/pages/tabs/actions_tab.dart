@@ -200,7 +200,6 @@ void _showEditPanel(BuildContext context, String charID) {
 void _showPostEditPanel(BuildContext context, DndAction dndAction) {
   showDialog(
     barrierDismissible: false,
-    //barrierColor: black,
     context: context,
     builder: (context) => Center(
       child: SingleChildScrollView(
