@@ -1,9 +1,0 @@
-To Do
-1. Figure out Auth in a simple way for signing in, and retrieving data specific to the
-    unique ID from the user who is signed in
-2. Is there a way to create unique sessions? Like a DM who can see every person's 
-    active character in the unique sessions, make edits to and view stats and spells? Potentially.
-3. Compare Video's BLoC + Auth with Jeff's review of the structure, and find what I like best/what works best
-    - need to follow up on this! Just simple client, BLoC, service method? Figure out users and logging in more on my own
-    before watching a youtube tutorial
-3. Streams? Or pull-to-refresh? Probably streams, can firebase use SQL queries? . . . toDaY
