@@ -26,4 +26,4 @@ doc/api/
 .flutter-plugins
 .flutter-plugins-dependencies
 
-lib/firebase_options.dart
+firebase_options.dart
