@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+//import 'package:firebase_messaging/firebase_messaging.dart';
 
 class FirebaseClient {
   final FirebaseFirestore firestore;
-  final _firebaseMessaging = FirebaseMessaging.instance;
+  //final _firebaseMessaging = FirebaseMessaging.instance;
 
   FirebaseClient({FirebaseFirestore? firestore}) : firestore = firestore ?? FirebaseFirestore.instance;
 
@@ -61,16 +61,16 @@ class FirebaseClient {
     }
   }
 
-  Future<void> initNotifications() async {
-    await _firebaseMessaging.requestPermission();
-    final fCMToken = await _firebaseMessaging.getToken();
-    print('token: $fCMToken');
-    FirebaseMessaging.onBackgroundMessage(handleBackgroundMessage);
-  }
-}
+//   Future<void> initNotifications() async {
+//     await _firebaseMessaging.requestPermission();
+//     final fCMToken = await _firebaseMessaging.getToken();
+//     print('token: $fCMToken');
+//     FirebaseMessaging.onBackgroundMessage(handleBackgroundMessage);
+//   }
+// }
 
-Future<void> handleBackgroundMessage(RemoteMessage message) async {
-  print('Title: ${message.notification?.title}');
-  print('Body: ${message.notification?.body}');
-  print('Payload: ${message.data}');
+// Future<void> handleBackgroundMessage(RemoteMessage message) async {
+//   print('Title: ${message.notification?.title}');
+//   print('Body: ${message.notification?.body}');
+//   print('Payload: ${message.data}');
 }
