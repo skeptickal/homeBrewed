@@ -1,14 +1,14 @@
-import 'package:dnd_character_manager/constants/screen_wrapper.dart';
-import 'package:dnd_character_manager/models/bio.dart';
-import 'package:dnd_character_manager/pages/tabs/actions_tab.dart';
-import 'package:dnd_character_manager/pages/tabs/bio_tab.dart';
-import 'package:dnd_character_manager/pages/tabs/incomes_tab.dart';
-import 'package:dnd_character_manager/pages/tabs/items_tab.dart';
-import 'package:dnd_character_manager/pages/tabs/notes_tab.dart';
-import 'package:dnd_character_manager/pages/tabs/resources_tab.dart';
-import 'package:dnd_character_manager/pages/tabs/spells_tab.dart';
-import 'package:dnd_character_manager/pages/tabs/stat_tab.dart';
-import 'package:dnd_character_manager/pages/tabs/weapons_tab.dart';
+import 'package:homeBrewed/constants/screen_wrapper.dart';
+import 'package:homeBrewed/models/bio.dart';
+import 'package:homeBrewed/pages/tabs/actions_tab.dart';
+import 'package:homeBrewed/pages/tabs/bio_tab.dart';
+import 'package:homeBrewed/pages/tabs/incomes_tab.dart';
+import 'package:homeBrewed/pages/tabs/items_tab.dart';
+import 'package:homeBrewed/pages/tabs/notes_tab.dart';
+import 'package:homeBrewed/pages/tabs/resources_tab.dart';
+import 'package:homeBrewed/pages/tabs/spells_tab.dart';
+import 'package:homeBrewed/pages/tabs/stat_tab.dart';
+import 'package:homeBrewed/pages/tabs/weapons_tab.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

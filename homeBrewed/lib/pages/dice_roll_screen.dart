@@ -1,6 +1,6 @@
 import 'package:d20/d20.dart';
-import 'package:dnd_character_manager/client/spacing.dart';
-import 'package:dnd_character_manager/constants/theme_data.dart';
+import 'package:homeBrewed/client/spacing.dart';
+import 'package:homeBrewed/constants/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

@@ -1,6 +1,6 @@
 import 'package:d20/d20.dart';
-import 'package:dnd_character_manager/cubits/weapon_cubit/weapon_cubit.dart';
-import 'package:dnd_character_manager/models/weapon.dart';
+import 'package:homeBrewed/cubits/weapon_cubit/weapon_cubit.dart';
+import 'package:homeBrewed/models/weapon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

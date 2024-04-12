@@ -1,14 +1,13 @@
 // ignore_for_file: file_names
 
 import 'package:bloc/bloc.dart';
-import 'package:dnd_character_manager/service/dnd_service.dart';
+import 'package:homeBrewed/service/dnd_service.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
 import '../../models/dnd_action.dart';
 
-part  'dnd_action_state.dart';
-
+part 'dnd_action_state.dart';
 
 class DndActionCubit extends Cubit<DndActionState> {
   final DndService dndService;

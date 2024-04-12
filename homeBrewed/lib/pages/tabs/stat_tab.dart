@@ -1,4 +1,4 @@
-import 'package:dnd_character_manager/cubits/stat_cubit/cubit/stat_cubit.dart';
+import 'package:homeBrewed/cubits/stat_cubit/cubit/stat_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

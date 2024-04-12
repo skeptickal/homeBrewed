@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dnd_character_manager/client/firebase_client.dart';
-import 'package:dnd_character_manager/models/bio.dart';
-import 'package:dnd_character_manager/models/notes.dart';
-import 'package:dnd_character_manager/models/resource.dart';
-import 'package:dnd_character_manager/models/stats.dart';
-import 'package:dnd_character_manager/models/weapon.dart';
+import 'package:homeBrewed/client/firebase_client.dart';
+import 'package:homeBrewed/models/bio.dart';
+import 'package:homeBrewed/models/notes.dart';
+import 'package:homeBrewed/models/resource.dart';
+import 'package:homeBrewed/models/stats.dart';
+import 'package:homeBrewed/models/weapon.dart';
 
 import '../models/dnd_action.dart';
 import '../models/income.dart';
