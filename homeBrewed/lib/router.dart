@@ -1,9 +1,9 @@
-import 'package:dnd_character_manager/models/bio.dart';
-import 'package:dnd_character_manager/pages/character_viewer_screen.dart';
-import 'package:dnd_character_manager/pages/edit_popups/edit_weapon_screen.dart';
-import 'package:dnd_character_manager/pages/home_screen.dart';
-import 'package:dnd_character_manager/pages/login_screen.dart';
-import 'package:dnd_character_manager/pages/sign_up_screen.dart';
+import 'package:homeBrewed/models/bio.dart';
+import 'package:homeBrewed/pages/character_viewer_screen.dart';
+import 'package:homeBrewed/pages/edit_popups/edit_weapon_screen.dart';
+import 'package:homeBrewed/pages/home_screen.dart';
+import 'package:homeBrewed/pages/login_screen.dart';
+import 'package:homeBrewed/pages/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

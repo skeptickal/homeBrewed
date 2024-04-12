@@ -1,11 +1,11 @@
-import 'package:dnd_character_manager/cubits/action_cubit/dnd_action_cubit.dart';
-import 'package:dnd_character_manager/cubits/bio_cubit/cubit/bio_cubit.dart';
-import 'package:dnd_character_manager/cubits/income_cubit/income_cubit.dart';
-import 'package:dnd_character_manager/cubits/item_cubit/item_cubit.dart';
-import 'package:dnd_character_manager/cubits/resource_cubit/resource_cubit.dart';
-import 'package:dnd_character_manager/cubits/user_cubit/user_cubit.dart';
-import 'package:dnd_character_manager/cubits/notes_cubit/cubit/notes_cubit.dart';
-import 'package:dnd_character_manager/cubits/weapon_cubit/weapon_cubit.dart';
+import 'package:homeBrewed/cubits/action_cubit/dnd_action_cubit.dart';
+import 'package:homeBrewed/cubits/bio_cubit/cubit/bio_cubit.dart';
+import 'package:homeBrewed/cubits/income_cubit/income_cubit.dart';
+import 'package:homeBrewed/cubits/item_cubit/item_cubit.dart';
+import 'package:homeBrewed/cubits/resource_cubit/resource_cubit.dart';
+import 'package:homeBrewed/cubits/user_cubit/user_cubit.dart';
+import 'package:homeBrewed/cubits/notes_cubit/cubit/notes_cubit.dart';
+import 'package:homeBrewed/cubits/weapon_cubit/weapon_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

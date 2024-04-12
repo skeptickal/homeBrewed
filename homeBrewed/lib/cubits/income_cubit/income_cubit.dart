@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:dnd_character_manager/models/income.dart';
-import 'package:dnd_character_manager/service/dnd_service.dart';
+import 'package:homeBrewed/models/income.dart';
+import 'package:homeBrewed/service/dnd_service.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 

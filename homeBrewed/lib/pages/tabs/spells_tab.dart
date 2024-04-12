@@ -1,5 +1,5 @@
-import 'package:dnd_character_manager/cubits/spell_cubit/spell_cubit.dart';
-import 'package:dnd_character_manager/models/spell.dart';
+import 'package:homeBrewed/cubits/spell_cubit/spell_cubit.dart';
+import 'package:homeBrewed/models/spell.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

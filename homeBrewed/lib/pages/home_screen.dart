@@ -1,9 +1,9 @@
-import 'package:dnd_character_manager/client/spacing.dart';
-import 'package:dnd_character_manager/constants/screen_wrapper.dart';
-import 'package:dnd_character_manager/constants/theme_data.dart';
-import 'package:dnd_character_manager/cubits/bio_cubit/cubit/bio_cubit.dart';
-import 'package:dnd_character_manager/cubits/user_cubit/user_cubit.dart';
-import 'package:dnd_character_manager/pages/add_popups/add_dnd_character_screen.dart';
+import 'package:homeBrewed/client/spacing.dart';
+import 'package:homeBrewed/constants/screen_wrapper.dart';
+import 'package:homeBrewed/constants/theme_data.dart';
+import 'package:homeBrewed/cubits/bio_cubit/cubit/bio_cubit.dart';
+import 'package:homeBrewed/cubits/user_cubit/user_cubit.dart';
+import 'package:homeBrewed/pages/add_popups/add_dnd_character_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

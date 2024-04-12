@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:dnd_character_manager/client/firebase_auth_client.dart';
-import 'package:dnd_character_manager/models/my_user.dart';
-import 'package:dnd_character_manager/service/dnd_service.dart';
+import 'package:homeBrewed/client/firebase_auth_client.dart';
+import 'package:homeBrewed/models/my_user.dart';
+import 'package:homeBrewed/service/dnd_service.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
