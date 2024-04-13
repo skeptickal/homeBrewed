@@ -50,7 +50,7 @@ class EditDndActionScreen extends StatelessWidget {
                       context.pop();
                     },
                     child: Text(
-                      'Save DndAction',
+                      'Save Action',
                       style: dndFont.copyWith(color: themeColor),
                     ),
                   ),

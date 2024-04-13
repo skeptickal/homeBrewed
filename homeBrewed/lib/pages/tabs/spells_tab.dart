@@ -187,8 +187,8 @@ void _onPressedSpellCastingAbilityQuestion(BuildContext context) {
                 style: TextStyle(fontSize: 22, color: white, fontWeight: FontWeight.bold),
               ),
               SelectableText(
-                '• Clerics, Druids, Paladins, and Rangers: Your spellcasting ability is determined by your Wisdom modifier.\n\n'
-                '• Sorcerers, Bards, and Warlocks: Your spellcasting ability is determined by your Charisma modifier.\n\n'
+                '• Clerics, Druids, and Rangers: Your spellcasting ability is determined by your Wisdom modifier.\n\n'
+                '• Sorcerers, Bards, Paladins, and Warlocks: Your spellcasting ability is determined by your Charisma modifier.\n\n'
                 '• Wizards: Your spellcasting ability is determined by your Intelligence modifier.\n\n'
                 'Your Spell Attack Modifier is = your proficiency bonus + your spellcasting modifier\n\n'
                 'e.g. Bard with Proficiency 3: \n3 + 4(CHA) = 7',
