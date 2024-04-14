@@ -28,12 +28,13 @@ class CustomTextBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Padding(
-      padding: padding,
+      padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.25),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Center(child: SelectableText(subtitle, style: dndFont.copyWith(fontSize: 14, fontWeight: FontWeight.bold))),
+          Center(child: SelectableText(subtitle, style: dndFont.copyWith(fontSize: screenWidth * .02, fontWeight: FontWeight.bold))),
           const SizedBox(height: 4),
           TextFormField(
             validator: validator,
@@ -42,7 +43,7 @@ class CustomTextBox extends StatelessWidget {
             obscureText: obscureText,
             maxLines: !obscureText ? maxLines : 1,
             keyboardType: TextInputType.multiline,
-            decoration: textInputDecoration.copyWith(hintText: hintText, fillColor: backgroundColor),
+            decoration: dndFieldInputDecoration(hintText: hintText, context: context, enabled: true),
           ),
         ],
       ),
@@ -82,12 +83,13 @@ class BigTextBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Padding(
-      padding: padding,
+      padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Center(child: SelectableText(subtitle, style: dndFont.copyWith(fontSize: 14, fontWeight: FontWeight.bold))),
+          Center(child: SelectableText(subtitle, style: dndFont.copyWith(fontSize: screenWidth * .02, fontWeight: FontWeight.bold))),
           const SizedBox(height: 4),
           Focus(
             onFocusChange: (hasFocus) => hasFocus ? null : onEditingComplete!(),
@@ -102,7 +104,7 @@ class BigTextBox extends StatelessWidget {
               minLines: minLines,
               maxLines: maxLines,
               keyboardType: keyboardType ?? TextInputType.multiline,
-              decoration: dndFieldInputDecoration(enabled: enabled, hintText: hintText),
+              decoration: dndFieldInputDecoration(enabled: enabled, hintText: hintText, context: context),
             ),
           ),
         ],
@@ -141,12 +143,14 @@ class StatTextBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Padding(
       padding: padding,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Center(child: SelectableText(subtitle, textAlign: TextAlign.center, style: dndFont.copyWith(fontSize: 14, fontWeight: FontWeight.bold))),
+          Center(
+              child: SelectableText(subtitle, textAlign: TextAlign.center, style: dndFont.copyWith(fontSize: screenWidth * .02, fontWeight: FontWeight.bold))),
           Focus(
             onFocusChange: (hasFocus) => hasFocus ? null : onEditingComplete!(),
             child: TextFormField(
@@ -162,7 +166,7 @@ class StatTextBox extends StatelessWidget {
               maxLines: null,
               textInputAction: action,
               keyboardType: Platform.isIOS ? const TextInputType.numberWithOptions(signed: true, decimal: true) : TextInputType.number,
-              decoration: dndFieldInputDecoration(enabled: enabled, hintText: hintText),
+              decoration: dndFieldInputDecoration(enabled: enabled, hintText: hintText, context: context),
             ),
           ),
         ],
@@ -171,19 +175,21 @@ class StatTextBox extends StatelessWidget {
   }
 }
 
-final textInputDecoration = InputDecoration(
-  fillColor: backgroundColor,
-  filled: true,
-  hintStyle: dndFont.copyWith(fontSize: 14),
-  enabledBorder: UnderlineInputBorder(
-    borderSide: BorderSide(color: themeColor, width: 2.0),
-  ),
-  focusedBorder: UnderlineInputBorder(
-    borderSide: BorderSide(color: black, width: 2.0),
-  ),
-);
+InputDecoration textInputDecoration(BuildContext context) {
+  return InputDecoration(
+    fillColor: backgroundColor,
+    filled: true,
+    hintStyle: dndFont.copyWith(fontSize: screenWidth(context) * .02),
+    enabledBorder: UnderlineInputBorder(
+      borderSide: BorderSide(color: themeColor, width: 2.0),
+    ),
+    focusedBorder: UnderlineInputBorder(
+      borderSide: BorderSide(color: black, width: 2.0),
+    ),
+  );
+}
 
-InputDecoration dndFieldInputDecoration({required bool enabled, required String hintText}) {
+InputDecoration dndFieldInputDecoration({required bool enabled, required String hintText, required BuildContext context}) {
   return InputDecoration(
     focusColor: themeColor,
     hintText: hintText,
@@ -192,7 +198,7 @@ InputDecoration dndFieldInputDecoration({required bool enabled, required String 
     border: OutlineInputBorder(
       borderSide: BorderSide(color: themeColor, width: enabled ? 2.0 : 1),
     ),
-    hintStyle: dndFont.copyWith(fontSize: 14),
+    hintStyle: dndFont.copyWith(fontSize: screenWidth(context) * .02),
     enabledBorder: OutlineInputBorder(
       borderSide: BorderSide(color: themeColor, width: enabled ? 2.0 : 0),
     ),

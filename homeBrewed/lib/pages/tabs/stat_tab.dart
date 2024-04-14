@@ -15,6 +15,7 @@ class StatTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context.read<StatCubit>().readStatsData(charID);
+
     return const SingleChildScrollView(
       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       child: Column(
@@ -1062,7 +1063,7 @@ class _Levels extends StatelessWidget {
                         state.stats!.copyWith(armorClass: armorClass.text),
                       ),
                   enabled: state.statEdit!,
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                  padding: EdgeInsets.symmetric(horizontal: screenWidth(context) * 0.2),
                   controller: armorClass,
                   hintText: 'Armor Class',
                   subtitle: 'Armor Class',
@@ -1070,7 +1071,7 @@ class _Levels extends StatelessWidget {
               ),
               Flexible(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 38.0),
+                  padding: EdgeInsets.symmetric(horizontal: screenWidth(context) * 0.2),
                   child: ElevatedButton(
                     onPressed: () {
                       _showRollDialog(context, _calcInitiative(state.stats!.dexterity));
@@ -1112,7 +1113,7 @@ class _Levels extends StatelessWidget {
                         state.stats!.copyWith(totalPlayerLevel: playerLevel.text),
                       ),
                   enabled: state.statEdit!,
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                  padding: EdgeInsets.symmetric(horizontal: screenWidth(context) * 0.2),
                   controller: playerLevel,
                   hintText: 'Player Level',
                   subtitle: 'Player Level',
@@ -1123,7 +1124,7 @@ class _Levels extends StatelessWidget {
                   onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(classLevel: classLevel.text)),
                   onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(classLevel: classLevel.text)),
                   enabled: state.statEdit!,
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                  padding: EdgeInsets.symmetric(horizontal: screenWidth(context) * 0.2),
                   controller: classLevel,
                   hintText: 'Class Level',
                   subtitle: 'Class Level',
@@ -1139,7 +1140,7 @@ class _Levels extends StatelessWidget {
                   onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(subClass1Lvl: subClass1Lvl.text)),
                   onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(subClass1Lvl: subClass1Lvl.text)),
                   enabled: state.statEdit!,
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                  padding: EdgeInsets.symmetric(horizontal: screenWidth(context) * 0.2),
                   controller: subClass1Lvl,
                   hintText: 'Subclass (1) Level',
                   subtitle: 'Subclass (1) Level',
@@ -1150,7 +1151,7 @@ class _Levels extends StatelessWidget {
                   onEditingComplete: () => context.read<StatCubit>().setStatsData(state.stats!.copyWith(subClass2Lvl: subClass2Lvl.text)),
                   onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(state.stats!.copyWith(subClass2Lvl: subClass2Lvl.text)),
                   enabled: state.statEdit!,
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                  padding: EdgeInsets.symmetric(horizontal: screenWidth(context) * 0.2),
                   controller: subClass2Lvl,
                   hintText: 'Subclass (2) Level',
                   subtitle: 'Subclass (2) Level',

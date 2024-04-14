@@ -72,14 +72,14 @@ class _WeaponsList extends StatelessWidget {
                         onPressed: () => _showRollDialog(context, weapon.attackRoll),
                         child: Text(
                           'Attack: ${weapon.attackRoll ?? ''}',
-                          style: dndFont.copyWith(fontSize: 14, fontStyle: FontStyle.italic, color: themeColor),
+                          style: dndFont.copyWith(fontSize: screenWidth(context) * .02, fontStyle: FontStyle.italic, color: themeColor),
                         ),
                       ),
                       TextButton(
                         onPressed: () => _showRollDialog(context, weapon.damageRoll),
                         child: Text(
                           'Damage: ${weapon.damageRoll ?? ''}',
-                          style: dndFont.copyWith(fontSize: 14, fontStyle: FontStyle.italic, color: themeColor),
+                          style: dndFont.copyWith(fontSize: screenWidth(context) * .02, fontStyle: FontStyle.italic, color: themeColor),
                         ),
                       ),
                     ],

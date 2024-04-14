@@ -18,3 +18,7 @@ Color black = Colors.black;
 Color disableGrey = const Color.fromARGB(255, 124, 124, 124);
 // fonts
 TextStyle dndFont = GoogleFonts.medievalSharp();
+
+double screenWidth(BuildContext context) {
+  return MediaQuery.of(context).size.width;
+}

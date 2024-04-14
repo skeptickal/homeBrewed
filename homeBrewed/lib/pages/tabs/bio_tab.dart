@@ -175,7 +175,7 @@ class _Traits extends StatelessWidget {
                             );
                       }
                     : null,
-                decoration: dndFieldInputDecoration(enabled: state.bioEdit!, hintText: 'Select an Alignment'),
+                decoration: dndFieldInputDecoration(enabled: state.bioEdit!, hintText: 'Select an Alignment', context: context),
               ),
             ),
             BigTextBox(

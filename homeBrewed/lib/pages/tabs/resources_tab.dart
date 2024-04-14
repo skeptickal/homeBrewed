@@ -44,10 +44,11 @@ class _ResourcesList extends StatelessWidget {
                     Text(
                       resource.name ?? '',
                       textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: screenWidth(context) * 0.03),
                     ),
                     Text(
                       resource.maxResourceValue ?? '0',
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: themeColor),
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: screenWidth(context) * 0.04, color: themeColor),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -60,14 +61,17 @@ class _ResourcesList extends StatelessWidget {
                                 ));
                             context.read<ResourceCubit>().readResourcesByCharID(charID);
                           },
-                          icon: const Icon(Icons.remove),
+                          icon: Icon(
+                            Icons.remove,
+                            size: screenWidth(context) * 0.04,
+                          ),
                         ),
                         Flexible(
                           child: FittedBox(
                             fit: BoxFit.scaleDown,
                             child: Text(
                               resource.currentResourceValue ?? '0',
-                              style: const TextStyle(fontSize: 16),
+                              style: TextStyle(fontSize: screenWidth(context) * 0.03),
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -78,9 +82,7 @@ class _ResourcesList extends StatelessWidget {
                             context.read<ResourceCubit>().setResourcesData(resource.copyWith(currentResourceValue: resourceValueAsInt.toString()));
                             context.read<ResourceCubit>().readResourcesByCharID(charID);
                           },
-                          icon: const Icon(
-                            Icons.add,
-                          ),
+                          icon: Icon(Icons.add, size: screenWidth(context) * 0.04),
                         ),
                       ],
                     ),
@@ -95,7 +97,7 @@ class _ResourcesList extends StatelessWidget {
             seperation,
             Text(
               'Resources',
-              style: dndFont.copyWith(fontSize: 18, fontWeight: FontWeight.bold),
+              style: dndFont.copyWith(fontSize: screenWidth(context) * 0.04, fontWeight: FontWeight.bold),
             ),
             seperation,
             _AddResource(charID: charID!),
@@ -126,6 +128,8 @@ class _AddResource extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: screenWidth(context) * 0.07,
+      width: screenWidth(context) * 0.07,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: themeColor,
@@ -139,7 +143,7 @@ class _AddResource extends StatelessWidget {
         ],
       ),
       child: IconButton(
-        iconSize: 25,
+        iconSize: screenWidth(context) * 0.04,
         color: white,
         icon: const Icon(Icons.add),
         onPressed: () => _showEditPanel(context, charID),

@@ -59,7 +59,7 @@ class _SpellsList extends StatelessWidget {
                   ),
                   subtitle: Text(
                     spell.spellAtkOrDC ?? '',
-                    style: dndFont.copyWith(fontSize: 14, fontStyle: FontStyle.italic),
+                    style: dndFont.copyWith(fontSize: screenWidth(context) * .02, fontStyle: FontStyle.italic),
                   ),
                   trailing: IconButton(
                     icon: Icon(
