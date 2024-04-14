@@ -1,3 +1,5 @@
+import 'package:d20/d20.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:homeBrewed/cubits/stat_cubit/cubit/stat_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -1032,6 +1034,8 @@ class _Levels extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<StatCubit, StatState>(
       builder: (context, state) {
+        TextEditingController armorClass = TextEditingController();
+        armorClass.text = state.stats!.armorClass ?? '0';
         TextEditingController playerLevel = TextEditingController();
         playerLevel.text = state.stats!.totalPlayerLevel ?? '0';
         TextEditingController classLevel = TextEditingController();
@@ -1041,6 +1045,57 @@ class _Levels extends StatelessWidget {
         TextEditingController subClass2Lvl = TextEditingController();
         subClass2Lvl.text = state.stats!.subClass2Lvl ?? '1';
         return Column(children: [
+          SelectableText(
+            'Stats',
+            style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+          ),
+          seperation,
+          seperation,
+          Row(
+            children: [
+              Flexible(
+                child: StatTextBox(
+                  onTapOutside: (clickOut) => context.read<StatCubit>().setStatsData(
+                        state.stats!.copyWith(armorClass: armorClass.text),
+                      ),
+                  onEditingComplete: () => context.read<StatCubit>().setStatsData(
+                        state.stats!.copyWith(armorClass: armorClass.text),
+                      ),
+                  enabled: state.statEdit!,
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                  controller: armorClass,
+                  hintText: 'Armor Class',
+                  subtitle: 'Armor Class',
+                ),
+              ),
+              Flexible(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 38.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      _showRollDialog(context, _calcInitiative(state.stats!.dexterity));
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: themeColor,
+                      elevation: 4,
+                      padding: const EdgeInsets.fromLTRB(18, 16, 18, 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: Text(
+                      'Roll Initiative',
+                      style: dndFont.copyWith(color: white),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          seperation,
+          horizontalLine,
+          seperation,
           SelectableText(
             'Levels',
             style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
@@ -1115,4 +1170,59 @@ class _Levels extends StatelessWidget {
       },
     );
   }
+}
+
+void _showRollDialog(
+  BuildContext context,
+  String? roll,
+) {
+  String rollResult;
+  try {
+    if (roll == '') {
+      roll = 'd20';
+    }
+    final d20 = D20();
+    rollResult = d20.roll(roll!).toString();
+  } catch (e) {
+    rollResult = 'Invalid input';
+  }
+
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        backgroundColor: themeColor,
+        title: Column(
+          children: [
+            FaIcon(
+              FontAwesomeIcons.diceD20,
+              color: white,
+              size: 30,
+            ),
+            seperation,
+            Center(
+              child: Text(
+                '$roll: ',
+                style: dndFont.copyWith(fontSize: 20, color: white),
+              ),
+            ),
+          ],
+        ),
+        content: Text(
+          textAlign: TextAlign.center,
+          '= $rollResult',
+          style: (TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: white,
+          )),
+        ),
+      );
+    },
+  );
+}
+
+String _calcInitiative(String? statToMod) {
+  int statToModNullSafe = int.tryParse(statToMod ?? '10') ?? 10;
+  return '1d20+${((statToModNullSafe - 10)) < 0 ? ((statToModNullSafe - 11) ~/ 2) : ((statToModNullSafe - 10) ~/ 2)}';
 }

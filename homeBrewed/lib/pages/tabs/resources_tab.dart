@@ -41,8 +41,11 @@ class _ResourcesList extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    SelectableText(resource.name ?? ''),
-                    SelectableText(
+                    Text(
+                      resource.name ?? '',
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
                       resource.maxResourceValue ?? '0',
                       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: themeColor),
                     ),
@@ -62,7 +65,7 @@ class _ResourcesList extends StatelessWidget {
                         Flexible(
                           child: FittedBox(
                             fit: BoxFit.scaleDown,
-                            child: SelectableText(
+                            child: Text(
                               resource.currentResourceValue ?? '0',
                               style: const TextStyle(fontSize: 16),
                               textAlign: TextAlign.center,

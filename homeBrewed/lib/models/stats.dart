@@ -48,8 +48,10 @@ class Stats extends Equatable {
   final bool? stealthProf;
   final bool? survivalProf;
   final String? statNotes;
+  final String? armorClass;
 
   const Stats({
+    this.armorClass,
     this.totalPlayerLevel,
     this.strSaveProf,
     this.dexSaveProf,
@@ -101,6 +103,7 @@ class Stats extends Equatable {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {
+      'armorClass': armorClass,
       'strSaveProf': strSaveProf,
       'dexSaveProf': dexSaveProf,
       'conSaveProf': conSaveProf,
@@ -154,6 +157,7 @@ class Stats extends Equatable {
 
   factory Stats.fromJson(Map<String, dynamic> json) {
     return Stats(
+      armorClass: json['armorClass']?.toString() ?? '0',
       strSaveProf: json['strSaveProf'] ?? false,
       dexSaveProf: json['dexSaveProf'] ?? false,
       conSaveProf: json['conSaveProf'] ?? false,
@@ -205,6 +209,7 @@ class Stats extends Equatable {
   }
 
   Stats copyWith({
+    String? armorClass,
     bool? strSaveProf,
     bool? dexSaveProf,
     bool? conSaveProf,
@@ -254,6 +259,7 @@ class Stats extends Equatable {
     String? statNotes,
   }) {
     return Stats(
+      armorClass: armorClass ?? this.armorClass,
       strSaveProf: strSaveProf ?? this.strSaveProf,
       dexSaveProf: dexSaveProf ?? this.dexSaveProf,
       conSaveProf: conSaveProf ?? this.conSaveProf,
@@ -306,6 +312,7 @@ class Stats extends Equatable {
 
   @override
   List<Object?> get props => [
+        armorClass,
         strSaveProf,
         dexSaveProf,
         conSaveProf,
