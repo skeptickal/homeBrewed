@@ -131,7 +131,7 @@ void _onPressedTile({required BuildContext context, required String name, requir
                 Text(
                   name,
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 18, color: white),
+                  style: TextStyle(fontSize: 18, color: white, fontWeight: FontWeight.bold),
                 ),
                 seperation,
                 Text(

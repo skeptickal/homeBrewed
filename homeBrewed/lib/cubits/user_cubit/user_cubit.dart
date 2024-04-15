@@ -39,4 +39,6 @@ class UserCubit extends Cubit<UserState> {
   Future<void> signOut() => firebaseAuthClient.signOut();
 
   Future<void> setUserData(MyUser myUser) async => firebaseAuthClient.setUserData(myUser);
+
+  Future<void> deleteUser() async => firebaseAuthClient.deleteUser();
 }
