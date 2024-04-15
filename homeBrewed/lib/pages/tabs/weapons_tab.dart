@@ -154,7 +154,7 @@ void _onPressedTile({required BuildContext context, required String name, requir
               SelectableText(
                 name,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 22, color: white, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 18, color: white, fontWeight: FontWeight.bold),
               ),
               seperation,
               SelectableText(

@@ -44,6 +44,18 @@ class HomeScreen extends StatelessWidget {
                 seperation,
                 _CharacterList(userState: userState),
                 const _AddCharacter(),
+                seperation,
+                horizontalLine,
+                seperation,
+                OutlinedButton(
+                    style: ButtonStyle(
+                      side: MaterialStateProperty.all(BorderSide(color: themeColor)), // Define border color
+                    ),
+                    onPressed: () => _onPressedDeleteUser(context, userState),
+                    child: const Text(
+                      'Delete Account?',
+                      style: TextStyle(color: Colors.red),
+                    ))
               ],
             ),
           ),
@@ -96,6 +108,35 @@ void _onPressedDeleteIcon(BuildContext context, String userID, String charID, St
             });
           },
         ),
+      ],
+    ),
+  );
+}
+
+void _onPressedDeleteUser(BuildContext context, UserState state) {
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Text(
+        'Are you sure you want to delete the account for:\n${state.myUser!.email}?',
+        style: TextStyle(color: white, fontSize: 18),
+      ),
+      backgroundColor: themeColor,
+      surfaceTintColor: themeColor,
+      actions: [
+        TextButton(
+          child: Text(
+            'Delete Permanently',
+            style: TextStyle(color: white),
+          ),
+          onPressed: () => context.read<UserCubit>().deleteUser(),
+        ),
+        TextButton(
+            onPressed: () => context.pop(),
+            child: Text(
+              'Back',
+              style: TextStyle(color: white),
+            ))
       ],
     ),
   );

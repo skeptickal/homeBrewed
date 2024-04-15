@@ -57,4 +57,20 @@ class FirebaseAuthClient {
       rethrow;
     }
   }
+
+  Future<void> deleteUser() async {
+    try {
+    User? user = _firebaseAuth.currentUser;
+    
+    if (user != null) {
+      await user.delete();
+      // User account deleted successfully
+    } else {
+      // No user signed in
+    }
+  } catch (e) {
+    // Failed to delete user account
+    print("Failed to delete user account: $e");
+  }
+  }
 }

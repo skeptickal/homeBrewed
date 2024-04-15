@@ -122,10 +122,20 @@ void _onPressedTile({required BuildContext context, required String name, requir
     builder: (context) => Center(
       child: SingleChildScrollView(
         child: AlertDialog(
-          title: Text(
-            '$name\n\n$description',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 18, color: white),
+          title: Column(
+            children: [
+              SelectableText(
+                name,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 18, color: white, fontWeight: FontWeight.bold),
+              ),
+              seperation,
+              SelectableText(
+                description,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 18, color: white, fontStyle: FontStyle.italic),
+              )
+            ],
           ),
           backgroundColor: themeColor,
           surfaceTintColor: themeColor,
