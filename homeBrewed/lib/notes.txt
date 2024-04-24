@@ -1,0 +1,2 @@
+v2 plans
+1. D&D API free, integrate somewhat without compromising on customizability
