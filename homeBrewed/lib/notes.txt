@@ -1,2 +1,3 @@
 v2 plans
 1. D&D API free, integrate somewhat without compromising on customizability
+2. Add visibility to typing option from obscure text on the password entry screen
