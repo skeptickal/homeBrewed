@@ -1,4 +1,4 @@
 v2 plans
 1. D&D API free, integrate somewhat without compromising on customizability - find widget for dropdown + custom option?
 2. Add visibility to typing option from obscure text on the password entry screen
-3. Resize certain widgets and text better for screen size?
+3. Resize certain widgets and text better for screen size? - landscape v portrait?
