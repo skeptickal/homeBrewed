@@ -3,3 +3,4 @@ v2 plans
 2. Add visibility to typing option from obscure text on the password entry screen
 3. Resize certain widgets and text better for screen size? - landscape v portrait? - create windows or mac os app version? 
 4. add Maestro for testing?
+5. Find different uses for Docker?
