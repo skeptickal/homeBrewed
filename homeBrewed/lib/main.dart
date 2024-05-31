@@ -29,3 +29,4 @@ Future<void> main() async {
   );
 }
 // version 2
+//figure out horizontal mode? Or force into vert?
