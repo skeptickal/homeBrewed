@@ -33,7 +33,7 @@ class _SignUp extends StatelessWidget {
   final UserState state;
   const _SignUp({required this.state});
   FormGroup buildForm() => fb.group(<String, Object>{
-        'username': FormControl<String>(value: ''),
+        'email': FormControl<String>(value: ''),
         'password': FormControl<String>(value: ''),
       });
 
@@ -51,8 +51,8 @@ class _SignUp extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ReactiveTextField<String>(
-                  formControlName: 'username',
-                  decoration: InputDecoration(labelText: 'Username', labelStyle: dndFont),
+                  formControlName: 'email',
+                  decoration: InputDecoration(labelText: 'Email', labelStyle: dndFont),
                 ),
                 Stack(
                   children: [
