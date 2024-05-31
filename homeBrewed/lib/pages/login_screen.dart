@@ -41,9 +41,6 @@ class _SignIn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController email = TextEditingController();
-    TextEditingController password = TextEditingController();
-
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: ReactiveFormBuilder(
@@ -78,7 +75,10 @@ class _SignIn extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () async {
-                    dynamic result = await context.read<UserCubit>().signIn(email.text, password.text);
+                    dynamic result = await context.read<UserCubit>().signIn(
+                          form.control('email').value,
+                          form.control('password').value,
+                        );
                     if (context.mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
