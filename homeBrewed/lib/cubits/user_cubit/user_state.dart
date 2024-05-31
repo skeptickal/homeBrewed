@@ -4,16 +4,13 @@ part of 'user_cubit.dart';
 class UserState extends Equatable {
   final bool? signedIn;
   final MyUser? myUser;
-  // final bool? abilitiesEdit;
-  // final bool? itemsEdit;
-  // final bool? weaponsEdit;
-  // final bool? spellsEdit;
-  // final bool? incomeEdit;
+  final bool? textObscured;
 
-  const UserState({this.signedIn, this.myUser});
+  const UserState({this.signedIn, this.myUser, this.textObscured});
 
-  UserState copyWith({signedIn, myUser, dndCharacters, statEdit}) {
+  UserState copyWith({signedIn, myUser, dndCharacters, statEdit, textObscured}) {
     return UserState(
+      textObscured: textObscured ?? this.textObscured,
       signedIn: signedIn ?? this.signedIn,
       myUser: myUser ?? this.myUser,
     );
@@ -21,6 +18,7 @@ class UserState extends Equatable {
 
   @override
   List<Object?> get props => [
+        textObscured,
         signedIn,
         myUser,
       ];
@@ -31,5 +29,6 @@ final class UserInitial extends UserState {
       : super(
           signedIn: false,
           myUser: null,
+          textObscured: true,
         );
 }

@@ -36,45 +36,66 @@ class _SignUp extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController email = TextEditingController();
     TextEditingController password = TextEditingController();
-    return Form(
-      child: Container(
-        margin: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CustomTextBox(
-              obscureText: false,
-              padding: const EdgeInsets.all(6),
-              controller: email,
-              hintText: 'email',
-              subtitle: 'Sign Up with Email',
-            ),
-            CustomTextBox(
-              obscureText: true,
-              padding: const EdgeInsets.all(6),
-              controller: password,
-              hintText: 'password',
-              subtitle: 'Enter New Password',
-            ),
-            TextButton(
-              onPressed: () async {
-                dynamic result = await context.read<UserCubit>().signUp(email.text, password.text);
-                if (context.mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: SelectableText(result),
+    return BlocBuilder<UserCubit, UserState>(
+      builder: (context, state) {
+        return Form(
+          child: Container(
+            margin: const EdgeInsets.all(20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CustomTextBox(
+                  obscureText: false,
+                  padding: const EdgeInsets.all(6),
+                  controller: email,
+                  hintText: 'email',
+                  subtitle: 'Sign Up with Email',
+                ),
+                Stack(
+                  children: [
+                    CustomTextBox(
+                      obscureText: state.textObscured!,
+                      padding: const EdgeInsets.all(6),
+                      controller: password,
+                      hintText: 'password',
+                      subtitle: 'Enter Password',
                     ),
-                  );
-                }
-              },
-              child: Text(
-                'Sign Up',
-                style: dndFont.copyWith(fontSize: 16, color: themeColor),
-              ),
+                    Positioned(
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                      child: IconButton(
+                        onPressed: () {
+                          print('Jackson before: ${state.textObscured}');
+                          context.read<UserCubit>().revealOrHideText();
+                          print('Jackson after: ${state.textObscured}');
+                        },
+                        icon: const Icon(Icons.remove_red_eye),
+                      ),
+                    ),
+                  ],
+                ),
+                TextButton(
+                  onPressed: () async {
+                    dynamic result = await context.read<UserCubit>().signUp(email.text, password.text);
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: SelectableText(result),
+                        ),
+                      );
+                    }
+                  },
+                  child: Text(
+                    'Sign Up',
+                    style: dndFont.copyWith(fontSize: 16, color: themeColor),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
