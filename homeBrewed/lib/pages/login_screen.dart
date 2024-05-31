@@ -1,10 +1,10 @@
 import 'package:homeBrewed/constants/screen_wrapper.dart';
-import 'package:homeBrewed/constants/text_fields.dart';
 import 'package:homeBrewed/constants/theme_data.dart';
 import 'package:homeBrewed/cubits/user_cubit/user_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -34,76 +34,73 @@ class LoginScreen extends StatelessWidget {
 class _SignIn extends StatelessWidget {
   final UserState state;
   const _SignIn({required this.state});
+  FormGroup buildForm() => fb.group(<String, Object>{
+        'username': FormControl<String>(value: ''),
+        'password': FormControl<String>(value: ''),
+      });
 
   @override
   Widget build(BuildContext context) {
     TextEditingController email = TextEditingController();
     TextEditingController password = TextEditingController();
 
-    return Form(
-      child: Container(
-        margin: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CustomTextBox(
-              validator: (value) {
-                value!.isEmpty ? 'Enter an email' : null;
-                return value;
-              },
-              obscureText: false,
-              padding: const EdgeInsets.all(6),
-              controller: email,
-              hintText: 'email',
-              subtitle: 'Sign In with Email',
-            ),
-            Stack(
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: ReactiveFormBuilder(
+          form: buildForm,
+          builder: (context, form, child) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CustomTextBox(
-                  obscureText: state.textObscured!,
-                  padding: const EdgeInsets.all(6),
-                  controller: password,
-                  hintText: 'password',
-                  subtitle: 'Enter Password',
+                ReactiveTextField<String>(
+                  formControlName: 'username',
+                  decoration: InputDecoration(labelText: 'Username', labelStyle: dndFont),
                 ),
-                Positioned(
-                  right: 0,
-                  top: 0,
-                  bottom: 0,
-                  child: IconButton(
-                    onPressed: () {
-                      context.read<UserCubit>().revealOrHideText();
-                    },
-                    icon: const Icon(Icons.remove_red_eye),
+                Stack(
+                  children: [
+                    ReactiveTextField<String>(
+                      obscureText: state.textObscured!,
+                      formControlName: 'password',
+                      decoration: InputDecoration(labelText: 'Password', labelStyle: dndFont),
+                    ),
+                    Positioned(
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                      child: IconButton(
+                        onPressed: () {
+                          context.read<UserCubit>().revealOrHideText();
+                        },
+                        icon: const Icon(Icons.remove_red_eye),
+                      ),
+                    ),
+                  ],
+                ),
+                TextButton(
+                  onPressed: () async {
+                    dynamic result = await context.read<UserCubit>().signIn(email.text, password.text);
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(result),
+                        ),
+                      );
+                    }
+                  },
+                  child: Text(
+                    'Sign In',
+                    style: dndFont.copyWith(fontSize: 16, color: themeColor),
                   ),
                 ),
+                TextButton(
+                    onPressed: () => context.push('/sign_up'),
+                    child: Text(
+                      'No Account yet? Sign Up',
+                      style: dndFont.copyWith(fontSize: 16, color: themeColor),
+                    ))
               ],
-            ),
-            TextButton(
-              onPressed: () async {
-                dynamic result = await context.read<UserCubit>().signIn(email.text, password.text);
-                if (context.mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(result),
-                    ),
-                  );
-                }
-              },
-              child: Text(
-                'Sign In',
-                style: dndFont.copyWith(fontSize: 16, color: themeColor),
-              ),
-            ),
-            TextButton(
-                onPressed: () => context.push('/sign_up'),
-                child: Text(
-                  'No Account yet? Sign Up',
-                  style: dndFont.copyWith(fontSize: 16, color: themeColor),
-                ))
-          ],
-        ),
-      ),
+            );
+          }),
     );
   }
 }
