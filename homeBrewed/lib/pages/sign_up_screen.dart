@@ -1,5 +1,4 @@
 import 'package:homeBrewed/constants/screen_wrapper.dart';
-import 'package:homeBrewed/constants/text_fields.dart';
 import 'package:homeBrewed/constants/theme_data.dart';
 import 'package:homeBrewed/cubits/user_cubit/user_cubit.dart';
 import 'package:flutter/material.dart';
