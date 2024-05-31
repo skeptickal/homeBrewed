@@ -28,15 +28,22 @@ class UserCubit extends Cubit<UserState> {
   }
 
   Future<String> signIn(String email, String password) async {
+    emit(state.copyWith(textObscured: true));
     return firebaseAuthClient.signIn(email, password);
   }
 
   Future<String> signUp(String email, String password) async {
     MyUser myUser = MyUser(email: email);
+    emit(state.copyWith(textObscured: true));
     return firebaseAuthClient.signUp(myUser: myUser, password: password);
   }
 
-  Future<void> signOut() => firebaseAuthClient.signOut();
+  Future<void> signOut() async {
+    firebaseAuthClient.signOut();
+    emit(state.copyWith(textObscured: true));
+  }
+
+  void revealOrHideText() => emit(state.copyWith(textObscured: !state.textObscured!));
 
   Future<void> setUserData(MyUser myUser) async => firebaseAuthClient.setUserData(myUser);
 
