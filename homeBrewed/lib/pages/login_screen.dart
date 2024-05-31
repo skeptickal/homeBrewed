@@ -14,9 +14,11 @@ class LoginScreen extends StatelessWidget {
     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) => _listener(state, context),
       builder: (context, state) {
-        return const ScreenWrapper(
+        return ScreenWrapper(
           title: 'Welcome to homeBrewed',
-          child: _SignIn(),
+          child: _SignIn(
+            state: state,
+          ),
         );
       },
     );
@@ -30,82 +32,78 @@ class LoginScreen extends StatelessWidget {
 }
 
 class _SignIn extends StatelessWidget {
-  const _SignIn();
+  final UserState state;
+  const _SignIn({required this.state});
 
   @override
   Widget build(BuildContext context) {
     TextEditingController email = TextEditingController();
     TextEditingController password = TextEditingController();
-    return BlocBuilder<UserCubit, UserState>(
-      builder: (context, state) {
-        return Form(
-          child: Container(
-            margin: const EdgeInsets.all(20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+
+    return Form(
+      child: Container(
+        margin: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CustomTextBox(
+              validator: (value) {
+                value!.isEmpty ? 'Enter an email' : null;
+                return value;
+              },
+              obscureText: false,
+              padding: const EdgeInsets.all(6),
+              controller: email,
+              hintText: 'email',
+              subtitle: 'Sign In with Email',
+            ),
+            Stack(
               children: [
                 CustomTextBox(
-                  validator: (value) {
-                    value!.isEmpty ? 'Enter an email' : null;
-                    return value;
-                  },
-                  obscureText: false,
+                  obscureText: state.textObscured!,
                   padding: const EdgeInsets.all(6),
-                  controller: email,
-                  hintText: 'email',
-                  subtitle: 'Sign In with Email',
+                  controller: password,
+                  hintText: 'password',
+                  subtitle: 'Enter Password',
                 ),
-                Stack(
-                  children: [
-                    CustomTextBox(
-                      obscureText: state.textObscured!,
-                      padding: const EdgeInsets.all(6),
-                      controller: password,
-                      hintText: 'password',
-                      subtitle: 'Enter Password',
-                    ),
-                    Positioned(
-                      right: 0,
-                      top: 0,
-                      bottom: 0,
-                      child: IconButton(
-                        onPressed: () {
-                          print('Jackson before: ${state.textObscured}');
-                          context.read<UserCubit>().revealOrHideText();
-                          print('Jackson after: ${state.textObscured}');
-                        },
-                        icon: const Icon(Icons.remove_red_eye),
-                      ),
-                    ),
-                  ],
-                ),
-                TextButton(
-                  onPressed: () async {
-                    dynamic result = await context.read<UserCubit>().signIn(email.text, password.text);
-                    if (context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(result),
-                        ),
-                      );
-                    }
-                  },
-                  child: Text(
-                    'Sign In',
-                    style: dndFont.copyWith(fontSize: 16, color: themeColor),
+                Positioned(
+                  right: 0,
+                  top: 0,
+                  bottom: 0,
+                  child: IconButton(
+                    onPressed: () {
+                      context.read<UserCubit>().revealOrHideText();
+                    },
+                    icon: const Icon(Icons.remove_red_eye),
                   ),
                 ),
-                TextButton(
-                    onPressed: () => context.push('/sign_up'),
-                    child: Text(
-                      'No Account yet? Sign Up',
-                      style: dndFont.copyWith(fontSize: 16, color: themeColor),
-                    ))
               ],
             ),
-          ),
-        );
-      },
+            TextButton(
+              onPressed: () async {
+                dynamic result = await context.read<UserCubit>().signIn(email.text, password.text);
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(result),
+                    ),
+                  );
+                }
+              },
+              child: Text(
+                'Sign In',
+                style: dndFont.copyWith(fontSize: 16, color: themeColor),
+              ),
+            ),
+            TextButton(
+                onPressed: () => context.push('/sign_up'),
+                child: Text(
+                  'No Account yet? Sign Up',
+                  style: dndFont.copyWith(fontSize: 16, color: themeColor),
+                ))
+          ],
+        ),
+      ),
     );
   }
 }
