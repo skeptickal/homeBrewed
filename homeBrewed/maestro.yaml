@@ -1,0 +1,5 @@
+appId: com.JG.homeBrewed
+---
+commands:
+  - launchApp
+  - tapOn: "Email"
