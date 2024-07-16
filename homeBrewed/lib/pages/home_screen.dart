@@ -28,14 +28,17 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: SelectableText(userState.myUser!.email),
+                      child: SelectableText(
+                        userState.myUser!.email,
+                        style: TextStyle(color: black),
+                      ),
                     ),
                     TextButton(
                       onPressed: () => context.read<UserCubit>().signOut(),
                       child: Text(
                         'sign out',
                         style: dndFont.copyWith(
-                          color: themeColor,
+                          color: black,
                         ),
                       ),
                     ),
@@ -167,11 +170,11 @@ class _CharacterList extends StatelessWidget {
                   ),
                   title: Text(
                     bio.name ?? '',
-                    style: dndFont.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: dndFont.copyWith(fontSize: 16, fontWeight: FontWeight.bold, color: black),
                   ),
                   subtitle: Text(
                     '${bio.race ?? ''} | ${bio.dndClass ?? ''}',
-                    style: dndFont.copyWith(fontSize: 16, fontStyle: FontStyle.italic),
+                    style: dndFont.copyWith(fontSize: 16, fontStyle: FontStyle.italic, color: black),
                   ),
                   trailing: IconButton(
                     icon: Icon(
@@ -189,7 +192,7 @@ class _CharacterList extends StatelessWidget {
           children: [
             SelectableText(
               'Your Characters',
-              style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+              style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: black),
             ),
             ...bios,
           ],

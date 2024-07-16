@@ -33,7 +33,7 @@ class CustomTextBox extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Center(child: SelectableText(subtitle, style: dndFont.copyWith(fontSize: 14, fontWeight: FontWeight.bold))),
+          Center(child: SelectableText(subtitle, style: dndFont.copyWith(fontSize: 14, fontWeight: FontWeight.bold, color: black))),
           const SizedBox(height: 4),
           TextFormField(
             validator: validator,
@@ -43,7 +43,6 @@ class CustomTextBox extends StatelessWidget {
             maxLines: !obscureText ? maxLines : 1,
             keyboardType: TextInputType.multiline,
             decoration: textInputDecoration.copyWith(hintText: hintText, fillColor: backgroundColor),
-            
           ),
         ],
       ),
