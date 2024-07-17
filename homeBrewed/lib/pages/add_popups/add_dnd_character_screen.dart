@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
 import 'package:homeBrewed/constants/text_fields.dart';
 import 'package:homeBrewed/constants/theme_data.dart';
 import 'package:homeBrewed/cubits/income_cubit/income_cubit.dart';
@@ -43,13 +46,24 @@ class AddDndCharacterScreen extends StatelessWidget {
                       subtitle: 'Enter Your Character\'s name',
                       obscureText: false,
                     ),
-                    CustomTextBox(
-                      padding: const EdgeInsets.all(6),
-                      controller: race,
-                      hintText: 'Enter Your Character\'s race',
-                      subtitle: 'Enter Your Character\'s race',
-                      obscureText: false,
-                    ),
+                    Stack(children: [
+                      CustomTextBox(
+                        padding: const EdgeInsets.all(6),
+                        controller: race,
+                        hintText: 'Enter Your Character\'s race',
+                        subtitle: 'Enter Your Character\'s race',
+                        obscureText: false,
+                      ),
+                      Positioned(
+                        right: 0,
+                        top: 0,
+                        bottom: 0,
+                        child: IconButton(
+                          onPressed: () => _showPostEditPanel(context),
+                          icon: const Icon(Icons.menu),
+                        ),
+                      ),
+                    ]),
                     CustomTextBox(
                       padding: const EdgeInsets.all(6),
                       controller: dndClass,
@@ -114,4 +128,59 @@ class AddDndCharacterScreen extends StatelessWidget {
 
     context.pop();
   }
+}
+
+class _DndRaceOptions extends StatelessWidget {
+  _DndRaceOptions({super.key});
+
+    Future<List<String>> getRaceData() async {
+    http.Client client = http.Client();
+    Uri url = Uri.http('dnd5eapi.co', '/api/races');
+    var response = await client.get(url);
+
+    if (response.statusCode == 200) {
+      dynamic data = jsonDecode(response.body);
+      if (data is Map<String, dynamic> && data['results'] is List) {
+        return List<String>.from(data['results'].map((race) => race['name']));
+      }
+    } else {
+      throw Exception('Failed to load race data');
+    }
+    return [];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    getRaceData();
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+      child: DropdownButtonFormField<String>(
+        value: 'Select an Alignment',
+        items:.map((alignment) {
+          return DropdownMenuItem<String>(
+            value: alignment,
+            child: Text(alignment),
+          );
+        }).toList(),
+        onChanged: (String? value) {},
+        decoration: dndFieldInputDecoration(enabled: true, hintText: 'Select an Alignment'),
+      ),
+    );
+  }
+}
+
+void _showPostEditPanel(BuildContext context) {
+  showDialog(
+    barrierDismissible: true,
+    context: context,
+    builder: (context) => Center(
+      child: SingleChildScrollView(
+        child: AlertDialog(
+          surfaceTintColor: backgroundColor,
+          backgroundColor: backgroundColor,
+          title: _DndRaceOptions(),
+        ),
+      ),
+    ),
+  );
 }
