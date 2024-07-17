@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../client/spacing.dart';
+import '../../constants/spacing.dart';
 import '../../constants/theme_data.dart';
 import '../add_popups/add_spell_screen.dart';
 import '../edit_popups/edit_spell_screen.dart';

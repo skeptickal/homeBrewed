@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../client/spacing.dart';
+import '../../constants/spacing.dart';
 import '../../constants/theme_data.dart';
 import '../../cubits/resource_cubit/resource_cubit.dart';
 import '../../models/resource.dart';

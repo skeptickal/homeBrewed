@@ -1,4 +1,4 @@
-import 'package:homeBrewed/client/spacing.dart';
+import 'package:homeBrewed/constants/spacing.dart';
 import 'package:homeBrewed/constants/screen_wrapper.dart';
 import 'package:homeBrewed/constants/theme_data.dart';
 import 'package:homeBrewed/cubits/bio_cubit/cubit/bio_cubit.dart';

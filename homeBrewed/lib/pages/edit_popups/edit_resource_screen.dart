@@ -1,4 +1,4 @@
-import 'package:homeBrewed/client/spacing.dart';
+import 'package:homeBrewed/constants/spacing.dart';
 import 'package:homeBrewed/constants/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

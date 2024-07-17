@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../client/spacing.dart';
+import '../../constants/spacing.dart';
 import '../../constants/theme_data.dart';
 import '../../cubits/action_cubit/dnd_action_cubit.dart';
 import '../../models/dnd_action.dart';

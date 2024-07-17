@@ -36,6 +36,7 @@ class CustomTextBox extends StatelessWidget {
           Center(child: SelectableText(subtitle, style: dndFont.copyWith(fontSize: 14, fontWeight: FontWeight.bold, color: black))),
           const SizedBox(height: 4),
           TextFormField(
+            
             validator: validator,
             controller: controller,
             minLines: minLines,
