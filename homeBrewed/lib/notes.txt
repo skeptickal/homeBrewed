@@ -4,4 +4,4 @@ v2 plans
 3. Resize certain widgets and text better for screen size? - landscape v portrait? - create windows or mac os app version? 
 4. add Maestro for testing?
 5. Find different uses for Docker?
-6. run bug? in debug mode?
+6. run bug? in debug mode??
