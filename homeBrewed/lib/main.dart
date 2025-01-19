@@ -15,14 +15,9 @@ Future<void> main() async {
     DndBlocProvider(
       child: Builder(builder: (context) {
         context.read<UserCubit>().initialize();
-        return MediaQuery(
-          data: MediaQuery.of(context).copyWith(
-            textScaler: const TextScaler.linear(1),
-          ),
-          child: MaterialApp.router(
-            routerConfig: router,
-            debugShowCheckedModeBanner: false,
-          ),
+        return MaterialApp.router(
+          routerConfig: router,
+          debugShowCheckedModeBanner: false,
         );
       }),
     ),

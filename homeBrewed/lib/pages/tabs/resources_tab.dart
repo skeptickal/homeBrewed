@@ -44,10 +44,11 @@ class _ResourcesList extends StatelessWidget {
                     Text(
                       resource.name ?? '',
                       textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 26),
                     ),
                     Text(
                       resource.maxResourceValue ?? '0',
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: themeColor),
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28, color: themeColor),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -67,7 +68,7 @@ class _ResourcesList extends StatelessWidget {
                             fit: BoxFit.scaleDown,
                             child: Text(
                               resource.currentResourceValue ?? '0',
-                              style: const TextStyle(fontSize: 16),
+                              style: const TextStyle(fontSize: 26),
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -95,7 +96,7 @@ class _ResourcesList extends StatelessWidget {
             seperation,
             Text(
               'Resources',
-              style: dndFont.copyWith(fontSize: 18, fontWeight: FontWeight.bold),
+              style: dndFont.copyWith(fontSize: 28, fontWeight: FontWeight.bold),
             ),
             seperation,
             _AddResource(charID: charID!),

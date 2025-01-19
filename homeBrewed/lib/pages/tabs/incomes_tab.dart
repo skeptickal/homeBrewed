@@ -32,14 +32,14 @@ class _IncomesList extends StatelessWidget {
             seperation,
             SelectableText(
               'Incomes\n',
-              style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+              style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 28),
               textAlign: TextAlign.center,
             ),
             TextButton(
               onPressed: () => _onPressedRatios(context),
               child: Text(
                 'What are Income Ratios?',
-                style: TextStyle(fontSize: 14, color: themeColor),
+                style: TextStyle(fontSize: 24, color: themeColor),
               ),
             ),
             Expanded(
@@ -239,7 +239,7 @@ void _onPressedRatios(BuildContext context) {
                 '• 2 electrum (ep) = 1 gold (gp)\n\n'
                 '• 10 gold (gp) = 1 platinum (pp)',
                 textAlign: TextAlign.start,
-                style: TextStyle(fontSize: 18, color: white),
+                style: TextStyle(fontSize: 28, color: white),
               ),
             ],
           ),
@@ -296,7 +296,10 @@ class _IncomeContainer extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            SelectableText(title!),
+            SelectableText(
+              title!,
+              style: TextStyle(fontSize: 26),
+            ),
             FaIcon(
               FontAwesomeIcons.coins,
               color: color,
@@ -313,7 +316,7 @@ class _IncomeContainer extends StatelessWidget {
                     fit: BoxFit.scaleDown,
                     child: SelectableText(
                       value!,
-                      style: const TextStyle(fontSize: 16),
+                      style: const TextStyle(fontSize: 26),
                       textAlign: TextAlign.center,
                     ),
                   ),

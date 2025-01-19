@@ -114,7 +114,7 @@ class _SavingThrows extends StatelessWidget {
             seperation,
             SelectableText(
               'Saving Throws',
-              style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+              style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 28),
             ),
             CheckboxListTile(
               title: Text(_calcModifierWithProf(
@@ -668,7 +668,7 @@ class _SkillChecks extends StatelessWidget {
               children: [
                 SelectableText(
                   'Inspiration',
-                  style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 16),
+                  style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 26),
                 ),
                 Checkbox(
                   checkColor: themeColor,
@@ -687,7 +687,7 @@ class _SkillChecks extends StatelessWidget {
             seperation,
             SelectableText(
               'Skills',
-              style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+              style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 28),
             ),
             acrobaticsProfCheck,
             animalHandlingProfCheck,
@@ -785,7 +785,7 @@ class _CoreStats extends StatelessWidget {
             seperation,
             SelectableText(
               'Core Stats',
-              style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+              style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 28),
             ),
             SelectableText(
               'Passive Perception: ${wisdomStat + passivePerceptionWithBonus}',
@@ -905,7 +905,7 @@ class _Hps extends StatelessWidget {
           children: [
             SelectableText(
               'Hit Points',
-              style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+              style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 28),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -983,7 +983,7 @@ class _Hps extends StatelessWidget {
             seperation,
             SelectableText(
               'Death Saves',
-              style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+              style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 28),
             ),
             SelectableText(
               'Min 0, Max 3',
@@ -1047,7 +1047,7 @@ class _Levels extends StatelessWidget {
         return Column(children: [
           SelectableText(
             'Stats',
-            style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+            style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 28),
           ),
           seperation,
           seperation,
@@ -1098,7 +1098,7 @@ class _Levels extends StatelessWidget {
           seperation,
           SelectableText(
             'Levels',
-            style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+            style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 28),
           ),
           seperation,
           Row(
@@ -1212,7 +1212,7 @@ void _showRollDialog(
           textAlign: TextAlign.center,
           '= $rollResult',
           style: (TextStyle(
-            fontSize: 18,
+            fontSize: 28,
             fontWeight: FontWeight.bold,
             color: white,
           )),

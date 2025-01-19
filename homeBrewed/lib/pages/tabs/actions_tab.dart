@@ -55,7 +55,7 @@ class _DndActionsList extends StatelessWidget {
                   ),
                   title: Text(
                     dndAction.name ?? '',
-                    style: dndFont.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: dndFont.copyWith(fontSize: 26, fontWeight: FontWeight.bold),
                   ),
                   trailing: IconButton(
                     icon: Icon(
@@ -78,7 +78,7 @@ class _DndActionsList extends StatelessWidget {
           seperation,
           SelectableText(
             'Actions',
-            style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+            style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 28),
           ),
           seperation,
           ...dndActions
@@ -94,7 +94,7 @@ void _onPressedDeleteIcon({required BuildContext context, required String dndAct
     builder: (context) => AlertDialog(
       title: Text(
         'Are you sure you want to delete $name?',
-        style: TextStyle(color: white, fontSize: 18),
+        style: TextStyle(color: white, fontSize: 28),
       ),
       backgroundColor: themeColor,
       surfaceTintColor: themeColor,
@@ -127,13 +127,13 @@ void _onPressedTile({required BuildContext context, required String name, requir
               SelectableText(
                 name,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18, color: white, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 28, color: white, fontWeight: FontWeight.bold),
               ),
               seperation,
               SelectableText(
                 description,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18, color: white, fontStyle: FontStyle.italic),
+                style: TextStyle(fontSize: 28, color: white, fontStyle: FontStyle.italic),
               )
             ],
           ),

@@ -94,7 +94,7 @@ void _onPressedDeleteIcon(BuildContext context, String userID, String charID, St
     builder: (context) => AlertDialog(
       title: Text(
         'Are you sure you want to delete $name?',
-        style: TextStyle(color: white, fontSize: 18),
+        style: TextStyle(color: white, fontSize: 28),
       ),
       backgroundColor: themeColor,
       surfaceTintColor: themeColor,
@@ -122,7 +122,7 @@ void _onPressedDeleteUser(BuildContext context, UserState state) {
     builder: (context) => AlertDialog(
       title: Text(
         'Are you sure you want to delete the account for:\n${state.myUser!.email}?',
-        style: TextStyle(color: white, fontSize: 18),
+        style: TextStyle(color: white, fontSize: 28),
       ),
       backgroundColor: themeColor,
       surfaceTintColor: themeColor,
@@ -170,11 +170,11 @@ class _CharacterList extends StatelessWidget {
                   ),
                   title: Text(
                     bio.name ?? '',
-                    style: dndFont.copyWith(fontSize: 16, fontWeight: FontWeight.bold, color: black),
+                    style: dndFont.copyWith(fontSize: 26, fontWeight: FontWeight.bold, color: black),
                   ),
                   subtitle: Text(
                     '${bio.race ?? ''} | ${bio.dndClass ?? ''}',
-                    style: dndFont.copyWith(fontSize: 16, fontStyle: FontStyle.italic, color: black),
+                    style: dndFont.copyWith(fontSize: 26, fontStyle: FontStyle.italic, color: black),
                   ),
                   trailing: IconButton(
                     icon: Icon(
@@ -192,7 +192,7 @@ class _CharacterList extends StatelessWidget {
           children: [
             SelectableText(
               'Your Characters',
-              style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: black),
+              style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 28, color: black),
             ),
             ...bios,
           ],

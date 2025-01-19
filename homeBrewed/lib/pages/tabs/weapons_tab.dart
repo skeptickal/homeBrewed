@@ -59,7 +59,7 @@ class _WeaponsList extends StatelessWidget {
                       Center(
                         child: Text(
                           weapon.name ?? '',
-                          style: dndFont.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
+                          style: dndFont.copyWith(fontSize: 26, fontWeight: FontWeight.bold),
                         ),
                       ),
                       horizontalLine
@@ -72,14 +72,14 @@ class _WeaponsList extends StatelessWidget {
                         onPressed: () => _showRollDialog(context, weapon.attackRoll),
                         child: Text(
                           'Attack: ${weapon.attackRoll ?? ''}',
-                          style: dndFont.copyWith(fontSize: 14, fontStyle: FontStyle.italic, color: themeColor),
+                          style: dndFont.copyWith(fontSize: 24, fontStyle: FontStyle.italic, color: themeColor),
                         ),
                       ),
                       TextButton(
                         onPressed: () => _showRollDialog(context, weapon.damageRoll),
                         child: Text(
                           'Damage: ${weapon.damageRoll ?? ''}',
-                          style: dndFont.copyWith(fontSize: 14, fontStyle: FontStyle.italic, color: themeColor),
+                          style: dndFont.copyWith(fontSize: 24, fontStyle: FontStyle.italic, color: themeColor),
                         ),
                       ),
                     ],
@@ -105,7 +105,7 @@ class _WeaponsList extends StatelessWidget {
           seperation,
           SelectableText(
             'Weapons',
-            style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+            style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 28),
           ),
           seperation,
           ...weapons
@@ -121,7 +121,7 @@ void _onPressedDeleteIcon({required BuildContext context, required String weapon
     builder: (context) => AlertDialog(
       title: Text(
         'Are you sure you want to delete $name?',
-        style: TextStyle(color: white, fontSize: 18),
+        style: TextStyle(color: white, fontSize: 28),
       ),
       backgroundColor: themeColor,
       surfaceTintColor: themeColor,
@@ -154,13 +154,13 @@ void _onPressedTile({required BuildContext context, required String name, requir
               SelectableText(
                 name,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18, color: white, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 28, color: white, fontWeight: FontWeight.bold),
               ),
               seperation,
               SelectableText(
                 description,
                 textAlign: TextAlign.start,
-                style: TextStyle(fontSize: 18, color: white, fontStyle: FontStyle.italic),
+                style: TextStyle(fontSize: 28, color: white, fontStyle: FontStyle.italic),
               ),
             ],
           ),
@@ -288,7 +288,7 @@ void _showRollDialog(
           textAlign: TextAlign.center,
           '= $rollResult',
           style: (TextStyle(
-            fontSize: 18,
+            fontSize: 28,
             fontWeight: FontWeight.bold,
             color: white,
           )),

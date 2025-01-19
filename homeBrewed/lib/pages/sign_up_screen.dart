@@ -87,7 +87,7 @@ class _SignUp extends StatelessWidget {
                   },
                   child: Text(
                     'Sign Up',
-                    style: dndFont.copyWith(fontSize: 16, color: themeColor),
+                    style: dndFont.copyWith(fontSize: 26, color: themeColor),
                   ),
                 ),
               ],

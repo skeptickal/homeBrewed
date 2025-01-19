@@ -55,11 +55,11 @@ class _SpellsList extends StatelessWidget {
                   ),
                   title: Text(
                     spell.name ?? '',
-                    style: dndFont.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: dndFont.copyWith(fontSize: 26, fontWeight: FontWeight.bold),
                   ),
                   subtitle: Text(
                     spell.spellAtkOrDC ?? '',
-                    style: dndFont.copyWith(fontSize: 14, fontStyle: FontStyle.italic),
+                    style: dndFont.copyWith(fontSize: 24, fontStyle: FontStyle.italic),
                   ),
                   trailing: IconButton(
                     icon: Icon(
@@ -82,7 +82,7 @@ class _SpellsList extends StatelessWidget {
           seperation,
           SelectableText(
             'Spells',
-            style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+            style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 28),
           ),
           TextButton(
             child: Text(
@@ -112,7 +112,7 @@ void _onPressedDeleteIcon({required BuildContext context, required String spellI
     builder: (context) => AlertDialog(
       title: Text(
         'Are you sure you want to delete $name?',
-        style: TextStyle(color: white, fontSize: 18),
+        style: TextStyle(color: white, fontSize: 28),
       ),
       backgroundColor: themeColor,
       surfaceTintColor: themeColor,
@@ -151,7 +151,7 @@ void _onPressedTile({required BuildContext context, required String name, requir
               SelectableText(
                 description,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18, color: white, fontStyle: FontStyle.italic),
+                style: TextStyle(fontSize: 28, color: white, fontStyle: FontStyle.italic),
               ),
             ],
           ),
@@ -193,7 +193,7 @@ void _onPressedSpellCastingAbilityQuestion(BuildContext context) {
                 'Your Spell Attack Modifier is = your proficiency bonus + your spellcasting modifier\n\n'
                 'e.g. Bard with Proficiency 3: \n3 + 4(CHA) = 7',
                 textAlign: TextAlign.start,
-                style: TextStyle(fontSize: 18, color: white),
+                style: TextStyle(fontSize: 28, color: white),
               ),
             ],
           ),
@@ -233,7 +233,7 @@ void _onPressedSpellSaveDCQuestion(BuildContext context) {
                 '• Spell Save DC = 8 + your proficiency bonus + your spellcasting ability modifier.\n\n'
                 'e.g. Bard with Proficiency 3: \n8 + 3(Prof) + 4(CHA) = 15',
                 textAlign: TextAlign.start,
-                style: TextStyle(fontSize: 18, color: white),
+                style: TextStyle(fontSize: 28, color: white),
               ),
             ],
           ),

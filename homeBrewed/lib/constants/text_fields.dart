@@ -32,7 +32,7 @@ class CustomTextBox extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Center(child: SelectableText(subtitle, style: dndFont.copyWith(fontSize: 14, fontWeight: FontWeight.bold, color: black))),
+          Center(child: SelectableText(subtitle, style: dndFont.copyWith(fontSize: 24, fontWeight: FontWeight.bold, color: black))),
           const SizedBox(height: 4),
           TextFormField(
             validator: validator,
@@ -86,7 +86,7 @@ class BigTextBox extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Center(child: SelectableText(subtitle, style: dndFont.copyWith(fontSize: 14, fontWeight: FontWeight.bold))),
+          Center(child: SelectableText(subtitle, style: dndFont.copyWith(fontSize: 24, fontWeight: FontWeight.bold))),
           const SizedBox(height: 4),
           Focus(
             onFocusChange: (hasFocus) => hasFocus ? null : onEditingComplete!(),
@@ -141,11 +141,11 @@ class StatTextBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: padding,
+      padding: kIsWeb ? EdgeInsets.symmetric(horizontal: 100) : padding,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Center(child: SelectableText(subtitle, textAlign: TextAlign.center, style: dndFont.copyWith(fontSize: 14, fontWeight: FontWeight.bold))),
+          Center(child: SelectableText(subtitle, textAlign: TextAlign.center, style: dndFont.copyWith(fontSize: 24, fontWeight: FontWeight.bold))),
           Focus(
             onFocusChange: (hasFocus) => hasFocus ? null : onEditingComplete!(),
             child: TextFormField(
@@ -173,7 +173,7 @@ class StatTextBox extends StatelessWidget {
 final textInputDecoration = InputDecoration(
   fillColor: backgroundColor,
   filled: true,
-  hintStyle: dndFont.copyWith(fontSize: 14),
+  hintStyle: dndFont.copyWith(fontSize: 24),
   enabledBorder: UnderlineInputBorder(
     borderSide: BorderSide(color: themeColor, width: 2.0),
   ),
@@ -191,7 +191,7 @@ InputDecoration dndFieldInputDecoration({required bool enabled, required String 
     border: OutlineInputBorder(
       borderSide: BorderSide(color: themeColor, width: enabled ? 2.0 : 1),
     ),
-    hintStyle: dndFont.copyWith(fontSize: 14),
+    hintStyle: dndFont.copyWith(fontSize: 24),
     enabledBorder: OutlineInputBorder(
       borderSide: BorderSide(color: themeColor, width: enabled ? 2.0 : 0),
     ),

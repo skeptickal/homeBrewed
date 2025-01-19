@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:homeBrewed/constants/theme_data.dart';
 import 'package:homeBrewed/pages/dice_roll_screen.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,10 @@ class ScreenWrapper extends StatelessWidget {
         centerTitle: true,
         backgroundColor: themeColor,
       ),
-      body: child,
+      body: Padding(
+        padding: kIsWeb ? const EdgeInsets.symmetric(horizontal: 40.0) : EdgeInsets.zero,
+        child: child,
+      ),
     );
   }
 }

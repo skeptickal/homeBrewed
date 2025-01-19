@@ -54,11 +54,11 @@ class _ItemsList extends StatelessWidget {
                   ),
                   title: Text(
                     item.name ?? '',
-                    style: dndFont.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: dndFont.copyWith(fontSize: 26, fontWeight: FontWeight.bold),
                   ),
                   subtitle: Text(
                     'x${item.amount ?? ''}',
-                    style: dndFont.copyWith(fontSize: 16),
+                    style: dndFont.copyWith(fontSize: 26),
                   ),
                   trailing: IconButton(
                     icon: Icon(
@@ -81,7 +81,7 @@ class _ItemsList extends StatelessWidget {
           seperation,
           SelectableText(
             'Items',
-            style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+            style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 28),
           ),
           seperation,
           ...items
@@ -97,7 +97,7 @@ void _onPressedDeleteIcon({required BuildContext context, required String itemID
     builder: (context) => AlertDialog(
       title: Text(
         'Are you sure you want to delete $name?',
-        style: TextStyle(color: white, fontSize: 18),
+        style: TextStyle(color: white, fontSize: 28),
       ),
       backgroundColor: themeColor,
       surfaceTintColor: themeColor,
@@ -131,14 +131,14 @@ void _onPressedTile({required BuildContext context, required String name, requir
                 Text(
                   name,
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 18, color: white, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 28, color: white, fontWeight: FontWeight.bold),
                 ),
                 seperation,
                 Text(
                   description,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 26,
                     color: white,
                     fontStyle: FontStyle.italic,
                   ),
