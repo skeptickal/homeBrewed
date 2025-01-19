@@ -2,17 +2,22 @@
   "project_info": {
     "project_number": "481147242979",
     "project_id": "dnd-character-manager-81da9",
-    "storage_bucket": "dnd-character-manager-81da9.appspot.com"
+    "storage_bucket": "dnd-character-manager-81da9.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:481147242979:android:d944594c2c8bbba56638d6",
+        "mobilesdk_app_id": "1:481147242979:android:3da702613a45bf6c6638d6",
         "android_client_info": {
-          "package_name": "com.example.homeBrewed"
+          "package_name": "com.JG.homeBrewed"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "481147242979-p1ud9vcm522fhdee318e4klktes8i79g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBlowTziwFV-irGUAC5ifuRsWyR8ocFSUY"
@@ -20,7 +25,55 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "481147242979-p1ud9vcm522fhdee318e4klktes8i79g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "481147242979-5h0q7a9bnqvaulgi8igjikpp53l6sa24.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.dndCharacterManager"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:481147242979:android:d944594c2c8bbba56638d6",
+        "android_client_info": {
+          "package_name": "com.example.dnd_character_manager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "481147242979-p1ud9vcm522fhdee318e4klktes8i79g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlowTziwFV-irGUAC5ifuRsWyR8ocFSUY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "481147242979-p1ud9vcm522fhdee318e4klktes8i79g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "481147242979-5h0q7a9bnqvaulgi8igjikpp53l6sa24.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.dndCharacterManager"
+              }
+            }
+          ]
         }
       }
     }

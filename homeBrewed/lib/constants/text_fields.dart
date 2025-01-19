@@ -1,5 +1,4 @@
-import 'dart:io';
-
+import 'package:flutter/foundation.dart';
 import 'package:homeBrewed/constants/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -36,7 +35,6 @@ class CustomTextBox extends StatelessWidget {
           Center(child: SelectableText(subtitle, style: dndFont.copyWith(fontSize: 14, fontWeight: FontWeight.bold, color: black))),
           const SizedBox(height: 4),
           TextFormField(
-            
             validator: validator,
             controller: controller,
             minLines: minLines,
@@ -162,7 +160,7 @@ class StatTextBox extends StatelessWidget {
               minLines: minLines,
               maxLines: null,
               textInputAction: action,
-              keyboardType: Platform.isIOS ? const TextInputType.numberWithOptions(signed: true, decimal: true) : TextInputType.number,
+              keyboardType: kIsWeb ? TextInputType.number : const TextInputType.numberWithOptions(signed: true, decimal: true),
               decoration: dndFieldInputDecoration(enabled: enabled, hintText: hintText),
             ),
           ),
