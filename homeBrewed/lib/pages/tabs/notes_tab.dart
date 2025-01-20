@@ -69,15 +69,18 @@ class _NotesBox extends StatelessWidget {
       builder: (context, state) {
         TextEditingController notesController = TextEditingController();
         notesController.text = state.notes!.notes ?? '';
-        return BigTextBox(
-          onEditingComplete: () => context.read<NotesCubit>().setNotesData(state.notes!.copyWith(notes: notesController.text)),
-          onTapOutside: (clickOut) => context.read<NotesCubit>().setNotesData(state.notes!.copyWith(notes: notesController.text)),
-          minLines: 50,
-          enabled: state.notesEdit!,
-          padding: const EdgeInsets.all(6),
-          controller: notesController,
-          hintText: 'e.g. Random Shopkeep\'s name is Gorgug',
-          subtitle: 'Campaign Notes',
+        return SizedBox(
+          width: 1000,
+          child: BigTextBox(
+            onEditingComplete: () => context.read<NotesCubit>().setNotesData(state.notes!.copyWith(notes: notesController.text)),
+            onTapOutside: (clickOut) => context.read<NotesCubit>().setNotesData(state.notes!.copyWith(notes: notesController.text)),
+            minLines: 50,
+            enabled: state.notesEdit!,
+            padding: const EdgeInsets.all(6),
+            controller: notesController,
+            hintText: 'e.g. Random Shopkeep\'s name is Gorgug',
+            subtitle: 'Campaign Notes',
+          ),
         );
       },
     );

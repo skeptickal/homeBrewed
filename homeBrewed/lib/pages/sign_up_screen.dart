@@ -44,53 +44,58 @@ class _SignUp extends StatelessWidget {
       child: ReactiveFormBuilder(
           form: buildForm,
           builder: (context, form, child) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ReactiveTextField<String>(
-                  formControlName: 'email',
-                  decoration: InputDecoration(labelText: 'Email', labelStyle: dndFont),
-                ),
-                Stack(
+            return Center(
+              child: SizedBox(
+                width: 300,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ReactiveTextField<String>(
-                      obscureText: state.textObscured!,
-                      formControlName: 'password',
-                      decoration: InputDecoration(labelText: 'Password', labelStyle: dndFont),
+                      formControlName: 'email',
+                      decoration: InputDecoration(labelText: 'Email', labelStyle: dndFont),
                     ),
-                    Positioned(
-                      right: 0,
-                      top: 0,
-                      bottom: 0,
-                      child: IconButton(
-                        onPressed: () {
-                          context.read<UserCubit>().revealOrHideText();
-                        },
-                        icon: const Icon(Icons.remove_red_eye),
+                    Stack(
+                      children: [
+                        ReactiveTextField<String>(
+                          obscureText: state.textObscured!,
+                          formControlName: 'password',
+                          decoration: InputDecoration(labelText: 'Password', labelStyle: dndFont),
+                        ),
+                        Positioned(
+                          right: 0,
+                          top: 0,
+                          bottom: 0,
+                          child: IconButton(
+                            onPressed: () {
+                              context.read<UserCubit>().revealOrHideText();
+                            },
+                            icon: const Icon(Icons.remove_red_eye),
+                          ),
+                        ),
+                      ],
+                    ),
+                    TextButton(
+                      onPressed: () async {
+                        dynamic result = await context.read<UserCubit>().signUp(
+                              form.control('email').value,
+                              form.control('password').value,
+                            );
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: SelectableText(result),
+                            ),
+                          );
+                        }
+                      },
+                      child: Text(
+                        'Sign Up',
+                        style: dndFont.copyWith(fontSize: 18, color: themeColor),
                       ),
                     ),
                   ],
                 ),
-                TextButton(
-                  onPressed: () async {
-                    dynamic result = await context.read<UserCubit>().signUp(
-                          form.control('email').value,
-                          form.control('password').value,
-                        );
-                    if (context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: SelectableText(result),
-                        ),
-                      );
-                    }
-                  },
-                  child: Text(
-                    'Sign Up',
-                    style: dndFont.copyWith(fontSize: 26, color: themeColor),
-                  ),
-                ),
-              ],
+              ),
             );
           }),
     );

@@ -37,7 +37,7 @@ class CharacterViewerScreen extends StatelessWidget {
                   indicatorColor: themeColor,
                   labelColor: themeColor,
                   isScrollable: true,
-                  tabAlignment: TabAlignment.start,
+                  tabAlignment: TabAlignment.center,
                   tabs: const [
                     Tab(text: 'Stats', icon: FaIcon(FontAwesomeIcons.shieldHalved)),
                     Tab(text: 'Actions', icon: FaIcon(FontAwesomeIcons.exclamation)),
@@ -53,15 +53,15 @@ class CharacterViewerScreen extends StatelessWidget {
                 Expanded(
                   child: TabBarView(
                     children: [
-                      StatTab(charID: bio.charID!),
-                      DndActionsTab(charID: bio.charID!),
-                      SpellsTab(charID: bio.charID!),
-                      WeaponsTab(charID: bio.charID!),
+                      CustomTab(child: StatTab(charID: bio.charID!)),
+                      CustomTab(child: DndActionsTab(charID: bio.charID!)),
+                      CustomTab(child: SpellsTab(charID: bio.charID!)),
+                      CustomTab(child: WeaponsTab(charID: bio.charID!)),
                       ResourcesTab(charID: bio.charID!),
-                      ItemsTab(charID: bio.charID!),
+                      CustomTab(child: ItemsTab(charID: bio.charID!)),
                       IncomesTab(charID: bio.charID!),
-                      BioTab(bio: bio),
-                      NotesTab(charID: bio.charID!),
+                      CustomTab(child: BioTab(bio: bio)),
+                      CustomTab(child: NotesTab(charID: bio.charID!)),
                     ],
                   ),
                 ),
@@ -71,5 +71,45 @@ class CharacterViewerScreen extends StatelessWidget {
         );
       },
     );
+  }
+}
+
+class CustomTab extends StatelessWidget {
+  final Widget child;
+  const CustomTab({super.key, required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(fit: StackFit.expand, children: [
+      Align(
+        alignment: Alignment.centerLeft,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 20.0),
+          child: SizedBox(
+            width: 300,
+            height: 300,
+            child: Image(
+              color: themeColor,
+              image: AssetImage('assets/logoDND.png'),
+            ),
+          ),
+        ),
+      ),
+      Align(
+        alignment: Alignment.centerRight,
+        child: Padding(
+          padding: const EdgeInsets.only(right: 20.0),
+          child: SizedBox(
+            width: 300,
+            height: 300,
+            child: Image(
+              color: themeColor,
+              image: AssetImage('assets/logoDND.png'),
+            ),
+          ),
+        ),
+      ),
+      Align(alignment: Alignment.center, child: child),
+    ]);
   }
 }

@@ -8,3 +8,19 @@ Container horizontalLine = Container(
     border: Border(bottom: BorderSide(color: themeColor)),
   ),
 );
+
+class SmallHorizontalLine extends StatelessWidget {
+  const SmallHorizontalLine({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.4),
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: themeColor)),
+        ),
+      ),
+    );
+  }
+}

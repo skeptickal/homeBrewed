@@ -39,34 +39,37 @@ class _DndActionsList extends StatelessWidget {
     context.read<DndActionCubit>().readDndActionsByCharID(charID);
     return BlocBuilder<DndActionCubit, DndActionState>(
       builder: (context, state) {
-        List<Padding> dndActions = state.dndActions!.map(
+        List<Widget> dndActions = state.dndActions!.map(
           (dndAction) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
-              child: Container(
-                decoration: BoxDecoration(border: Border.all(color: themeColor), borderRadius: BorderRadius.circular(20)),
-                child: ListTile(
-                  onTap: () => _onPressedTile(context: context, description: dndAction.description ?? '', name: dndAction.name ?? ''),
-                  leading: IconButton(
-                    onPressed: () {
-                      _showPostEditPanel(context, dndAction);
-                    },
-                    icon: const FaIcon(FontAwesomeIcons.exclamation),
-                  ),
-                  title: Text(
-                    dndAction.name ?? '',
-                    style: dndFont.copyWith(fontSize: 26, fontWeight: FontWeight.bold),
-                  ),
-                  trailing: IconButton(
-                    icon: Icon(
-                      Icons.delete_forever_outlined,
-                      color: black,
+            return SizedBox(
+              width: 450,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
+                child: Container(
+                  decoration: BoxDecoration(border: Border.all(color: themeColor), borderRadius: BorderRadius.circular(20)),
+                  child: ListTile(
+                    onTap: () => _onPressedTile(context: context, description: dndAction.description ?? '', name: dndAction.name ?? ''),
+                    leading: IconButton(
+                      onPressed: () {
+                        _showPostEditPanel(context, dndAction);
+                      },
+                      icon: const FaIcon(FontAwesomeIcons.exclamation),
                     ),
-                    onPressed: () => _onPressedDeleteIcon(
-                      context: context,
-                      dndActionID: dndAction.dndActionID!,
-                      name: dndAction.name!,
-                      charID: charID!,
+                    title: Text(
+                      dndAction.name ?? '',
+                      style: dndFont.copyWith(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    trailing: IconButton(
+                      icon: Icon(
+                        Icons.delete_forever_outlined,
+                        color: black,
+                      ),
+                      onPressed: () => _onPressedDeleteIcon(
+                        context: context,
+                        dndActionID: dndAction.dndActionID!,
+                        name: dndAction.name!,
+                        charID: charID!,
+                      ),
                     ),
                   ),
                 ),
@@ -78,7 +81,7 @@ class _DndActionsList extends StatelessWidget {
           seperation,
           SelectableText(
             'Actions',
-            style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 28),
+            style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 22),
           ),
           seperation,
           ...dndActions
@@ -94,7 +97,7 @@ void _onPressedDeleteIcon({required BuildContext context, required String dndAct
     builder: (context) => AlertDialog(
       title: Text(
         'Are you sure you want to delete $name?',
-        style: TextStyle(color: white, fontSize: 28),
+        style: TextStyle(color: white, fontSize: 22),
       ),
       backgroundColor: themeColor,
       surfaceTintColor: themeColor,
@@ -127,13 +130,13 @@ void _onPressedTile({required BuildContext context, required String name, requir
               SelectableText(
                 name,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 28, color: white, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 22, color: white, fontWeight: FontWeight.bold),
               ),
               seperation,
               SelectableText(
                 description,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 28, color: white, fontStyle: FontStyle.italic),
+                style: TextStyle(fontSize: 22, color: white, fontStyle: FontStyle.italic),
               )
             ],
           ),

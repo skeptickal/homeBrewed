@@ -39,38 +39,41 @@ class _SpellsList extends StatelessWidget {
     context.read<SpellCubit>().readSpellsByCharID(charID);
     return BlocBuilder<SpellCubit, SpellState>(
       builder: (context, state) {
-        List<Padding> spells = state.spells!.map(
+        List<Widget> spells = state.spells!.map(
           (spell) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
-              child: Container(
-                decoration: BoxDecoration(border: Border.all(color: themeColor), borderRadius: BorderRadius.circular(20)),
-                child: ListTile(
-                  onTap: () => _onPressedTile(context: context, description: spell.description ?? '', name: spell.name ?? ''),
-                  leading: IconButton(
-                    onPressed: () {
-                      _showPostEditPanel(context, spell);
-                    },
-                    icon: const FaIcon(FontAwesomeIcons.wandMagic),
-                  ),
-                  title: Text(
-                    spell.name ?? '',
-                    style: dndFont.copyWith(fontSize: 26, fontWeight: FontWeight.bold),
-                  ),
-                  subtitle: Text(
-                    spell.spellAtkOrDC ?? '',
-                    style: dndFont.copyWith(fontSize: 24, fontStyle: FontStyle.italic),
-                  ),
-                  trailing: IconButton(
-                    icon: Icon(
-                      Icons.delete_forever_outlined,
-                      color: black,
+            return SizedBox(
+              width: 450,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
+                child: Container(
+                  decoration: BoxDecoration(border: Border.all(color: themeColor), borderRadius: BorderRadius.circular(20)),
+                  child: ListTile(
+                    onTap: () => _onPressedTile(context: context, description: spell.description ?? '', name: spell.name ?? ''),
+                    leading: IconButton(
+                      onPressed: () {
+                        _showPostEditPanel(context, spell);
+                      },
+                      icon: const FaIcon(FontAwesomeIcons.wandMagic),
                     ),
-                    onPressed: () => _onPressedDeleteIcon(
-                      context: context,
-                      spellID: spell.spellID!,
-                      name: spell.name!,
-                      charID: charID!,
+                    title: Text(
+                      spell.name ?? '',
+                      style: dndFont.copyWith(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Text(
+                      spell.spellAtkOrDC ?? '',
+                      style: dndFont.copyWith(fontSize: 16, fontStyle: FontStyle.italic),
+                    ),
+                    trailing: IconButton(
+                      icon: Icon(
+                        Icons.delete_forever_outlined,
+                        color: black,
+                      ),
+                      onPressed: () => _onPressedDeleteIcon(
+                        context: context,
+                        spellID: spell.spellID!,
+                        name: spell.name!,
+                        charID: charID!,
+                      ),
                     ),
                   ),
                 ),
@@ -82,7 +85,7 @@ class _SpellsList extends StatelessWidget {
           seperation,
           SelectableText(
             'Spells',
-            style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 28),
+            style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 22),
           ),
           TextButton(
             child: Text(

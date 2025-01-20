@@ -25,7 +25,7 @@ class DiceRollScreen extends StatelessWidget {
             controller: diceRoll,
             decoration: InputDecoration(
               labelText: 'e.g. 2d8 + 4d6 + 5',
-              labelStyle: TextStyle(color: white, fontSize: 24),
+              labelStyle: TextStyle(color: white, fontSize: 18),
               focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(color: white),
               ),
@@ -48,7 +48,7 @@ class DiceRollScreen extends StatelessWidget {
         ),
         Text(
           '(rolls 1d20 if left blank)',
-          style: TextStyle(fontSize: 26, color: white, fontStyle: FontStyle.italic),
+          style: TextStyle(fontSize: 16, color: white, fontStyle: FontStyle.italic),
         )
       ],
     );
@@ -86,7 +86,7 @@ void _showRollDialog(
             Center(
               child: Text(
                 '$roll: ',
-                style: dndFont.copyWith(fontSize: 20, color: white),
+                style: dndFont.copyWith(fontSize: 12, color: white),
               ),
             ),
           ],
@@ -95,7 +95,7 @@ void _showRollDialog(
           textAlign: TextAlign.center,
           '= $rollResult',
           style: (TextStyle(
-            fontSize: 28,
+            fontSize: 22,
             fontWeight: FontWeight.bold,
             color: white,
           )),

@@ -28,7 +28,7 @@ class _ResourcesList extends StatelessWidget {
     return BlocBuilder<ResourceCubit, ResourceState>(
       builder: (context, state) {
         context.read<ResourceCubit>().readResourcesByCharID(charID);
-        List<Container> resources = state.resources!.map(
+        List<Widget> resources = state.resources!.map(
           (resource) {
             return Container(
               decoration: BoxDecoration(
@@ -44,11 +44,11 @@ class _ResourcesList extends StatelessWidget {
                     Text(
                       resource.name ?? '',
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 26),
+                      style: TextStyle(fontSize: 16),
                     ),
                     Text(
                       resource.maxResourceValue ?? '0',
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28, color: themeColor),
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: themeColor),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -68,7 +68,7 @@ class _ResourcesList extends StatelessWidget {
                             fit: BoxFit.scaleDown,
                             child: Text(
                               resource.currentResourceValue ?? '0',
-                              style: const TextStyle(fontSize: 26),
+                              style: const TextStyle(fontSize: 16),
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -96,7 +96,7 @@ class _ResourcesList extends StatelessWidget {
             seperation,
             Text(
               'Resources',
-              style: dndFont.copyWith(fontSize: 28, fontWeight: FontWeight.bold),
+              style: dndFont.copyWith(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             seperation,
             _AddResource(charID: charID!),
@@ -107,7 +107,7 @@ class _ResourcesList extends StatelessWidget {
                   scrollDirection: Axis.vertical,
                   shrinkWrap: false,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
+                    crossAxisCount: 10,
                     crossAxisSpacing: 5,
                     mainAxisSpacing: 5,
                   ),

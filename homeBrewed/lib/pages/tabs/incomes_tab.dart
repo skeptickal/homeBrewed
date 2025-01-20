@@ -46,7 +46,7 @@ class _IncomesList extends StatelessWidget {
               child: GridView(
                   shrinkWrap: true,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
+                    crossAxisCount: 5,
                     crossAxisSpacing: 5,
                     mainAxisSpacing: 5,
                   ),

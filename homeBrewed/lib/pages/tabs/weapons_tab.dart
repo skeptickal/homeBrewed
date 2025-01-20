@@ -40,60 +40,63 @@ class _WeaponsList extends StatelessWidget {
     context.read<WeaponCubit>().readWeaponsByCharID(charID);
     return BlocBuilder<WeaponCubit, WeaponState>(
       builder: (context, state) {
-        List<Padding> weapons = state.weapons!.map(
+        List<Widget> weapons = state.weapons!.map(
           (weapon) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
-              child: Container(
-                decoration: BoxDecoration(border: Border.all(color: themeColor), borderRadius: BorderRadius.circular(20)),
-                child: ListTile(
-                  onTap: () => _onPressedTile(context: context, description: weapon.description ?? '', name: weapon.name ?? ''),
-                  leading: IconButton(
-                    onPressed: () {
-                      _showPostEditPanel(context, weapon);
-                    },
-                    icon: const ImageIcon(AssetImage('assets/sword.png')),
-                  ),
-                  title: Column(
-                    children: [
-                      Center(
-                        child: Text(
-                          weapon.name ?? '',
-                          style: dndFont.copyWith(fontSize: 26, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      horizontalLine
-                    ],
-                  ),
-                  subtitle: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      TextButton(
-                        onPressed: () => _showRollDialog(context, weapon.attackRoll),
-                        child: Text(
-                          'Attack: ${weapon.attackRoll ?? ''}',
-                          style: dndFont.copyWith(fontSize: 24, fontStyle: FontStyle.italic, color: themeColor),
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () => _showRollDialog(context, weapon.damageRoll),
-                        child: Text(
-                          'Damage: ${weapon.damageRoll ?? ''}',
-                          style: dndFont.copyWith(fontSize: 24, fontStyle: FontStyle.italic, color: themeColor),
-                        ),
-                      ),
-                    ],
-                  ),
-                  trailing: IconButton(
-                    icon: Icon(
-                      Icons.delete_forever_outlined,
-                      color: black,
+            return SizedBox(
+              width: 450,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
+                child: Container(
+                  decoration: BoxDecoration(border: Border.all(color: themeColor), borderRadius: BorderRadius.circular(20)),
+                  child: ListTile(
+                    onTap: () => _onPressedTile(context: context, description: weapon.description ?? '', name: weapon.name ?? ''),
+                    leading: IconButton(
+                      onPressed: () {
+                        _showPostEditPanel(context, weapon);
+                      },
+                      icon: const ImageIcon(AssetImage('assets/sword.png')),
                     ),
-                    onPressed: () => _onPressedDeleteIcon(
-                      context: context,
-                      weaponID: weapon.weaponID!,
-                      name: weapon.name!,
-                      charID: charID!,
+                    title: Column(
+                      children: [
+                        Center(
+                          child: Text(
+                            weapon.name ?? '',
+                            style: dndFont.copyWith(fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        horizontalLine
+                      ],
+                    ),
+                    subtitle: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        TextButton(
+                          onPressed: () => _showRollDialog(context, weapon.attackRoll),
+                          child: Text(
+                            'Attack: ${weapon.attackRoll ?? ''}',
+                            style: dndFont.copyWith(fontSize: 16, fontStyle: FontStyle.italic, color: themeColor),
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () => _showRollDialog(context, weapon.damageRoll),
+                          child: Text(
+                            'Damage: ${weapon.damageRoll ?? ''}',
+                            style: dndFont.copyWith(fontSize: 16, fontStyle: FontStyle.italic, color: themeColor),
+                          ),
+                        ),
+                      ],
+                    ),
+                    trailing: IconButton(
+                      icon: Icon(
+                        Icons.delete_forever_outlined,
+                        color: black,
+                      ),
+                      onPressed: () => _onPressedDeleteIcon(
+                        context: context,
+                        weaponID: weapon.weaponID!,
+                        name: weapon.name!,
+                        charID: charID!,
+                      ),
                     ),
                   ),
                 ),
@@ -105,7 +108,7 @@ class _WeaponsList extends StatelessWidget {
           seperation,
           SelectableText(
             'Weapons',
-            style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 28),
+            style: dndFont.copyWith(fontWeight: FontWeight.bold, fontSize: 22),
           ),
           seperation,
           ...weapons
@@ -121,7 +124,7 @@ void _onPressedDeleteIcon({required BuildContext context, required String weapon
     builder: (context) => AlertDialog(
       title: Text(
         'Are you sure you want to delete $name?',
-        style: TextStyle(color: white, fontSize: 28),
+        style: TextStyle(color: white, fontSize: 22),
       ),
       backgroundColor: themeColor,
       surfaceTintColor: themeColor,

@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:homeBrewed/constants/theme_data.dart';
 import 'package:homeBrewed/pages/dice_roll_screen.dart';
 import 'package:flutter/material.dart';
@@ -14,25 +13,32 @@ class ScreenWrapper extends StatelessWidget {
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
-        actions: [
-          IconButton(
-              onPressed: () => _showDiceRoll(context),
-              icon: const FaIcon(
-                FontAwesomeIcons.diceD20,
-              )),
-        ],
+        toolbarHeight: 150,
         iconTheme: IconThemeData(color: white),
-        title: Text(
-          title,
-          style: dndFont.copyWith(color: white),
+        title: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 18.0),
+          child: Column(
+            children: [
+              Text(
+                title,
+                style: dndFont.copyWith(color: white, fontSize: 30),
+              ),
+              SizedBox(
+                height: 25,
+              ),
+              IconButton(
+                  onPressed: () => _showDiceRoll(context),
+                  icon: const FaIcon(
+                    FontAwesomeIcons.diceD20,
+                    size: 35,
+                  )),
+            ],
+          ),
         ),
         centerTitle: true,
         backgroundColor: themeColor,
       ),
-      body: Padding(
-        padding: kIsWeb ? const EdgeInsets.symmetric(horizontal: 40.0) : EdgeInsets.zero,
-        child: child,
-      ),
+      body: child,
     );
   }
 }

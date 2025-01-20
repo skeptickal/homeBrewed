@@ -1,3 +1,4 @@
+import 'package:homeBrewed/constants/spacing.dart';
 import 'package:homeBrewed/constants/text_fields.dart';
 import 'package:homeBrewed/constants/theme_data.dart';
 import 'package:homeBrewed/cubits/income_cubit/income_cubit.dart';
@@ -68,18 +69,21 @@ class AddDndCharacterScreen extends StatelessWidget {
                       subtitle: 'Enter Your Character\'s class',
                       obscureText: false,
                     ),
+                    seperation,
+                    seperation,
+                    seperation,
                     TextButton(
                       onPressed: () => _addCharacter(context, userState, name.text, race.text, dndClass.text),
                       child: Text(
                         'Add Character',
-                        style: dndFont.copyWith(color: black),
+                        style: dndFont.copyWith(color: black, fontSize: 18),
                       ),
                     ),
                     TextButton(
                         onPressed: () => context.pop(),
                         child: Text(
                           'Cancel',
-                          style: dndFont.copyWith(color: black),
+                          style: dndFont.copyWith(color: black, fontSize: 18),
                         ))
                   ],
                 ),

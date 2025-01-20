@@ -15,7 +15,7 @@ class LoginScreen extends StatelessWidget {
       listener: (context, state) => _listener(state, context),
       builder: (context, state) {
         return ScreenWrapper(
-          title: 'Welcome to homeBrewed',
+          title: 'Welcome to homeBrewed on WEB',
           child: _SignIn(
             state: state,
           ),
@@ -34,73 +34,78 @@ class LoginScreen extends StatelessWidget {
 class _SignIn extends StatelessWidget {
   final UserState state;
   const _SignIn({required this.state});
-  FormGroup buildForm() => fb.group(<String, Object>{
+  FormGroup buildForm() => fb.group({
         'email': FormControl<String>(value: ''),
         'password': FormControl<String>(value: ''),
       });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: ReactiveFormBuilder(
-          form: buildForm,
-          builder: (context, form, child) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ReactiveTextField<String>(
-                  formControlName: 'email',
-                  decoration: InputDecoration(labelText: 'Email', labelStyle: dndFont),
-                ),
-                Stack(
-                  children: [
-                    ReactiveTextField<String>(
-                      obscureText: state.textObscured!,
-                      formControlName: 'password',
-                      decoration: InputDecoration(labelText: 'Password', labelStyle: dndFont),
-                    ),
-                    Positioned(
-                      right: 0,
-                      top: 0,
-                      bottom: 0,
-                      child: IconButton(
-                        onPressed: () {
-                          context.read<UserCubit>().revealOrHideText();
-                        },
-                        icon: const Icon(Icons.remove_red_eye),
-                      ),
-                    ),
-                  ],
-                ),
-                TextButton(
-                  onPressed: () async {
-                    dynamic result = await context.read<UserCubit>().signIn(
-                          form.control('email').value,
-                          form.control('password').value,
-                        );
-                    if (context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(result),
-                        ),
-                      );
-                    }
-                  },
-                  child: Text(
-                    'Sign In',
-                    style: dndFont.copyWith(fontSize: 26, color: themeColor),
+    return ReactiveFormBuilder(
+        form: buildForm,
+        builder: (context, form, child) {
+          return Center(
+            child: SizedBox(
+              width: 300,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ReactiveTextField<String>(
+                    formControlName: 'email',
+                    decoration: InputDecoration(labelText: 'Email', labelStyle: dndFont),
                   ),
-                ),
-                TextButton(
-                    onPressed: () => context.push('/sign_up'),
+                  Stack(
+                    children: [
+                      ReactiveTextField<String>(
+                        obscureText: state.textObscured!,
+                        formControlName: 'password',
+                        decoration: InputDecoration(labelText: 'Password', labelStyle: dndFont),
+                      ),
+                      Positioned(
+                        right: 0,
+                        top: 0,
+                        bottom: 0,
+                        child: IconButton(
+                          onPressed: () {
+                            context.read<UserCubit>().revealOrHideText();
+                          },
+                          icon: const Icon(Icons.remove_red_eye),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  TextButton(
+                    onPressed: () async {
+                      dynamic result = await context.read<UserCubit>().signIn(
+                            form.control('email').value,
+                            form.control('password').value,
+                          );
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(result),
+                          ),
+                        );
+                      }
+                    },
                     child: Text(
-                      'No Account yet? Sign Up',
-                      style: dndFont.copyWith(fontSize: 26, color: themeColor),
-                    ))
-              ],
-            );
-          }),
-    );
+                      'Sign In',
+                      style: dndFont.copyWith(fontSize: 16, color: themeColor),
+                    ),
+                  ),
+                  TextButton(
+                      onPressed: () => context.push('/sign_up'),
+                      child: Text(
+                        'No Account yet? Sign Up',
+                        style: dndFont.copyWith(fontSize: 16, color: themeColor),
+                      ))
+                ],
+              ),
+            ),
+          );
+        });
   }
 }

@@ -158,24 +158,27 @@ class _Traits extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-              child: DropdownButtonFormField<String>(
-                key: const Key('alignment_dropdown'),
-                value: state.bio!.alignment ?? 'Select an Alignment',
-                items: dndAlignments.map((alignment) {
-                  return DropdownMenuItem<String>(
-                    value: alignment,
-                    child: Text(alignment),
-                  );
-                }).toList(),
-                onChanged: state.bioEdit!
-                    ? (String? value) {
-                        dndAlignment.text = value ?? 'Select an Alignment';
-                        context.read<BioCubit>().setBioData(
-                              state.bio!.copyWith(alignment: dndAlignment.text),
-                            );
-                      }
-                    : null,
-                decoration: dndFieldInputDecoration(enabled: state.bioEdit!, hintText: 'Select an Alignment'),
+              child: SizedBox(
+                width: 450,
+                child: DropdownButtonFormField<String>(
+                  key: const Key('alignment_dropdown'),
+                  value: state.bio!.alignment ?? 'Select an Alignment',
+                  items: dndAlignments.map((alignment) {
+                    return DropdownMenuItem<String>(
+                      value: alignment,
+                      child: Text(alignment),
+                    );
+                  }).toList(),
+                  onChanged: state.bioEdit!
+                      ? (String? value) {
+                          dndAlignment.text = value ?? 'Select an Alignment';
+                          context.read<BioCubit>().setBioData(
+                                state.bio!.copyWith(alignment: dndAlignment.text),
+                              );
+                        }
+                      : null,
+                  decoration: dndFieldInputDecoration(enabled: state.bioEdit!, hintText: 'Select an Alignment'),
+                ),
               ),
             ),
             BigTextBox(
@@ -234,19 +237,22 @@ class _Traits extends StatelessWidget {
               subtitle: 'Flaws',
               minLines: 5,
             ),
-            BigTextBox(
-              onTapOutside: (clickOut) => context.read<BioCubit>().setBioData(
-                    state.bio!.copyWith(background: background.text),
-                  ),
-              onEditingComplete: () => context.read<BioCubit>().setBioData(
-                    state.bio!.copyWith(background: background.text),
-                  ),
-              enabled: state.bioEdit!,
-              controller: background,
-              padding: const EdgeInsets.all(6),
-              hintText: 'bio',
-              subtitle: 'Bio/Background',
-              minLines: 30,
+            SizedBox(
+              width: 1000,
+              child: BigTextBox(
+                onTapOutside: (clickOut) => context.read<BioCubit>().setBioData(
+                      state.bio!.copyWith(background: background.text),
+                    ),
+                onEditingComplete: () => context.read<BioCubit>().setBioData(
+                      state.bio!.copyWith(background: background.text),
+                    ),
+                enabled: state.bioEdit!,
+                controller: background,
+                padding: const EdgeInsets.all(6),
+                hintText: 'bio',
+                subtitle: 'Bio/Background',
+                minLines: 30,
+              ),
             ),
           ],
         );

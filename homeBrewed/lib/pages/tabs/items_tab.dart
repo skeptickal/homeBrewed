@@ -38,38 +38,41 @@ class _ItemsList extends StatelessWidget {
     context.read<ItemCubit>().readItemsByCharID(charID);
     return BlocBuilder<ItemCubit, ItemState>(
       builder: (context, state) {
-        List<Padding> items = state.items!.map(
+        List<Widget> items = state.items!.map(
           (item) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
-              child: Container(
-                decoration: BoxDecoration(border: Border.all(color: themeColor), borderRadius: BorderRadius.circular(20)),
-                child: ListTile(
-                  onTap: () => _onPressedTile(context: context, description: item.description ?? '', name: item.name ?? ''),
-                  leading: IconButton(
-                    onPressed: () {
-                      _showPostEditPanel(context, item);
-                    },
-                    icon: const Icon(Icons.handyman),
-                  ),
-                  title: Text(
-                    item.name ?? '',
-                    style: dndFont.copyWith(fontSize: 26, fontWeight: FontWeight.bold),
-                  ),
-                  subtitle: Text(
-                    'x${item.amount ?? ''}',
-                    style: dndFont.copyWith(fontSize: 26),
-                  ),
-                  trailing: IconButton(
-                    icon: Icon(
-                      Icons.delete_forever_outlined,
-                      color: black,
+            return SizedBox(
+              width: 450,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
+                child: Container(
+                  decoration: BoxDecoration(border: Border.all(color: themeColor), borderRadius: BorderRadius.circular(20)),
+                  child: ListTile(
+                    onTap: () => _onPressedTile(context: context, description: item.description ?? '', name: item.name ?? ''),
+                    leading: IconButton(
+                      onPressed: () {
+                        _showPostEditPanel(context, item);
+                      },
+                      icon: const Icon(Icons.handyman),
                     ),
-                    onPressed: () => _onPressedDeleteIcon(
-                      context: context,
-                      itemID: item.itemID!,
-                      name: item.name!,
-                      charID: charID!,
+                    title: Text(
+                      item.name ?? '',
+                      style: dndFont.copyWith(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Text(
+                      'x${item.amount ?? ''}',
+                      style: dndFont.copyWith(fontSize: 18),
+                    ),
+                    trailing: IconButton(
+                      icon: Icon(
+                        Icons.delete_forever_outlined,
+                        color: black,
+                      ),
+                      onPressed: () => _onPressedDeleteIcon(
+                        context: context,
+                        itemID: item.itemID!,
+                        name: item.name!,
+                        charID: charID!,
+                      ),
                     ),
                   ),
                 ),
@@ -138,7 +141,7 @@ void _onPressedTile({required BuildContext context, required String name, requir
                   description,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 26,
+                    fontSize: 18,
                     color: white,
                     fontStyle: FontStyle.italic,
                   ),
