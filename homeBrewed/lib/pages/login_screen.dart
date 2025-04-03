@@ -65,9 +65,7 @@ class _SignIn extends StatelessWidget {
                       top: 0,
                       bottom: 0,
                       child: IconButton(
-                        onPressed: () {
-                          context.read<UserCubit>().revealOrHideText();
-                        },
+                        onPressed: () => context.read<UserCubit>().revealOrHideText(),
                         icon: const Icon(Icons.remove_red_eye),
                       ),
                     ),

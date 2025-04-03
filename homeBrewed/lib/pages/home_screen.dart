@@ -52,7 +52,7 @@ class HomeScreen extends StatelessWidget {
                 seperation,
                 OutlinedButton(
                     style: ButtonStyle(
-                      side: MaterialStateProperty.all(BorderSide(color: themeColor)), // Define border color
+                      side: WidgetStateProperty.all(BorderSide(color: themeColor)), // Define border color
                     ),
                     onPressed: () => _onPressedDeleteUser(context, userState),
                     child: const Text(
